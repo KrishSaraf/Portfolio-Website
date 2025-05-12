@@ -5,20 +5,24 @@ import emailjs from '@emailjs/browser';
 /*
  * EMAILJS SETUP INSTRUCTIONS:
  * 
- * 1. Create a free account at https://www.emailjs.com/
- * 2. Add an email service (Gmail, Outlook, etc.) and note down the Service ID
- * 3. Create an email template with these parameters:
- *    - To Name: Your name
- *    - To Email: krishsarav05@gmail.com (or your preferred email)
- *    - From Name: {{from_name}} (this will be the visitor's name)
- *    - From Email: {{from_email}} (this will be the visitor's email)
- *    - Message: {{message}} (this will be the visitor's message)
- *    - Note down the Template ID
- * 4. Get your Public Key from the Integration tab
- * 5. Replace the placeholder values below:
- *    - serviceId: Your EmailJS Service ID
- *    - templateId: Your EmailJS Template ID
- *    - publicKey: Your EmailJS Public Key
+ * You need to complete these quick steps to make the contact form work:
+ * 
+ * 1. Go to https://dashboard.emailjs.com/sign-up and log in with your account
+ * 2. Click on "Add New Service" and select Gmail or another provider
+ *    - Follow the steps to connect your email
+ *    - Note down the Service ID (e.g., "service_xyz123")
+ * 
+ * 3. Click on "Email Templates" in the sidebar and "Create New Template"
+ *    - Give it a name like "Contact Form"
+ *    - Set the content however you want, but include these variables:
+ *      - {{from_name}} - The visitor's name
+ *      - {{from_email}} - The visitor's email
+ *      - {{message}} - The visitor's message
+ *    - Note down the Template ID (e.g., "template_abc456")
+ * 
+ * 4. Replace the placeholders below with your actual IDs:
+ *    - const serviceId = 'service_xyz123'; // replace with your Service ID
+ *    - const templateId = 'template_abc456'; // replace with your Template ID
  */
 
 const Contact = () => {
@@ -40,9 +44,9 @@ const Contact = () => {
     setSubmitStatus(null);
 
     // Replace these with your actual EmailJS credentials
-    const serviceId = 'YOUR_SERVICE_ID';
-    const templateId = 'YOUR_TEMPLATE_ID';
-    const publicKey = 'YOUR_PUBLIC_KEY';
+    const serviceId = 'YOUR_SERVICE_ID'; // You need to create this
+    const templateId = 'YOUR_TEMPLATE_ID'; // You need to create this
+    const publicKey = 'PebOVHyDqnOcUyBxw'; // Your public key from the image
 
     const templateParams = {
       from_name: formData.name,
