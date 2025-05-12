@@ -1,0 +1,338 @@
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import trendz from '../assets/Projects/Synapse.png';
+import EXE from '../assets/Projects/EXE.png';
+import CCDS from '../assets/Projects/CCDS.png';
+import FYP from '../assets/Projects/FYP.png';
+import Planify from '../assets/Projects/Planify.png';
+import Disease from '../assets/Projects/DiseasePrediction.png';
+
+const projects = [
+  {
+    title: 'IEEE NTU & NUS Synapse Hackathon 2024',
+    subtitle: '1st Prize',
+    github: 'https://github.com/leontan2/Trendz-Synapse-2024-/tree/main', // Add GitHub link if available
+    live: '',
+    image: trendz, // Add your image path here, e.g. '/assets/trendz.png'
+    description: [
+      'Developed "Trendz", an AI-powered platform engineered to streamline real-time text and visual content creation workflows by integrating GPT, CLIP, Stable Diffusion, and Runway ML, aimed at minimizing creation time by more than 90%.',
+      'Due to time constraints, programmed a solution utilizing Gemini API and local Stable Diffusion models, ensuring a functional and efficient prototype within competition timeframe.',
+      'Built a functional prototype, including a responsive website using React, Node.js, and Express.js, enabling seamless collaboration, content refinement, and personalization.'
+    ],
+    technologies: ['React', 'Node.js', 'Express.js', 'GPT', 'CLIP', 'Stable Diffusion', 'Runway ML', 'Gemini API'],
+  },
+  {
+    title: 'Clean-Tech Challenge',
+    subtitle: '2 x 1st Prize',
+    github: '',
+    live: '',
+    image: '', // Add your image path here, e.g. '/assets/clean-tech.png'
+    description: [
+      'Conceptualized a robust machine learning model constructed for precise shipment predictions, achieving 90% higher accuracy using a combination of historical data and real-time information to boost accuracy.',
+      'Incorporated a feedback loop with Adjusted Scheduler Algorithm to enhance operational efficiency and adapt to dynamic shipment processing conditions.',
+      'Engineered an interactive Dashboard API providing real-time visibility into shipment statuses via a user-friendly map interface, streamlining monitoring, decision-making, and reducing human effort by 30%.'
+    ],
+    technologies: ['Machine Learning', 'Dashboard API', 'Scheduler Algorithm'],
+  },
+  {
+    title: 'NTU IEEE Intuition Hackathon',
+    subtitle: '1st Runner-Up',
+    github: 'https://github.com/HuangT1ng/iNTUition.exe', // Add GitHub link if available
+    live: '',
+    image: EXE, // Add your image path here, e.g. '/assets/intuition.png'
+    description: [
+      'Engineered an AI agent system that auto-generates, simulates, scores, and deploys full-stack websites using prompt-based inputs.',
+      'Designed modular architecture combining GPT, Bind AI, Bolt, and Manus to dynamically assemble and evaluate 15 backend-frontend combinations.',
+      'Implemented user persona simulations with Puppeteer to automate quality testing and calculate 20+ UX, performance, and scalability metrics.',
+      'Achieved up to 80% productivity gains and 3.5× ROI for users by reducing development time from months to minutes.'
+    ],
+    technologies: ['AI', 'GPT', 'Bind AI', 'Bolt', 'Manus', 'Puppeteer'],
+  },
+  {
+    title: 'NTU PEAK Leadership Program',
+    subtitle: '1st Runners Up, Best Ideation Award',
+    github: 'https://github.com/HuangT1ng/TechFest2025', // Add GitHub link if available
+    live: '',
+    image: CCDS, // Keep the current image as requested
+    description: [
+      'Conceptualized the blueprint, technical framework, and implementation roadmap for a future-proof MRT system for 2030.',
+      'Collaborated with the Land Transport Authority (LTA) to validate user-centric innovations aimed at enhancing stakeholder alignment, commuter experience, and system scalability.'
+    ],
+    technologies: ['Urban Tech', 'Systems Thinking', 'Stakeholder Alignment', 'Public Infrastructure', 'Design Thinking', 'Sustainability'],
+  },
+  {
+    title: 'Reinforcement Learning-Based Multi-Model Financial AI Agent',
+    subtitle: 'Final Year Project',
+    github: '',
+    live: '',
+    image: FYP, // Keep the current image as requested
+    description: [
+      'Built a multimodal financial AI agent under the guidance of Prof. Bo An (Head of AI, NTU), integrating structured stock data, K-line visual patterns, FinBERT-based sentiment from 10,000+ news articles, and company-specific financials.',
+      'Designed a dual-level reinforcement learning reflection system—analyzing both recent and historical decisions—to dynamically adjust investment strategies.',
+      'Achieved an average ARR of 35% over 1 year, tested on 100 Indian equities and bonds.'
+    ],
+    technologies: ['Reinforcement Learning', 'FinBERT', 'Multimodal AI', 'Financial Modeling', 'Time Series', 'Deep Learning', 'Python', 'PyTorch'],
+  },
+  {
+    title: 'Surgical Gauze Detection using Computer Vision',
+    subtitle: 'Undergraduate Research Project',
+    github: '',
+    live: '',
+    image: Planify, // Keep the current image as requested
+    description: [
+      'Developed and deployed a real-time gauze detection system with SGH using YOLOv8 (PyTorch), achieving 98% detection accuracy.',
+      'Applied Roboflow-based augmentation and OpenCV preprocessing; containerized the GPU-accelerated pipeline with Docker, doubling throughput to 34 FPS.',
+      'Integrated the system into clinical workflows based on surgeon feedback, with projected cost savings exceeding SGD $1M.'
+    ],
+    technologies: ['YOLOv8', 'Computer Vision', 'Docker', 'Healthcare AI', 'PyTorch', 'OpenCV', 'GPU Acceleration'],
+  },
+  {
+    title: 'Monte Carlo Simulation for Financial Derivatives Pricing',
+    subtitle: '',
+    github: '',
+    live: '',
+    image: Disease, // Keep the current image as requested
+    description: [
+      'Simulated pricing of complex derivatives using GBM, Heston, and CIR models, calibrated with real options data.',
+      'Applied Control Variates and Martingale Correction techniques, reducing RMSE by 73.3%.',
+      'Ran over 1.8M simulations, performed sensitivity analysis via Finite Difference Method, and built a risk-neutral portfolio for an Auto-Callable Barrier Reverse on the SIX exchange.'
+    ],
+    technologies: ['Monte Carlo', 'GBM / Heston / CIR', 'Quant Finance', 'Options Pricing', 'Risk Management', 'Stochastic Calculus', 'Python'],
+  },
+];
+
+const gridPattern = `url('data:image/svg+xml;utf8,<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0.5" y="0.5" width="39" height="39" rx="7.5" fill="none" stroke="%23e11d4822"/></svg>')`;
+
+const Projects = () => {
+  const [selected, setSelected] = useState<number | null>(null);
+
+  return (
+    <section className="min-h-screen w-full py-20 px-4 sm:px-8 bg-gradient-to-br from-white via-pink-50 to-darkPink/10 relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-5" style={{ backgroundImage: gridPattern }} />
+      
+      <div className="max-w-7xl mx-auto relative">
+        {/* Header Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-5xl font-extrabold text-darkPink mb-4 tracking-tight">
+            Featured Projects
+          </h2>
+          <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+            A collection of my most impactful work, from hackathon wins to innovative solutions
+          </p>
+        </motion.div>
+
+        {/* Projects Grid */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="space-y-8"
+        >
+          {projects.map((project, index) => (
+            <motion.div
+              key={project.title}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+              whileHover={{ y: -5 }}
+              className="group relative w-full bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
+            >
+              <div className="flex flex-col md:flex-row">
+                {/* Image Section */}
+                <div className="md:w-1/3 relative">
+                  {project.image ? (
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full min-h-[100px]"
+                    />
+                  ) : (
+                    <div className="w-full h-full min-h-[200px] bg-gradient-to-br from-pink-50 to-darkPink/10 flex items-center justify-center">
+                      <svg className="w-16 h-16 text-darkPink/20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                    </div>
+                  )}
+                  {project.subtitle && (
+                    <span className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-darkPink font-medium text-sm px-4 py-2 rounded-full shadow-sm">
+                      {project.subtitle}
+                    </span>
+                  )}
+                </div>
+
+                {/* Content Section */}
+                <div className="md:w-2/3 p-8 flex flex-col">
+                  {/* Title and Description */}
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold text-darkPink group-hover:text-pink-600 transition-colors duration-200 mb-4">
+                      {project.title}
+                    </h3>
+                    <p className="text-gray-600 line-clamp-2 mb-6">
+                      {project.description[0]}
+                    </p>
+                  </div>
+
+                  {/* Technologies and Button */}
+                  <div className="space-y-6">
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies.slice(0, 4).map((tech) => (
+                        <span
+                          key={tech}
+                          className="text-sm text-darkPink bg-pink-50 px-3 py-1 rounded-full"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                      {project.technologies.length > 4 && (
+                        <span className="text-sm text-gray-500">+{project.technologies.length - 4} more</span>
+                      )}
+                    </div>
+
+                    <div className="flex items-center gap-4">
+                      <button
+                        className="px-6 py-3 text-sm font-semibold text-white bg-darkPink rounded-xl hover:bg-pink-600 transition-colors duration-200 flex items-center gap-2 group-hover:shadow-md"
+                        onClick={() => setSelected(index)}
+                      >
+                        View Details
+                        <span className="transform group-hover:translate-x-1 transition-transform duration-200">→</span>
+                      </button>
+                      {project.github && (
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-darkPink hover:text-pink-600 transition-colors duration-200"
+                        >
+                          <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                          </svg>
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Project Details Modal */}
+        <AnimatePresence>
+          {selected !== null && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+              onClick={() => setSelected(null)}
+            >
+              <motion.div
+                initial={{ scale: 0.95, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.95, opacity: 0 }}
+                className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full p-8 relative max-h-[90vh] overflow-y-auto"
+                onClick={e => e.stopPropagation()}
+              >
+                {/* Close Button */}
+                <button
+                  className="absolute top-4 right-4 text-gray-400 hover:text-darkPink text-2xl font-bold transition-colors duration-200"
+                  onClick={() => setSelected(null)}
+                  aria-label="Close"
+                >
+                  ×
+                </button>
+
+                {/* Modal Content */}
+                <div className="space-y-6">
+                  {/* Header */}
+                  <div className="flex items-start gap-6">
+                    {projects[selected].image && (
+                      <img
+                        src={projects[selected].image}
+                        alt={projects[selected].title}
+                        className="w-30 h-24 rounded-xl shadow-lg"
+                      />
+                    )}
+                    <div>
+                      <h3 className="text-2xl font-bold text-darkPink mb-2">
+                        {projects[selected].title}
+                      </h3>
+                      {projects[selected].subtitle && (
+                        <span className="inline-block bg-pink-50 text-darkPink font-medium text-sm px-4 py-1 rounded-full">
+                          {projects[selected].subtitle}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Description */}
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Overview</h4>
+                    <ul className="list-disc pl-6 space-y-3 text-gray-600">
+                      {projects[selected].description.map((point, i) => (
+                        <li key={i} className="leading-relaxed">{point}</li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Technologies */}
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-800 mb-3">Technologies Used</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {projects[selected].technologies.map((tech) => (
+                        <span
+                          key={tech}
+                          className="text-sm text-darkPink bg-pink-50 px-3 py-1 rounded-full"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Links */}
+                  <div className="flex gap-4 pt-4">
+                    {projects[selected].github && (
+                      <a
+                        href={projects[selected].github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-darkPink rounded-lg hover:bg-pink-600 transition-colors duration-200"
+                      >
+                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        View on GitHub
+                      </a>
+                    )}
+                    {projects[selected].live && (
+                      <a
+                        href={projects[selected].live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-darkPink bg-pink-50 rounded-lg hover:bg-pink-100 transition-colors duration-200"
+                      >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                        Live Demo
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </section>
+  );
+};
+
+export default Projects; 
