@@ -5,7 +5,6 @@ import cLogo from '../assets/c.png';
 import cppLogo from '../assets/cpp.png';
 import html5Logo from '../assets/html5.png';
 import css3Logo from '../assets/css3.png';
-import javascriptLogo from '../assets/js.png';
 
 import reactLogo from '../assets/react.png';
 import nodeLogo from '../assets/nodejs.png';
@@ -45,7 +44,6 @@ const skillCategories: SkillCategory[] = [
       { name: "Java", icon: "☕", logo: javaLogo },
       { name: "C", icon: "💾", logo: cLogo },
       { name: "C++", icon: "➕", logo: cppLogo },
-      // { name: "JavaScript", icon: "🟨", logo: javascriptLogo },
       { name: "R", icon: "📊" },
       { name: "Shell Scripting", icon: "📜" },
     ],
