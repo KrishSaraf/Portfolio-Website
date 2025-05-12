@@ -97,7 +97,7 @@ const Contact = () => {
           transition={{ duration: 0.5 }}
         >
           <h2 className="text-3xl font-bold text-textPrimary mb-8">
-            <span className="text-secondary">03.</span> Get In Touch
+            <span className="text-secondary"></span> Get In Touch
           </h2>
 
           <p className="text-textSecondary text-lg mb-8">
@@ -184,7 +184,7 @@ const Contact = () => {
             </h3>
             <div className="flex gap-4">
               <a
-                href="https://github.com/yourusername"
+                href="https://github.com/KrishSaraf/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-textSecondary hover:text-secondary transition-colors duration-300"
@@ -192,20 +192,12 @@ const Contact = () => {
                 GitHub
               </a>
               <a
-                href="https://linkedin.com/in/yourusername"
+                href="https://www.linkedin.com/in/krishsaraf/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-textSecondary hover:text-secondary transition-colors duration-300"
               >
                 LinkedIn
-              </a>
-              <a
-                href="https://twitter.com/yourusername"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-textSecondary hover:text-secondary transition-colors duration-300"
-              >
-                Twitter
               </a>
             </div>
           </div>
