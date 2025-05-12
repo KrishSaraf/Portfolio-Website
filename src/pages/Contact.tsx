@@ -44,9 +44,9 @@ const Contact = () => {
     setSubmitStatus(null);
 
     // Replace these with your actual EmailJS credentials
-    const serviceId = 'YOUR_SERVICE_ID'; // You need to create this
-    const templateId = 'YOUR_TEMPLATE_ID'; // You need to create this
-    const publicKey = 'PebOVHyDqnOcUyBxw'; // Your public key from the image
+    const serviceId = 'service_1z2d5oi'; // Service ID from the image
+    const templateId = 'template_wudk5qt'; // Template ID from the image
+    const publicKey = 'PebOVHyDqnOcUyBxw'; // Your public key from the previous image
 
     const templateParams = {
       from_name: formData.name,
@@ -101,7 +101,7 @@ const Contact = () => {
           </h2>
 
           <p className="text-textSecondary text-lg mb-8">
-            Whether you have a question or just want to say hi, I'll try my best to get back to you!
+            Whether you have a question or just want to say hi, I'm happy to connect!
           </p>
 
           <form ref={form} onSubmit={handleSubmit} className="space-y-6">
