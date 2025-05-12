@@ -1,17 +1,80 @@
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import emailjs from '@emailjs/browser';
+
+/*
+ * EMAILJS SETUP INSTRUCTIONS:
+ * 
+ * 1. Create a free account at https://www.emailjs.com/
+ * 2. Add an email service (Gmail, Outlook, etc.) and note down the Service ID
+ * 3. Create an email template with these parameters:
+ *    - To Name: Your name
+ *    - To Email: krishsarav05@gmail.com (or your preferred email)
+ *    - From Name: {{from_name}} (this will be the visitor's name)
+ *    - From Email: {{from_email}} (this will be the visitor's email)
+ *    - Message: {{message}} (this will be the visitor's message)
+ *    - Note down the Template ID
+ * 4. Get your Public Key from the Integration tab
+ * 5. Replace the placeholder values below:
+ *    - serviceId: Your EmailJS Service ID
+ *    - templateId: Your EmailJS Template ID
+ *    - publicKey: Your EmailJS Public Key
+ */
 
 const Contact = () => {
+  const form = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: '',
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    success: boolean;
+    message: string;
+  } | null>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Add your form submission logic here
-    console.log('Form submitted:', formData);
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    // Replace these with your actual EmailJS credentials
+    const serviceId = 'YOUR_SERVICE_ID';
+    const templateId = 'YOUR_TEMPLATE_ID';
+    const publicKey = 'YOUR_PUBLIC_KEY';
+
+    const templateParams = {
+      from_name: formData.name,
+      from_email: formData.email,
+      to_email: 'krishsarav05@gmail.com',
+      message: formData.message,
+    };
+
+    emailjs.send(serviceId, templateId, templateParams, publicKey)
+      .then((response) => {
+        console.log('Email sent successfully!', response);
+        setSubmitStatus({
+          success: true,
+          message: 'Thank you! Your message has been sent.',
+        });
+        // Reset the form after successful submission
+        setFormData({
+          name: '',
+          email: '',
+          message: '',
+        });
+      })
+      .catch((error) => {
+        console.error('Error sending email:', error);
+        setSubmitStatus({
+          success: false,
+          message: 'Failed to send message. Please try again later.',
+        });
+      })
+      .finally(() => {
+        setIsSubmitting(false);
+      });
   };
 
   const handleChange = (
@@ -37,7 +100,7 @@ const Contact = () => {
             Whether you have a question or just want to say hi, I'll try my best to get back to you!
           </p>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form ref={form} onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label
                 htmlFor="name"
@@ -92,13 +155,22 @@ const Contact = () => {
               />
             </div>
 
+            {submitStatus && (
+              <div className={`p-3 rounded ${submitStatus.success ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
+                {submitStatus.message}
+              </div>
+            )}
+
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               type="submit"
-              className="bg-secondary text-primary px-8 py-3 rounded-md font-medium hover:bg-opacity-90 transition-colors duration-300"
+              disabled={isSubmitting}
+              className={`bg-secondary text-primary px-8 py-3 rounded-md font-medium transition-colors duration-300 ${
+                isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:bg-opacity-90'
+              }`}
             >
-              Send Message
+              {isSubmitting ? 'Sending...' : 'Send Message'}
             </motion.button>
           </form>
 
