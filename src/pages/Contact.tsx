@@ -49,10 +49,10 @@ const Contact = () => {
     const publicKey = 'PebOVHyDqnOcUyBxw'; // Your public key from the previous image
 
     const templateParams = {
-      from_name: formData.name,
-      from_email: formData.email,
-      to_email: 'krishsarav05@gmail.com',
+      name: formData.name,
+      email: formData.email,
       message: formData.message,
+      time: new Date().toLocaleString(),
     };
 
     emailjs.send(serviceId, templateId, templateParams, publicKey)
