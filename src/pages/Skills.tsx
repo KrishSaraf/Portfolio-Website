@@ -1,13 +1,13 @@
 import { motion } from 'framer-motion';
 import pythonLogo from '../assets/python.png';
 import javaLogo from '../assets/java.png';
-import cLogo from '../assets/c.png';
-import cppLogo from '../assets/cpp.png';
+import cLogo from '../assets/C.png';
+import cppLogo from '../assets/Cpp.png';
 import html5Logo from '../assets/html5.png';
 import css3Logo from '../assets/css3.png';
 
-import reactLogo from '../assets/react.png';
-import nodeLogo from '../assets/nodejs.png';
+import reactLogo from '../assets/React.png';
+import nodeLogo from '../assets/Nodejs.png';
 import djangoLogo from '../assets/django.png';
 
 import dockerLogo from '../assets/docker.png';
