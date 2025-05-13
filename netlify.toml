@@ -2,6 +2,12 @@
   command = "npm run build"
   publish = "dist"
 
+# Handle browser caching
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
 # Handle SPA routing
 [[redirects]]
   from = "/*"
