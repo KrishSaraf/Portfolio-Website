@@ -4,14 +4,5 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  build: {
-    rollupOptions: {
-      external: [
-        '@heroicons/react',
-        'framer-motion',
-        'react-router-dom',
-        '@emailjs/browser'
-      ]
-    }
-  }
+  base: '/', // Ensure assets are loaded from the root
 })

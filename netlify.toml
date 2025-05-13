@@ -7,3 +7,4 @@
   from = "/*"
   to = "/index.html"
   status = 200
+  force = true # Ensure the redirect happens even if a file exists at the path 
