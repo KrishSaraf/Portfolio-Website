@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import logo from '../assets/image.png';
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -18,13 +19,9 @@ const Navbar = () => {
     <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-sm z-50 border-b border-darkPink/10">
       <div className="container-padding mx-auto">
         <div className="flex items-center justify-between h-16">
-          <Link to="/" className="flex items-center">
-            <img 
-              src="/images/custom-logo.svg" 
-              alt="Logo" 
-              className="h-8 w-8 mr-2" 
-            />
-            <span className="text-2xl font-bold text-darkPink">Krish Saraf</span>
+          <Link to="/" className="flex items-center text-2xl font-bold text-darkPink">
+            <img src={logo} alt="Logo" className="h-8 w-auto mr-2" />
+            Krish Saraf
           </Link>
 
           {/* Desktop Navigation */}
