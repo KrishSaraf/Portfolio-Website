@@ -124,7 +124,7 @@ const Contact = () => {
   };
 
   return (
-    <section className="section-padding py-16 relative overflow-hidden bg-gradient-to-b from-white to-pink-50">
+    <section className="section-padding py-12 relative overflow-hidden bg-gradient-to-b from-white to-pink-50">
       {/* Background decorative elements */}
       <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-darkPink/5 blur-3xl"></div>
       <div className="absolute bottom-20 right-10 w-64 h-64 rounded-full bg-darkPink/5 blur-3xl"></div>
@@ -139,7 +139,7 @@ const Contact = () => {
         >
           {/* Centered Title with decorative elements */}
           <motion.div 
-            className="text-center mb-16 mt-24"
+            className="text-center mb-16 mt-12"
             variants={itemVariants}
           >
             <h2 className="text-4xl md:text-5xl font-bold text-darkPink tracking-tight mb-6 relative inline-block">
