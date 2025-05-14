@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import profileImage from '../assets/KS.jpg';
-import curvedArrow from '../assets/curved-arrow.svg';
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -40,15 +39,6 @@ const Navbar = () => {
                 >
                   {item.name}
                 </Link>
-                {location.pathname === item.href && 
-                 item.name !== 'Home' && 
-                 item.name !== 'Contact' && (
-                  <img 
-                    src={curvedArrow} 
-                    alt="Active page indicator" 
-                    className="absolute -top-12 left-1/2 -translate-x-1/4 w-14 h-14"
-                  />
-                )}
               </div>
             ))}
           </div>
@@ -86,15 +76,6 @@ const Navbar = () => {
                   >
                     {item.name}
                   </Link>
-                  {location.pathname === item.href && 
-                   item.name !== 'Home' && 
-                   item.name !== 'Contact' && (
-                    <img 
-                      src={curvedArrow} 
-                      alt="Active page indicator" 
-                      className="absolute -right-8 top-1/2 -translate-y-1/2 w-8 h-8 transform -rotate-90"
-                    />
-                  )}
                 </div>
               ))}
             </div>
