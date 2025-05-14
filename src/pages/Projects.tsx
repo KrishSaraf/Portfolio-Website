@@ -10,6 +10,20 @@ import { Link } from 'react-router-dom';
 
 const projects = [
   {
+    title: 'Surgical Gauze Detection using Computer Vision',
+    subtitle: 'Undergraduate Research Project',
+    github: 'https://github.com/KrishSaraf/AI-for-gauze-detection-in-OT',
+    live: '',
+    image: Disease, // Use the Disease image for this project
+    liveSee: 'Deployed a real-time surgical gauze detection system with 98% accuracy for SGH, doubling throughput to 34 FPS with projected savings of SGD $1M.',
+    description: [
+      'Developed and deployed a real-time gauze detection system with SGH using YOLOv8 (PyTorch), achieving 98% detection accuracy.',
+      'Applied Roboflow-based augmentation and OpenCV preprocessing; containerized the GPU-accelerated pipeline with Docker, doubling throughput to 34 FPS.',
+      'Integrated the system into clinical workflows based on surgeon feedback, with projected cost savings exceeding SGD $1M.'
+    ],
+    technologies: ['YOLOv8', 'Computer Vision', 'Docker', 'Healthcare AI', 'PyTorch', 'OpenCV', 'GPU Acceleration'],
+  },
+  {
     title: 'IEEE NTU & NUS Synapse Hackathon 2024',
     subtitle: '1st Prize',
     github: 'https://github.com/KrishSaraf/Trendz_Website-Synapse-Hackathon', // Add GitHub link if available
@@ -91,20 +105,6 @@ const projects = [
       'Achieved an average ARR of 35% over 1 year, tested on 100 Indian equities and bonds.'
     ],
     technologies: ['Reinforcement Learning', 'FinBERT', 'Multimodal AI', 'Financial Modeling', 'Time Series', 'Deep Learning', 'Python', 'PyTorch'],
-  },
-  {
-    title: 'Surgical Gauze Detection using Computer Vision',
-    subtitle: 'Undergraduate Research Project',
-    github: 'https://github.com/KrishSaraf/AI-for-gauze-detection-in-OT',
-    live: '',
-    image: '', // Keep the current image as requested
-    liveSee: 'Deployed a real-time surgical gauze detection system with 98% accuracy for SGH, doubling throughput to 34 FPS with projected savings of SGD $1M.',
-    description: [
-      'Developed and deployed a real-time gauze detection system with SGH using YOLOv8 (PyTorch), achieving 98% detection accuracy.',
-      'Applied Roboflow-based augmentation and OpenCV preprocessing; containerized the GPU-accelerated pipeline with Docker, doubling throughput to 34 FPS.',
-      'Integrated the system into clinical workflows based on surgeon feedback, with projected cost savings exceeding SGD $1M.'
-    ],
-    technologies: ['YOLOv8', 'Computer Vision', 'Docker', 'Healthcare AI', 'PyTorch', 'OpenCV', 'GPU Acceleration'],
   },
   {
     title: 'Monte Carlo Simulation for Financial Derivatives Pricing',
