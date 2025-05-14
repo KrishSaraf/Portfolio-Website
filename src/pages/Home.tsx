@@ -53,10 +53,10 @@ const Home = () => {
               Currently pursuing Economics & Data Science at NTU, I've engineered tools, deployed scalable backend systems, and built investment algorithms that outperform benchmarks. 
               <br />
               <br />
-              From winning 5 Hackathons to being a Dean's Lister- having worked across seven organisations, I combine deep technical skill with sharp product sense — always shipping, always iterating.
+              {/* From winning 5 Hackathons to being a Dean's Lister- having worked across seven organisations, I combine deep technical skill with sharp product sense — always shipping, always iterating. */}
               <br />
               <br />
-              Explore my work below — I build fast, think deep, and execute smarter.
+              {/* Explore my work below — I build fast, think deep, and execute smarter. */}
             </p>
             <Link to="/projects" className="no-underline mb-6">
               <motion.button
@@ -65,6 +65,16 @@ const Home = () => {
                 className="bg-darkPink text-white px-8 py-3 rounded-md font-medium hover:bg-darkPink/90 transition-colors duration-300 mt-2 w-full text-center"
               >
                 Check out my work!
+              </motion.button>
+            </Link>
+            
+            <Link to="/contact" className="no-underline mb-6">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-white text-darkPink px-8 py-3 rounded-md font-medium border-2 border-darkPink hover:bg-darkPink/10 transition-colors duration-300 mt-2 w-full text-center"
+              >
+                Get in touch
               </motion.button>
             </Link>
             
@@ -79,7 +89,7 @@ const Home = () => {
               </h3>
               
               {/* First row of logos */}
-              <div className="flex flex-wrap justify-center items-center gap-6 mb-2">
+              <div className="flex flex-wrap justify-center items-center gap-6 mb-1">
                 {firstRowLogos.map((logo, index) => (
                   <motion.div
                     key={logo.alt}
