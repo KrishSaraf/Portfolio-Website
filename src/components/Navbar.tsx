@@ -18,16 +18,16 @@ const Navbar = () => {
   const location = useLocation();
 
   return (
-    <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-md z-50 border-b border-darkPink/10 h-[var(--navbar-height-mobile)] md:h-[var(--navbar-height)] shadow-sm laptop:bg-white/98 laptop:backdrop-blur-lg laptop:border-b-2 laptop:border-darkPink/5 laptop:shadow-md">
-      <div className="container-padding mx-auto h-full laptop:px-[min(5vw,3rem)] xl:px-[min(6vw,4rem)]">
+    <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-md z-50 border-b border-darkPink/10 h-[var(--navbar-height-mobile)] md:h-[var(--navbar-height)] shadow-sm">
+      <div className="container-padding mx-auto h-full">
         <div className="flex items-center justify-between h-full">
-          <Link to="/" className="flex items-center gap-2 laptop:gap-3">
-            <img src={profileImage} alt="Krish Saraf" className="h-8 w-8 rounded-full object-cover laptop:h-10 laptop:w-10 xl:h-12 xl:w-12" />
-            <span className="text-xl md:text-2xl font-bold text-darkPink laptop:text-2xl xl:text-3xl">Krish Saraf</span>
+          <Link to="/" className="flex items-center gap-2">
+            <img src={profileImage} alt="Krish Saraf" className="h-8 w-8 rounded-full object-cover" />
+            <span className="text-xl md:text-2xl font-bold text-darkPink">Krish Saraf</span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-8 relative laptop:space-x-10 xl:space-x-12">
+          <div className="hidden md:flex space-x-8 relative">
             {navigation.map((item) => (
               <div key={item.name} className="relative">
                 <Link
@@ -36,7 +36,7 @@ const Navbar = () => {
                     location.pathname === item.href
                       ? 'text-darkPink'
                       : 'text-darkPink/70 hover:text-darkPink'
-                  } transition-colors duration-300 laptop:text-lg laptop:font-medium xl:text-xl`}
+                  } transition-colors duration-300`}
                 >
                   {item.name}
                 </Link>
@@ -46,7 +46,7 @@ const Navbar = () => {
                   <img 
                     src={curvedArrow} 
                     alt="Active page indicator" 
-                    className="absolute -top-12 left-1/2 -translate-x-1/4 w-14 h-14 laptop:w-16 laptop:h-16 xl:w-20 xl:h-20"
+                    className="absolute -top-12 left-1/2 -translate-x-1/4 w-14 h-14"
                   />
                 )}
               </div>

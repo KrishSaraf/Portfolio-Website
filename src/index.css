@@ -48,53 +48,6 @@
     }
   }
 
-  /* Laptop-specific variables (1024px and above) */
-  @media (min-width: 1024px) {
-    :root {
-      /* Laptop content width */
-      --content-width: min(85vw, 1400px);
-      
-      /* Laptop-specific spacing */
-      --laptop-space-unit: calc(0.25rem * 1.1);
-      --laptop-fluid-1: calc(1 * var(--laptop-space-unit));
-      --laptop-fluid-2: calc(2 * var(--laptop-space-unit));
-      --laptop-fluid-4: calc(4 * var(--laptop-space-unit));
-      --laptop-fluid-6: calc(6 * var(--laptop-space-unit));
-      --laptop-fluid-8: calc(8 * var(--laptop-space-unit));
-      --laptop-fluid-12: calc(12 * var(--laptop-space-unit));
-      --laptop-fluid-16: calc(16 * var(--laptop-space-unit));
-      --laptop-fluid-24: calc(24 * var(--laptop-space-unit));
-      
-      /* Laptop typography scaling */
-      --laptop-text-scale: clamp(1, 1 + 0.1 * (100vw - 1024px) / 512, 1.1);
-      --laptop-font-size-base: calc(1rem * var(--laptop-text-scale));
-      --laptop-font-size-lg: calc(1.125rem * var(--laptop-text-scale));
-      --laptop-font-size-xl: calc(1.25rem * var(--laptop-text-scale));
-      --laptop-font-size-2xl: calc(1.5rem * var(--laptop-text-scale));
-      --laptop-font-size-3xl: calc(1.875rem * var(--laptop-text-scale));
-      --laptop-font-size-4xl: calc(2.25rem * var(--laptop-text-scale));
-      --laptop-font-size-5xl: calc(3rem * var(--laptop-text-scale));
-    }
-  }
-
-  /* Large laptop (1280px) specific variables */
-  @media (min-width: 1280px) {
-    :root {
-      --content-width: min(80vw, 1500px);
-      --xl-space-factor: 1.15;
-      --xl-text-scale: clamp(1.05, 1.05 + 0.1 * (100vw - 1280px) / 256, 1.15);
-    }
-  }
-
-  /* Extra large laptop (1536px) specific variables */
-  @media (min-width: 1536px) {
-    :root {
-      --content-width: min(75vw, 1800px);
-      --2xl-space-factor: 1.2;
-      --2xl-text-scale: clamp(1.1, 1.1 + 0.1 * (100vw - 1536px) / 384, 1.2);
-    }
-  }
-
   html {
     @apply scroll-smooth;
     font-size: 16px; /* Base font size */
@@ -113,17 +66,6 @@
   /* Ensuring all pages have proper spacing at the top */
   section {
     padding-top: max(1.5rem, 5vh);
-  }
-
-  /* Laptop-specific body adjustments */
-  @media (min-width: 1024px) {
-    body {
-      padding-top: var(--navbar-height);
-    }
-    
-    section {
-      padding-top: max(2rem, 6vh);
-    }
   }
 }
 
@@ -148,40 +90,6 @@
     @apply px-4 md:px-8 lg:px-16;
     padding-left: var(--fluid-4);
     padding-right: var(--fluid-4);
-  }
-
-  /* Laptop-specific container classes */
-  @media (min-width: 1024px) {
-    .fluid-container {
-      padding-left: var(--laptop-fluid-8);
-      padding-right: var(--laptop-fluid-8);
-    }
-    
-    .section-padding {
-      padding-top: var(--laptop-fluid-16);
-      padding-bottom: var(--laptop-fluid-16);
-    }
-    
-    .container-padding {
-      padding-left: var(--laptop-fluid-6);
-      padding-right: var(--laptop-fluid-6);
-    }
-  }
-  
-  /* Large laptop (1280px) container adjustments */
-  @media (min-width: 1280px) {
-    .fluid-container {
-      padding-left: var(--laptop-fluid-12);
-      padding-right: var(--laptop-fluid-12);
-    }
-  }
-  
-  /* Extra large laptop (1536px) container adjustments */
-  @media (min-width: 1536px) {
-    .fluid-container {
-      padding-left: var(--laptop-fluid-16);
-      padding-right: var(--laptop-fluid-16);
-    }
   }
 
   /* Fluid typography classes */
@@ -209,37 +117,6 @@
     font-size: var(--font-size-4xl);
   }
   
-  /* Laptop-specific typography classes */
-  @media (min-width: 1024px) {
-    .laptop-text-base {
-      font-size: var(--laptop-font-size-base);
-    }
-    
-    .laptop-text-lg {
-      font-size: var(--laptop-font-size-lg);
-    }
-    
-    .laptop-text-xl {
-      font-size: var(--laptop-font-size-xl);
-    }
-    
-    .laptop-text-2xl {
-      font-size: var(--laptop-font-size-2xl);
-    }
-    
-    .laptop-text-3xl {
-      font-size: var(--laptop-font-size-3xl);
-    }
-    
-    .laptop-text-4xl {
-      font-size: var(--laptop-font-size-4xl);
-    }
-    
-    .laptop-text-5xl {
-      font-size: var(--laptop-font-size-5xl);
-    }
-  }
-  
   /* Fluid spacing classes */
   .fluid-p-1 { padding: var(--fluid-1); }
   .fluid-p-2 { padding: var(--fluid-2); }
@@ -261,29 +138,6 @@
   .fluid-gap-4 { gap: var(--fluid-4); }
   .fluid-gap-6 { gap: var(--fluid-6); }
   .fluid-gap-8 { gap: var(--fluid-8); }
-  
-  /* Laptop-specific spacing classes */
-  @media (min-width: 1024px) {
-    .laptop-p-1 { padding: var(--laptop-fluid-1); }
-    .laptop-p-2 { padding: var(--laptop-fluid-2); }
-    .laptop-p-4 { padding: var(--laptop-fluid-4); }
-    .laptop-p-6 { padding: var(--laptop-fluid-6); }
-    .laptop-p-8 { padding: var(--laptop-fluid-8); }
-    .laptop-p-12 { padding: var(--laptop-fluid-12); }
-    
-    .laptop-m-1 { margin: var(--laptop-fluid-1); }
-    .laptop-m-2 { margin: var(--laptop-fluid-2); }
-    .laptop-m-4 { margin: var(--laptop-fluid-4); }
-    .laptop-m-6 { margin: var(--laptop-fluid-6); }
-    .laptop-m-8 { margin: var(--laptop-fluid-8); }
-    .laptop-m-12 { margin: var(--laptop-fluid-12); }
-    
-    .laptop-gap-2 { gap: var(--laptop-fluid-2); }
-    .laptop-gap-4 { gap: var(--laptop-fluid-4); }
-    .laptop-gap-6 { gap: var(--laptop-fluid-6); }
-    .laptop-gap-8 { gap: var(--laptop-fluid-8); }
-    .laptop-gap-12 { gap: var(--laptop-fluid-12); }
-  }
 }
 
 :root {
