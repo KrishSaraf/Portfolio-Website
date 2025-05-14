@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import profileImage from '../assets/KS.jpg';
+import curvedArrow from '../assets/curved-arrow.svg';
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -26,19 +27,27 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden md:flex space-x-8 relative">
             {navigation.map((item) => (
-              <Link
-                key={item.name}
-                to={item.href}
-                className={`${
-                  location.pathname === item.href
-                    ? 'text-darkPink'
-                    : 'text-darkPink/70 hover:text-darkPink'
-                } transition-colors duration-300`}
-              >
-                {item.name}
-              </Link>
+              <div key={item.name} className="relative">
+                <Link
+                  to={item.href}
+                  className={`${
+                    location.pathname === item.href
+                      ? 'text-darkPink'
+                      : 'text-darkPink/70 hover:text-darkPink'
+                  } transition-colors duration-300`}
+                >
+                  {item.name}
+                </Link>
+                {location.pathname === item.href && (
+                  <img 
+                    src={curvedArrow} 
+                    alt="Active page indicator" 
+                    className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-16 h-16 transform rotate-180"
+                  />
+                )}
+              </div>
             ))}
           </div>
 
@@ -63,18 +72,26 @@ const Navbar = () => {
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1">
               {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className={`${
-                    location.pathname === item.href
-                      ? 'text-darkPink'
-                      : 'text-darkPink/70 hover:text-darkPink'
-                  } block px-3 py-2 text-base transition-colors duration-300`}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {item.name}
-                </Link>
+                <div key={item.name} className="relative">
+                  <Link
+                    to={item.href}
+                    className={`${
+                      location.pathname === item.href
+                        ? 'text-darkPink'
+                        : 'text-darkPink/70 hover:text-darkPink'
+                    } block px-3 py-2 text-base transition-colors duration-300`}
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                  {location.pathname === item.href && (
+                    <img 
+                      src={curvedArrow} 
+                      alt="Active page indicator" 
+                      className="absolute -right-6 top-1/2 -translate-y-1/2 w-8 h-8 transform rotate-90"
+                    />
+                  )}
+                </div>
               ))}
             </div>
           </div>
