@@ -37,6 +37,14 @@ const experiences = [
     logo: "/logos/fab-logo.png",
   },
   {
+    company: "Singapore General Hospital",
+    position: "Data Analytics Intern",
+    duration: "Aug 2022 - Dec 2022",
+    description: "Developed analytics dashboards for hospital administration, identifying service bottlenecks and opportunities for process improvement. Created predictive models for patient flow management, helping optimize resource allocation during peak periods. Worked with clinical teams to enhance data collection protocols and improve reporting accuracy.",
+    technologies: ["Data Analysis", "Python", "Healthcare Analytics", "Dashboarding"],
+    logo: "/logos/sgh-logo.png",
+  },
+  {
     company: "Tech Exactly",
     position: "Software Engineering Intern",
     duration: "Jan 2022 - Feb 2023",
