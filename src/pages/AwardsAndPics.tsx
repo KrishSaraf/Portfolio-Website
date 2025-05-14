@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useLocation } from 'react-router-dom';
 
 const AwardsAndPics = () => {
-  const [selectedMedia, setSelectedMedia] = useState<{src: string, type: 'image' | 'video'} | null>(null);
+  const [selectedMedia, setSelectedMedia] = useState<{src: string, type: 'image' | 'video', loop?: boolean} | null>(null);
   const location = useLocation();
   
   // Parse URL parameters to check for event (only for scrolling)
@@ -18,7 +18,8 @@ const AwardsAndPics = () => {
                          event === 'cleantech' ? 'cleantech-section' :
                          event === 'intuition' ? 'intuition-section' :
                          event === 'codewithai' ? 'codewithai-section' :
-                         event === 'peak' ? 'peak-section' : null;
+                         event === 'peak' ? 'peak-section' :
+                         event === 'gauze' ? 'gauze-section' : null;
         if (sectionId) {
           const section = document.getElementById(sectionId);
           if (section) {
@@ -139,6 +140,35 @@ const AwardsAndPics = () => {
     }
   ];
 
+  // Surgical Gauze Detection images and video
+  const gauzeMedia = [
+    {
+      type: 'image',
+      src: "/gallery/gauze.jpeg", 
+      caption: "Gauze detection system in action",
+      aspectRatio: "aspect-w-16 aspect-h-9",
+    },
+    {
+      type: 'image',
+      src: "/gallery/chris-hospital.jpeg", 
+      caption: "Clinical implementation at hospital",
+      aspectRatio: "aspect-w-4 aspect-h-3",
+    },
+    {
+      type: 'image',
+      src: "/gallery/steps.png", 
+      caption: "System architecture and workflow",
+      aspectRatio: "aspect-w-4 aspect-h-3",
+    },
+    {
+      type: 'video',
+      src: "/gallery/videos/video-counting.mp4", 
+      caption: "Gauze counting system demonstration",
+      loop: true,
+      aspectRatio: "aspect-w-16 aspect-h-9",
+    }
+  ];
+
   const awards = [
     {
       title: "Outstanding Project Award",
@@ -227,7 +257,7 @@ const AwardsAndPics = () => {
   ];
 
   // Updated Modal to handle both images and videos
-  const MediaModal = ({ media, onClose }: { media: {src: string, type: 'image' | 'video'} | null, onClose: () => void }) => {
+  const MediaModal = ({ media, onClose }: { media: {src: string, type: 'image' | 'video', loop?: boolean} | null, onClose: () => void }) => {
     if (!media) return null;
     
     return (
@@ -252,12 +282,15 @@ const AwardsAndPics = () => {
               className="max-h-[90vh] max-w-full object-contain"
             />
           ) : (
-            <video 
-              src={media.src} 
-              controls 
-              autoPlay 
-              className="max-h-[90vh] max-w-full"
-            />
+            <div className="relative">
+              <video 
+                src={media.src} 
+                controls 
+                autoPlay 
+                loop={media.loop}
+                className="max-h-[90vh] max-w-full"
+              />
+            </div>
           )}
           <button
             onClick={onClose}
@@ -291,6 +324,66 @@ const AwardsAndPics = () => {
 
           {/* Event Sections - Always displayed */}
           <div className="space-y-24 mb-32">
+            {/* Surgical Gauze Detection Section - Always displayed */}
+            <div id="gauze-section" className="border-2 border-darkPink/20 p-8 rounded-2xl bg-white/50 backdrop-blur-sm">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+              >
+                <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
+                  Surgical Gauze Detection using Computer Vision
+                </h3>
+                <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
+                  Developed and deployed a real-time gauze detection system with SGH using YOLOv8, achieving 98% detection accuracy and doubling throughput to 34 FPS.
+                </p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {gauzeMedia.map((item, index) => (
+                    <motion.div
+                      key={`gauze-${index}`}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer"
+                      onClick={() => setSelectedMedia({src: item.src, type: item.type === 'video' ? 'video' : 'image', loop: item.loop})}
+                    >
+                      <div className="overflow-hidden aspect-video">
+                        {item.type === 'image' ? (
+                          <img 
+                            src={item.src} 
+                            alt={item.caption} 
+                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                          />
+                        ) : (
+                          <div className="relative">
+                            <video 
+                              src={item.src}
+                              className="w-full h-full object-cover"
+                              autoPlay
+                              muted
+                              loop
+                              playsInline
+                            />
+                            {/* Play button overlay */}
+                            <div className="absolute inset-0 flex items-center justify-center">
+                              <div className="bg-darkPink/70 rounded-full p-4 opacity-80 group-hover:opacity-100 transition-opacity">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                  <path d="M8 5v14l11-7z" />
+                                </svg>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+
             {/* Synapse Hackathon Section - Always displayed */}
             <div id="synapse-section" className="border-2 border-darkPink/20 p-8 rounded-2xl bg-white/50 backdrop-blur-sm">
               <motion.div
@@ -591,7 +684,7 @@ const AwardsAndPics = () => {
                     {/* Play button overlay */}
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="bg-darkPink/70 rounded-full p-4 opacity-80 group-hover:opacity-100 transition-opacity">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-white" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M8 5v14l11-7z" />
                         </svg>
                       </div>
