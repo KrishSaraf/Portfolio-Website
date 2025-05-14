@@ -11,52 +11,50 @@ const projects = [
   {
     title: 'IEEE NTU & NUS Synapse Hackathon 2024',
     subtitle: '1st Prize',
-    github: 'https://github.com/leontan2/Trendz-Synapse-2024-/tree/main', // Add GitHub link if available
+    github: 'https://github.com/KrishSaraf/Trendz_Website-Synapse-Hackathon', // Add GitHub link if available
     live: '',
     image: trendz, // Add your image path here, e.g. '/assets/trendz.png'
-    liveSee: 'Built an AI-powered platform that streamlines content creation by integrating GPT, CLIP, Stable Diffusion, and Runway ML, cutting creation time by 90%.',
+    liveSee: 'Award-winning AI platform that slashes content creation time by 90% through seamless integration of GPT, CLIP, Stable Diffusion, and Runway ML.',
     description: [
-      'Developed "Trendz", an AI-powered platform engineered to streamline real-time text and visual content creation workflows by integrating GPT, CLIP, Stable Diffusion, and Runway ML, aimed at minimizing creation time by more than 90%.',
-      'Due to time constraints, programmed a solution utilizing Gemini API and local Stable Diffusion models, ensuring a functional and efficient prototype within competition timeframe.',
-      'Built a functional prototype, including a responsive website using React, Node.js, and Express.js, enabling seamless collaboration, content refinement, and personalization.'
+      'Created "Trendz", an AI-powered platform to streamline real-time text and visual content creation workflows by integrating GPT, CLIP, Stable Diffusion, and Runway ML, minimizing creation time by more than 90%.',
+      'Built a full-stack prototype, including a responsive website using React, Node.js, and Express.js.',
+      'Secured 1st place among 200+ participants for innovation, technical excellence, and addressing creative inefficiencies.'
     ],
     technologies: ['React', 'Node.js', 'Express.js', 'GPT', 'CLIP', 'Stable Diffusion', 'Runway ML', 'Gemini API'],
   },
   {
     title: 'Clean-Tech Challenge',
-    subtitle: '2 x 1st Prize',
+    subtitle: '1st Prize - Two years in a row',
     github: '',
     live: '',
     image: '', // Add your image path here, e.g. '/assets/clean-tech.png'
-    liveSee: 'Developed a machine learning model for shipment predictions with 90% higher accuracy, plus an interactive dashboard reducing manual monitoring by 30%.',
+    liveSee: 'Back-to-back champion project featuring 91% accurate shipment prediction models and a comprehensive sustainability platform for Singapore SMEs.',
     description: [
-      'Conceptualized a robust machine learning model constructed for precise shipment predictions, achieving 90% higher accuracy using a combination of historical data and real-time information to boost accuracy.',
-      'Incorporated a feedback loop with Adjusted Scheduler Algorithm to enhance operational efficiency and adapt to dynamic shipment processing conditions.',
-      'Engineered an interactive Dashboard API providing real-time visibility into shipment statuses via a user-friendly map interface, streamlining monitoring, decision-making, and reducing human effort by 30%.'
+      '2024: Designed a deep learning model for robust shipment predictions, enhancing our efficiency with a feedback loop & Adjusted Scheduler algorithm for dynamic shipment processing- achieving 91% accuracy & reduced human effort by 30%.',
+      '2023: Prototyped "GreenCompass SG", an end-to-end sustainability platform for SMEs in Singapore, integrating a carbon-costing algorithm, a recommendation engine to guide ESG-related decisions and LLM-based document parsing and verification.'
     ],
-    technologies: ['Machine Learning', 'Dashboard API', 'Scheduler Algorithm'],
+    technologies: ['Machine Learning', 'Dashboard API', 'Scheduler Algorithm', 'Deep Learning', 'Sustainability', 'Carbon Accounting', 'LLM'],
   },
   {
     title: 'NTU IEEE Intuition Hackathon',
     subtitle: '1st Runner-Up',
-    github: 'https://github.com/HuangT1ng/iNTUition.exe', // Add GitHub link if available
+    github: 'https://github.com/KrishSaraf/iNTUition.exe-main', // Add GitHub link if available
     live: '',
     image: EXE, // Add your image path here, e.g. '/assets/intuition.png'
-    liveSee: 'Created an AI system that generates and tests full-stack websites automatically, reducing development time from months to minutes with 80% productivity gains.',
+    liveSee: 'Revolutionary AI system that transforms prompts into fully-functional websites with 3.5× ROI, cutting development from months to minutes.',
     description: [
-      'Engineered an AI agent system that auto-generates, simulates, scores, and deploys full-stack websites using prompt-based inputs.',
-      'Designed modular architecture combining GPT, Bind AI, Bolt, and Manus to dynamically assemble and evaluate 15 backend-frontend combinations.',
-      'Implemented user persona simulations with Puppeteer to automate quality testing and calculate 20+ UX, performance, and scalability metrics.',
-      'Achieved up to 80% productivity gains and 3.5× ROI for users by reducing development time from months to minutes.'
+      'Led development of an AI-agent system that turns prompt-based inputs into full-stack sites—auto-generating and scoring multiple combinations of front/back-end architectures.',
+      'Created a modular stack (Claude AI, Bind AI, Bolt, Manus) with Puppeteer-driven persona simulations to automate quality testing across 20+ UX, performance, and scalability metrics and deploying the best website automatically.',
+      'Slashed development cycles from months to minutes, boosting productivity 80% and delivering 3.5× ROI for users.'
     ],
-    technologies: ['AI', 'GPT', 'Bind AI', 'Bolt', 'Manus', 'Puppeteer'],
+    technologies: ['AI', 'GPT', 'Bind AI', 'Bolt', 'Manus', 'Puppeteer', 'Claude AI'],
   },
   {
     title: 'NTU PEAK Leadership Program',
     subtitle: '1st Runners Up, Best Ideation Award',
-    github: 'https://github.com/HuangT1ng/TechFest2025', // Add GitHub link if available
+    github: '', // Add GitHub link if available
     live: '',
-    image: CCDS, // Keep the current image as requested
+    image: '', // Keep the current image as requested
     liveSee: 'Designed a future-proof MRT system blueprint for 2030 in collaboration with the Land Transport Authority, focusing on user experience and scalability.',
     description: [
       'Conceptualized the blueprint, technical framework, and implementation roadmap for a future-proof MRT system for 2030.',
@@ -69,7 +67,7 @@ const projects = [
     subtitle: 'Final Year Project',
     github: '',
     live: '',
-    image: FYP, // Keep the current image as requested
+    image: '', // Keep the current image as requested
     liveSee: 'Built a multimodal financial AI agent that analyzes stock data, K-line patterns, news sentiment, and financials, achieving 35% ARR over a year of testing.',
     description: [
       'Built a multimodal financial AI agent under the guidance of Prof. Bo An (Head of AI, NTU), integrating structured stock data, K-line visual patterns, FinBERT-based sentiment from 10,000+ news articles, and company-specific financials.',
@@ -81,9 +79,9 @@ const projects = [
   {
     title: 'Surgical Gauze Detection using Computer Vision',
     subtitle: 'Undergraduate Research Project',
-    github: '',
+    github: 'https://github.com/KrishSaraf/AI-for-gauze-detection-in-OT',
     live: '',
-    image: Planify, // Keep the current image as requested
+    image: '', // Keep the current image as requested
     liveSee: 'Deployed a real-time surgical gauze detection system with 98% accuracy for SGH, doubling throughput to 34 FPS with projected savings of SGD $1M.',
     description: [
       'Developed and deployed a real-time gauze detection system with SGH using YOLOv8 (PyTorch), achieving 98% detection accuracy.',
@@ -94,10 +92,10 @@ const projects = [
   },
   {
     title: 'Monte Carlo Simulation for Financial Derivatives Pricing',
-    subtitle: '',
+    subtitle: 'Course Project',
     github: '',
     live: '',
-    image: Disease, // Keep the current image as requested
+    image: '', // Keep the current image as requested
     liveSee: 'Developed Monte Carlo simulations for complex derivatives pricing using GBM/Heston/CIR models, reducing error by 73.3% and running 1.8M+ simulations.',
     description: [
       'Simulated pricing of complex derivatives using GBM, Heston, and CIR models, calibrated with real options data.',
