@@ -97,46 +97,20 @@ const Contact = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-3xl font-bold text-textPrimary mb-8">
-            <span className="text-secondary"></span> Get In Touch
-          </h2>
+          {/* Centered Title */}
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-textPrimary mb-8">
+              <span className="text-secondary"></span> Get In Touch
+            </h2>
 
-          <p className="text-textSecondary text-lg mb-12">
-            Whether you have a question or just want to say hi, I'm happy to connect!
-          </p>
+            <p className="text-textSecondary text-lg mb-8 max-w-2xl mx-auto">
+              Whether you have a question or just want to say hi, I'm happy to connect!
+            </p>
+          </div>
 
           <div className="flex flex-col md:flex-row gap-12 items-start">
-            {/* Contact Information and Social Links */}
-            <div className="md:w-1/3">
-              <div className="mb-12">
-                <h3 className="text-xl font-bold text-textPrimary mb-6">
-                  Connect with me
-                </h3>
-                <div className="flex gap-6 mt-4">
-                  <a
-                    href="https://github.com/KrishSaraf/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-textSecondary hover:text-secondary transition-colors duration-300"
-                    aria-label="GitHub Profile"
-                  >
-                    <FaGithub size={32} />
-                  </a>
-                  <a
-                    href="https://www.linkedin.com/in/krishsaraf/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-textSecondary hover:text-secondary transition-colors duration-300"
-                    aria-label="LinkedIn Profile"
-                  >
-                    <FaLinkedin size={32} />
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* Contact Form */}
-            <div className="md:w-2/3">
+            {/* Contact Form - Left Side */}
+            <div className="md:w-2/3 order-2 md:order-1">
               <form ref={form} onSubmit={handleSubmit} className="space-y-6 bg-white/50 p-8 rounded-lg shadow-sm border border-gray-100">
                 <div>
                   <label
@@ -210,6 +184,37 @@ const Contact = () => {
                   {isSubmitting ? 'Sending...' : 'Send Message'}
                 </motion.button>
               </form>
+            </div>
+
+            {/* Social Links - Right Side */}
+            <div className="md:w-1/3 order-1 md:order-2 flex flex-col items-center md:items-start">
+              <div className="mb-12 w-full">
+                <h3 className="text-xl font-bold text-textPrimary mb-6">
+                  Connect with me
+                </h3>
+                <div className="flex flex-col gap-6 mt-4">
+                  <a
+                    href="https://github.com/KrishSaraf/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-4 text-textSecondary hover:text-secondary transition-colors duration-300 p-4 rounded-lg border border-gray-100 bg-white/50"
+                    aria-label="GitHub Profile"
+                  >
+                    <FaGithub size={32} />
+                    <span className="font-medium">GitHub</span>
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/in/krishsaraf/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-4 text-textSecondary hover:text-secondary transition-colors duration-300 p-4 rounded-lg border border-gray-100 bg-white/50"
+                    aria-label="LinkedIn Profile"
+                  >
+                    <FaLinkedin size={32} />
+                    <span className="font-medium">LinkedIn</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </motion.div>
