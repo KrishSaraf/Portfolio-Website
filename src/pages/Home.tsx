@@ -1,8 +1,28 @@
 import { motion } from 'framer-motion';
 import profileImage from '../assets/Titopic.jpeg';
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 const Home = () => {
+  // State to track viewport dimensions for truly responsive design
+  const [viewport, setViewport] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight
+  });
+
+  // Update viewport dimensions on resize
+  useEffect(() => {
+    const handleResize = () => {
+      setViewport({
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const companyLogos = [
     { src: "/logos/uob-logo.png", alt: "United Overseas Bank" },
     { src: "/logos/keppel-logo.png", alt: "Keppel Limited" },
@@ -13,28 +33,70 @@ const Home = () => {
     { src: "/logos/sgh-logo.png", alt: "SGH" },
   ];
 
-  // Split logos into two rows for better display
-  const firstRowLogos = companyLogos.slice(0, 4);
-  const secondRowLogos = companyLogos.slice(4);
+  // Dynamically split logos based on viewport width
+  const logoSplit = viewport.width < 768 ? 3 : 4;
+  const firstRowLogos = companyLogos.slice(0, logoSplit);
+  const secondRowLogos = companyLogos.slice(logoSplit);
+
+  // Fluid scale factor based on viewport size
+  const scaleFactor = Math.min(1, viewport.width / 1440);
+  
+  // Responsive styles applied directly
+  const styles = {
+    // Dynamic CSS variables
+    heroHeight: `calc(100vh - ${Math.min(80, viewport.width * 0.05)}px)`,
+    bgBlobSize: `${Math.max(30, viewport.width * 0.25)}px`,
+    headingSize: `calc(${Math.min(3.5, Math.max(1.75, viewport.width * 0.004))}rem)`,
+    paragraphSize: `calc(${Math.min(1.125, Math.max(1, viewport.width * 0.002))}rem)`,
+    buttonPadding: `${Math.min(24, Math.max(12, viewport.width * 0.015))}px ${Math.min(32, Math.max(16, viewport.width * 0.02))}px`,
+    imageSize: viewport.width < 1024 
+      ? `min(70vw, 400px)` 
+      : `min(40vw, 500px)`,
+    imageAspect: viewport.width < 1024 ? '1/1' : '2/3',
+    contentMaxWidth: `min(90%, ${Math.min(600, viewport.width * 0.8)}px)`,
+    logoSize: `min(${Math.min(120, viewport.width * 0.08)}px, 20vw)`
+  };
 
   return (
-    <section className="min-h-screen flex flex-col items-center py-[5vh] px-[5%] overflow-hidden relative">
-      {/* Background blobs using relative positioning and viewport units */}
-      <div className="absolute top-[-10vh] left-[-5vw] w-[40vw] max-w-[30rem] aspect-square bg-darkPink/10 rounded-full filter blur-3xl z-0" />
-      <div className="absolute top-1/2 left-0 w-[30vw] max-w-[25rem] aspect-square bg-darkPink/20 rounded-full filter blur-2xl z-0" />
-      <div className="absolute bottom-0 right-0 w-[35vw] max-w-[35rem] aspect-square bg-darkPink/10 rounded-full filter blur-3xl z-0" />
-      <div className="absolute top-0 right-1/3 w-[25vw] max-w-[20rem] aspect-square bg-darkPink/10 rounded-full filter blur-2xl z-0" />
+    <section 
+      className="relative overflow-hidden flex flex-col items-center justify-center" 
+      style={{ minHeight: styles.heroHeight, padding: `${5 * scaleFactor}vh ${5 * scaleFactor}vw` }}
+    >
+      {/* Fully responsive background blobs */}
+      <div className="absolute opacity-10 bg-darkPink rounded-full blur-3xl" 
+        style={{ top: '-10vh', left: '-5vw', width: styles.bgBlobSize, height: styles.bgBlobSize }} />
+      <div className="absolute opacity-20 bg-darkPink rounded-full blur-2xl" 
+        style={{ top: '50%', left: '0', width: styles.bgBlobSize, height: styles.bgBlobSize }} />
+      <div className="absolute opacity-10 bg-darkPink rounded-full blur-3xl" 
+        style={{ bottom: '0', right: '0', width: styles.bgBlobSize, height: styles.bgBlobSize }} />
+      <div className="absolute opacity-10 bg-darkPink rounded-full blur-2xl" 
+        style={{ top: '0', right: '33%', width: styles.bgBlobSize, height: styles.bgBlobSize }} />
 
-      <div className="w-full max-w-[90rem] mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-[5vw] items-center">
-          {/* Profile Image Container with fluid dimensions */}
+      <div className="w-full relative z-10" style={{ maxWidth: `min(1800px, 98%)` }}>
+        <div 
+          className="grid items-center gap-4" 
+          style={{ 
+            gridTemplateColumns: viewport.width < 1024 ? '1fr' : '1fr 1fr',
+            gap: `${Math.min(40, viewport.width * 0.03)}px`
+          }}
+        >
+          {/* Dynamically sized profile image */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="relative flex justify-center lg:justify-start order-1"
+            className="flex justify-center"
+            style={{ order: viewport.width < 1024 ? 1 : 1 }}
           >
-            <div className="w-[min(80vw,25rem)] aspect-square lg:w-[min(40vw,30rem)] lg:aspect-[2/3] rounded-full overflow-hidden border-[min(0.5vw,0.25rem)] border-darkPink shadow-xl">
+            <div 
+              className="rounded-full overflow-hidden border-darkPink shadow-xl"
+              style={{ 
+                width: styles.imageSize, 
+                height: "auto", 
+                aspectRatio: styles.imageAspect,
+                borderWidth: `min(0.5vw, 4px)`
+              }}
+            >
               <img
                 src={profileImage}
                 alt="Krish Saraf"
@@ -43,17 +105,38 @@ const Home = () => {
             </div>
           </motion.div>
 
-          {/* Content Container with fluid typography */}
+          {/* Dynamically sized content */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-center lg:text-center order-2 flex flex-col items-center lg:items-center"
+            className="flex flex-col items-center text-center"
+            style={{ 
+              order: viewport.width < 1024 ? 2 : 2,
+              maxWidth: styles.contentMaxWidth,
+              margin: viewport.width < 1024 ? '0 auto' : 'inherit'
+            }}
           >
-            <h1 className="text-[clamp(1.75rem,5vw,3.5rem)] font-extrabold text-darkPink mb-[min(4vh,2rem)] mt-[min(4vh,2rem)] leading-tight text-center">
+            <h1 
+              className="font-extrabold text-darkPink text-center"
+              style={{ 
+                fontSize: styles.headingSize,
+                marginBottom: `${Math.min(32, viewport.width * 0.02)}px`,
+                marginTop: `${Math.min(32, viewport.width * 0.02)}px`,
+                lineHeight: 1.2
+              }}
+            >
               Hi, I'm <strong>Krish Saraf</strong>
             </h1>
-            <p className="text-darkPink/70 text-[clamp(1rem,2vw,1.125rem)] mb-[min(6vh,3rem)] w-full max-w-[50ch] leading-relaxed">
+            <p 
+              className="text-darkPink/70 leading-relaxed"
+              style={{ 
+                fontSize: styles.paragraphSize,
+                marginBottom: `${Math.min(48, viewport.width * 0.03)}px`,
+                maxWidth: '100%',
+                lineHeight: 1.6
+              }}
+            >
               Currently pursuing Economics & Data Science at NTU, I've engineered tools, deployed scalable backend systems, and built investment algorithms that outperform benchmarks. 
               <br />
               <br />
@@ -63,49 +146,92 @@ const Home = () => {
               Explore my work below — I build fast, think deep, and execute smarter.
             </p>
 
-            {/* Button Container with fluid spacing */}
-            <div className="flex flex-col sm:flex-row gap-[min(3vw,1rem)] mb-[min(6vh,3rem)] w-full">
-              <Link to="/projects" className="no-underline w-full sm:w-1/2">
+            {/* Buttons with dynamic sizing */}
+            <div 
+              className="flex w-full" 
+              style={{ 
+                flexDirection: viewport.width < 640 ? 'column' : 'row',
+                gap: `${Math.min(16, viewport.width * 0.015)}px`,
+                marginBottom: `${Math.min(48, viewport.width * 0.03)}px`
+              }}
+            >
+              <Link 
+                to="/projects" 
+                className="no-underline" 
+                style={{ width: viewport.width < 640 ? '100%' : '50%' }}
+              >
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-darkPink text-white px-[min(4vw,1.5rem)] py-[min(2vh,0.75rem)] rounded-md font-medium hover:bg-darkPink/90 transition-colors duration-300 w-full text-center text-[clamp(0.875rem,1.5vw,1rem)]"
+                  className="bg-darkPink text-white rounded-md font-medium hover:bg-darkPink/90 transition-colors duration-300 w-full text-center"
+                  style={{ 
+                    padding: styles.buttonPadding,
+                    fontSize: `calc(${Math.min(1, Math.max(0.875, viewport.width * 0.0008))}rem)`
+                  }}
                 >
                   Check out my work!
                 </motion.button>
               </Link>
               
-              <Link to="/contact" className="no-underline w-full sm:w-1/2">
+              <Link 
+                to="/contact" 
+                className="no-underline" 
+                style={{ width: viewport.width < 640 ? '100%' : '50%' }}
+              >
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-darkPink text-white px-[min(4vw,1.5rem)] py-[min(2vh,0.75rem)] rounded-md font-medium hover:bg-darkPink/90 transition-colors duration-300 w-full text-center text-[clamp(0.875rem,1.5vw,1rem)]"
+                  className="bg-darkPink text-white rounded-md font-medium hover:bg-darkPink/90 transition-colors duration-300 w-full text-center"
+                  style={{ 
+                    padding: styles.buttonPadding,
+                    fontSize: `calc(${Math.min(1, Math.max(0.875, viewport.width * 0.0008))}rem)`
+                  }}
                 >
                   Get in touch
                 </motion.button>
               </Link>
             </div>
             
-            {/* Company Logos Section with fluid layout */}
+            {/* Company logos with dynamic layout */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="w-full mt-[min(3vh,1.5rem)]"
+              className="w-full"
+              style={{ marginTop: `${Math.min(24, viewport.width * 0.02)}px` }}
             >
-              <h3 className="text-[clamp(1.125rem,3vw,1.5rem)] font-bold text-darkPink mb-[min(4vh,2rem)] text-center">
+              <h3 
+                className="font-bold text-darkPink text-center"
+                style={{ 
+                  fontSize: `calc(${Math.min(1.5, Math.max(1.125, viewport.width * 0.0012))}rem)`,
+                  marginBottom: `${Math.min(32, viewport.width * 0.02)}px`
+                }}
+              >
                 Companies I have worked with
               </h3>
               
-              {/* Logo grid with auto-fit for responsive layout */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-[clamp(0.5rem,2vw,1.5rem)] mb-[clamp(0.5rem,1vh,1rem)]">
+              {/* Logo grid that adapts to screen size */}
+              <div 
+                className="grid items-center justify-items-center"
+                style={{ 
+                  gridTemplateColumns: `repeat(${Math.min(4, Math.max(2, Math.floor(viewport.width / 200)))}, 1fr)`,
+                  gap: `${Math.min(24, viewport.width * 0.015)}px`,
+                  marginBottom: `${Math.min(16, viewport.width * 0.01)}px`
+                }}
+              >
                 {firstRowLogos.map((logo, index) => (
                   <motion.div
                     key={logo.alt}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
-                    className="aspect-[3/2] flex items-center justify-center p-[clamp(0.25rem,1vw,0.75rem)]"
+                    className="flex items-center justify-center"
+                    style={{ 
+                      width: styles.logoSize,
+                      height: 'auto',
+                      aspectRatio: '3/2',
+                      padding: `${Math.min(12, viewport.width * 0.01)}px`
+                    }}
                   >
                     <img 
                       src={logo.src} 
@@ -116,15 +242,27 @@ const Home = () => {
                 ))}
               </div>
               
-              {/* Second row of logos */}
-              <div className="grid grid-cols-3 gap-[clamp(0.5rem,2vw,1.5rem)]">
+              {/* Second row with dynamic column count */}
+              <div 
+                className="grid items-center justify-items-center"
+                style={{ 
+                  gridTemplateColumns: `repeat(${Math.min(3, Math.max(2, Math.floor(viewport.width / 250)))}, 1fr)`,
+                  gap: `${Math.min(24, viewport.width * 0.015)}px`
+                }}
+              >
                 {secondRowLogos.map((logo, index) => (
                   <motion.div
                     key={logo.alt}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: 0.5 + index * 0.1 }}
-                    className="aspect-[3/2] flex items-center justify-center p-[clamp(0.25rem,1vw,0.75rem)]"
+                    className="flex items-center justify-center"
+                    style={{ 
+                      width: styles.logoSize,
+                      height: 'auto',
+                      aspectRatio: '3/2',
+                      padding: `${Math.min(12, viewport.width * 0.01)}px`
+                    }}
                   >
                     <img 
                       src={logo.src} 
