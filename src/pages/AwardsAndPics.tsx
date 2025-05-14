@@ -15,7 +15,8 @@ const AwardsAndPics = () => {
     if (event) {
       setTimeout(() => {
         const sectionId = event === 'synapse' ? 'synapse-section' : 
-                         event === 'cleantech' ? 'cleantech-section' : null;
+                         event === 'cleantech' ? 'cleantech-section' :
+                         event === 'intuition' ? 'intuition-section' : null;
         if (sectionId) {
           const section = document.getElementById(sectionId);
           if (section) {
@@ -72,6 +73,20 @@ const AwardsAndPics = () => {
       caption: "Clean Tech Challenge 2023 - GreenCompass SG Demo",
       aspectRatio: "aspect-w-16 aspect-h-9",
     },
+  ];
+
+  // NTU IEEE Intuition Hackathon images
+  const intuitionImages = [
+    {
+      image: "/gallery/t1.jpeg", 
+      caption: "Our team at NTU IEEE Intuition Hackathon",
+      aspectRatio: "aspect-w-16 aspect-h-9",
+    },
+    {
+      image: "/gallery/t2.jpeg", 
+      caption: "Demonstrating our project at NTU IEEE Intuition Hackathon",
+      aspectRatio: "aspect-w-4 aspect-h-3",
+    }
   ];
 
   const awards = [
@@ -265,6 +280,45 @@ const AwardsAndPics = () => {
                   {cleanTechImages.map((item, index) => (
                     <motion.div
                       key={`cleantech-${index}`}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer"
+                      onClick={() => setSelectedImage(item.image)}
+                    >
+                      <div className="overflow-hidden aspect-video">
+                        <img 
+                          src={item.image} 
+                          alt={item.caption} 
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+
+            {/* NTU IEEE Intuition Hackathon Section - Always displayed */}
+            <div id="intuition-section" className="border-2 border-darkPink/20 p-8 rounded-2xl bg-white/50 backdrop-blur-sm">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+              >
+                <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
+                  NTU IEEE Intuition Hackathon
+                </h3>
+                <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
+                  1st Runner-Up at the NTU IEEE Intuition Hackathon, where we developed an AI system that transforms prompts into fully-functional websites.
+                </p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {intuitionImages.map((item, index) => (
+                    <motion.div
+                      key={`intuition-${index}`}
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
