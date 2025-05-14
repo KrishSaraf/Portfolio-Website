@@ -144,7 +144,7 @@ const Contact = () => {
           >
             <h2 className="text-4xl md:text-5xl font-bold text-darkPink tracking-tight mb-6 relative inline-block">
               <span className="relative z-10">Get In Touch</span>
-              <div className="absolute -bottom-2 left-0 w-full h-4 bg-darkPink/20 -z-10 skew-x-3 rounded"></div>
+              <div className="absolute -bottom-4 left-0 w-full h-4 bg-darkPink/20 -z-10 skew-x-3 rounded"></div>
             </h2>
 
             <p className="text-darkPink/70 text-lg mb-2 max-w-2xl mx-auto">
@@ -233,7 +233,7 @@ const Contact = () => {
                     onChange={handleChange}
                     onFocus={() => handleFocus('message')}
                     onBlur={handleBlur}
-                    rows={5}
+                    rows={3}
                     className="w-full px-4 py-3 bg-white border rounded-lg text-darkPink/90 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-darkPink/50 focus:border-darkPink resize-none"
                     required
                   />
