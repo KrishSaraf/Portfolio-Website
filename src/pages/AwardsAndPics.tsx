@@ -30,25 +30,15 @@ const AwardsAndPics = () => {
   // Synapse hackathon images
   const synapseImages = [
     {
-      image: "/gallery/1.jpeg", 
+      image: "/gallery/t1.jpeg", 
       caption: "Presenting our AI solution at IEEE NTU & NUS Synapse Hackathon",
       aspectRatio: "aspect-w-16 aspect-h-9",
     },
     {
-      image: "/gallery/2.jpeg", 
+      image: "/gallery/t2.jpeg", 
       caption: "Team photo at Synapse Hackathon auditorium",
       aspectRatio: "aspect-w-4 aspect-h-3",
-    },
-    {
-      image: "/gallery/3.jpeg", 
-      caption: "Receiving award at Synapse Hackathon 2024",
-      aspectRatio: "aspect-w-4 aspect-h-3",
-    },
-    {
-      image: "/gallery/4.jpeg", 
-      caption: "Final presentation at Synapse Hackathon",
-      aspectRatio: "aspect-w-16 aspect-h-9",
-    },
+    }
   ];
 
   // Clean Tech Challenge images
@@ -78,14 +68,24 @@ const AwardsAndPics = () => {
   // NTU IEEE Intuition Hackathon images
   const intuitionImages = [
     {
-      image: "/gallery/t1.jpeg", 
+      image: "/gallery/1.jpeg", 
       caption: "Our team at NTU IEEE Intuition Hackathon",
       aspectRatio: "aspect-w-16 aspect-h-9",
     },
     {
-      image: "/gallery/t2.jpeg", 
+      image: "/gallery/2.jpeg", 
       caption: "Demonstrating our project at NTU IEEE Intuition Hackathon",
       aspectRatio: "aspect-w-4 aspect-h-3",
+    },
+    {
+      image: "/gallery/3.jpeg", 
+      caption: "Receiving award at NTU IEEE Intuition Hackathon",
+      aspectRatio: "aspect-w-4 aspect-h-3",
+    },
+    {
+      image: "/gallery/4.jpeg", 
+      caption: "Final presentation at NTU IEEE Intuition Hackathon",
+      aspectRatio: "aspect-w-16 aspect-h-9",
     }
   ];
 
