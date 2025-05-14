@@ -37,14 +37,6 @@ const experiences = [
     logo: "/logos/fab-logo.png",
   },
   {
-    company: "Singapore General Hospital",
-    position: "Data Analytics Intern",
-    duration: "Aug 2022 - Dec 2022",
-    description: "Developed analytics dashboards for hospital administration, identifying service bottlenecks and opportunities for process improvement. Created predictive models for patient flow management, helping optimize resource allocation during peak periods. Worked with clinical teams to enhance data collection protocols and improve reporting accuracy.",
-    technologies: ["Data Analysis", "Python", "Healthcare Analytics", "Dashboarding"],
-    logo: "/logos/sgh-logo.png",
-  },
-  {
     company: "Tech Exactly",
     position: "Software Engineering Intern",
     duration: "Jan 2022 - Feb 2023",
@@ -97,7 +89,7 @@ const WorkExperience = () => {
               {/* Header Section with Logo */}
               <div className="border-b border-darkPink/10 pb-4 flex items-center gap-4">
                 {experience.logo && (
-                  <div className="flex-shrink-0 bg-white rounded-lg p-2 shadow-md">
+                  <div className="flex-shrink-0 bg-transparent rounded-lg">
                     <img 
                       src={experience.logo} 
                       alt={`${experience.company} logo`} 
@@ -197,7 +189,7 @@ const WorkExperience = () => {
                         {/* Company logo and job details */}
                         <div className="flex items-start gap-4 mb-4">
                           {exp.logo && (
-                            <div className="bg-white rounded-lg p-2 shadow-md flex-shrink-0">
+                            <div className="bg-transparent rounded-lg flex-shrink-0">
                               <img 
                                 src={exp.logo} 
                                 alt={`${exp.company} logo`} 
@@ -276,7 +268,7 @@ const WorkExperience = () => {
                         {/* Company logo and job details */}
                         <div className="flex items-start gap-4 mb-4">
                           {exp.logo && (
-                            <div className="bg-white rounded-lg p-2 shadow-md flex-shrink-0">
+                            <div className="bg-transparent rounded-lg flex-shrink-0">
                               <img 
                                 src={exp.logo} 
                                 alt={`${exp.company} logo`} 
