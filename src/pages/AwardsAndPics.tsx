@@ -5,23 +5,22 @@ import { useLocation } from 'react-router-dom';
 const AwardsAndPics = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const location = useLocation();
-  const [showSynapseSection, setShowSynapseSection] = useState(false);
-  const [showCleanTechSection, setShowCleanTechSection] = useState(false);
   
-  // Parse URL parameters to check for event
+  // Parse URL parameters to check for event (only for scrolling)
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const event = params.get('event');
-    setShowSynapseSection(event === 'synapse');
-    setShowCleanTechSection(event === 'cleantech');
     
-    // Scroll to appropriate section if it's in the URL
-    if (event === 'synapse' || event === 'cleantech') {
+    // Scroll to appropriate section if specified in URL
+    if (event) {
       setTimeout(() => {
-        const sectionId = event === 'synapse' ? 'synapse-section' : 'cleantech-section';
-        const section = document.getElementById(sectionId);
-        if (section) {
-          section.scrollIntoView({ behavior: 'smooth' });
+        const sectionId = event === 'synapse' ? 'synapse-section' : 
+                         event === 'cleantech' ? 'cleantech-section' : null;
+        if (sectionId) {
+          const section = document.getElementById(sectionId);
+          if (section) {
+            section.scrollIntoView({ behavior: 'smooth' });
+          }
         }
       }, 500);
     }
@@ -35,7 +34,7 @@ const AwardsAndPics = () => {
       aspectRatio: "aspect-w-16 aspect-h-9",
     },
     {
-      image: "/gallery/2.jpeg",
+      image: "/gallery/2.jpeg", 
       caption: "Team photo at Synapse Hackathon auditorium",
       aspectRatio: "aspect-w-4 aspect-h-3",
     },
@@ -206,19 +205,21 @@ const AwardsAndPics = () => {
             Awards & Pics
           </h2>
 
-          {/* Synapse Hackathon Section (Only shown when navigated from project) */}
-          {showSynapseSection && (
-            <div id="synapse-section" className="mb-24 border-2 border-darkPink/20 p-8 rounded-2xl bg-white/50 backdrop-blur-sm">
+          {/* Event Sections - Always displayed */}
+          <div className="space-y-24 mb-32">
+            {/* Synapse Hackathon Section - Always displayed */}
+            <div id="synapse-section" className="border-2 border-darkPink/20 p-8 rounded-2xl bg-white/50 backdrop-blur-sm">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.7 }}
               >
                 <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
                   IEEE NTU & NUS Synapse Hackathon 2024
                 </h3>
                 <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
-                  {/* Images from our 1st Prize winning project at the Synapse Hackathon, where we built an AI-powered platform for content creation. */}
+                  Images from our 1st Prize winning project at the Synapse Hackathon, where we built an AI-powered platform for content creation.
                 </p>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -226,7 +227,8 @@ const AwardsAndPics = () => {
                     <motion.div
                       key={`synapse-${index}`}
                       initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                       className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer"
                       onClick={() => setSelectedImage(item.image)}
@@ -248,14 +250,13 @@ const AwardsAndPics = () => {
                 </div>
               </motion.div>
             </div>
-          )}
 
-          {/* Clean Tech Challenge Section (Only shown when navigated from project) */}
-          {showCleanTechSection && (
-            <div id="cleantech-section" className="mb-24 border-2 border-darkPink/20 p-8 rounded-2xl bg-white/50 backdrop-blur-sm">
+            {/* Clean Tech Challenge Section - Always displayed */}
+            <div id="cleantech-section" className="border-2 border-darkPink/20 p-8 rounded-2xl bg-white/50 backdrop-blur-sm">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.7 }}
               >
                 <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
@@ -270,7 +271,8 @@ const AwardsAndPics = () => {
                     <motion.div
                       key={`cleantech-${index}`}
                       initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                       className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer"
                       onClick={() => setSelectedImage(item.image)}
@@ -292,7 +294,7 @@ const AwardsAndPics = () => {
                 </div>
               </motion.div>
             </div>
-          )}
+          </div>
 
           {/* Awards Section */}
           <div className="mb-32">
