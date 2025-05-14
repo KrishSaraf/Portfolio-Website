@@ -110,7 +110,7 @@ const Home = () => {
                     <img 
                       src={logo.src} 
                       alt={logo.alt} 
-                      className="max-w-full max-h-[40px] w-auto h-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
+                      className="h-[40px] w-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
                     />
                   </motion.div>
                 ))}
@@ -129,7 +129,7 @@ const Home = () => {
                     <img 
                       src={logo.src} 
                       alt={logo.alt} 
-                      className="max-w-full max-h-[40px] w-auto h-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
+                      className="h-[40px] w-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
                     />
                   </motion.div>
                 ))}
