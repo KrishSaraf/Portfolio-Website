@@ -5,16 +5,16 @@ import { FiSend, FiArrowRight, FiCode, FiExternalLink } from 'react-icons/fi';
 import { FaGithub, FaLinkedin, FaEnvelope, FaReact, FaNodeJs, FaPython } from 'react-icons/fa';
 import { SiTypescript, SiTailwindcss, SiMongodb, SiPostgresql } from 'react-icons/si';
 
-// Company logo images
-import logo1 from '../assets/logos/logo1.png';
-import logo2 from '../assets/logos/logo2.png';
-import logo3 from '../assets/logos/logo3.png';
-import logo4 from '../assets/logos/logo4.png';
-import logo5 from '../assets/logos/logo5.png';
-
 // Project images
-import project1Image from '../assets/projects/project1.jpg';
-import project2Image from '../assets/projects/project2.jpg';
+import project1Image from '../assets/Projects/Synapse.png';
+import project2Image from '../assets/Projects/Planify.png';
+
+// Company Logos Data - Using real images from assets
+import logo1 from '../assets/html5.png';
+import logo2 from '../assets/css3.png';
+import logo3 from '../assets/js.png';
+import logo4 from '../assets/React.png';
+import logo5 from '../assets/python.png';
 
 // Company Logos Data
 const companyLogos = [logo1, logo2, logo3, logo4, logo5];
