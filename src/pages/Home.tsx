@@ -30,11 +30,8 @@ const Home = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="relative flex flex-col items-center md:justify-start order-1 md:order-1"
+            className="relative flex justify-center md:justify-start order-1 md:order-1"
           >
-            <h1 className="text-3xl md:text-5xl font-extrabold text-darkPink mb-6 leading-tight md:leading-tight text-center">
-              Hi, I'm <strong>Krish Saraf</strong>
-            </h1>
             <div className="md:absolute md:left-[-50px] lg:left-[+50px] md:top-[-320px] w-100 h-100 md:w-[400px] md:h-[600px] rounded-full overflow-hidden border-4 border-darkPink shadow-xl">
               <img
                 src={profileImage}
@@ -47,8 +44,11 @@ const Home = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-center md:text-center order-2 md:order-2 flex flex-col items-center md:items-center"
+            className="text-center md:text-left order-2 md:order-2 flex flex-col items-center md:items-start"
           >
+            <h1 className="text-3xl md:text-5xl font-extrabold text-darkPink mb-4 leading-tight md:leading-tight">
+              Hi, I'm <strong>Krish Saraf</strong>
+            </h1>
             <p className="text-darkPink/70 text-base md:text-lg mb-6 max-w-xl md:max-w-2xl leading-relaxed">
               Currently pursuing Economics & Data Science at NTU, I've engineered tools, deployed scalable backend systems, and built investment algorithms that outperform benchmarks. 
               <br />
