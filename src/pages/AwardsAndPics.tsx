@@ -6,19 +6,22 @@ const AwardsAndPics = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const location = useLocation();
   const [showSynapseSection, setShowSynapseSection] = useState(false);
+  const [showCleanTechSection, setShowCleanTechSection] = useState(false);
   
-  // Parse URL parameters to check for event=synapse
+  // Parse URL parameters to check for event
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const event = params.get('event');
     setShowSynapseSection(event === 'synapse');
+    setShowCleanTechSection(event === 'cleantech');
     
-    // Scroll to synapse section if it's in the URL
-    if (event === 'synapse') {
+    // Scroll to appropriate section if it's in the URL
+    if (event === 'synapse' || event === 'cleantech') {
       setTimeout(() => {
-        const synapseSection = document.getElementById('synapse-section');
-        if (synapseSection) {
-          synapseSection.scrollIntoView({ behavior: 'smooth' });
+        const sectionId = event === 'synapse' ? 'synapse-section' : 'cleantech-section';
+        const section = document.getElementById(sectionId);
+        if (section) {
+          section.scrollIntoView({ behavior: 'smooth' });
         }
       }, 500);
     }
@@ -27,23 +30,47 @@ const AwardsAndPics = () => {
   // Synapse hackathon images
   const synapseImages = [
     {
-      image: "/gallery/synapse-1.jpg", 
+      image: "/gallery/1.jpeg", 
       caption: "Presenting our AI solution at IEEE NTU & NUS Synapse Hackathon",
       aspectRatio: "aspect-w-16 aspect-h-9",
     },
     {
-      image: "/gallery/synapse-2.jpg", 
+      image: "/gallery/2.jpeg",
       caption: "Team photo at Synapse Hackathon auditorium",
       aspectRatio: "aspect-w-4 aspect-h-3",
     },
     {
-      image: "/gallery/synapse-3.jpg", 
+      image: "/gallery/3.jpeg", 
       caption: "Receiving award at Synapse Hackathon 2024",
       aspectRatio: "aspect-w-4 aspect-h-3",
     },
     {
-      image: "/gallery/synapse-4.jpg", 
+      image: "/gallery/4.jpeg", 
       caption: "Final presentation at Synapse Hackathon",
+      aspectRatio: "aspect-w-16 aspect-h-9",
+    },
+  ];
+
+  // Clean Tech Challenge images
+  const cleanTechImages = [
+    {
+      image: "/gallery/c1.jpeg", 
+      caption: "Clean Tech Challenge 2024 - First Prize presentation",
+      aspectRatio: "aspect-w-16 aspect-h-9",
+    },
+    {
+      image: "/gallery/c2.jpeg", 
+      caption: "Team photo at Clean Tech Challenge awards ceremony",
+      aspectRatio: "aspect-w-4 aspect-h-3",
+    },
+    {
+      image: "/gallery/c3.jpeg", 
+      caption: "Explaining our sustainability model to judges",
+      aspectRatio: "aspect-w-4 aspect-h-3",
+    },
+    {
+      image: "/gallery/c4.jpeg", 
+      caption: "Clean Tech Challenge 2023 - GreenCompass SG Demo",
       aspectRatio: "aspect-w-16 aspect-h-9",
     },
   ];
@@ -191,13 +218,57 @@ const AwardsAndPics = () => {
                   IEEE NTU & NUS Synapse Hackathon 2024
                 </h3>
                 <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
-                  Images from our 1st Prize winning project at the Synapse Hackathon, where we built an AI-powered platform for content creation.
+                  {/* Images from our 1st Prize winning project at the Synapse Hackathon, where we built an AI-powered platform for content creation. */}
                 </p>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {synapseImages.map((item, index) => (
                     <motion.div
                       key={`synapse-${index}`}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer"
+                      onClick={() => setSelectedImage(item.image)}
+                    >
+                      <div className="overflow-hidden aspect-video">
+                        <img 
+                          src={item.image} 
+                          alt={item.caption} 
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-darkPink/90 via-darkPink/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end">
+                          <div className="p-6">
+                            <p className="text-white text-lg font-medium mb-2">{item.caption}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+          )}
+
+          {/* Clean Tech Challenge Section (Only shown when navigated from project) */}
+          {showCleanTechSection && (
+            <div id="cleantech-section" className="mb-24 border-2 border-darkPink/20 p-8 rounded-2xl bg-white/50 backdrop-blur-sm">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7 }}
+              >
+                <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
+                  Clean Tech Challenge (2023-2024)
+                </h3>
+                <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
+                  Images from our 1st Prize winning projects two years in a row, featuring sustainability solutions and shipment prediction models.
+                </p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {cleanTechImages.map((item, index) => (
+                    <motion.div
+                      key={`cleantech-${index}`}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}

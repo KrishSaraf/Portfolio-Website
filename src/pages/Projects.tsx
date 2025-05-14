@@ -29,7 +29,7 @@ const projects = [
     github: '',
     live: '',
     image: '', // Add your image path here, e.g. '/assets/clean-tech.png'
-    liveSee: 'Back-to-back champion project featuring 91% accurate shipment prediction models and a comprehensive sustainability platform for Singapore SMEs.',
+    liveSee: 'Back-to-back champion project once creating a ETA prediction model for ships and the next time a sustainability platform for Singapore SMEs to get Green Credits.',
     description: [
       '2024: Designed a deep learning model for robust shipment predictions, enhancing our efficiency with a feedback loop & Adjusted Scheduler algorithm for dynamic shipment processing- achieving 91% accuracy & reduced human effort by 30%.',
       '2023: Prototyped "GreenCompass SG", an end-to-end sustainability platform for SMEs in Singapore, integrating a carbon-costing algorithm, a recommendation engine to guide ESG-related decisions and LLM-based document parsing and verification.'
@@ -227,6 +227,13 @@ const Projects = () => {
                           <span className="transform group-hover:translate-x-1 transition-transform duration-200">→</span>
                         </Link>
                       )}
+
+                      {project.title === "Clean-Tech Challenge" && (
+                        <Link to="/awards?event=cleantech" className="px-6 py-3 text-sm font-semibold text-white bg-green-600 rounded-xl hover:bg-green-700 transition-colors duration-200 flex items-center gap-2 group-hover:shadow-md">
+                          View Pics
+                          <span className="transform group-hover:translate-x-1 transition-transform duration-200">→</span>
+                        </Link>
+                      )}
                       
                       {project.github && (
                         <a
@@ -351,6 +358,30 @@ const Projects = () => {
                         </svg>
                         View on GitHub
                       </a>
+                    )}
+                    {projects[selected].title === "IEEE NTU & NUS Synapse Hackathon 2024" && (
+                      <Link
+                        to="/awards?event=synapse"
+                        onClick={() => setSelected(null)}
+                        className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-purple-600 rounded-lg hover:bg-purple-700 transition-colors duration-200"
+                      >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        View Pics
+                      </Link>
+                    )}
+                    {projects[selected].title === "Clean-Tech Challenge" && (
+                      <Link
+                        to="/awards?event=cleantech"
+                        onClick={() => setSelected(null)}
+                        className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-green-600 rounded-lg hover:bg-green-700 transition-colors duration-200"
+                      >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        View Pics
+                      </Link>
                     )}
                     {projects[selected].live && (
                       <a
