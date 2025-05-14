@@ -46,17 +46,17 @@ const Home = () => {
             transition={{ duration: 0.5 }}
             className="text-center md:text-center order-2 md:order-2 flex flex-col items-center md:items-center"
           >
-            <h1 className="text-3xl md:text-5xl font-extrabold text-darkPink mb-4 leading-tight md:leading-tight text-center">
+            <h1 className="text-3xl md:text-5xl font-extrabold text-darkPink mb-4 mt-8 leading-tight md:leading-tight text-center">
               Hi, I'm <strong>Krish Saraf</strong>
             </h1>
             <p className="text-darkPink/70 text-base md:text-lg mb-6 max-w-xl md:max-w-2xl leading-relaxed">
               Currently pursuing Economics & Data Science at NTU, I've engineered tools, deployed scalable backend systems, and built investment algorithms that outperform benchmarks. 
               <br />
               <br />
-              {/* From winning 5 Hackathons to being a Dean's Lister- having worked across seven organisations, I combine deep technical skill with sharp product sense — always shipping, always iterating. */}
+              From winning 5 Hackathons to being a Dean's Lister- I combine deep technical skill with sharp product sense
               <br />
               <br />
-              {/* Explore my work below — I build fast, think deep, and execute smarter. */}
+              Explore my work below — I build fast, think deep, and execute smarter.
             </p>
             <div className="flex flex-col md:flex-row gap-4 mb-6 w-full">
               <Link to="/projects" className="no-underline w-full md:w-1/2">
@@ -73,7 +73,7 @@ const Home = () => {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-white text-darkPink px-6 py-3 rounded-md font-medium border-2 border-darkPink hover:bg-darkPink/10 transition-colors duration-300 w-full text-center"
+                  className="bg-darkPink text-white px-6 py-3 rounded-md font-medium hover:bg-darkPink/90 transition-colors duration-300 w-full text-center"
                 >
                   Get in touch
                 </motion.button>
@@ -98,7 +98,7 @@ const Home = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
-                    className="w-28 h-16 md:w-32 md:h-20 flex items-center justify-center"
+                    className="w-32 h-16 md:w-32 md:h-20 flex items-center justify-center"
                   >
                     <img 
                       src={logo.src} 
@@ -117,7 +117,7 @@ const Home = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: 0.5 + index * 0.1 }}
-                    className="w-40 h-20 md:w-40 md:h-28 flex items-center justify-center"
+                    className="w-48 h-20 md:w-40 md:h-28 flex items-center justify-center"
                   >
                     <img 
                       src={logo.src} 
