@@ -18,7 +18,7 @@ const Home = () => {
   const secondRowLogos = companyLogos.slice(4);
 
   return (
-    <section className="min-h-screen flex flex-col items-center py-[5vh] px-[5%] overflow-hidden relative">
+    <section className="min-h-screen flex flex-col items-center py-[max(10vh,6rem)] px-[5%] overflow-hidden relative">
       {/* Background blobs using relative positioning and viewport units */}
       <div className="absolute top-[-10vh] left-[-5vw] w-[40vw] max-w-[30rem] aspect-square bg-darkPink/10 rounded-full filter blur-3xl z-0" />
       <div className="absolute top-1/2 left-0 w-[30vw] max-w-[25rem] aspect-square bg-darkPink/20 rounded-full filter blur-2xl z-0" />

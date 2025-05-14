@@ -18,12 +18,12 @@ const Navbar = () => {
   const location = useLocation();
 
   return (
-    <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-sm z-50 border-b border-darkPink/10">
-      <div className="container-padding mx-auto">
-        <div className="flex items-center justify-between h-16">
+    <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-md z-50 border-b border-darkPink/10 h-[var(--navbar-height-mobile)] md:h-[var(--navbar-height)] shadow-sm">
+      <div className="container-padding mx-auto h-full">
+        <div className="flex items-center justify-between h-full">
           <Link to="/" className="flex items-center gap-2">
             <img src={profileImage} alt="Krish Saraf" className="h-8 w-8 rounded-full object-cover" />
-            <span className="text-2xl font-bold text-darkPink">Krish Saraf</span>
+            <span className="text-xl md:text-2xl font-bold text-darkPink">Krish Saraf</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -71,8 +71,8 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1">
+          <div className="md:hidden absolute top-[var(--navbar-height-mobile)] left-0 w-full bg-white/95 border-b border-darkPink/10 shadow-md z-50">
+            <div className="px-4 py-2 space-y-1">
               {navigation.map((item) => (
                 <div key={item.name} className="relative">
                   <Link

@@ -9,6 +9,10 @@
     --scale-factor: 1;
     --content-width: min(90vw, 1280px);
     
+    /* Navbar height for proper content spacing */
+    --navbar-height: 4rem; /* 64px */
+    --navbar-height-mobile: 4rem; /* 64px for mobile too */
+    
     /* Fluid spacing units that scale with viewport */
     --space-unit: calc(0.25rem * var(--scale-factor));
     --fluid-1: calc(1 * var(--space-unit));
@@ -56,6 +60,12 @@
     min-height: 100vh;
     width: 100vw;
     box-sizing: border-box;
+    padding-top: var(--navbar-height-mobile);
+  }
+  
+  /* Ensuring all pages have proper spacing at the top */
+  section {
+    padding-top: max(1.5rem, 5vh);
   }
 }
 

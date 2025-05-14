@@ -152,7 +152,7 @@ const WorkExperience = () => {
   return (
     <section className="w-full min-h-screen overflow-hidden bg-darkPink/5 relative">
       {/* Apply fluid padding that adjusts to all screen dimensions */}
-      <div className="py-[max(5vh,2rem)] px-[max(4vw,1rem)]">
+      <div className="py-[max(15vh,6rem)] px-[max(4vw,1rem)]">
         {/* Blurred background shapes - these are direct children of section */}
         <div className="absolute -top-[10vh] -left-[8vw] w-[40vw] max-w-[500px] aspect-square bg-darkPink/10 rounded-full filter blur-3xl z-0" />
         <div className="absolute bottom-0 right-0 w-[45vw] max-w-[600px] aspect-square bg-darkPink/10 rounded-full filter blur-3xl z-0" />
