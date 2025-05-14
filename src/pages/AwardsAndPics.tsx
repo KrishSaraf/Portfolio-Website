@@ -239,11 +239,6 @@ const AwardsAndPics = () => {
                           alt={item.caption} 
                           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-darkPink/90 via-darkPink/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end">
-                          <div className="p-6">
-                            <p className="text-white text-lg font-medium mb-2">{item.caption}</p>
-                          </div>
-                        </div>
                       </div>
                     </motion.div>
                   ))}
@@ -283,11 +278,6 @@ const AwardsAndPics = () => {
                           alt={item.caption} 
                           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-darkPink/90 via-darkPink/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end">
-                          <div className="p-6">
-                            <p className="text-white text-lg font-medium mb-2">{item.caption}</p>
-                          </div>
-                        </div>
                       </div>
                     </motion.div>
                   ))}
@@ -357,12 +347,6 @@ const AwardsAndPics = () => {
                       className="w-full object-cover transition-transform duration-700 group-hover:scale-110"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-darkPink/90 via-darkPink/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end">
-                      <div className="p-6">
-                        <p className="text-white text-lg font-medium mb-2">{item.caption}</p>
-                        <div className="w-8 h-1 bg-white rounded-full opacity-70"></div>
-                      </div>
-                    </div>
                   </div>
                 </motion.div>
               ))}
