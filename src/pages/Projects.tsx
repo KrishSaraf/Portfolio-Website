@@ -52,8 +52,8 @@ const projects = [
   {
     title: '"Code with AI" Hackathon - Get My Leadz',
     subtitle: '3rd Place',
-    github: '',
-    live: '',
+    github: 'https://github.com/KrishSaraf/Get-My-Leadz-Final',
+    live: 'https://grand-phoenix-4ffc98.netlify.app/',
     image: '', // Add image path if available
     liveSee: 'Built an AI-driven lead generation platform that automates prospect discovery, qualification, and scoring, reducing acquisition time from months to weeks with 70% faster lead qualification.',
     description: [
