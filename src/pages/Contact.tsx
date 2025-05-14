@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 /*
  * EMAILJS SETUP INSTRUCTIONS:
@@ -89,8 +90,8 @@ const Contact = () => {
   };
 
   return (
-    <section className="section-padding">
-      <div className="max-w-4xl mx-auto">
+    <section className="section-padding py-16">
+      <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -100,105 +101,115 @@ const Contact = () => {
             <span className="text-secondary"></span> Get In Touch
           </h2>
 
-          <p className="text-textSecondary text-lg mb-8">
+          <p className="text-textSecondary text-lg mb-12">
             Whether you have a question or just want to say hi, I'm happy to connect!
           </p>
 
-          <form ref={form} onSubmit={handleSubmit} className="space-y-6">
-            <div>
-              <label
-                htmlFor="name"
-                className="block text-textPrimary mb-2"
-              >
-                Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                className="w-full px-4 py-2 bg-primary/50 border border-textSecondary/20 rounded-md text-textPrimary focus:outline-none focus:border-secondary"
-                required
-              />
-            </div>
-
-            <div>
-              <label
-                htmlFor="email"
-                className="block text-textPrimary mb-2"
-              >
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                className="w-full px-4 py-2 bg-primary/50 border border-textSecondary/20 rounded-md text-textPrimary focus:outline-none focus:border-secondary"
-                required
-              />
-            </div>
-
-            <div>
-              <label
-                htmlFor="message"
-                className="block text-textPrimary mb-2"
-              >
-                Message
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                rows={5}
-                className="w-full px-4 py-2 bg-primary/50 border border-textSecondary/20 rounded-md text-textPrimary focus:outline-none focus:border-secondary"
-                required
-              />
-            </div>
-
-            {submitStatus && (
-              <div className={`p-3 rounded ${submitStatus.success ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
-                {submitStatus.message}
+          <div className="flex flex-col md:flex-row gap-12 items-start">
+            {/* Contact Information and Social Links */}
+            <div className="md:w-1/3">
+              <div className="mb-12">
+                <h3 className="text-xl font-bold text-textPrimary mb-6">
+                  Connect with me
+                </h3>
+                <div className="flex gap-6 mt-4">
+                  <a
+                    href="https://github.com/KrishSaraf/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-textSecondary hover:text-secondary transition-colors duration-300"
+                    aria-label="GitHub Profile"
+                  >
+                    <FaGithub size={32} />
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/in/krishsaraf/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-textSecondary hover:text-secondary transition-colors duration-300"
+                    aria-label="LinkedIn Profile"
+                  >
+                    <FaLinkedin size={32} />
+                  </a>
+                </div>
               </div>
-            )}
+            </div>
 
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              type="submit"
-              disabled={isSubmitting}
-              className={`bg-secondary text-primary px-8 py-3 rounded-md font-medium transition-colors duration-300 ${
-                isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:bg-opacity-90'
-              }`}
-            >
-              {isSubmitting ? 'Sending...' : 'Send Message'}
-            </motion.button>
-          </form>
+            {/* Contact Form */}
+            <div className="md:w-2/3">
+              <form ref={form} onSubmit={handleSubmit} className="space-y-6 bg-white/50 p-8 rounded-lg shadow-sm border border-gray-100">
+                <div>
+                  <label
+                    htmlFor="name"
+                    className="block text-textPrimary mb-2"
+                  >
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 bg-primary/50 border border-textSecondary/20 rounded-md text-textPrimary focus:outline-none focus:border-secondary"
+                    required
+                  />
+                </div>
 
-          <div className="mt-12">
-            <h3 className="text-xl font-bold text-textPrimary mb-4">
-              Connect with me
-            </h3>
-            <div className="flex gap-4">
-              <a
-                href="https://github.com/KrishSaraf/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-textSecondary hover:text-secondary transition-colors duration-300"
-              >
-                GitHub
-              </a>
-              <a
-                href="https://www.linkedin.com/in/krishsaraf/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-textSecondary hover:text-secondary transition-colors duration-300"
-              >
-                LinkedIn
-              </a>
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="block text-textPrimary mb-2"
+                  >
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 bg-primary/50 border border-textSecondary/20 rounded-md text-textPrimary focus:outline-none focus:border-secondary"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="message"
+                    className="block text-textPrimary mb-2"
+                  >
+                    Message
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    rows={5}
+                    className="w-full px-4 py-2 bg-primary/50 border border-textSecondary/20 rounded-md text-textPrimary focus:outline-none focus:border-secondary"
+                    required
+                  />
+                </div>
+
+                {submitStatus && (
+                  <div className={`p-3 rounded ${submitStatus.success ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
+                    {submitStatus.message}
+                  </div>
+                )}
+
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  type="submit"
+                  disabled={isSubmitting}
+                  className={`bg-secondary text-primary px-8 py-3 rounded-md font-medium transition-colors duration-300 ${
+                    isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:bg-opacity-90'
+                  }`}
+                >
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                </motion.button>
+              </form>
             </div>
           </div>
         </motion.div>
