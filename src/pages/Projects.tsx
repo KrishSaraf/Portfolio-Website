@@ -181,7 +181,7 @@ const Projects = () => {
                   {/* Technologies and Button */}
                   <div className="space-y-6">
                     <div className="flex flex-wrap gap-2">
-                      {project.technologies.slice(0, 4).map((tech) => (
+                      {project.technologies.map((tech) => (
                         <span
                           key={tech}
                           className="text-sm text-darkPink bg-pink-50 px-3 py-1 rounded-full"
@@ -189,9 +189,6 @@ const Projects = () => {
                           {tech}
                         </span>
                       ))}
-                      {project.technologies.length > 4 && (
-                        <span className="text-sm text-gray-500">+{project.technologies.length - 4} more</span>
-                      )}
                     </div>
 
                     <div className="flex items-center gap-4">
