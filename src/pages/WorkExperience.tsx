@@ -175,6 +175,17 @@ const WorkExperience = () => {
                   {/* Left card */}
                   {isLeft && (
                     <div className="md:col-span-5 md:col-start-1 flex justify-end relative group">
+                      {/* Logo positioned outside the card - left side */}
+                      {exp.logo && (
+                        <div className="absolute right-[-80px] top-8 z-30 bg-white rounded-full shadow-lg p-2 flex-shrink-0 w-20 h-20 flex items-center justify-center">
+                          <img 
+                            src={exp.logo} 
+                            alt={`${exp.company} logo`} 
+                            className="max-w-full max-h-full object-contain"
+                          />
+                        </div>
+                      )}
+                      
                       <motion.div
                         initial={{ opacity: 0, x: -40 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -186,25 +197,14 @@ const WorkExperience = () => {
                           <div className="w-5 h-5 rounded-full bg-darkPink shadow-lg ring-4 ring-darkPink/10 group-hover:ring-darkPink/30 transition-all duration-300" />
                         </div>
                         
-                        {/* Company logo and job details */}
-                        <div className="flex items-start gap-4 mb-4">
-                          {exp.logo && (
-                            <div className="bg-transparent flex-shrink-0 w-20 h-20 flex items-center justify-center">
-                              <img 
-                                src={exp.logo} 
-                                alt={`${exp.company} logo`} 
-                                className="max-w-full max-h-full object-contain"
-                              />
-                            </div>
-                          )}
-                          <div className="flex-1">
-                            <h3 className="text-lg font-bold text-darkPink mb-2 tracking-tight">
-                              {exp.position}
-                            </h3>
-                            <div className="flex flex-col mb-3">
-                              <span className="text-darkPink/80 font-semibold text-base">{exp.company}</span>
-                              <span className="text-darkPink/60 text-sm">{exp.duration}</span>
-                            </div>
+                        {/* Job details without logo */}
+                        <div className="flex flex-col mb-4">
+                          <h3 className="text-lg font-bold text-darkPink mb-2 tracking-tight">
+                            {exp.position}
+                          </h3>
+                          <div className="flex flex-col mb-3">
+                            <span className="text-darkPink/80 font-semibold text-base">{exp.company}</span>
+                            <span className="text-darkPink/60 text-sm">{exp.duration}</span>
                           </div>
                         </div>
 
@@ -253,6 +253,17 @@ const WorkExperience = () => {
                   {/* Right card */}
                   {!isLeft && (
                     <div className="md:col-span-7 md:col-start-8 flex justify-start relative group">
+                      {/* Logo positioned outside the card - right side */}
+                      {exp.logo && (
+                        <div className="absolute left-[-80px] top-8 z-30 bg-white rounded-full shadow-lg p-2 flex-shrink-0 w-20 h-20 flex items-center justify-center">
+                          <img 
+                            src={exp.logo} 
+                            alt={`${exp.company} logo`} 
+                            className="max-w-full max-h-full object-contain"
+                          />
+                        </div>
+                      )}
+                      
                       <motion.div
                         initial={{ opacity: 0, x: 40 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -265,25 +276,14 @@ const WorkExperience = () => {
                           <div className="w-5 h-5 rounded-full bg-darkPink shadow-lg ring-4 ring-darkPink/10 group-hover:ring-darkPink/30 transition-all duration-300" />
                         </div>
                         
-                        {/* Company logo and job details */}
-                        <div className="flex items-start gap-4 mb-4">
-                          {exp.logo && (
-                            <div className="bg-transparent flex-shrink-0 w-20 h-20 flex items-center justify-center">
-                              <img 
-                                src={exp.logo} 
-                                alt={`${exp.company} logo`} 
-                                className="max-w-full max-h-full object-contain"
-                              />
-                            </div>
-                          )}
-                          <div className="flex-1">
-                            <h3 className="text-lg font-bold text-darkPink mb-2 tracking-tight">
-                              {exp.position}
-                            </h3>
-                            <div className="flex flex-col mb-3">
-                              <span className="text-darkPink/80 font-semibold text-base">{exp.company}</span>
-                              <span className="text-darkPink/60 text-sm">{exp.duration}</span>
-                            </div>
+                        {/* Job details without logo */}
+                        <div className="flex flex-col mb-4">
+                          <h3 className="text-lg font-bold text-darkPink mb-2 tracking-tight">
+                            {exp.position}
+                          </h3>
+                          <div className="flex flex-col mb-3">
+                            <span className="text-darkPink/80 font-semibold text-base">{exp.company}</span>
+                            <span className="text-darkPink/60 text-sm">{exp.duration}</span>
                           </div>
                         </div>
 
