@@ -1,13 +1,33 @@
 #root {
-  max-width: 1280px;
+  max-width: var(--content-width);
   margin: 0 auto;
-  @apply p-4 md:p-6 lg:p-8;
+  width: 100%;
+  box-sizing: border-box;
   text-align: center;
 }
 
+/* Apply fluid padding that scales with viewport */
+@media (min-width: 400px) {
+  #root {
+    padding: calc(1rem + 1vw);
+  }
+}
+
+@media (min-width: 768px) {
+  #root {
+    padding: calc(1.5rem + 1vw);
+  }
+}
+
+@media (min-width: 1200px) {
+  #root {
+    padding: calc(2rem + 1vw);
+  }
+}
+
 .logo {
-  height: 6em;
-  padding: 1.5em;
+  height: calc(6em * var(--scale-factor));
+  padding: calc(1.5em * var(--scale-factor));
   will-change: filter;
   transition: filter 300ms;
 }
@@ -34,7 +54,7 @@
 }
 
 .card {
-  padding: 2em;
+  padding: calc(2em * var(--scale-factor));
 }
 
 .read-the-docs {
