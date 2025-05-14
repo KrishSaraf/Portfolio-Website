@@ -46,7 +46,7 @@ const Navbar = () => {
                   <img 
                     src={curvedArrow} 
                     alt="Active page indicator" 
-                    className="absolute -top-12 left-1/2 -translate-x-1/4 w-14 h-14"
+                    className="absolute -top-10 left-1/2 -translate-x-1/2 w-12 h-10 z-10"
                   />
                 )}
               </div>
@@ -92,7 +92,7 @@ const Navbar = () => {
                     <img 
                       src={curvedArrow} 
                       alt="Active page indicator" 
-                      className="absolute -right-8 top-1/2 -translate-y-1/2 w-8 h-8 transform -rotate-90"
+                      className="absolute -right-6 top-1/2 -translate-y-1/2 w-8 h-8 transform rotate-270"
                     />
                   )}
                 </div>
