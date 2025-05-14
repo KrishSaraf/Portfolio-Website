@@ -16,7 +16,9 @@ const AwardsAndPics = () => {
       setTimeout(() => {
         const sectionId = event === 'synapse' ? 'synapse-section' : 
                          event === 'cleantech' ? 'cleantech-section' :
-                         event === 'intuition' ? 'intuition-section' : null;
+                         event === 'intuition' ? 'intuition-section' :
+                         event === 'codewithai' ? 'codewithai-section' :
+                         event === 'peak' ? 'peak-section' : null;
         if (sectionId) {
           const section = document.getElementById(sectionId);
           if (section) {
@@ -85,6 +87,54 @@ const AwardsAndPics = () => {
     {
       image: "/gallery/4.jpeg", 
       caption: "Final presentation at NTU IEEE Intuition Hackathon",
+      aspectRatio: "aspect-w-16 aspect-h-9",
+    }
+  ];
+
+  // Code with AI Hackathon images
+  const codeWithAIImages = [
+    {
+      image: "/gallery/l1.jpeg", 
+      caption: "Team presentation at Code with AI Hackathon",
+      aspectRatio: "aspect-w-16 aspect-h-9",
+    },
+    {
+      image: "/gallery/l2.jpeg", 
+      caption: "Demo of Get My Leadz platform at the hackathon",
+      aspectRatio: "aspect-w-4 aspect-h-3",
+    },
+    {
+      image: "/gallery/l3.jpeg", 
+      caption: "Receiving 3rd place award at Code with AI Hackathon",
+      aspectRatio: "aspect-w-4 aspect-h-3",
+    },
+    {
+      image: "/gallery/l4.jpeg", 
+      caption: "Team working session during the hackathon",
+      aspectRatio: "aspect-w-16 aspect-h-9",
+    }
+  ];
+
+  // NTU PEAK Leadership Program images
+  const peakImages = [
+    {
+      image: "/gallery/p1.jpeg", 
+      caption: "Presenting MRT system blueprint at NTU PEAK Leadership Program",
+      aspectRatio: "aspect-w-16 aspect-h-9",
+    },
+    {
+      image: "/gallery/p2.jpeg", 
+      caption: "Team collaboration with Land Transport Authority",
+      aspectRatio: "aspect-w-4 aspect-h-3",
+    },
+    {
+      image: "/gallery/p3.jpeg", 
+      caption: "Receiving Best Ideation Award at PEAK Leadership Program",
+      aspectRatio: "aspect-w-4 aspect-h-3",
+    },
+    {
+      image: "/gallery/p4.jpeg", 
+      caption: "Final presentation of our project at PEAK",
       aspectRatio: "aspect-w-16 aspect-h-9",
     }
   ];
@@ -319,6 +369,84 @@ const AwardsAndPics = () => {
                   {intuitionImages.map((item, index) => (
                     <motion.div
                       key={`intuition-${index}`}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer"
+                      onClick={() => setSelectedImage(item.image)}
+                    >
+                      <div className="overflow-hidden aspect-video">
+                        <img 
+                          src={item.image} 
+                          alt={item.caption} 
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Code with AI Hackathon Section - Always displayed */}
+            <div id="codewithai-section" className="border-2 border-darkPink/20 p-8 rounded-2xl bg-white/50 backdrop-blur-sm">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+              >
+                <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
+                  "Code with AI" Hackathon - Get My Leadz
+                </h3>
+                <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
+                  3rd Place winning project where we built an AI-driven lead generation platform that automates prospect discovery, qualification, and scoring.
+                </p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {codeWithAIImages.map((item, index) => (
+                    <motion.div
+                      key={`codewithai-${index}`}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer"
+                      onClick={() => setSelectedImage(item.image)}
+                    >
+                      <div className="overflow-hidden aspect-video">
+                        <img 
+                          src={item.image} 
+                          alt={item.caption} 
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+
+            {/* NTU PEAK Leadership Program Section - Always displayed */}
+            <div id="peak-section" className="border-2 border-darkPink/20 p-8 rounded-2xl bg-white/50 backdrop-blur-sm">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+              >
+                <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
+                  NTU PEAK Leadership Program
+                </h3>
+                <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
+                  1st Runners Up and Best Ideation Award for designing a future-proof MRT system blueprint for 2030 in collaboration with the Land Transport Authority.
+                </p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {peakImages.map((item, index) => (
+                    <motion.div
+                      key={`peak-${index}`}
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
