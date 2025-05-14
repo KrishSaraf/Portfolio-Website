@@ -6,9 +6,9 @@ import profileImage from '../assets/KS.jpg';
 const navigation = [
   { name: 'Home', href: '/' },
   { name: 'Projects', href: '/projects' },
+  { name: 'Awards & Pics', href: '/awards' },
   { name: 'Experience', href: '/experience' },
   { name: 'Skills', href: '/skills' },
-  { name: 'Awards & Pics', href: '/awards' },
   { name: 'Contact', href: '/contact' },
 ];
 
