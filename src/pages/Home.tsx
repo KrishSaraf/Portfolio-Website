@@ -13,10 +13,6 @@ const Home = () => {
     { src: "/logos/sgh-logo.png", alt: "SGH" },
   ];
 
-  // Split logos into two rows for better display
-  const firstRowLogos = companyLogos.slice(0, 4);
-  const secondRowLogos = companyLogos.slice(4);
-
   return (
     <section className="min-h-screen flex flex-col items-center py-[max(10vh,6rem)] px-[5%] overflow-hidden relative">
       {/* Background blobs using relative positioning and viewport units */}
