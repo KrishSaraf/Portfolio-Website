@@ -87,9 +87,9 @@ const WorkExperience = () => {
             
             <div className="space-y-6">
               {/* Header Section with Logo */}
-              <div className="border-b border-darkPink/10 pb-4 flex items-center gap-4">
+              <div className="border-b border-darkPink/10 pb-6 flex items-center gap-6">
                 {experience.logo && (
-                  <div className="flex-shrink-0 bg-transparent w-24 h-24 flex items-center justify-center">
+                  <div className="flex-shrink-0 bg-white rounded-lg shadow-md p-3 border-2 border-darkPink/10 w-28 h-28 flex items-center justify-center">
                     <img 
                       src={experience.logo} 
                       alt={`${experience.company} logo`} 
@@ -177,7 +177,7 @@ const WorkExperience = () => {
                     <div className="md:col-span-5 md:col-start-1 flex justify-end relative group">
                       {/* Logo positioned outside the card - left side */}
                       {exp.logo && (
-                        <div className="absolute right-[-80px] top-8 z-30 bg-white rounded-full shadow-lg p-2 flex-shrink-0 w-20 h-20 flex items-center justify-center">
+                        <div className="absolute right-[-100px] top-8 z-30 bg-white rounded-lg shadow-xl p-3 flex-shrink-0 w-28 h-28 flex items-center justify-center border-2 border-darkPink/10 hover:border-darkPink/30 transition-all duration-300 transform group-hover:scale-105">
                           <img 
                             src={exp.logo} 
                             alt={`${exp.company} logo`} 
@@ -255,7 +255,7 @@ const WorkExperience = () => {
                     <div className="md:col-span-7 md:col-start-8 flex justify-start relative group">
                       {/* Logo positioned outside the card - right side */}
                       {exp.logo && (
-                        <div className="absolute left-[-80px] top-8 z-30 bg-white rounded-full shadow-lg p-2 flex-shrink-0 w-20 h-20 flex items-center justify-center">
+                        <div className="absolute left-[-100px] top-8 z-30 bg-white rounded-lg shadow-xl p-3 flex-shrink-0 w-28 h-28 flex items-center justify-center border-2 border-darkPink/10 hover:border-darkPink/30 transition-all duration-300 transform group-hover:scale-105">
                           <img 
                             src={exp.logo} 
                             alt={`${exp.company} logo`} 
