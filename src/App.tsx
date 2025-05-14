@@ -10,9 +10,9 @@ import AwardsAndPics from './pages/AwardsAndPics';
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen bg-white laptop:bg-gradient-to-br laptop:from-white laptop:to-pink-50/30">
         <Navbar />
-        <main>
+        <main className="laptop:pt-2 xl:pt-4">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/experience" element={<WorkExperience />} />

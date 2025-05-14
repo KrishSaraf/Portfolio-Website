@@ -14,6 +14,15 @@ module.exports = {
 
       'lg': '992px',
       // => @media (min-width: 992px) { ... } // Desktop
+
+      'laptop': '1024px',
+      // => @media (min-width: 1024px) { ... } // Laptop
+
+      'xl': '1280px',
+      // => @media (min-width: 1280px) { ... } // Large laptop
+
+      '2xl': '1536px',
+      // => @media (min-width: 1536px) { ... } // Extra large / wide laptop
     },
     extend: {
       colors: {
