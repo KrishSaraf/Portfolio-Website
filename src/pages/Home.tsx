@@ -39,6 +39,13 @@ const Home = () => {
                 className="w-full h-full object-cover"
               />
             </div>
+
+            {/* Companies I have worked with - next to image */}
+            <div className="absolute bottom-[-60px] left-[50px] right-0 md:bottom-[30px] md:left-[120px]">
+              <h2 className="text-xl md:text-2xl font-bold text-darkPink whitespace-nowrap">
+                Companies I have worked with
+              </h2>
+            </div>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -70,27 +77,18 @@ const Home = () => {
           </motion.div>
         </div>
 
-        {/* Companies I have worked with section - positioned more to the right */}
-        <div className="flex flex-col md:flex-row md:justify-end mt-2 md:mt-0 md:pr-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="md:w-2/3"
-          >
-            <h2 className="text-2xl font-bold text-darkPink mb-4 text-center md:text-left">
-              Companies I have worked with
-            </h2>
-            
+        {/* Company logos only (no heading) */}
+        <div className="flex flex-col md:flex-row mt-12 md:mt-8">
+          <div className="w-full">
             {/* First row of logos */}
-            <div className="flex flex-wrap justify-center md:justify-end items-center gap-4 mb-3">
+            <div className="flex justify-center md:justify-start items-center gap-4 md:gap-8 mb-4">
               {firstRowLogos.map((logo, index) => (
                 <motion.div
                   key={logo.alt}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
-                  className="w-20 h-12 md:w-24 md:h-14 flex items-center justify-center"
+                  className="w-20 h-12 md:w-24 md:h-16 flex items-center justify-center"
                 >
                   <img 
                     src={logo.src} 
@@ -102,14 +100,14 @@ const Home = () => {
             </div>
             
             {/* Second row of logos */}
-            <div className="flex flex-wrap justify-center md:justify-end items-center gap-4">
+            <div className="flex justify-center md:justify-start items-center gap-4 md:gap-8">
               {secondRowLogos.map((logo, index) => (
                 <motion.div
                   key={logo.alt}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: 0.5 + index * 0.1 }}
-                  className="w-20 h-12 md:w-24 md:h-14 flex items-center justify-center"
+                  className="w-20 h-12 md:w-24 md:h-16 flex items-center justify-center"
                 >
                   <img 
                     src={logo.src} 
@@ -119,7 +117,7 @@ const Home = () => {
                 </motion.div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
