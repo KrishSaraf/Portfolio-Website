@@ -150,7 +150,7 @@ const AwardsAndPics = () => {
     },
     {
       type: 'image',
-      src: "/gallery/chris-hospital.jpeg", 
+      src: "/gallery/krish-hospital.jpeg", 
       caption: "Clinical implementation at hospital",
       aspectRatio: "aspect-w-4 aspect-h-3",
     },
