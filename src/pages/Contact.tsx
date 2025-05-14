@@ -233,7 +233,7 @@ const Contact = () => {
                     onChange={handleChange}
                     onFocus={() => handleFocus('message')}
                     onBlur={handleBlur}
-                    rows={3}
+                    rows={2.5}
                     className="w-full px-4 py-3 bg-white border rounded-lg text-darkPink/90 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-darkPink/50 focus:border-darkPink resize-none"
                     required
                   />
