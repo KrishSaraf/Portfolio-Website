@@ -6,6 +6,7 @@ import CCDS from '../assets/Projects/CCDS.png';
 import FYP from '../assets/Projects/FYP.png';
 import Planify from '../assets/Projects/Planify.png';
 import Disease from '../assets/Projects/DiseasePrediction.png';
+import { Link } from 'react-router-dom';
 
 const projects = [
   {
@@ -14,7 +15,7 @@ const projects = [
     github: 'https://github.com/KrishSaraf/Trendz_Website-Synapse-Hackathon', // Add GitHub link if available
     live: '',
     image: trendz, // Add your image path here, e.g. '/assets/trendz.png'
-    liveSee: 'One Stop AI platform that slashes content creation time by 90% through seamless integration of GPT, CLIP, Stable Diffusion, and Runway ML.',
+    liveSee: 'One-Stop AI platform for content creation, from ideation to editing, through seamless integration of GPT, CLIP, Stable Diffusion, and Runway ML- powered by our own Algorithms in the backend.',
     description: [
       'Created "Trendz", an AI-powered platform to streamline real-time text and visual content creation workflows by integrating GPT, CLIP, Stable Diffusion, and Runway ML, minimizing creation time by more than 90%.',
       'Built a full-stack prototype, including a responsive website using React, Node.js, and Express.js.',
@@ -217,7 +218,16 @@ const Projects = () => {
                         onClick={() => setSelected(index)}
                       >
                         View Details
+                        <span className="transform group-hover:translate-x-1 transition-transform duration-200">→</span>
                       </button>
+                      
+                      {project.title === "IEEE NTU & NUS Synapse Hackathon 2024" && (
+                        <Link to="/awards?event=synapse" className="px-6 py-3 text-sm font-semibold text-white bg-purple-600 rounded-xl hover:bg-purple-700 transition-colors duration-200 flex items-center gap-2 group-hover:shadow-md">
+                          View Pics
+                          <span className="transform group-hover:translate-x-1 transition-transform duration-200">→</span>
+                        </Link>
+                      )}
+                      
                       {project.github && (
                         <a
                           href={project.github}

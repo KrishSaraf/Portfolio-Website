@@ -1,8 +1,52 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useLocation } from 'react-router-dom';
 
 const AwardsAndPics = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const location = useLocation();
+  const [showSynapseSection, setShowSynapseSection] = useState(false);
+  
+  // Parse URL parameters to check for event=synapse
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const event = params.get('event');
+    setShowSynapseSection(event === 'synapse');
+    
+    // Scroll to synapse section if it's in the URL
+    if (event === 'synapse') {
+      setTimeout(() => {
+        const synapseSection = document.getElementById('synapse-section');
+        if (synapseSection) {
+          synapseSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 500);
+    }
+  }, [location]);
+
+  // Synapse hackathon images
+  const synapseImages = [
+    {
+      image: "/gallery/synapse-1.jpg", 
+      caption: "Presenting our AI solution at IEEE NTU & NUS Synapse Hackathon",
+      aspectRatio: "aspect-w-16 aspect-h-9",
+    },
+    {
+      image: "/gallery/synapse-2.jpg", 
+      caption: "Team photo at Synapse Hackathon auditorium",
+      aspectRatio: "aspect-w-4 aspect-h-3",
+    },
+    {
+      image: "/gallery/synapse-3.jpg", 
+      caption: "Receiving award at Synapse Hackathon 2024",
+      aspectRatio: "aspect-w-4 aspect-h-3",
+    },
+    {
+      image: "/gallery/synapse-4.jpg", 
+      caption: "Final presentation at Synapse Hackathon",
+      aspectRatio: "aspect-w-16 aspect-h-9",
+    },
+  ];
 
   const awards = [
     {
@@ -134,6 +178,50 @@ const AwardsAndPics = () => {
           <h2 className="text-5xl font-extrabold text-darkPink mb-16 text-center tracking-tight">
             Awards & Pics
           </h2>
+
+          {/* Synapse Hackathon Section (Only shown when navigated from project) */}
+          {showSynapseSection && (
+            <div id="synapse-section" className="mb-24 border-2 border-darkPink/20 p-8 rounded-2xl bg-white/50 backdrop-blur-sm">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7 }}
+              >
+                <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
+                  IEEE NTU & NUS Synapse Hackathon 2024
+                </h3>
+                <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
+                  Images from our 1st Prize winning project at the Synapse Hackathon, where we built an AI-powered platform for content creation.
+                </p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {synapseImages.map((item, index) => (
+                    <motion.div
+                      key={`synapse-${index}`}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer"
+                      onClick={() => setSelectedImage(item.image)}
+                    >
+                      <div className="overflow-hidden aspect-video">
+                        <img 
+                          src={item.image} 
+                          alt={item.caption} 
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-darkPink/90 via-darkPink/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end">
+                          <div className="p-6">
+                            <p className="text-white text-lg font-medium mb-2">{item.caption}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+          )}
 
           {/* Awards Section */}
           <div className="mb-32">
