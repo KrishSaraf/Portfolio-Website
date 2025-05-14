@@ -50,6 +50,21 @@ const projects = [
     technologies: ['AI', 'GPT', 'Bind AI', 'Bolt', 'Manus', 'Puppeteer', 'Claude AI'],
   },
   {
+    title: '"Code with AI" Hackathon - Get My Leadz',
+    subtitle: '3rd Place',
+    github: '',
+    live: '',
+    image: '', // Add image path if available
+    liveSee: 'Built an AI-driven lead generation platform that automates prospect discovery, qualification, and scoring, reducing acquisition time from months to weeks with 70% faster lead qualification.',
+    description: [
+      'Developed "Get My Leadz", an AI-driven solution automating the process of identifying, qualifying, and scoring sales leads, helping companies focus on closing deals rather than manual prospect searches.',
+      'Designed a three-step architecture: 1) Contact sourcing using web scraping and ML selection, 2) Automated email sending with sentiment analysis, 3) Lead scoring with Random Forest for probability-based conversion prediction.',
+      'Integrated Elastic Net and Random Forest models with sentiment analysis, delivering business impact including 70% faster qualification, 30% cost savings, and 4-6 hours saved per rep weekly.',
+      'Led a diverse team of Year 1 and Year 3 students, building and hosting a fully functional application using Bolt framework within the tight hackathon timeframe.'
+    ],
+    technologies: ['Bolt', 'TypeScript', 'Python', 'Supabase', 'Tailwind CSS', 'Vite', 'EmailJS', 'Machine Learning', 'Elastic Net', 'Random Forest'],
+  },
+  {
     title: 'NTU PEAK Leadership Program',
     subtitle: '1st Runners Up, Best Ideation Award',
     github: '', // Add GitHub link if available
