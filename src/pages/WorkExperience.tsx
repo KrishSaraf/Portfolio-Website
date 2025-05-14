@@ -89,11 +89,11 @@ const WorkExperience = () => {
               {/* Header Section with Logo */}
               <div className="border-b border-darkPink/10 pb-4 flex items-center gap-4">
                 {experience.logo && (
-                  <div className="flex-shrink-0 bg-transparent rounded-lg">
+                  <div className="flex-shrink-0 bg-transparent w-24 h-24 flex items-center justify-center">
                     <img 
                       src={experience.logo} 
                       alt={`${experience.company} logo`} 
-                      className="w-16 h-16 object-contain"
+                      className="max-w-full max-h-full object-contain"
                     />
                   </div>
                 )}
@@ -189,11 +189,11 @@ const WorkExperience = () => {
                         {/* Company logo and job details */}
                         <div className="flex items-start gap-4 mb-4">
                           {exp.logo && (
-                            <div className="bg-transparent rounded-lg flex-shrink-0">
+                            <div className="bg-transparent flex-shrink-0 w-20 h-20 flex items-center justify-center">
                               <img 
                                 src={exp.logo} 
                                 alt={`${exp.company} logo`} 
-                                className="w-16 h-16 object-contain"
+                                className="max-w-full max-h-full object-contain"
                               />
                             </div>
                           )}
@@ -268,11 +268,11 @@ const WorkExperience = () => {
                         {/* Company logo and job details */}
                         <div className="flex items-start gap-4 mb-4">
                           {exp.logo && (
-                            <div className="bg-transparent rounded-lg flex-shrink-0">
+                            <div className="bg-transparent flex-shrink-0 w-20 h-20 flex items-center justify-center">
                               <img 
                                 src={exp.logo} 
                                 alt={`${exp.company} logo`} 
-                                className="w-16 h-16 object-contain"
+                                className="max-w-full max-h-full object-contain"
                               />
                             </div>
                           )}
