@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 
 /*
  * EMAILJS SETUP INSTRUCTIONS:
@@ -97,8 +97,8 @@ const Contact = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          {/* Centered Title */}
-          <div className="text-center mb-12">
+          {/* Centered Title - Added more top margin */}
+          <div className="text-center mb-12 mt-16">
             <h2 className="text-3xl font-bold text-textPrimary mb-8">
               <span className="text-secondary"></span> Get In Touch
             </h2>
@@ -212,6 +212,14 @@ const Contact = () => {
                   >
                     <FaLinkedin size={32} />
                     <span className="font-medium">LinkedIn</span>
+                  </a>
+                  <a
+                    href="mailto:krishsaraf05@gmail.com"
+                    className="flex items-center gap-4 text-textSecondary hover:text-secondary transition-colors duration-300 p-4 rounded-lg border border-gray-100 bg-white/50"
+                    aria-label="Email Me"
+                  >
+                    <FaEnvelope size={32} />
+                    <span className="font-medium">Email Me</span>
                   </a>
                 </div>
               </div>
