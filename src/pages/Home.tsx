@@ -13,6 +13,10 @@ const Home = () => {
     { src: "/logos/sgh-logo.png", alt: "SGH" },
   ];
 
+  // Split logos into two rows for better display
+  const firstRowLogos = companyLogos.slice(0, 4);
+  const secondRowLogos = companyLogos.slice(4);
+
   return (
     <section className="min-h-screen flex flex-col items-center pt-20 pb-10 px-4 md:px-8 overflow-hidden relative">
       <div className="absolute -top-32 -left-32 w-96 h-96 bg-darkPink/10 rounded-full filter blur-3xl z-0" />
@@ -66,35 +70,57 @@ const Home = () => {
           </motion.div>
         </div>
 
-        {/* Companies I have worked with section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-8 md:mt-12"
-        >
-          <h2 className="text-2xl font-bold text-darkPink mb-6 text-center">
-            Companies I have worked with
-          </h2>
-          
-          <div className="flex flex-wrap justify-center items-center gap-6 md:gap-10">
-            {companyLogos.map((logo, index) => (
-              <motion.div
-                key={logo.alt}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
-                className="w-24 h-16 md:w-28 md:h-20 flex items-center justify-center"
-              >
-                <img 
-                  src={logo.src} 
-                  alt={logo.alt} 
-                  className="max-w-full max-h-full object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
-                />
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+        {/* Companies I have worked with section - positioned more to the right */}
+        <div className="flex flex-col md:flex-row md:justify-end mt-2 md:mt-0 md:pr-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="md:w-2/3"
+          >
+            <h2 className="text-2xl font-bold text-darkPink mb-4 text-center md:text-left">
+              Companies I have worked with
+            </h2>
+            
+            {/* First row of logos */}
+            <div className="flex flex-wrap justify-center md:justify-end items-center gap-4 mb-3">
+              {firstRowLogos.map((logo, index) => (
+                <motion.div
+                  key={logo.alt}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
+                  className="w-20 h-12 md:w-24 md:h-14 flex items-center justify-center"
+                >
+                  <img 
+                    src={logo.src} 
+                    alt={logo.alt} 
+                    className="max-w-full max-h-full object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
+                  />
+                </motion.div>
+              ))}
+            </div>
+            
+            {/* Second row of logos */}
+            <div className="flex flex-wrap justify-center md:justify-end items-center gap-4">
+              {secondRowLogos.map((logo, index) => (
+                <motion.div
+                  key={logo.alt}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: 0.5 + index * 0.1 }}
+                  className="w-20 h-12 md:w-24 md:h-14 flex items-center justify-center"
+                >
+                  <img 
+                    src={logo.src} 
+                    alt={logo.alt} 
+                    className="max-w-full max-h-full object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
+                  />
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
