@@ -44,9 +44,9 @@ const Home = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-center md:text-left order-2 md:order-2 flex flex-col items-center md:items-start"
+            className="text-center md:text-center order-2 md:order-2 flex flex-col items-center md:items-center"
           >
-            <h1 className="text-3xl md:text-5xl font-extrabold text-darkPink mb-4 leading-tight md:leading-tight">
+            <h1 className="text-3xl md:text-5xl font-extrabold text-darkPink mb-4 leading-tight md:leading-tight text-center">
               Hi, I'm <strong>Krish Saraf</strong>
             </h1>
             <p className="text-darkPink/70 text-base md:text-lg mb-6 max-w-xl md:max-w-2xl leading-relaxed">
@@ -79,7 +79,7 @@ const Home = () => {
               </h3>
               
               {/* First row of logos */}
-              <div className="flex flex-wrap justify-center items-center gap-6 mb-5">
+              <div className="flex flex-wrap justify-center items-center gap-6 mb-2">
                 {firstRowLogos.map((logo, index) => (
                   <motion.div
                     key={logo.alt}
