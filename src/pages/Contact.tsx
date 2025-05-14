@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 
