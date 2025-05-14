@@ -11,7 +11,6 @@ const experiences = [
     description: "Spearheaded a digital overhaul of Global Markets workflows, building a Python-Tesseract OCR pipeline that extracts key trade document fields & feeds the output into Power Automate - eliminating errors by 90%. Digitized intraday cash-position reporting by streaming SWIFT MT940 files into a Python + Kafka pipeline feeding an in-house Dashboard, improving liquidity visibility from T+1 to T+0 and cutting manual spreadsheet work by 50%.",
     technologies: ["Python", "OCR", "Tesseract", "Power Automate", "SWIFT", "Kafka"],
     logo: "/logos/uob-logo.png",
-    personalImage: "/experience-photos/uob-photo.jpg",
   },
   {
     company: "Keppel Limited",
@@ -20,7 +19,6 @@ const experiences = [
     description: "Created an ensemble VAR & LSTM driven time-series forecasting model to predict pan-India hyperscale data-center demand. Enhanced MSPE by 45% versus ARIMA baseline, enabling agile land-banking decisions months ahead of competitors. Built a multilingual NLP pipeline with Lang Chain, Azure DevOps and created its Fast API endpoint to automate language detection and conduct large scale PDF translation, processing at 97% accuracy. Collaborated with EY on 'Alpha AI', a RAG-based engine using OpenAI embeddings and a vector database that creates investment memos on EPT- improving production speed by 80%.",
     technologies: ["Python", "VAR", "LSTM", "Time-series forecasting", "NLP", "Azure", "OpenAI"],
     logo: "/logos/keppel-logo.png",
-    personalImage: "/experience-photos/keppel-photo.jpg",
   },
   {
     company: "BASF Singapore",
@@ -29,7 +27,6 @@ const experiences = [
     description: "Engineered 'Get my Lead+', an AI agent to scrape LinkedIn, ACRA & global registries alongside Gemini API to find New Leads with detailed research on company finances & demographic data- eliminating 90% of manual research effort. Integrated with Salesforce & optimized Random Forest lead-scoring by combining historical deal data with real-time scraped metrics which boosted qualified lead capture and prioritization, raising overall sales-conversion rate by 20%. Added personalized email automation that tailor's outreach to prospects, overall boosting lead identification & client conversion time from weeks to days & boosting pipeline for regional sales teams struggling to uncover new accounts.",
     technologies: ["AI", "Salesforce", "Random Forest", "Lead Scoring", "Automation"],
     logo: "/logos/basf-logo.png",
-    personalImage: "/experience-photos/basf-photo.jpg",
   },
   {
     company: "First Abu Dhabi Bank Singapore",
@@ -38,7 +35,6 @@ const experiences = [
     description: "Automated monthly KYC reporting to MAS with large data sets using 66k lines of Excel VBA scripts, reducing processing time from 6 hours to 14 minutes. Established a Data Governance Framework for the Data Analytics Global Team, improving data accuracy and compliance. Led Southeast Asia emerging market research, uncovering three high-growth regions for potential bank expansion. Developed an Algorithm to automate ETL workflows that consolidate datasets from multiple databases into a master Excel book & trigger real-time updates to Power BI reports - eliminating one full day of manual processing each month.",
     technologies: ["Excel VBA", "Data Governance", "ETL", "Power BI"],
     logo: "/logos/fab-logo.png",
-    personalImage: "/experience-photos/fab-photo.jpg",
   },
   {
     company: "Tech Exactly",
@@ -47,7 +43,6 @@ const experiences = [
     description: "Analyzed customer feedback and project data, performed competitor pricing analytics, and developed a dynamic pricing formula. Developed and deployed a web app on Vercel using Flask & MongoDB for efficient data storage. Integrated ChatGPT-powered NLP to transform intake questionnaires into detailed client-requirement documents. Leveraged XGBoost model on historical pricing data to auto-generate quotes for clients, increased profit margins by 15% and reducing onboarding time by 60%.",
     technologies: ["Python", "Flask", "MongoDB", "NLP", "XGBoost", "Vercel"],
     logo: "/logos/techexactly-logo.png",
-    personalImage: "/experience-photos/techexactly-photo.jpg",
   },
   {
     company: "Think Design Make Pte Ltd. Singapore",
@@ -56,7 +51,6 @@ const experiences = [
     description: "Single-handedly designed and automated pipeline for invoice generation and P&L creation, reducing man-hours by 60%. Led competitor analysis to develop pricing strategies, driving 15% revenue growth.",
     technologies: ["Automation", "Financial Analysis", "Process Optimization"],
     logo: "/logos/tdm-logo.png",
-    personalImage: "/experience-photos/tdm-photo.jpg",
   },
 ];
 
@@ -129,20 +123,6 @@ const WorkExperience = () => {
                         </li>
                     ))}
                   </ul>
-                </div>
-              )}
-
-              {/* Personal Image Section */}
-              {experience.personalImage && (
-                <div className="space-y-2 mt-4">
-                  <h4 className="text-darkPink font-semibold text-lg">My Experience</h4>
-                  <div className="rounded-xl overflow-hidden shadow-md">
-                    <img 
-                      src={experience.personalImage} 
-                      alt={`${experience.position} at ${experience.company}`}
-                      className="w-full h-auto object-cover" 
-                    />
-                  </div>
                 </div>
               )}
 

@@ -184,7 +184,7 @@ const Contact = () => {
                     onChange={handleChange}
                     onFocus={() => handleFocus('name')}
                     onBlur={handleBlur}
-                    className="w-full px-4 py-3 bg-white border rounded-lg text-darkPink/90 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-darkPink/50 focus:border-darkPink"
+                    className="w-full px-4 py-3.5 bg-white border rounded-lg text-darkPink/90 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-darkPink/50 focus:border-darkPink"
                     required
                   />
                   <div className={`h-0.5 bg-darkPink scale-x-0 transition-transform duration-300 origin-left ${
@@ -209,7 +209,7 @@ const Contact = () => {
                     onChange={handleChange}
                     onFocus={() => handleFocus('email')}
                     onBlur={handleBlur}
-                    className="w-full px-4 py-3 bg-white border rounded-lg text-darkPink/90 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-darkPink/50 focus:border-darkPink"
+                    className="w-full px-4 py-3.5 bg-white border rounded-lg text-darkPink/90 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-darkPink/50 focus:border-darkPink"
                     required
                   />
                   <div className={`h-0.5 bg-darkPink scale-x-0 transition-transform duration-300 origin-left ${
@@ -233,8 +233,8 @@ const Contact = () => {
                     onChange={handleChange}
                     onFocus={() => handleFocus('message')}
                     onBlur={handleBlur}
-                    rows={2.5}
-                    className="w-full px-4 py-3 bg-white border rounded-lg text-darkPink/90 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-darkPink/50 focus:border-darkPink resize-none"
+                    rows={3}
+                    className="w-full px-4 py-3.5 bg-white border rounded-lg text-darkPink/90 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-darkPink/50 focus:border-darkPink resize-none"
                     required
                   />
                   <div className={`h-0.5 bg-darkPink scale-x-0 transition-transform duration-300 origin-left ${
@@ -263,18 +263,24 @@ const Contact = () => {
                 )}
 
                 <motion.button
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.98 }}
                   type="submit"
                   disabled={isSubmitting}
-                  className={`w-full md:w-auto px-8 py-3 rounded-lg font-semibold text-white transition-all duration-300 relative overflow-hidden group ${
-                    isSubmitting ? 'bg-darkPink/60 cursor-not-allowed' : 'bg-darkPink hover:bg-darkPink/90'
-                  }`}
+                  whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+                  whileTap={{ scale: 0.98 }}
+                  className="w-full bg-darkPink text-white font-semibold py-3.5 px-6 rounded-lg hover:bg-darkPink/90 focus:outline-none focus:ring-2 focus:ring-darkPink/50 focus:ring-offset-2 transition-all duration-300 ease-in-out shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+                  variants={itemVariants}
                 >
-                  <span className="relative z-10">
-                    {isSubmitting ? 'Sending...' : 'Send Message'}
-                  </span>
-                  <span className="absolute inset-0 w-full h-full bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></span>
+                  {isSubmitting ? (
+                    <>
+                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Sending...
+                    </>
+                  ) : (
+                    'Send Message'
+                  )}
                 </motion.button>
               </form>
             </motion.div>
