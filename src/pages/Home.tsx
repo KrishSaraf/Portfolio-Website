@@ -32,7 +32,7 @@ const Home = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="relative flex justify-center md:justify-start order-1 md:order-1"
           >
-            <div className="md:absolute md:left-[-50px] lg:left-[+50px] md:top-[-230px] w-100 h-100 md:w-[400px] md:h-[600px] rounded-full overflow-hidden border-4 border-darkPink shadow-xl">
+            <div className="md:absolute md:left-[-50px] lg:left-[+50px] md:top-[-320px] w-100 h-100 md:w-[400px] md:h-[600px] rounded-full overflow-hidden border-4 border-darkPink shadow-xl">
               <img
                 src={profileImage}
                 alt="Krish Saraf"
@@ -47,7 +47,7 @@ const Home = () => {
             className="text-center md:text-left order-2 md:order-2 flex flex-col items-center md:items-start"
           >
             <h1 className="text-3xl md:text-5xl font-extrabold text-darkPink mb-4 leading-tight md:leading-tight">
-              Hi, I'm Krish Saraf
+              Hi, I'm <strong>Krish Saraf</strong>
             </h1>
             <p className="text-darkPink/70 text-base md:text-lg mb-6 max-w-xl md:max-w-2xl leading-relaxed">
               A technologist and strategist obsessed with building intelligent AI systems that solve real-world problems. Currently pursuing Economics & Data Science at NTU, I've engineered tools, deployed scalable backend systems, and built investment algorithms that outperform benchmarks. 
@@ -86,7 +86,7 @@ const Home = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
-                    className="w-28 h-16 md:w-32 md:h-20 flex items-center justify-center"
+                    className="w-36 h-20 md:w-40 md:h-24 flex items-center justify-center"
                   >
                     <img 
                       src={logo.src} 
@@ -105,7 +105,7 @@ const Home = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: 0.5 + index * 0.1 }}
-                    className="w-28 h-16 md:w-32 md:h-20 flex items-center justify-center"
+                    className="w-36 h-20 md:w-40 md:h-24 flex items-center justify-center"
                   >
                     <img 
                       src={logo.src} 
