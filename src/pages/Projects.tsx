@@ -14,6 +14,7 @@ const projects = [
     github: 'https://github.com/leontan2/Trendz-Synapse-2024-/tree/main', // Add GitHub link if available
     live: '',
     image: trendz, // Add your image path here, e.g. '/assets/trendz.png'
+    liveSee: 'Built an AI-powered platform that streamlines content creation by integrating GPT, CLIP, Stable Diffusion, and Runway ML, cutting creation time by 90%.',
     description: [
       'Developed "Trendz", an AI-powered platform engineered to streamline real-time text and visual content creation workflows by integrating GPT, CLIP, Stable Diffusion, and Runway ML, aimed at minimizing creation time by more than 90%.',
       'Due to time constraints, programmed a solution utilizing Gemini API and local Stable Diffusion models, ensuring a functional and efficient prototype within competition timeframe.',
@@ -27,6 +28,7 @@ const projects = [
     github: '',
     live: '',
     image: '', // Add your image path here, e.g. '/assets/clean-tech.png'
+    liveSee: 'Developed a machine learning model for shipment predictions with 90% higher accuracy, plus an interactive dashboard reducing manual monitoring by 30%.',
     description: [
       'Conceptualized a robust machine learning model constructed for precise shipment predictions, achieving 90% higher accuracy using a combination of historical data and real-time information to boost accuracy.',
       'Incorporated a feedback loop with Adjusted Scheduler Algorithm to enhance operational efficiency and adapt to dynamic shipment processing conditions.',
@@ -40,6 +42,7 @@ const projects = [
     github: 'https://github.com/HuangT1ng/iNTUition.exe', // Add GitHub link if available
     live: '',
     image: EXE, // Add your image path here, e.g. '/assets/intuition.png'
+    liveSee: 'Created an AI system that generates and tests full-stack websites automatically, reducing development time from months to minutes with 80% productivity gains.',
     description: [
       'Engineered an AI agent system that auto-generates, simulates, scores, and deploys full-stack websites using prompt-based inputs.',
       'Designed modular architecture combining GPT, Bind AI, Bolt, and Manus to dynamically assemble and evaluate 15 backend-frontend combinations.',
@@ -54,6 +57,7 @@ const projects = [
     github: 'https://github.com/HuangT1ng/TechFest2025', // Add GitHub link if available
     live: '',
     image: CCDS, // Keep the current image as requested
+    liveSee: 'Designed a future-proof MRT system blueprint for 2030 in collaboration with the Land Transport Authority, focusing on user experience and scalability.',
     description: [
       'Conceptualized the blueprint, technical framework, and implementation roadmap for a future-proof MRT system for 2030.',
       'Collaborated with the Land Transport Authority (LTA) to validate user-centric innovations aimed at enhancing stakeholder alignment, commuter experience, and system scalability.'
@@ -66,6 +70,7 @@ const projects = [
     github: '',
     live: '',
     image: FYP, // Keep the current image as requested
+    liveSee: 'Built a multimodal financial AI agent that analyzes stock data, K-line patterns, news sentiment, and financials, achieving 35% ARR over a year of testing.',
     description: [
       'Built a multimodal financial AI agent under the guidance of Prof. Bo An (Head of AI, NTU), integrating structured stock data, K-line visual patterns, FinBERT-based sentiment from 10,000+ news articles, and company-specific financials.',
       'Designed a dual-level reinforcement learning reflection system—analyzing both recent and historical decisions—to dynamically adjust investment strategies.',
@@ -79,6 +84,7 @@ const projects = [
     github: '',
     live: '',
     image: Planify, // Keep the current image as requested
+    liveSee: 'Deployed a real-time surgical gauze detection system with 98% accuracy for SGH, doubling throughput to 34 FPS with projected savings of SGD $1M.',
     description: [
       'Developed and deployed a real-time gauze detection system with SGH using YOLOv8 (PyTorch), achieving 98% detection accuracy.',
       'Applied Roboflow-based augmentation and OpenCV preprocessing; containerized the GPU-accelerated pipeline with Docker, doubling throughput to 34 FPS.',
@@ -92,6 +98,7 @@ const projects = [
     github: '',
     live: '',
     image: Disease, // Keep the current image as requested
+    liveSee: 'Developed Monte Carlo simulations for complex derivatives pricing using GBM/Heston/CIR models, reducing error by 73.3% and running 1.8M+ simulations.',
     description: [
       'Simulated pricing of complex derivatives using GBM, Heston, and CIR models, calibrated with real options data.',
       'Applied Control Variates and Martingale Correction techniques, reducing RMSE by 73.3%.',
@@ -174,7 +181,7 @@ const Projects = () => {
                       {project.title}
                     </h3>
                     <p className="text-gray-600 line-clamp-2 mb-6">
-                      {project.description[0]}
+                      {project.liveSee}
                     </p>
                   </div>
 
