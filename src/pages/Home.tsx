@@ -39,13 +39,6 @@ const Home = () => {
                 className="w-full h-full object-cover"
               />
             </div>
-
-            {/* Companies I have worked with - next to image */}
-            <div className="absolute bottom-[-60px] left-[50px] right-0 md:bottom-[30px] md:left-[120px]">
-              <h2 className="text-xl md:text-2xl font-bold text-darkPink whitespace-nowrap">
-                Companies I have worked with
-              </h2>
-            </div>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -65,7 +58,7 @@ const Home = () => {
               <br />
               Explore my work below — I build fast, think deep, and execute smarter.
             </p>
-            <Link to="/projects" className="no-underline mb-8">
+            <Link to="/projects" className="no-underline mb-6">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -74,50 +67,54 @@ const Home = () => {
                 Check out my work!
               </motion.button>
             </Link>
-          </motion.div>
-        </div>
-
-        {/* Company logos only (no heading) */}
-        <div className="flex flex-col md:flex-row mt-12 md:mt-8">
-          <div className="w-full">
-            {/* First row of logos */}
-            <div className="flex justify-center md:justify-start items-center gap-4 md:gap-8 mb-4">
-              {firstRowLogos.map((logo, index) => (
-                <motion.div
-                  key={logo.alt}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
-                  className="w-20 h-12 md:w-24 md:h-16 flex items-center justify-center"
-                >
-                  <img 
-                    src={logo.src} 
-                    alt={logo.alt} 
-                    className="max-w-full max-h-full object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
-                  />
-                </motion.div>
-              ))}
-            </div>
             
-            {/* Second row of logos */}
-            <div className="flex justify-center md:justify-start items-center gap-4 md:gap-8">
-              {secondRowLogos.map((logo, index) => (
-                <motion.div
-                  key={logo.alt}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: 0.5 + index * 0.1 }}
-                  className="w-20 h-12 md:w-24 md:h-16 flex items-center justify-center"
-                >
-                  <img 
-                    src={logo.src} 
-                    alt={logo.alt} 
-                    className="max-w-full max-h-full object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
-                  />
-                </motion.div>
-              ))}
-            </div>
-          </div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="w-full mt-6"
+            >
+              <h3 className="text-xl font-bold text-darkPink mb-4 text-left">
+                Companies I have worked with
+              </h3>
+              
+              <div className="flex flex-wrap justify-start items-center gap-4 mb-3">
+                {firstRowLogos.map((logo, index) => (
+                  <motion.div
+                    key={logo.alt}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
+                    className="w-20 h-12 md:w-24 md:h-14 flex items-center justify-center"
+                  >
+                    <img 
+                      src={logo.src} 
+                      alt={logo.alt} 
+                      className="max-w-full max-h-full object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
+                    />
+                  </motion.div>
+                ))}
+              </div>
+              
+              <div className="flex flex-wrap justify-start items-center gap-4">
+                {secondRowLogos.map((logo, index) => (
+                  <motion.div
+                    key={logo.alt}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: 0.5 + index * 0.1 }}
+                    className="w-20 h-12 md:w-24 md:h-14 flex items-center justify-center"
+                  >
+                    <img 
+                      src={logo.src} 
+                      alt={logo.alt} 
+                      className="max-w-full max-h-full object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
+                    />
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>
