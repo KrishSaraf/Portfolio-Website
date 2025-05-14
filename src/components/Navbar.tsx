@@ -5,9 +5,9 @@ import profileImage from '../assets/KS.jpg';
 
 const navigation = [
   { name: 'Home', href: '/' },
+  { name: 'Projects', href: '/projects' },
   { name: 'Experience', href: '/experience' },
   { name: 'Skills', href: '/skills' },
-  { name: 'Projects', href: '/projects' },
   { name: 'Contact', href: '/contact' },
 ];
 
