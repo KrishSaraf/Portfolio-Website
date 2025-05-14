@@ -40,11 +40,13 @@ const Navbar = () => {
                 >
                   {item.name}
                 </Link>
-                {location.pathname === item.href && (
+                {location.pathname === item.href && 
+                 item.name !== 'Home' && 
+                 item.name !== 'Contact' && (
                   <img 
                     src={curvedArrow} 
                     alt="Active page indicator" 
-                    className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-16 h-16 transform rotate-180"
+                    className="absolute -top-12 left-1/2 -translate-x-1/4 w-14 h-14"
                   />
                 )}
               </div>
@@ -84,11 +86,13 @@ const Navbar = () => {
                   >
                     {item.name}
                   </Link>
-                  {location.pathname === item.href && (
+                  {location.pathname === item.href && 
+                   item.name !== 'Home' && 
+                   item.name !== 'Contact' && (
                     <img 
                       src={curvedArrow} 
                       alt="Active page indicator" 
-                      className="absolute -right-6 top-1/2 -translate-y-1/2 w-8 h-8 transform rotate-90"
+                      className="absolute -right-8 top-1/2 -translate-y-1/2 w-8 h-8 transform -rotate-90"
                     />
                   )}
                 </div>
