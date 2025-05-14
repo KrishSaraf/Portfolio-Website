@@ -97,39 +97,20 @@ const Home = () => {
                 Companies I have worked with
               </h3>
               
-              {/* Logo grid with auto-fit for responsive layout */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-[clamp(0.5rem,2vw,1.5rem)] mb-[clamp(0.5rem,1vh,1rem)]">
-                {firstRowLogos.map((logo, index) => (
+              {/* Single responsive logo grid */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-8 gap-y-10">
+                {companyLogos.map((logo, index) => (
                   <motion.div
                     key={logo.alt}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
-                    className="aspect-[3/2] flex items-center justify-center p-[clamp(0.25rem,1vw,0.75rem)]"
+                    className="flex items-center justify-center h-[60px]"
                   >
                     <img 
                       src={logo.src} 
                       alt={logo.alt} 
-                      className="h-[40px] w-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
-                    />
-                  </motion.div>
-                ))}
-              </div>
-              
-              {/* Second row of logos */}
-              <div className="grid grid-cols-3 gap-[clamp(0.5rem,2vw,1.5rem)]">
-                {secondRowLogos.map((logo, index) => (
-                  <motion.div
-                    key={logo.alt}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: 0.5 + index * 0.1 }}
-                    className="aspect-[3/2] flex items-center justify-center p-[clamp(0.25rem,1vw,0.75rem)]"
-                  >
-                    <img 
-                      src={logo.src} 
-                      alt={logo.alt} 
-                      className="h-[40px] w-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
+                      className="max-h-full w-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
                     />
                   </motion.div>
                 ))}
