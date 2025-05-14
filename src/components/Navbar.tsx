@@ -19,15 +19,15 @@ const Navbar = () => {
 
   return (
     <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-sm z-50 border-b border-darkPink/10">
-      <div className="container-padding mx-auto">
-        <div className="flex items-center justify-between h-16">
+      <div className="responsive-container mx-auto">
+        <div className="flex items-center justify-between h-14 sm:h-16">
           <Link to="/" className="flex items-center gap-2">
-            <img src={profileImage} alt="Krish Saraf" className="h-8 w-8 rounded-full object-cover" />
-            <span className="text-2xl font-bold text-darkPink">Krish Saraf</span>
+            <img src={profileImage} alt="Krish Saraf" className="h-7 w-7 sm:h-8 sm:w-8 rounded-full object-cover" />
+            <span className="text-xl sm:text-2xl font-bold text-darkPink">Krish Saraf</span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-8 relative">
+          <div className="hidden md:flex space-x-4 lg:space-x-8 relative">
             {navigation.map((item) => (
               <div key={item.name} className="relative">
                 <Link
@@ -36,7 +36,7 @@ const Navbar = () => {
                     location.pathname === item.href
                       ? 'text-darkPink'
                       : 'text-darkPink/70 hover:text-darkPink'
-                  } transition-colors duration-300`}
+                  } transition-colors duration-300 text-fluid-sm whitespace-nowrap`}
                 >
                   {item.name}
                 </Link>
@@ -46,7 +46,7 @@ const Navbar = () => {
                   <img 
                     src={curvedArrow} 
                     alt="Active page indicator" 
-                    className="absolute -top-10 left-1/2 -translate-x-1/2 w-12 h-10 z-10"
+                    className="absolute -top-12 left-1/2 -translate-x-1/4 w-10 sm:w-12 md:w-14 h-10 sm:h-12 md:h-14"
                   />
                 )}
               </div>
@@ -57,8 +57,9 @@ const Navbar = () => {
           <div className="md:hidden">
             <button
               type="button"
-              className="text-darkPink/70 hover:text-darkPink"
+              className="text-darkPink/70 hover:text-darkPink p-1"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle mobile menu"
             >
               {mobileMenuOpen ? (
                 <XMarkIcon className="h-6 w-6" />
@@ -81,7 +82,7 @@ const Navbar = () => {
                       location.pathname === item.href
                         ? 'text-darkPink'
                         : 'text-darkPink/70 hover:text-darkPink'
-                    } block px-3 py-2 text-base transition-colors duration-300`}
+                    } block py-2 px-3 text-base transition-colors duration-300`}
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {item.name}
@@ -92,7 +93,7 @@ const Navbar = () => {
                     <img 
                       src={curvedArrow} 
                       alt="Active page indicator" 
-                      className="absolute -right-6 top-1/2 -translate-y-1/2 w-8 h-8 transform rotate-270"
+                      className="absolute -right-8 top-1/2 -translate-y-1/2 w-6 h-6 sm:w-8 sm:h-8 transform -rotate-90"
                     />
                   )}
                 </div>

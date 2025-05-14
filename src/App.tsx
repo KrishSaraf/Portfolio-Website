@@ -10,9 +10,9 @@ import AwardsAndPics from './pages/AwardsAndPics';
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen bg-white overflow-x-hidden w-full">
         <Navbar />
-        <main>
+        <main className="w-full">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/experience" element={<WorkExperience />} />
