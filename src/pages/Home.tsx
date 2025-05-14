@@ -58,25 +58,27 @@ const Home = () => {
               <br />
               {/* Explore my work below — I build fast, think deep, and execute smarter. */}
             </p>
-            <Link to="/projects" className="no-underline mb-6">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-darkPink text-white px-8 py-3 rounded-md font-medium hover:bg-darkPink/90 transition-colors duration-300 mt-2 w-full text-center"
-              >
-                Check out my work!
-              </motion.button>
-            </Link>
-            
-            <Link to="/contact" className="no-underline mb-6">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-white text-darkPink px-8 py-3 rounded-md font-medium border-2 border-darkPink hover:bg-darkPink/10 transition-colors duration-300 mt-2 w-full text-center"
-              >
-                Get in touch
-              </motion.button>
-            </Link>
+            <div className="flex flex-col md:flex-row gap-4 mb-6 w-full">
+              <Link to="/projects" className="no-underline w-full md:w-1/2">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="bg-darkPink text-white px-6 py-3 rounded-md font-medium hover:bg-darkPink/90 transition-colors duration-300 w-full text-center"
+                >
+                  Check out my work!
+                </motion.button>
+              </Link>
+              
+              <Link to="/contact" className="no-underline w-full md:w-1/2">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="bg-white text-darkPink px-6 py-3 rounded-md font-medium border-2 border-darkPink hover:bg-darkPink/10 transition-colors duration-300 w-full text-center"
+                >
+                  Get in touch
+                </motion.button>
+              </Link>
+            </div>
             
             <motion.div
               initial={{ opacity: 0, y: 20 }}
