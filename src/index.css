@@ -7,12 +7,7 @@
   :root {
     /* Base scale factor - will be used for proportional scaling */
     --scale-factor: 1;
-    --content-width: min(95vw, 1280px);
-    
-    /* More granular mobile breakpoints */
-    --xs-breakpoint: 320px;  /* iPhone SE and similar */
-    --sm-breakpoint: 375px;  /* iPhone X/11/12 */
-    --md-breakpoint: 414px;  /* iPhone Plus/Pro/Max */
+    --content-width: min(90vw, 1280px);
     
     /* Navbar height for proper content spacing */
     --navbar-height: 4rem; /* 64px */
@@ -29,53 +24,24 @@
     --fluid-12: calc(12 * var(--space-unit));
     --fluid-16: calc(16 * var(--space-unit));
 
-    /* Fluid typography that scales with viewport width */
-    --text-scale: clamp(0.85, 0.85 + 0.15 * (100vw - 320px) / 680, 1.1);
-    --font-size-tiny: calc(0.75rem * var(--text-scale));
-    --font-size-small: calc(0.875rem * var(--text-scale));
+    /* Fluid typography that scales with viewport */
+    --text-scale: clamp(0.9, 0.9 + 0.2 * (100vw - 400px) / 1000, 1.1);
     --font-size-base: calc(1rem * var(--text-scale));
     --font-size-lg: calc(1.125rem * var(--text-scale));
     --font-size-xl: calc(1.25rem * var(--text-scale));
     --font-size-2xl: calc(1.5rem * var(--text-scale));
     --font-size-3xl: calc(1.875rem * var(--text-scale));
     --font-size-4xl: calc(2.25rem * var(--text-scale));
-    
-    /* Mobile-specific adjustments */
-    --mobile-padding: clamp(0.75rem, 4vw, 1.5rem);
-    --mobile-border-radius: clamp(0.5rem, 2vw, 1rem);
-    --mobile-icon-size: clamp(1.25rem, 6vw, 1.75rem);
   }
 
-  /* Extra small mobile screens */
-  @media (max-width: 374px) {
+  /* Adjust scale factor based on viewport width */
+  @media (min-width: 400px) {
     :root {
-      --scale-factor: 0.85;
-      --navbar-height-mobile: 3.5rem;
+      --scale-factor: clamp(0.9, 0.9 + 0.3 * (100vw - 400px) / 1000, 1.2);
     }
   }
 
-  /* Small mobile screens */
-  @media (min-width: 375px) and (max-width: 413px) {
-    :root {
-      --scale-factor: 0.9;
-    }
-  }
-
-  /* Medium mobile screens */
-  @media (min-width: 414px) and (max-width: 576px) {
-    :root {
-      --scale-factor: 0.95;
-    }
-  }
-
-  /* Standard tablets & larger */
-  @media (min-width: 577px) {
-    :root {
-      --scale-factor: clamp(0.95, 0.95 + 0.25 * (100vw - 577px) / 1000, 1.2);
-    }
-  }
-
-  /* Ultra-wide screens */
+  /* Ultra-wide screens get a slightly larger scale */
   @media (min-width: 1800px) {
     :root {
       --scale-factor: clamp(1.1, 1.1 + 0.2 * (100vw - 1800px) / 700, 1.3);

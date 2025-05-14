@@ -101,7 +101,7 @@ const Home = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
-                    className="flex items-center justify-center h-[60px]"
+                    className="flex items-center justify-center"
                   >
                     <img 
                       src={logo.src} 
