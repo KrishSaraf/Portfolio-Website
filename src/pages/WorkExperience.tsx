@@ -161,20 +161,92 @@ const WorkExperience = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-4xl font-extrabold text-darkPink mb-16 text-center tracking-tight">
+          <h2 className="text-4xl font-extrabold text-darkPink mb-8 md:mb-16 text-center tracking-tight">
             Work Experience
           </h2>
 
-          <div className="relative grid grid-cols-1 md:grid-cols-12 gap-y-24 w-full">
-            {/* Timeline vertical line */}
+          <div className="relative grid grid-cols-1 md:grid-cols-12 gap-y-8 md:gap-y-24 w-full">
+            {/* Timeline vertical line - hidden on mobile */}
             <div className="hidden md:block absolute left-1/2 top-0 h-full w-2 bg-darkPink -translate-x-1/2 z-0" />
             {experiences.map((exp, index) => {
               const isLeft = index % 2 === 0;
               return (
                 <React.Fragment key={exp.company + exp.position + exp.duration}>
-                  {/* Left card */}
+                  {/* For mobile: Each experience in a full-width card */}
+                  <div className="md:hidden col-span-1 w-full mb-6 pb-6 border-b border-darkPink/10">
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      className="w-full bg-white/80 backdrop-blur-md shadow-xl rounded-2xl p-5 border-l-4 border-darkPink/60 text-left relative transition-all duration-300"
+                    >
+                      {/* Mobile card dot */}
+                      <div className="absolute -left-3 top-6 w-6 h-6 rounded-full bg-darkPink shadow-lg z-10" />
+                      
+                      {/* Company logo and job details */}
+                      <div className="flex items-start gap-4 mb-4">
+                        {exp.logo && (
+                          <div className="bg-transparent flex-shrink-0 w-16 h-16 flex items-center justify-center">
+                            <img 
+                              src={exp.logo} 
+                              alt={`${exp.company} logo`} 
+                              className="max-w-full max-h-full object-contain"
+                            />
+                          </div>
+                        )}
+                        <div className="flex-1">
+                          <h3 className="text-lg font-bold text-darkPink mb-2 tracking-tight">
+                            {exp.position}
+                          </h3>
+                          <div className="flex flex-col mb-3">
+                            <span className="text-darkPink/80 font-semibold text-base">{exp.company}</span>
+                            <span className="text-darkPink/60 text-sm">{exp.duration}</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Technologies pills */}
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {exp.technologies.map((tech) => (
+                          <span
+                            key={tech}
+                            className="text-xs text-darkPink bg-darkPink/10 px-3 py-1 rounded-full font-medium shadow-sm"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                      
+                      {/* View details button */}
+                      {exp.description && (
+                        <button
+                          onClick={() => setSelectedExp(index)}
+                          className="w-full group relative inline-flex items-center justify-center gap-2 px-4 py-3 text-sm font-semibold text-darkPink bg-darkPink/5 rounded-lg transition-all duration-300 hover:bg-darkPink/10"
+                        >
+                          <span>View Details</span>
+                          <svg 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke="currentColor"
+                          >
+                            <path 
+                              strokeLinecap="round" 
+                              strokeLinejoin="round" 
+                              strokeWidth={2} 
+                              d="M9 5l7 7-7 7" 
+                            />
+                          </svg>
+                        </button>
+                      )}
+                    </motion.div>
+                  </div>
+
+                  {/* Left card - hidden on mobile */}
                   {isLeft && (
-                    <div className="md:col-span-5 md:col-start-1 flex justify-end relative group">
+                    <div className="hidden md:flex md:col-span-5 md:col-start-1 justify-end relative group">
                       <motion.div
                         initial={{ opacity: 0, x: -40 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -246,13 +318,13 @@ const WorkExperience = () => {
                       </motion.div>
                     </div>
                   )}
-                  {/* Timeline dot for mobile */}
-                  <div className="md:col-span-2 flex flex-col items-center md:justify-center relative">
-                    <div className="md:hidden w-6 h-6 rounded-full bg-darkPink border-4 border-white shadow-lg z-10 mb-2" />
+                  {/* Timeline dot for desktop */}
+                  <div className="hidden md:flex md:col-span-2 flex-col items-center justify-center relative">
+                    <div className="w-6 h-6 rounded-full bg-darkPink border-4 border-white shadow-lg z-10 mb-2" />
                   </div>
-                  {/* Right card */}
+                  {/* Right card - hidden on mobile */}
                   {!isLeft && (
-                    <div className="md:col-span-7 md:col-start-8 flex justify-start relative group">
+                    <div className="hidden md:flex md:col-span-7 md:col-start-8 justify-start relative group">
                       <motion.div
                         initial={{ opacity: 0, x: 40 }}
                         whileInView={{ opacity: 1, x: 0 }}
