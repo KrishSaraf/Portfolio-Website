@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useLocation } from 'react-router-dom';
 
 const AwardsAndPics = () => {
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [selectedMedia, setSelectedMedia] = useState<{src: string, type: 'image' | 'video'} | null>(null);
   const location = useLocation();
   
   // Parse URL parameters to check for event (only for scrolling)
@@ -217,8 +217,18 @@ const AwardsAndPics = () => {
     },
   ];
 
-  const ImageModal = ({ src, alt, onClose }: { src: string, alt: string, onClose: () => void }) => {
-    if (!src) return null;
+  // Videos for the gallery
+  const videos = [
+    {
+      src: "/gallery/videos/ae458008-e3a9-4c1f-aab7-4834da652a15.mp4",
+      caption: "Project demonstration video",
+      thumbnail: "/gallery/videos/ae458008-e3a9-4c1f-aab7-4834da652a15-thumb.jpg", // Will use the video itself as thumbnail if missing
+    }
+  ];
+
+  // Updated Modal to handle both images and videos
+  const MediaModal = ({ media, onClose }: { media: {src: string, type: 'image' | 'video'} | null, onClose: () => void }) => {
+    if (!media) return null;
     
     return (
       <motion.div 
@@ -235,11 +245,20 @@ const AwardsAndPics = () => {
           className="relative max-w-7xl max-h-[90vh] overflow-hidden rounded-xl"
           onClick={(e) => e.stopPropagation()}
         >
-          <img 
-            src={src} 
-            alt={alt} 
-            className="max-h-[90vh] max-w-full object-contain"
-          />
+          {media.type === 'image' ? (
+            <img 
+              src={media.src} 
+              alt="Gallery image" 
+              className="max-h-[90vh] max-w-full object-contain"
+            />
+          ) : (
+            <video 
+              src={media.src} 
+              controls 
+              autoPlay 
+              className="max-h-[90vh] max-w-full"
+            />
+          )}
           <button
             onClick={onClose}
             className="absolute top-4 right-4 bg-darkPink/80 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-darkPink transition-colors duration-300"
@@ -296,7 +315,7 @@ const AwardsAndPics = () => {
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                       className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer"
-                      onClick={() => setSelectedImage(item.image)}
+                      onClick={() => setSelectedMedia({src: item.image, type: 'image'})}
                     >
                       <div className="overflow-hidden aspect-video">
                         <img 
@@ -335,7 +354,7 @@ const AwardsAndPics = () => {
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                       className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer"
-                      onClick={() => setSelectedImage(item.image)}
+                      onClick={() => setSelectedMedia({src: item.image, type: 'image'})}
                     >
                       <div className="overflow-hidden aspect-video">
                         <img 
@@ -374,7 +393,7 @@ const AwardsAndPics = () => {
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                       className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer"
-                      onClick={() => setSelectedImage(item.image)}
+                      onClick={() => setSelectedMedia({src: item.image, type: 'image'})}
                     >
                       <div className="overflow-hidden aspect-video">
                         <img 
@@ -413,7 +432,7 @@ const AwardsAndPics = () => {
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                       className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer"
-                      onClick={() => setSelectedImage(item.image)}
+                      onClick={() => setSelectedMedia({src: item.image, type: 'image'})}
                     >
                       <div className="overflow-hidden aspect-video">
                         <img 
@@ -452,7 +471,7 @@ const AwardsAndPics = () => {
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                       className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer"
-                      onClick={() => setSelectedImage(item.image)}
+                      onClick={() => setSelectedMedia({src: item.image, type: 'image'})}
                     >
                       <div className="overflow-hidden aspect-video">
                         <img 
@@ -489,7 +508,7 @@ const AwardsAndPics = () => {
                       src={award.image} 
                       alt={award.title} 
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      onClick={() => setSelectedImage(award.image)}
+                      onClick={() => setSelectedMedia({src: award.image, type: 'image'})}
                     />
                   </div>
                   <div className="p-8">
@@ -520,7 +539,7 @@ const AwardsAndPics = () => {
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 0.5, delay: (index % 3) * 0.1 }}
                   className="relative group break-inside-avoid rounded-xl overflow-hidden shadow-md hover:shadow-xl mb-6 cursor-pointer"
-                  onClick={() => setSelectedImage(item.image)}
+                  onClick={() => setSelectedMedia({src: item.image, type: 'image'})}
                 >
                   <div className="overflow-hidden">
                     <img 
@@ -529,6 +548,54 @@ const AwardsAndPics = () => {
                       className="w-full object-cover transition-transform duration-700 group-hover:scale-110"
                       loading="lazy"
                     />
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Video Gallery Section - Masonry Layout */}
+          <div className="mb-20">
+            <h3 className="text-3xl font-bold text-darkPink mb-12 text-center md:text-left">
+              Video Gallery
+            </h3>
+            
+            <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+              {videos.map((item, index) => (
+                <motion.div
+                  key={`${item.caption}-${index}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.5, delay: (index % 3) * 0.1 }}
+                  className="relative group break-inside-avoid rounded-xl overflow-hidden shadow-md hover:shadow-xl mb-6 cursor-pointer"
+                  onClick={() => setSelectedMedia({src: item.src, type: 'video'})}
+                >
+                  <div className="overflow-hidden aspect-video relative">
+                    {/* Use video itself as poster if no thumbnail */}
+                    {item.thumbnail ? (
+                      <img 
+                        src={item.thumbnail} 
+                        alt={item.caption} 
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <video 
+                        src={item.src}
+                        className="w-full h-full object-cover"
+                        preload="metadata"
+                      />
+                    )}
+                    
+                    {/* Play button overlay */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="bg-darkPink/70 rounded-full p-4 opacity-80 group-hover:opacity-100 transition-opacity">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-white" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M8 5v14l11-7z" />
+                        </svg>
+                      </div>
+                    </div>
                   </div>
                 </motion.div>
               ))}
@@ -555,11 +622,10 @@ const AwardsAndPics = () => {
       </div>
 
       {/* Full-screen image modal */}
-      {selectedImage && (
-        <ImageModal 
-          src={selectedImage} 
-          alt="Gallery image" 
-          onClose={() => setSelectedImage(null)} 
+      {selectedMedia && (
+        <MediaModal 
+          media={selectedMedia} 
+          onClose={() => setSelectedMedia(null)} 
         />
       )}
     </section>
