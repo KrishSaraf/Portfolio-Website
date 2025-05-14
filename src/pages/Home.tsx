@@ -74,18 +74,19 @@ const Home = () => {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="w-full mt-6"
             >
-              <h3 className="text-xl font-bold text-darkPink mb-4 text-left">
+              <h3 className="text-xl font-bold text-darkPink mb-6 text-center">
                 Companies I have worked with
               </h3>
               
-              <div className="flex flex-wrap justify-start items-center gap-4 mb-3">
+              {/* First row of logos */}
+              <div className="flex flex-wrap justify-center items-center gap-6 mb-5">
                 {firstRowLogos.map((logo, index) => (
                   <motion.div
                     key={logo.alt}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
-                    className="w-20 h-12 md:w-24 md:h-14 flex items-center justify-center"
+                    className="w-28 h-16 md:w-32 md:h-20 flex items-center justify-center"
                   >
                     <img 
                       src={logo.src} 
@@ -96,14 +97,15 @@ const Home = () => {
                 ))}
               </div>
               
-              <div className="flex flex-wrap justify-start items-center gap-4">
+              {/* Second row of logos */}
+              <div className="flex flex-wrap justify-center items-center gap-6">
                 {secondRowLogos.map((logo, index) => (
                   <motion.div
                     key={logo.alt}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: 0.5 + index * 0.1 }}
-                    className="w-20 h-12 md:w-24 md:h-14 flex items-center justify-center"
+                    className="w-28 h-16 md:w-32 md:h-20 flex items-center justify-center"
                   >
                     <img 
                       src={logo.src} 
