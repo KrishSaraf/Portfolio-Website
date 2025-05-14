@@ -161,7 +161,7 @@ const Contact = () => {
               <form 
                 ref={form} 
                 onSubmit={handleSubmit} 
-                className="space-y-8 bg-white p-8 rounded-xl shadow-lg border border-darkPink/10 relative overflow-hidden"
+                className="space-y-8 bg-white p-6 md:p-8 rounded-xl shadow-lg border border-darkPink/10 relative overflow-hidden w-full"
               >
                 {/* Form background decoration */}
                 <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-bl from-darkPink/5 to-transparent rounded-bl-full -z-10"></div>
@@ -170,7 +170,7 @@ const Contact = () => {
                 <div className="relative">
                   <label
                     htmlFor="name"
-                    className={`block text-sm font-medium mb-2 transition-all duration-200 ${
+                    className={`block text-base font-medium mb-2 transition-all duration-200 ${
                       focusedField === 'name' ? 'text-darkPink' : 'text-darkPink/70'
                     }`}
                   >
@@ -184,7 +184,7 @@ const Contact = () => {
                     onChange={handleChange}
                     onFocus={() => handleFocus('name')}
                     onBlur={handleBlur}
-                    className="w-full px-4 py-3.5 bg-white border rounded-lg text-darkPink/90 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-darkPink/50 focus:border-darkPink"
+                    className="w-full px-5 py-4 text-base bg-white border rounded-lg text-darkPink/90 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-darkPink/50 focus:border-darkPink"
                     required
                   />
                   <div className={`h-0.5 bg-darkPink scale-x-0 transition-transform duration-300 origin-left ${
@@ -195,7 +195,7 @@ const Contact = () => {
                 <div className="relative">
                   <label
                     htmlFor="email"
-                    className={`block text-sm font-medium mb-2 transition-all duration-200 ${
+                    className={`block text-base font-medium mb-2 transition-all duration-200 ${
                       focusedField === 'email' ? 'text-darkPink' : 'text-darkPink/70'
                     }`}
                   >
@@ -209,7 +209,7 @@ const Contact = () => {
                     onChange={handleChange}
                     onFocus={() => handleFocus('email')}
                     onBlur={handleBlur}
-                    className="w-full px-4 py-3.5 bg-white border rounded-lg text-darkPink/90 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-darkPink/50 focus:border-darkPink"
+                    className="w-full px-5 py-4 text-base bg-white border rounded-lg text-darkPink/90 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-darkPink/50 focus:border-darkPink"
                     required
                   />
                   <div className={`h-0.5 bg-darkPink scale-x-0 transition-transform duration-300 origin-left ${
@@ -220,7 +220,7 @@ const Contact = () => {
                 <div className="relative">
                   <label
                     htmlFor="message"
-                    className={`block text-sm font-medium mb-2 transition-all duration-200 ${
+                    className={`block text-base font-medium mb-2 transition-all duration-200 ${
                       focusedField === 'message' ? 'text-darkPink' : 'text-darkPink/70'
                     }`}
                   >
@@ -233,8 +233,8 @@ const Contact = () => {
                     onChange={handleChange}
                     onFocus={() => handleFocus('message')}
                     onBlur={handleBlur}
-                    rows={3}
-                    className="w-full px-4 py-3.5 bg-white border rounded-lg text-darkPink/90 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-darkPink/50 focus:border-darkPink resize-none"
+                    rows={5}
+                    className="w-full px-5 py-4 text-base bg-white border rounded-lg text-darkPink/90 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-darkPink/50 focus:border-darkPink resize-none"
                     required
                   />
                   <div className={`h-0.5 bg-darkPink scale-x-0 transition-transform duration-300 origin-left ${
@@ -287,27 +287,27 @@ const Contact = () => {
 
             {/* Social Links - Right Side */}
             <motion.div 
-              className="md:w-1/3 order-1 md:order-2 flex flex-col items-center md:items-start"
+              className="md:w-1/3 w-full order-1 md:order-2 flex flex-col items-center md:items-start"
               variants={itemVariants}
             >
               <div className="mb-12 w-full">
-                <h3 className="text-xl font-bold text-darkPink mb-8 relative inline-block">
+                <h3 className="text-2xl font-bold text-darkPink mb-8 relative inline-block">
                   <span className="relative z-10">Connect with me</span>
                   <div className="absolute -bottom-1 left-0 w-full h-2 bg-darkPink/20 -z-10 rounded"></div>
                 </h3>
-                <div className="flex flex-col gap-4 mt-6">
+                <div className="flex flex-col gap-5 mt-6">
                   <motion.a
                     whileHover={{ scale: 1.03, x: 5 }}
                     href="https://github.com/KrishSaraf/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-4 text-darkPink/80 hover:text-darkPink transition-all duration-300 p-4 rounded-lg border border-darkPink/10 bg-white shadow-sm hover:shadow-md group"
+                    className="flex items-center gap-4 text-darkPink/80 hover:text-darkPink transition-all duration-300 p-6 rounded-lg border border-darkPink/10 bg-white shadow-sm hover:shadow-md group"
                     aria-label="GitHub Profile"
                   >
-                    <span className="bg-darkPink/10 text-darkPink p-2 rounded-full transition-all duration-300 group-hover:bg-darkPink group-hover:text-white">
-                      <FaGithub size={26} />
+                    <span className="bg-darkPink/10 text-darkPink p-3 rounded-full transition-all duration-300 group-hover:bg-darkPink group-hover:text-white">
+                      <FaGithub size={30} />
                     </span>
-                    <span className="font-medium">GitHub</span>
+                    <span className="font-medium text-lg">GitHub</span>
                     <span className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">→</span>
                   </motion.a>
                   
@@ -316,26 +316,26 @@ const Contact = () => {
                     href="https://www.linkedin.com/in/krishsaraf/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-4 text-darkPink/80 hover:text-darkPink transition-all duration-300 p-4 rounded-lg border border-darkPink/10 bg-white shadow-sm hover:shadow-md group"
+                    className="flex items-center gap-4 text-darkPink/80 hover:text-darkPink transition-all duration-300 p-6 rounded-lg border border-darkPink/10 bg-white shadow-sm hover:shadow-md group"
                     aria-label="LinkedIn Profile"
                   >
-                    <span className="bg-darkPink/10 text-darkPink p-2 rounded-full transition-all duration-300 group-hover:bg-darkPink group-hover:text-white">
-                      <FaLinkedin size={26} />
+                    <span className="bg-darkPink/10 text-darkPink p-3 rounded-full transition-all duration-300 group-hover:bg-darkPink group-hover:text-white">
+                      <FaLinkedin size={30} />
                     </span>
-                    <span className="font-medium">LinkedIn</span>
+                    <span className="font-medium text-lg">LinkedIn</span>
                     <span className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">→</span>
                   </motion.a>
                   
                   <motion.a
                     whileHover={{ scale: 1.03, x: 5 }}
                     href="mailto:krishsaraf05@gmail.com"
-                    className="flex items-center gap-4 text-darkPink/80 hover:text-darkPink transition-all duration-300 p-4 rounded-lg border border-darkPink/10 bg-white shadow-sm hover:shadow-md group"
+                    className="flex items-center gap-4 text-darkPink/80 hover:text-darkPink transition-all duration-300 p-6 rounded-lg border border-darkPink/10 bg-white shadow-sm hover:shadow-md group"
                     aria-label="Email Me"
                   >
-                    <span className="bg-darkPink/10 text-darkPink p-2 rounded-full transition-all duration-300 group-hover:bg-darkPink group-hover:text-white">
-                      <FaEnvelope size={26} />
+                    <span className="bg-darkPink/10 text-darkPink p-3 rounded-full transition-all duration-300 group-hover:bg-darkPink group-hover:text-white">
+                      <FaEnvelope size={30} />
                     </span>
-                    <span className="font-medium">Email Me</span>
+                    <span className="font-medium text-lg">Email Me</span>
                     <span className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300">→</span>
                   </motion.a>
                 </div>

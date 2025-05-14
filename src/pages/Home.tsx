@@ -32,13 +32,13 @@ const Home = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="relative flex justify-center lg:justify-start order-1"
+            className="relative flex justify-center lg:justify-start order-1 mt-[5vh] md:mt-0"
           >
-            <div className="w-[min(80vw,25rem)] aspect-square lg:w-[min(40vw,30rem)] lg:aspect-[2/3] rounded-full overflow-hidden border-[min(0.5vw,0.25rem)] border-darkPink shadow-xl">
+            <div className="w-[min(80vw,25rem)] aspect-[0.8/1] lg:w-[min(40vw,30rem)] lg:aspect-[0.8/1] rounded-full overflow-hidden border-[min(0.5vw,0.25rem)] border-darkPink shadow-xl">
               <img
                 src={profileImage}
                 alt="Krish Saraf"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-top"
               />
             </div>
           </motion.div>
@@ -97,20 +97,20 @@ const Home = () => {
                 Companies I have worked with
               </h3>
               
-              {/* Logo grid with auto-fit for responsive layout */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-[clamp(0.5rem,2vw,1.5rem)] mb-[clamp(0.5rem,1vh,1rem)]">
+              {/* Logo grid with auto-fit for responsive layout - first row */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-[clamp(0.5rem,2vw,1.5rem)] mb-[clamp(1rem,2vh,1.5rem)]">
                 {firstRowLogos.map((logo, index) => (
                   <motion.div
                     key={logo.alt}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
-                    className="aspect-[3/2] flex items-center justify-center p-[clamp(0.25rem,1vw,0.75rem)]"
+                    className="aspect-[3/2] flex items-center justify-center p-[clamp(0.5rem,1.5vw,1rem)]"
                   >
                     <img 
                       src={logo.src} 
                       alt={logo.alt} 
-                      className="max-w-full max-h-full object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
+                      className="max-w-[90%] max-h-[90%] w-auto h-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
                     />
                   </motion.div>
                 ))}
@@ -124,12 +124,12 @@ const Home = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: 0.5 + index * 0.1 }}
-                    className="aspect-[3/2] flex items-center justify-center p-[clamp(0.25rem,1vw,0.75rem)]"
+                    className="aspect-[3/2] flex items-center justify-center p-[clamp(0.5rem,1.5vw,1rem)]"
                   >
                     <img 
                       src={logo.src} 
                       alt={logo.alt} 
-                      className="max-w-full max-h-full object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
+                      className="max-w-[90%] max-h-[90%] w-auto h-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
                     />
                   </motion.div>
                 ))}
