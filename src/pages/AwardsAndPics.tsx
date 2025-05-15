@@ -162,9 +162,9 @@ const AwardsAndPics = () => {
       src: "/gallery/timeline/m.jpeg",
       alt: "Stakeholder Meeting",
       description: "Engaging with project stakeholders",
-      aspectRatio: 3/2,
+      aspectRatio: 2/3,
       highlight: false,
-      objectPosition: "center 30%"
+      // The objectPosition property is set to "center 30%", which means the image will be positioned such that the center of the image is aligned horizontally, and vertically it is positioned at 30% from the top. This helps in focusing on a specific part of the image when displayed.
     }
   ];
 
@@ -297,6 +297,7 @@ const AwardsAndPics = () => {
       src: "/gallery/gauze.jpeg", 
       caption: "Gauze detection system in action",
       aspectRatio: "aspect-w-16 aspect-h-9",
+      transform: "scaleX(-1)", // Flip horizontally
     },
     {
       type: 'image',
@@ -475,27 +476,27 @@ const AwardsAndPics = () => {
     return (
       <AnimatePresence>
         {media && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 backdrop-blur-sm"
-            onClick={onClose}
-          >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 backdrop-blur-sm"
+        onClick={onClose}
+      >
+        <motion.div
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.9, opacity: 0 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="relative max-w-7xl max-h-[90vh] overflow-hidden rounded-xl"
-              onClick={(e) => e.stopPropagation()}
-            >
+          className="relative max-w-7xl max-h-[90vh] overflow-hidden rounded-xl"
+          onClick={(e) => e.stopPropagation()}
+        >
               {media.type === 'image' ? (
-                <img 
+          <img 
                   src={media.src} 
                   alt="Gallery image" 
-                  className="max-h-[90vh] max-w-full object-contain"
-                />
+            className="max-h-[90vh] max-w-full object-contain"
+          />
               ) : (
                 <div className="relative">
                   <video 
@@ -510,15 +511,15 @@ const AwardsAndPics = () => {
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
-                onClick={onClose}
-                className="absolute top-4 right-4 bg-darkPink/80 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-darkPink transition-colors duration-300"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
+            onClick={onClose}
+            className="absolute top-4 right-4 bg-darkPink/80 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-darkPink transition-colors duration-300"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
               </motion.button>
-            </motion.div>
-          </motion.div>
+        </motion.div>
+      </motion.div>
         )}
       </AnimatePresence>
     );
@@ -629,15 +630,8 @@ const AwardsAndPics = () => {
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                       className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer"
                       onClick={() => setSelectedMedia({src: item.src, type: item.type === 'video' ? 'video' : 'image', loop: item.loop})}
-                      style={{ 
-                        padding: 0, 
-                        border: 'none', 
-                        borderRadius: '0.75rem', 
-                        overflow: 'hidden',
-                        backgroundColor: 'transparent'
-                      }}
                     >
-                      <div className="overflow-hidden p-0 m-0 bg-transparent">
+                      <div className="overflow-hidden">
                         {item.type === 'image' ? (
                           <img 
                             src={item.src} 
@@ -648,20 +642,15 @@ const AwardsAndPics = () => {
                                 : "h-auto object-contain"
                             }`}
                             style={{
-                              maxHeight: item.src.includes('krish-hospital') ? '400px' : 'none',
-                              transform: item.src.includes('steps.png') ? 'rotate(90deg)' : 'none',
-                              transformOrigin: item.src.includes('steps.png') ? 'center center' : 'none',
-                              padding: 0,
-                              margin: 0,
-                              border: 'none'
+                              ...(item.src.includes('krish-hospital') ? { maxHeight: '400px' } : {}),
+                              ...(item.src.includes('gauze.jpeg') ? { transform: 'scaleX(-1)' } : {})
                             }}
                           />
                         ) : (
-                          <div className="relative p-0 m-0">
+                          <div className="relative">
                             <video 
                               src={item.src}
                               className="w-full h-full object-contain"
-                              style={{ padding: 0, margin: 0, border: 'none' }}
                               autoPlay
                               muted
                               loop
@@ -725,19 +714,19 @@ const AwardsAndPics = () => {
               >
                 <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
                   Clean Tech Challenge (2023-2024)
-                </h3>
+            </h3>
                 <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
                   Images from our 1st Prize winning projects two years in a row, featuring sustainability solutions and shipment prediction models.
                 </p>
-                
+            
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {cleanTechImages.map((item, index) => (
-                    <motion.div
+                <motion.div
                       key={`cleantech-${index}`}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
                       className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer"
                       onClick={() => setSelectedMedia({src: item.image, type: 'image'})}
                     >
@@ -746,13 +735,13 @@ const AwardsAndPics = () => {
                           src={item.image} 
                           alt={item.caption} 
                           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        />
-                      </div>
+                    />
+                  </div>
                     </motion.div>
                   ))}
                 </div>
               </motion.div>
-            </div>
+                    </div>
 
             {/* NTU IEEE Intuition Hackathon Section - Always displayed */}
             <div id="intuition-section" className="border-2 border-darkPink/20 p-8 rounded-2xl bg-white/50 backdrop-blur-sm">
@@ -786,12 +775,12 @@ const AwardsAndPics = () => {
                           alt={item.caption} 
                           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         />
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
+                  </div>
+                </motion.div>
+              ))}
             </div>
+              </motion.div>
+          </div>
 
             {/* Code with AI Hackathon Section - Always displayed */}
             <div id="codewithai-section" className="border-2 border-darkPink/20 p-8 rounded-2xl bg-white/50 backdrop-blur-sm">
@@ -803,7 +792,7 @@ const AwardsAndPics = () => {
               >
                 <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
                   "Code with AI" Hackathon - Get My Leadz
-                </h3>
+            </h3>
                 <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
                   3rd Place winning project where we built an AI-driven lead generation platform that automates prospect discovery, qualification, and scoring.
                 </p>
