@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import WorkExperience from './pages/WorkExperience';
@@ -13,14 +13,24 @@ function App() {
       <div className="min-h-screen bg-white">
         <Navbar />
         <main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/experience" element={<WorkExperience />} />
-            <Route path="/skills" element={<Skills />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/awards" element={<AwardsAndPics />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
+          <div id="home-section">
+            <Home />
+          </div>
+          <div id="projects-section">
+            <Projects />
+          </div>
+          <div id="awards-section">
+            <AwardsAndPics />
+          </div>
+          <div id="experience-section">
+            <WorkExperience />
+          </div>
+          <div id="skills-section">
+            <Skills />
+          </div>
+          <div id="contact-section">
+            <Contact />
+          </div>
         </main>
       </div>
     </Router>

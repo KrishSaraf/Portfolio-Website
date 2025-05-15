@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import profileImage from '../assets/Titopic.jpeg';
-import { Link } from 'react-router-dom';
 
 const Home = () => {
   const companyLogos = [
@@ -61,7 +60,7 @@ const Home = () => {
 
             {/* Button Container with fluid spacing */}
             <div className="flex flex-col sm:flex-row gap-[min(3vw,1rem)] mb-[min(6vh,3rem)] w-full">
-              <Link to="/projects" className="no-underline w-full sm:w-1/2">
+              <a href="#projects-section" className="no-underline w-full sm:w-1/2">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -69,9 +68,9 @@ const Home = () => {
                 >
                   Check out my work!
                 </motion.button>
-              </Link>
+              </a>
               
-              <Link to="/contact" className="no-underline w-full sm:w-1/2">
+              <a href="#contact-section" className="no-underline w-full sm:w-1/2">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -79,7 +78,7 @@ const Home = () => {
                 >
                   Get in touch
                 </motion.button>
-              </Link>
+              </a>
             </div>
             
             {/* Company Logos Section with fluid layout */}
