@@ -196,7 +196,7 @@ const Projects = () => {
                     </p>
                   </div>
 
-                  {/* Technologies and Button */}
+                  {/* Technologies */}
                   <div className="space-y-6">
                     <div className="flex flex-wrap gap-2">
                       {project.technologies.map((tech) => (
@@ -209,15 +209,8 @@ const Projects = () => {
                       ))}
                     </div>
 
+                    {/* GitHub and Live Demo links */}
                     <div className="flex items-center gap-4">
-                      <button
-                        className="px-6 py-3 text-sm font-semibold text-white bg-darkPink rounded-xl hover:bg-pink-600 transition-colors duration-200 flex items-center gap-2 group-hover:shadow-md"
-                        onClick={() => setSelected(index)}
-                      >
-                        View Details
-                        <span className="transform group-hover:translate-x-1 transition-transform duration-200">→</span>
-                      </button>
-                      
                       {project.github && (
                         <a
                           href={project.github}
@@ -250,48 +243,57 @@ const Projects = () => {
                 </div>
               </div>
               
-              {/* View Pics buttons at the rightmost bottom corner */}
-              {project.title === "IEEE NTU & NUS Synapse Hackathon 2024" && (
-                <Link to="/awards?event=synapse" className="absolute bottom-4 right-4 px-6 py-3 text-sm font-semibold text-white bg-darkPink rounded-xl hover:bg-pink-600 transition-colors duration-200 flex items-center gap-2 group-hover:shadow-md">
-                  View Pics
-                  <span className="transform group-hover:translate-x-1 transition-transform duration-200">→</span>
-                </Link>
-              )}
+              {/* Bottom action buttons - aligned horizontally */}
+              <div className="flex justify-between items-center px-8 py-4 border-t border-gray-100">
+                <button
+                  className="px-6 py-3 text-sm font-semibold text-white bg-darkPink rounded-xl hover:bg-pink-600 transition-colors duration-200 flex items-center group-hover:shadow-md"
+                  onClick={() => setSelected(index)}
+                >
+                  View Details
+                </button>
+                
+                {project.title === "IEEE NTU & NUS Synapse Hackathon 2024" && (
+                  <Link to="/awards?event=synapse" className="px-6 py-3 text-sm font-semibold text-white bg-darkPink rounded-xl hover:bg-pink-600 transition-colors duration-200 flex items-center gap-2 group-hover:shadow-md">
+                    View Pics
+                    <span className="transform group-hover:translate-x-1 transition-transform duration-200">→</span>
+                  </Link>
+                )}
 
-              {project.title === "Clean-Tech Challenge" && (
-                <Link to="/awards?event=cleantech" className="absolute bottom-4 right-4 px-6 py-3 text-sm font-semibold text-white bg-darkPink rounded-xl hover:bg-pink-600 transition-colors duration-200 flex items-center gap-2 group-hover:shadow-md">
-                  View Pics
-                  <span className="transform group-hover:translate-x-1 transition-transform duration-200">→</span>
-                </Link>
-              )}
-              
-              {project.title === "NTU IEEE Intuition Hackathon" && (
-                <Link to="/awards?event=intuition" className="absolute bottom-4 right-4 px-6 py-3 text-sm font-semibold text-white bg-darkPink rounded-xl hover:bg-pink-600 transition-colors duration-200 flex items-center gap-2 group-hover:shadow-md">
-                  View Pics
-                  <span className="transform group-hover:translate-x-1 transition-transform duration-200">→</span>
-                </Link>
-              )}
-              
-              {project.title === '"Code with AI" Hackathon - Get My Leadz' && (
-                <Link to="/awards?event=codewithai" className="absolute bottom-4 right-4 px-6 py-3 text-sm font-semibold text-white bg-darkPink rounded-xl hover:bg-pink-600 transition-colors duration-200 flex items-center gap-2 group-hover:shadow-md">
-                  View Pics
-                  <span className="transform group-hover:translate-x-1 transition-transform duration-200">→</span>
-                </Link>
-              )}
+                {project.title === "Clean-Tech Challenge" && (
+                  <Link to="/awards?event=cleantech" className="px-6 py-3 text-sm font-semibold text-white bg-darkPink rounded-xl hover:bg-pink-600 transition-colors duration-200 flex items-center gap-2 group-hover:shadow-md">
+                    View Pics
+                    <span className="transform group-hover:translate-x-1 transition-transform duration-200">→</span>
+                  </Link>
+                )}
+                
+                {project.title === "NTU IEEE Intuition Hackathon" && (
+                  <Link to="/awards?event=intuition" className="px-6 py-3 text-sm font-semibold text-white bg-darkPink rounded-xl hover:bg-pink-600 transition-colors duration-200 flex items-center gap-2 group-hover:shadow-md">
+                    View Pics
+                    <span className="transform group-hover:translate-x-1 transition-transform duration-200">→</span>
+                  </Link>
+                )}
+                
+                {project.title === '"Code with AI" Hackathon - Get My Leadz' && (
+                  <Link to="/awards?event=codewithai" className="px-6 py-3 text-sm font-semibold text-white bg-darkPink rounded-xl hover:bg-pink-600 transition-colors duration-200 flex items-center gap-2 group-hover:shadow-md">
+                    View Pics
+                    <span className="transform group-hover:translate-x-1 transition-transform duration-200">→</span>
+                  </Link>
+                )}
 
-              {project.title === "NTU PEAK Leadership Program" && (
-                <Link to="/awards?event=peak" className="absolute bottom-4 right-4 px-6 py-3 text-sm font-semibold text-white bg-darkPink rounded-xl hover:bg-pink-600 transition-colors duration-200 flex items-center gap-2 group-hover:shadow-md">
-                  View Pics
-                  <span className="transform group-hover:translate-x-1 transition-transform duration-200">→</span>
-                </Link>
-              )}
-              
-              {project.title === "Surgical Gauze Detection using Computer Vision" && (
-                <Link to="/awards?event=gauze" className="absolute bottom-4 right-4 px-6 py-3 text-sm font-semibold text-white bg-darkPink rounded-xl hover:bg-pink-600 transition-colors duration-200 flex items-center gap-2 group-hover:shadow-md">
-                  View Pics
-                  <span className="transform group-hover:translate-x-1 transition-transform duration-200">→</span>
-                </Link>
-              )}
+                {project.title === "NTU PEAK Leadership Program" && (
+                  <Link to="/awards?event=peak" className="px-6 py-3 text-sm font-semibold text-white bg-darkPink rounded-xl hover:bg-pink-600 transition-colors duration-200 flex items-center gap-2 group-hover:shadow-md">
+                    View Pics
+                    <span className="transform group-hover:translate-x-1 transition-transform duration-200">→</span>
+                  </Link>
+                )}
+                
+                {project.title === "Surgical Gauze Detection using Computer Vision" && (
+                  <Link to="/awards?event=gauze" className="px-6 py-3 text-sm font-semibold text-white bg-darkPink rounded-xl hover:bg-pink-600 transition-colors duration-200 flex items-center gap-2 group-hover:shadow-md">
+                    View Pics
+                    <span className="transform group-hover:translate-x-1 transition-transform duration-200">→</span>
+                  </Link>
+                )}
+              </div>
             </motion.div>
           ))}
         </motion.div>
