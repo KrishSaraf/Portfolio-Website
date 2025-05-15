@@ -2,9 +2,6 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import trendz from '../assets/Projects/Synapse.png';
 import EXE from '../assets/Projects/EXE.png';
-import CCDS from '../assets/Projects/CCDS.png';
-import FYP from '../assets/Projects/FYP.png';
-import Planify from '../assets/Projects/Planify.png';
 import Disease from '../assets/Projects/DiseasePrediction.png';
 import { Link } from 'react-router-dom';
 
