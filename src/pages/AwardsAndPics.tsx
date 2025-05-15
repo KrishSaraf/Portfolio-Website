@@ -286,6 +286,13 @@ const AwardsAndPics = () => {
   // Surgical Gauze Detection images and video
   const gauzeMedia = [
     {
+      type: 'video',
+      src: "/gallery/videos/video-counting.mp4", 
+      caption: "Gauze counting system demonstration",
+      loop: true,
+      aspectRatio: "aspect-w-16 aspect-h-9",
+    },
+    {
       type: 'image',
       src: "/gallery/gauze.jpeg", 
       caption: "Gauze detection system in action",
@@ -302,13 +309,6 @@ const AwardsAndPics = () => {
       src: "/gallery/steps.png", 
       caption: "System architecture and workflow",
       aspectRatio: "aspect-w-4 aspect-h-3",
-    },
-    {
-      type: 'video',
-      src: "/gallery/videos/video-counting.mp4", 
-      caption: "Gauze counting system demonstration",
-      loop: true,
-      aspectRatio: "aspect-w-16 aspect-h-9",
     }
   ];
 
@@ -630,31 +630,28 @@ const AwardsAndPics = () => {
                       className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer"
                       onClick={() => setSelectedMedia({src: item.src, type: item.type === 'video' ? 'video' : 'image', loop: item.loop})}
                     >
-                      <div className="overflow-hidden aspect-video">
+                      <div className="overflow-hidden">
                         {item.type === 'image' ? (
                           <img 
                             src={item.src} 
                             alt={item.caption} 
-                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            className={`w-full transition-transform duration-700 group-hover:scale-105 ${
+                              item.src.includes('krish-hospital') 
+                                ? "h-auto object-contain" 
+                                : "h-auto object-contain"
+                            }`}
+                            style={item.src.includes('krish-hospital') ? { maxHeight: '400px' } : {}}
                           />
                         ) : (
                           <div className="relative">
                             <video 
                               src={item.src}
-                              className="w-full h-full object-cover"
+                              className="w-full h-full object-contain"
                               autoPlay
                               muted
                               loop
                               playsInline
                             />
-                            {/* Play button overlay */}
-                            <div className="absolute inset-0 flex items-center justify-center">
-                              <div className="bg-darkPink/70 rounded-full p-4 opacity-80 group-hover:opacity-100 transition-opacity">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                  <path d="M8 5v14l11-7z" />
-                                </svg>
-                              </div>
-                            </div>
                           </div>
                         )}
                       </div>
