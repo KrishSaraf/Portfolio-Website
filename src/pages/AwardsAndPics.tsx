@@ -415,50 +415,52 @@ const AwardsAndPics = () => {
     
     return (
       <AnimatePresence>
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 backdrop-blur-sm"
-          onClick={onClose}
-        >
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.9, opacity: 0 }}
-            transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="relative max-w-7xl max-h-[90vh] overflow-hidden rounded-xl"
-            onClick={(e) => e.stopPropagation()}
+        {media && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 backdrop-blur-sm"
+            onClick={onClose}
           >
-            {media.type === 'image' ? (
-              <img 
-                src={media.src} 
-                alt="Gallery image" 
-                className="max-h-[90vh] max-w-full object-contain"
-              />
-            ) : (
-              <div className="relative">
-                <video 
-                  src={media.src} 
-                  controls 
-                  autoPlay 
-                  loop={media.loop}
-                  className="max-h-[90vh] max-w-full"
-                />
-              </div>
-            )}
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={onClose}
-              className="absolute top-4 right-4 bg-darkPink/80 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-darkPink transition-colors duration-300"
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              className="relative max-w-7xl max-h-[90vh] overflow-hidden rounded-xl"
+              onClick={(e) => e.stopPropagation()}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </motion.button>
+              {media.type === 'image' ? (
+                <img 
+                  src={media.src} 
+                  alt="Gallery image" 
+                  className="max-h-[90vh] max-w-full object-contain"
+                />
+              ) : (
+                <div className="relative">
+                  <video 
+                    src={media.src} 
+                    controls 
+                    autoPlay 
+                    loop={media.loop}
+                    className="max-h-[90vh] max-w-full"
+                  />
+                </div>
+              )}
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={onClose}
+                className="absolute top-4 right-4 bg-darkPink/80 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-darkPink transition-colors duration-300"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </motion.button>
+            </motion.div>
           </motion.div>
-        </motion.div>
+        )}
       </AnimatePresence>
     );
   };
