@@ -43,7 +43,8 @@ const AwardsAndPics = () => {
       description: "Team photo at BASF's innovation showcase",
       aspectRatio: 16/9,
       highlight: true,
-      objectPosition: "center 25%"
+      objectPosition: "center 25%",
+      maxHeight: 550
     },
     // {
     //   id: 'presentation',
@@ -72,7 +73,8 @@ const AwardsAndPics = () => {
       description: "Sharing project insights with the team",
       aspectRatio: 16/9,
       highlight: false,
-      objectPosition: "center 30%"
+      objectPosition: "center 30%",
+      maxHeight: 550
     },
     {
       id: 'workshop2',
@@ -81,7 +83,8 @@ const AwardsAndPics = () => {
       description: "Collaborative workshop session",
       aspectRatio: 16/9,
       highlight: false,
-      objectPosition: "center 30%"
+      objectPosition: "center 30%",
+      maxHeight: 550
     },
     {
       id: 'mountain',
@@ -90,7 +93,8 @@ const AwardsAndPics = () => {
       description: "Project planning retreat",
       aspectRatio: 4/3,
       highlight: false,
-      objectPosition: "center 30%"
+      objectPosition: "center 30%",
+      maxHeight: 550
     },
     {
       id: 'outdoor',
@@ -99,7 +103,8 @@ const AwardsAndPics = () => {
       description: "Team planning in an outdoor setting",
       aspectRatio: 4/3,
       highlight: false,
-      objectPosition: "center 30%"
+      objectPosition: "center 30%",
+      maxHeight: 550
     },
     {
       id: 'discussion',
@@ -108,7 +113,8 @@ const AwardsAndPics = () => {
       description: "Collaborative problem-solving session",
       aspectRatio: 4/3,
       highlight: false,
-      objectPosition: "center 15%"
+      objectPosition: "center 15%",
+      maxHeight: 550
     },
     {
       id: 'project',
@@ -117,7 +123,8 @@ const AwardsAndPics = () => {
       description: "Whiteboarding system architecture",
       aspectRatio: 4/3,
       highlight: false,
-      objectPosition: "center 30%"
+      objectPosition: "center 30%",
+      maxHeight: 550
     },
     
     // Group portrait and irregular orientation images
@@ -128,7 +135,8 @@ const AwardsAndPics = () => {
       description: "Technical discussion during sprint planning",
       aspectRatio: 3/4,
       highlight: false,
-      objectPosition: "center 20%"
+      objectPosition: "center 20%",
+      maxHeight: 550
     },
     {
       id: 'workshop',
@@ -137,7 +145,8 @@ const AwardsAndPics = () => {
       description: "Leading a workshop on AI applications",
       aspectRatio: 4/3,
       highlight: false,
-      objectPosition: "center 35%"
+      objectPosition: "center 35%",
+      maxHeight: 550
     },
     {
       id: 'innovation',
@@ -146,7 +155,8 @@ const AwardsAndPics = () => {
       description: "Creative brainstorming for new solutions",
       aspectRatio: 7/5,
       highlight: false,
-      objectPosition: "center 40%"
+      objectPosition: "center 40%",
+      maxHeight: 550
     },
     {
       id: 'technology',
@@ -155,7 +165,8 @@ const AwardsAndPics = () => {
       description: "Demonstrating the latest tech solutions",
       aspectRatio: 3/2,
       highlight: false,
-      objectPosition: "center 30%"
+      objectPosition: "center 30%",
+      maxHeight: 550
     },
     {
       id: 'stakeholders',
@@ -164,6 +175,7 @@ const AwardsAndPics = () => {
       description: "Engaging with project stakeholders",
       aspectRatio: 2/3,
       highlight: false,
+      maxHeight: 550,
       // The objectPosition property is set to "center 30%", which means the image will be positioned such that the center of the image is aligned horizontally, and vertically it is positioned at 30% from the top. This helps in focusing on a specific part of the image when displayed.
     }
   ];
@@ -575,7 +587,11 @@ const AwardsAndPics = () => {
                         alt={item.alt}
                         onLoad={handleImageLoaded}
                         className="w-full h-full object-cover"
-                        style={{ objectPosition: item.objectPosition || "center" }}
+                        style={{ 
+                          objectPosition: item.objectPosition || "center", 
+                          maxHeight: item.maxHeight ? `${item.maxHeight}px` : '550px',
+                          minHeight: '400px'
+                        }}
                         whileHover={{ scale: 1.05 }}
                         transition={{ duration: 0.5 }}
                       />
@@ -643,7 +659,8 @@ const AwardsAndPics = () => {
                             }`}
                             style={{
                               ...(item.src.includes('krish-hospital') ? { maxHeight: '400px' } : {}),
-                              ...(item.src.includes('gauze.jpeg') ? { maxHeight: '350px' } : {})
+                              ...(item.src.includes('gauze.jpeg') ? { maxHeight: '550px' } : {}),
+                              ...(item.src.includes('o.jpeg') ? { maxHeight: '550px' } : {})
                             }}
                           />
                         ) : (
