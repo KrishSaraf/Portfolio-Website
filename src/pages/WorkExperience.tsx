@@ -169,7 +169,8 @@ const WorkExperience = () => {
 
             <div className="relative grid grid-cols-1 md:grid-cols-12 gap-y-[clamp(2rem,5vh,6rem)] md:gap-y-[clamp(3rem,8vh,8rem)] w-full">
               {/* Timeline vertical line - hidden on mobile */}
-              <div className="hidden md:block absolute left-1/2 top-0 h-full w-[min(0.5vw,0.5rem)] bg-darkPink -translate-x-1/2 z-0" />
+              <div className="hidden md:block absolute left-1/2 top-0 h-full w-[0.25rem] bg-darkPink -translate-x-1/2 z-0 opacity-60" />
+              
               {experiences.map((exp, index) => {
                 const isLeft = index % 2 === 0;
                 return (
@@ -246,153 +247,165 @@ const WorkExperience = () => {
                       </motion.div>
                     </div>
 
-                    {/* Left card - hidden on mobile */}
-                    {isLeft && (
-                      <div className="hidden md:flex md:col-span-5 md:col-start-1 justify-end relative group">
-                        <motion.div
-                          initial={{ opacity: 0, x: -40 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 0.6, delay: index * 0.1 }}
-                          className="w-full max-w-[min(90%,665px)] bg-white/80 backdrop-blur-md shadow-2xl rounded-2xl p-[clamp(1.5rem,3vw,2rem)] border-l-8 border-darkPink/60 text-left relative transition-all duration-300 hover:shadow-3xl hover:-translate-y-2"
-                        >
-                          {/* Remove this dot since we'll use the center dot instead */}
-                          
-                          {/* Company logo and job details */}
-                          <div className="flex items-start gap-[clamp(0.75rem,2vw,1rem)] mb-[clamp(1rem,2vh,1.5rem)]">
-                            {exp.logo && (
-                              <div className="bg-transparent flex-shrink-0 w-[clamp(3.5rem,4vw,5rem)] h-[clamp(3.5rem,4vw,5rem)] flex items-center justify-center">
-                                <img 
-                                  src={exp.logo} 
-                                  alt={`${exp.company} logo`} 
-                                  className="max-w-full max-h-full object-contain"
-                                />
-                              </div>
-                            )}
-                            <div className="flex-1">
-                              <h3 className="text-[clamp(1rem,1.25vw,1.25rem)] font-bold text-darkPink mb-2 tracking-tight">
-                                {exp.position}
-                              </h3>
-                              <div className="flex flex-col mb-3">
-                                <span className="text-darkPink/80 font-semibold text-[clamp(0.875rem,1vw,1rem)]">{exp.company}</span>
-                                <span className="text-darkPink/60 text-[clamp(0.75rem,0.9vw,0.875rem)]">{exp.duration}</span>
-                              </div>
-                            </div>
-                          </div>
-
-                          {/* Technologies pills */}
-                          <div className="flex flex-wrap gap-[clamp(0.25rem,0.5vw,0.5rem)] mb-[clamp(1rem,1.5vh,1.5rem)]">
-                            {exp.technologies.map((tech) => (
-                              <span
-                                key={tech}
-                                className="text-[clamp(0.65rem,0.85vw,0.875rem)] text-darkPink bg-darkPink/10 px-[clamp(0.5rem,0.8vw,0.75rem)] py-[clamp(0.2rem,0.3vh,0.3rem)] rounded-full font-medium shadow-sm"
-                              >
-                                {tech}
-                              </span>
-                            ))}
-                          </div>
-                          
-                          {/* View details button */}
-                          {exp.description && (
-                            <button
-                              onClick={() => setSelectedExp(index)}
-                              className="group relative inline-flex items-center gap-2 px-[clamp(0.75rem,1vw,1rem)] py-[clamp(0.4rem,0.6vh,0.5rem)] text-[clamp(0.75rem,0.9vw,0.875rem)] font-semibold text-darkPink bg-darkPink/5 rounded-lg transition-all duration-300 hover:bg-darkPink/10 hover:shadow-md hover:-translate-y-0.5"
-                            >
-                              <span>View Details</span>
-                              <svg 
-                                xmlns="http://www.w3.org/2000/svg" 
-                                className="h-[clamp(0.8rem,1vw,1rem)] w-[clamp(0.8rem,1vw,1rem)] transition-transform duration-300 group-hover:translate-x-1" 
-                                fill="none" 
-                                viewBox="0 0 24 24" 
-                                stroke="currentColor"
-                              >
-                                <path 
-                                  strokeLinecap="round" 
-                                  strokeLinejoin="round" 
-                                  strokeWidth={2} 
-                                  d="M9 5l7 7-7 7" 
-                                />
-                              </svg>
-                            </button>
-                          )}
-                        </motion.div>
-                      </div>
-                    )}
-                    {/* Timeline dot for desktop - Keep only this one */}
-                    <div className="hidden md:flex md:col-span-2 flex-col items-center justify-center relative">
-                      <div className="w-[clamp(1rem,1.5vw,1.5rem)] h-[clamp(1rem,1.5vw,1.5rem)] rounded-full bg-darkPink border-4 border-white shadow-lg z-10" />
-                    </div>
-                    {/* Right card - hidden on mobile */}
-                    {!isLeft && (
-                      <div className="hidden md:flex md:col-span-5 md:col-start-8 justify-start relative group">
-                        <motion.div
-                          initial={{ opacity: 0, x: 40 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 0.6, delay: index * 0.1 }}
-                          className="w-full max-w-[min(90%,545px)] bg-white/80 backdrop-blur-md shadow-2xl rounded-2xl p-[clamp(1.5rem,3vw,2rem)] border-r-8 border-darkPink/60 text-left relative transition-all duration-300 hover:shadow-3xl hover:-translate-y-2"
-                        >
-                          {/* Remove this dot since we'll use the center dot instead */}
-                          
-                          {/* Company logo and job details */}
-                          <div className="flex items-start gap-[clamp(0.75rem,2vw,1rem)] mb-[clamp(1rem,2vh,1.5rem)]">
-                            {exp.logo && (
-                              <div className="bg-transparent flex-shrink-0 w-[clamp(3.5rem,4vw,5rem)] h-[clamp(3.5rem,4vw,5rem)] flex items-center justify-center">
-                                <img 
-                                  src={exp.logo} 
-                                  alt={`${exp.company} logo`} 
-                                  className="max-w-full max-h-full object-contain"
-                                />
-                              </div>
-                            )}
-                            <div className="flex-1">
-                              <h3 className="text-[clamp(1rem,1.25vw,1.25rem)] font-bold text-darkPink mb-2 tracking-tight">
-                                {exp.position}
-                              </h3>
-                              <div className="flex flex-col mb-3">
-                                <span className="text-darkPink/80 font-semibold text-[clamp(0.875rem,1vw,1rem)]">{exp.company}</span>
-                                <span className="text-darkPink/60 text-[clamp(0.75rem,0.9vw,0.875rem)]">{exp.duration}</span>
+                    {/* Desktop timeline layout */}
+                    {isLeft ? (
+                      <>
+                        {/* Left card */}
+                        <div className="hidden md:block md:col-span-5 md:col-start-1 pr-10">
+                          <motion.div
+                            initial={{ opacity: 0, x: -40 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6, delay: index * 0.1 }}
+                            className="w-full bg-white/80 backdrop-blur-md shadow-xl rounded-2xl p-[clamp(1.5rem,3vw,2rem)] border-l-8 border-darkPink/60 text-left relative transition-all duration-300 hover:shadow-2xl hover:-translate-y-2"
+                          >
+                            {/* Company logo and job details */}
+                            <div className="flex items-start gap-[clamp(0.75rem,2vw,1rem)] mb-[clamp(1rem,2vh,1.5rem)]">
+                              {exp.logo && (
+                                <div className="bg-transparent flex-shrink-0 w-[clamp(3.5rem,4vw,5rem)] h-[clamp(3.5rem,4vw,5rem)] flex items-center justify-center">
+                                  <img 
+                                    src={exp.logo} 
+                                    alt={`${exp.company} logo`} 
+                                    className="max-w-full max-h-full object-contain"
+                                  />
+                                </div>
+                              )}
+                              <div className="flex-1">
+                                <h3 className="text-[clamp(1rem,1.25vw,1.25rem)] font-bold text-darkPink mb-2 tracking-tight">
+                                  {exp.position}
+                                </h3>
+                                <div className="flex flex-col mb-3">
+                                  <span className="text-darkPink/80 font-semibold text-[clamp(0.875rem,1vw,1rem)]">{exp.company}</span>
+                                  <span className="text-darkPink/60 text-[clamp(0.75rem,0.9vw,0.875rem)]">{exp.duration}</span>
+                                </div>
                               </div>
                             </div>
-                          </div>
 
-                          {/* Technologies pills */}
-                          <div className="flex flex-wrap gap-[clamp(0.25rem,0.5vw,0.5rem)] mb-[clamp(1rem,1.5vh,1.5rem)]">
-                            {exp.technologies.map((tech) => (
-                              <span
-                                key={tech}
-                                className="text-[clamp(0.65rem,0.85vw,0.875rem)] text-darkPink bg-darkPink/10 px-[clamp(0.5rem,0.8vw,0.75rem)] py-[clamp(0.2rem,0.3vh,0.3rem)] rounded-full font-medium shadow-sm"
+                            {/* Technologies pills */}
+                            <div className="flex flex-wrap gap-[clamp(0.25rem,0.5vw,0.5rem)] mb-[clamp(1rem,1.5vh,1.5rem)]">
+                              {exp.technologies.map((tech) => (
+                                <span
+                                  key={tech}
+                                  className="text-[clamp(0.65rem,0.85vw,0.875rem)] text-darkPink bg-darkPink/10 px-[clamp(0.5rem,0.8vw,0.75rem)] py-[clamp(0.2rem,0.3vh,0.3rem)] rounded-full font-medium shadow-sm"
+                                >
+                                  {tech}
+                                </span>
+                              ))}
+                            </div>
+                            
+                            {/* View details button */}
+                            {exp.description && (
+                              <button
+                                onClick={() => setSelectedExp(index)}
+                                className="group relative inline-flex items-center gap-2 px-[clamp(0.75rem,1vw,1rem)] py-[clamp(0.4rem,0.6vh,0.5rem)] text-[clamp(0.75rem,0.9vw,0.875rem)] font-semibold text-darkPink bg-darkPink/5 rounded-lg transition-all duration-300 hover:bg-darkPink/10 hover:shadow-md hover:-translate-y-0.5"
                               >
-                                {tech}
-                              </span>
-                            ))}
-                          </div>
-                          
-                          {/* View details button */}
-                          {exp.description && (
-                            <button
-                              onClick={() => setSelectedExp(index)}
-                              className="group relative inline-flex items-center gap-2 px-[clamp(0.75rem,1vw,1rem)] py-[clamp(0.4rem,0.6vh,0.5rem)] text-[clamp(0.75rem,0.9vw,0.875rem)] font-semibold text-darkPink bg-darkPink/5 rounded-lg transition-all duration-300 hover:bg-darkPink/10 hover:shadow-md hover:-translate-y-0.5"
-                            >
-                              <span>View Details</span>
-                              <svg 
-                                xmlns="http://www.w3.org/2000/svg" 
-                                className="h-[clamp(0.8rem,1vw,1rem)] w-[clamp(0.8rem,1vw,1rem)] transition-transform duration-300 group-hover:translate-x-1"
-                                fill="none" 
-                                viewBox="0 0 24 24" 
-                                stroke="currentColor"
+                                <span>View Details</span>
+                                <svg 
+                                  xmlns="http://www.w3.org/2000/svg" 
+                                  className="h-[clamp(0.8rem,1vw,1rem)] w-[clamp(0.8rem,1vw,1rem)] transition-transform duration-300 group-hover:translate-x-1" 
+                                  fill="none" 
+                                  viewBox="0 0 24 24" 
+                                  stroke="currentColor"
+                                >
+                                  <path 
+                                    strokeLinecap="round" 
+                                    strokeLinejoin="round" 
+                                    strokeWidth={2} 
+                                    d="M9 5l7 7-7 7" 
+                                  />
+                                </svg>
+                              </button>
+                            )}
+                          </motion.div>
+                        </div>
+                        
+                        {/* Center timeline dot */}
+                        <div className="hidden md:flex md:col-span-2 flex-col items-center justify-center relative">
+                          <div className="w-4 h-4 rounded-full bg-darkPink border-4 border-white shadow-lg z-10" />
+                        </div>
+                        
+                        {/* Empty space for right side */}
+                        <div className="hidden md:block md:col-span-5"></div>
+                      </>
+                    ) : (
+                      <>
+                        {/* Empty space for left side */}
+                        <div className="hidden md:block md:col-span-5"></div>
+                        
+                        {/* Center timeline dot */}
+                        <div className="hidden md:flex md:col-span-2 flex-col items-center justify-center relative">
+                          <div className="w-4 h-4 rounded-full bg-darkPink border-4 border-white shadow-lg z-10" />
+                        </div>
+                        
+                        {/* Right card */}
+                        <div className="hidden md:block md:col-span-5 pl-10">
+                          <motion.div
+                            initial={{ opacity: 0, x: 40 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6, delay: index * 0.1 }}
+                            className="w-full bg-white/80 backdrop-blur-md shadow-xl rounded-2xl p-[clamp(1.5rem,3vw,2rem)] border-r-8 border-darkPink/60 text-left relative transition-all duration-300 hover:shadow-2xl hover:-translate-y-2"
+                          >
+                            {/* Company logo and job details */}
+                            <div className="flex items-start gap-[clamp(0.75rem,2vw,1rem)] mb-[clamp(1rem,2vh,1.5rem)]">
+                              {exp.logo && (
+                                <div className="bg-transparent flex-shrink-0 w-[clamp(3.5rem,4vw,5rem)] h-[clamp(3.5rem,4vw,5rem)] flex items-center justify-center">
+                                  <img 
+                                    src={exp.logo} 
+                                    alt={`${exp.company} logo`} 
+                                    className="max-w-full max-h-full object-contain"
+                                  />
+                                </div>
+                              )}
+                              <div className="flex-1">
+                                <h3 className="text-[clamp(1rem,1.25vw,1.25rem)] font-bold text-darkPink mb-2 tracking-tight">
+                                  {exp.position}
+                                </h3>
+                                <div className="flex flex-col mb-3">
+                                  <span className="text-darkPink/80 font-semibold text-[clamp(0.875rem,1vw,1rem)]">{exp.company}</span>
+                                  <span className="text-darkPink/60 text-[clamp(0.75rem,0.9vw,0.875rem)]">{exp.duration}</span>
+                                </div>
+                              </div>
+                            </div>
+
+                            {/* Technologies pills */}
+                            <div className="flex flex-wrap gap-[clamp(0.25rem,0.5vw,0.5rem)] mb-[clamp(1rem,1.5vh,1.5rem)]">
+                              {exp.technologies.map((tech) => (
+                                <span
+                                  key={tech}
+                                  className="text-[clamp(0.65rem,0.85vw,0.875rem)] text-darkPink bg-darkPink/10 px-[clamp(0.5rem,0.8vw,0.75rem)] py-[clamp(0.2rem,0.3vh,0.3rem)] rounded-full font-medium shadow-sm"
+                                >
+                                  {tech}
+                                </span>
+                              ))}
+                            </div>
+                            
+                            {/* View details button */}
+                            {exp.description && (
+                              <button
+                                onClick={() => setSelectedExp(index)}
+                                className="group relative inline-flex items-center gap-2 px-[clamp(0.75rem,1vw,1rem)] py-[clamp(0.4rem,0.6vh,0.5rem)] text-[clamp(0.75rem,0.9vw,0.875rem)] font-semibold text-darkPink bg-darkPink/5 rounded-lg transition-all duration-300 hover:bg-darkPink/10 hover:shadow-md hover:-translate-y-0.5"
                               >
-                                <path 
-                                  strokeLinecap="round" 
-                                  strokeLinejoin="round" 
-                                  strokeWidth={2} 
-                                  d="M9 5l7 7-7 7" 
-                                />
-                              </svg>
-                            </button>
-                          )}
-                        </motion.div>
-                      </div>
+                                <span>View Details</span>
+                                <svg 
+                                  xmlns="http://www.w3.org/2000/svg" 
+                                  className="h-[clamp(0.8rem,1vw,1rem)] w-[clamp(0.8rem,1vw,1rem)] transition-transform duration-300 group-hover:translate-x-1"
+                                  fill="none" 
+                                  viewBox="0 0 24 24" 
+                                  stroke="currentColor"
+                                >
+                                  <path 
+                                    strokeLinecap="round" 
+                                    strokeLinejoin="round" 
+                                    strokeWidth={2} 
+                                    d="M9 5l7 7-7 7" 
+                                  />
+                                </svg>
+                              </button>
+                            )}
+                          </motion.div>
+                        </div>
+                      </>
                     )}
                   </React.Fragment>
                 );
