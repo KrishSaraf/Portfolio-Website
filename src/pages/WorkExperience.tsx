@@ -256,10 +256,7 @@ const WorkExperience = () => {
                           transition={{ duration: 0.6, delay: index * 0.1 }}
                           className="w-full max-w-[min(90%,665px)] bg-white/80 backdrop-blur-md shadow-2xl rounded-2xl p-[clamp(1.5rem,3vw,2rem)] border-l-8 border-darkPink/60 text-left relative transition-all duration-300 hover:shadow-3xl hover:-translate-y-2"
                         >
-                          {/* Dot absolutely centered to card */}
-                          <div className="hidden md:block absolute top-1/2 right-[-8vw] w-[clamp(1.5rem,2vw,2rem)] h-[clamp(1.5rem,2vw,2rem)] flex items-center justify-center -translate-y-1/2 z-20">
-                            <div className="w-[clamp(1rem,1.5vw,1.25rem)] h-[clamp(1rem,1.5vw,1.25rem)] rounded-full bg-darkPink shadow-lg ring-4 ring-darkPink/10 group-hover:ring-darkPink/30 transition-all duration-300" />
-                          </div>
+                          {/* Remove this dot since we'll use the center dot instead */}
                           
                           {/* Company logo and job details */}
                           <div className="flex items-start gap-[clamp(0.75rem,2vw,1rem)] mb-[clamp(1rem,2vh,1.5rem)]">
@@ -321,13 +318,13 @@ const WorkExperience = () => {
                         </motion.div>
                       </div>
                     )}
-                    {/* Timeline dot for desktop */}
+                    {/* Timeline dot for desktop - Keep only this one */}
                     <div className="hidden md:flex md:col-span-2 flex-col items-center justify-center relative">
-                      <div className="w-[clamp(1rem,1.5vw,1.5rem)] h-[clamp(1rem,1.5vw,1.5rem)] rounded-full bg-darkPink border-4 border-white shadow-lg z-10 mb-2" />
+                      <div className="w-[clamp(1rem,1.5vw,1.5rem)] h-[clamp(1rem,1.5vw,1.5rem)] rounded-full bg-darkPink border-4 border-white shadow-lg z-10" />
                     </div>
                     {/* Right card - hidden on mobile */}
                     {!isLeft && (
-                      <div className="hidden md:flex md:col-span-7 md:col-start-8 justify-start relative group">
+                      <div className="hidden md:flex md:col-span-5 md:col-start-8 justify-start relative group">
                         <motion.div
                           initial={{ opacity: 0, x: 40 }}
                           whileInView={{ opacity: 1, x: 0 }}
@@ -335,10 +332,7 @@ const WorkExperience = () => {
                           transition={{ duration: 0.6, delay: index * 0.1 }}
                           className="w-full max-w-[min(90%,545px)] bg-white/80 backdrop-blur-md shadow-2xl rounded-2xl p-[clamp(1.5rem,3vw,2rem)] border-r-8 border-darkPink/60 text-left relative transition-all duration-300 hover:shadow-3xl hover:-translate-y-2"
                         >
-                          {/* Dot absolutely centered to card */}
-                          <div className="hidden md:block absolute top-1/2 left-[-8vw] w-[clamp(1.5rem,2vw,2rem)] h-[clamp(1.5rem,2vw,2rem)] flex items-center justify-center -translate-y-1/2 z-20">
-                            <div className="w-[clamp(1rem,1.5vw,1.25rem)] h-[clamp(1rem,1.5vw,1.25rem)] rounded-full bg-darkPink shadow-lg ring-4 ring-darkPink/10 group-hover:ring-darkPink/30 transition-all duration-300" />
-                          </div>
+                          {/* Remove this dot since we'll use the center dot instead */}
                           
                           {/* Company logo and job details */}
                           <div className="flex items-start gap-[clamp(0.75rem,2vw,1rem)] mb-[clamp(1rem,2vh,1.5rem)]">
