@@ -414,27 +414,11 @@ const AwardsAndPics = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </motion.div>
 
-              {/* Top right section - Added portrait emphasis */}
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.1 }}
-                className="col-span-3 row-span-5 relative group bg-darkPink/5 rounded-2xl overflow-hidden"
-                onClick={() => setSelectedMedia({src: "/gallery/timeline/d.jpeg", type: 'image'})}
-              >
-                <img 
-                  src="/gallery/timeline/d.jpeg"
-                  alt="Team"
-                  className="w-full h-full object-cover object-[center_15%] transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </motion.div>
-
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.2 }}
-                className="col-span-4 row-span-5 relative group bg-darkPink/5 rounded-2xl overflow-hidden"
+                className="col-span-7 row-span-5 relative group bg-darkPink/5 rounded-2xl overflow-hidden"
                 onClick={() => setSelectedMedia({src: "/gallery/timeline/a.jpeg", type: 'image'})}
               >
                 <img 
