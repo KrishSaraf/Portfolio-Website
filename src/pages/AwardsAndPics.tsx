@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useLocation } from 'react-router-dom';
+import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 
 const AwardsAndPics = () => {
   const [selectedMedia, setSelectedMedia] = useState<{src: string, type: 'image' | 'video', loop?: boolean} | null>(null);
+  const [imagesLoaded, setImagesLoaded] = useState(0);
   const location = useLocation();
   
   // Parse URL parameters to check for event (only for scrolling)
@@ -30,6 +32,87 @@ const AwardsAndPics = () => {
       }, 500);
     }
   }, [location]);
+
+  // Featured gallery items with better metadata
+  const featuredGallery = [
+    {
+      id: 'basf',
+      src: "/gallery/timeline/j.jpeg",
+      alt: "BASF Team",
+      description: "Team photo at BASF's innovation showcase",
+      aspectRatio: 16/9,
+      highlight: true,
+      objectPosition: "center 25%"
+    },
+    {
+      id: 'presentation',
+      src: "/gallery/timeline/n.jpeg",
+      alt: "Innovation Presentation",
+      description: "Presenting research findings at the tech conference",
+      aspectRatio: 3/4,
+      highlight: true,
+      objectPosition: "center 40%" 
+    },
+    {
+      id: 'discussion',
+      src: "/gallery/timeline/c.jpeg", 
+      alt: "Team Discussion",
+      description: "Collaborative problem-solving session",
+      aspectRatio: 4/3,
+      highlight: false,
+      objectPosition: "center 15%"
+    },
+    {
+      id: 'research',
+      src: "/gallery/timeline/d.jpeg",
+      alt: "Research Meeting",
+      description: "Research planning at university lab",
+      aspectRatio: 3/4,
+      highlight: false,
+      objectPosition: "center 25%"
+    },
+    {
+      id: 'mountain',
+      src: "/gallery/timeline/l.jpeg",
+      alt: "Mountain View", 
+      description: "Project planning retreat",
+      aspectRatio: 4/3,
+      highlight: false,
+      objectPosition: "center 30%"
+    },
+    {
+      id: 'development',
+      src: "/gallery/timeline/b.jpeg",
+      alt: "Development",
+      description: "Technical discussion during sprint planning",
+      aspectRatio: 3/4,
+      highlight: false,
+      objectPosition: "center 20%"
+    },
+    {
+      id: 'workshop',
+      src: "/gallery/timeline/e.jpeg",
+      alt: "Workshop Session",
+      description: "Leading a workshop on AI applications",
+      aspectRatio: 4/3,
+      highlight: false,
+      objectPosition: "center 35%"
+    },
+    {
+      id: 'project',
+      src: "/gallery/timeline/c.jpeg",
+      alt: "Project Development",
+      description: "Whiteboarding system architecture",
+      aspectRatio: 4/3,
+      highlight: false,
+      objectPosition: "center 30%"
+    }
+  ];
+
+  // Increment loaded images counter
+  const handleImageLoaded = () => {
+    setImagesLoaded(prev => prev + 1);
+  };
 
   // Synapse hackathon images
   const synapseImages = [
@@ -326,52 +409,57 @@ const AwardsAndPics = () => {
     },
   ];
 
-  // Updated Modal to handle both images and videos
+  // Updated Modal to handle both images and videos with improved animations
   const MediaModal = ({ media, onClose }: { media: {src: string, type: 'image' | 'video', loop?: boolean} | null, onClose: () => void }) => {
     if (!media) return null;
     
     return (
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 backdrop-blur-sm"
-        onClick={onClose}
-      >
-        <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          exit={{ scale: 0.9, opacity: 0 }}
-          className="relative max-w-7xl max-h-[90vh] overflow-hidden rounded-xl"
-          onClick={(e) => e.stopPropagation()}
+      <AnimatePresence>
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 backdrop-blur-sm"
+          onClick={onClose}
         >
-          {media.type === 'image' ? (
-          <img 
-              src={media.src} 
-              alt="Gallery image" 
-            className="max-h-[90vh] max-w-full object-contain"
-          />
-          ) : (
-            <div className="relative">
-              <video 
-                src={media.src} 
-                controls 
-                autoPlay 
-                loop={media.loop}
-                className="max-h-[90vh] max-w-full"
-              />
-            </div>
-          )}
-          <button
-            onClick={onClose}
-            className="absolute top-4 right-4 bg-darkPink/80 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-darkPink transition-colors duration-300"
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.9, opacity: 0 }}
+            transition={{ type: "spring", damping: 25, stiffness: 300 }}
+            className="relative max-w-7xl max-h-[90vh] overflow-hidden rounded-xl"
+            onClick={(e) => e.stopPropagation()}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
+            {media.type === 'image' ? (
+              <img 
+                src={media.src} 
+                alt="Gallery image" 
+                className="max-h-[90vh] max-w-full object-contain"
+              />
+            ) : (
+              <div className="relative">
+                <video 
+                  src={media.src} 
+                  controls 
+                  autoPlay 
+                  loop={media.loop}
+                  className="max-h-[90vh] max-w-full"
+                />
+              </div>
+            )}
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={onClose}
+              className="absolute top-4 right-4 bg-darkPink/80 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-darkPink transition-colors duration-300"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </motion.button>
+          </motion.div>
         </motion.div>
-      </motion.div>
+      </AnimatePresence>
     );
   };
 
@@ -395,152 +483,51 @@ const AwardsAndPics = () => {
             Showcasing memorable moments from my professional journey and achievements
           </p>
 
-          {/* Visual Gallery Showcase - Featured at the top */}
-          <div className="mb-24 relative overflow-hidden">
-            <div className="grid grid-cols-12 grid-rows-[repeat(16,minmax(0,1fr))] gap-3 h-[800px]">
-              {/* Main featured image - larger */}
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7 }}
-                className="col-span-5 row-span-8 relative group bg-darkPink/5 rounded-2xl overflow-hidden"
-                onClick={() => setSelectedMedia({src: "/gallery/timeline/n.jpeg", type: 'image'})}
-              >
-                <img 
-                  src="/gallery/timeline/n.jpeg"
-                  alt="Innovation"
-                  className="w-full h-full object-cover object-[center_40%] transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </motion.div>
-
-              {/* Top right section - Added portrait emphasis */}
-              {/* <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.1 }}
-                className="col-span-3 row-span-5 relative group bg-darkPink/5 rounded-2xl overflow-hidden"
-                onClick={() => setSelectedMedia({src: "/gallery/timeline/d.jpeg", type: 'image'})}
-              >
-                <img 
-                  src="/gallery/timeline/d.jpeg"
-                  alt="Team"
-                  className="w-full h-full object-cover object-[center_15%] transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </motion.div> */}
-
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.2 }}
-                className="col-span-4 row-span-5 relative group bg-darkPink/5 rounded-2xl overflow-hidden"
-                onClick={() => setSelectedMedia({src: "/gallery/timeline/c.jpeg", type: 'image'})}
-              >
-                <img 
-                  src="/gallery/timeline/c.jpeg"
-                  alt="Discussion"
-                  className="w-full h-full object-cover object-[center_15%] transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </motion.div>
-
-              {/* Row 2 - BASF Photo */}
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.3 }}
-                className="col-span-7 row-span-3 relative group bg-darkPink/5 rounded-2xl overflow-hidden"
-                onClick={() => setSelectedMedia({src: "/gallery/timeline/j.jpeg", type: 'image'})}
-              >
-                <img 
-                  src="/gallery/timeline/j.jpeg"
-                  alt="BASF Team"
-                  className="w-full h-full object-cover object-[center_25%] bg-white transition-transform duration-700 group-hover:scale-[1.03]"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </motion.div>
-
-              {/* Bottom row with adjustments for portrait */}
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.4 }}
-                className="col-span-3 row-span-5 relative group bg-darkPink/5 rounded-2xl overflow-hidden"
-                onClick={() => setSelectedMedia({src: "/gallery/timeline/d.jpeg", type: 'image'})}
-              >
-                <img 
-                  src="/gallery/timeline/d.jpeg"
-                  alt="Research"
-                  className="w-full h-full object-cover object-[center_25%] transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </motion.div>
-
-              {/* Bottom right */}
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.5 }}
-                className="col-span-4 row-span-5 relative group bg-darkPink/5 rounded-2xl overflow-hidden"
-                onClick={() => setSelectedMedia({src: "/gallery/timeline/l.jpeg", type: 'image'})}
-              >
-                <img 
-                  src="/gallery/timeline/l.jpeg"
-                  alt="Mountain View"
-                  className="w-full h-full object-cover object-[center_30%] transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </motion.div>
-
-              {/* Bottom mid-right */}
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.6 }}
-                className="col-span-3 row-span-7 relative group bg-darkPink/5 rounded-2xl overflow-hidden"
-                onClick={() => setSelectedMedia({src: "/gallery/timeline/b.jpeg", type: 'image'})}
-              >
-                <img 
-                  src="/gallery/timeline/b.jpeg"
-                  alt="Development"
-                  className="w-full h-full object-cover object-[center_20%] transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </motion.div>
-
-              {/* Bottom right */}
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.7 }}
-                className="col-span-3 row-span-3 relative group bg-darkPink/5 rounded-2xl overflow-hidden"
-                onClick={() => setSelectedMedia({src: "/gallery/timeline/e.jpeg", type: 'image'})}
-              >
-                <img 
-                  src="/gallery/timeline/e.jpeg"
-                  alt="Workshop"
-                  className="w-full h-full object-cover object-[center_35%] transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </motion.div>
-
-              {/* Bottom right tall */}
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.8 }}
-                className="col-span-3 row-span-4 relative group bg-darkPink/5 rounded-2xl overflow-hidden"
-                onClick={() => setSelectedMedia({src: "/gallery/timeline/h.jpeg", type: 'image'})}
-              >
-                <img 
-                  src="/gallery/timeline/c.jpeg"
-                  alt="Project Development"
-                  className="w-full h-full object-cover object-[center_30%] transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </motion.div>
-            </div>
+          {/* NEW: Responsive Masonry Gallery */}
+          <div className="mb-24">
+            <ResponsiveMasonry
+              columnsCountBreakPoints={{ 350: 1, 750: 2, 1024: 3, 1280: 4 }}
+            >
+              <Masonry gutter="16px">
+                {featuredGallery.map((item, index) => (
+                  <motion.div
+                    key={item.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ 
+                      opacity: imagesLoaded > index / 2 ? 1 : 0,
+                      y: imagesLoaded > index / 2 ? 0 : 20
+                    }}
+                    transition={{ 
+                      duration: 0.5, 
+                      delay: Math.min(index * 0.1, 0.8),
+                      ease: "easeOut"
+                    }}
+                    className={`relative group rounded-xl overflow-hidden shadow-sm hover:shadow-xl cursor-pointer transition-all duration-300 ${
+                      item.highlight ? 'border-2 border-darkPink/20' : ''
+                    }`}
+                    onClick={() => setSelectedMedia({src: item.src, type: 'image'})}
+                  >
+                    <div className={`overflow-hidden ${item.highlight ? 'aspect-[4/3]' : 'aspect-auto'}`}>
+                      <motion.img 
+                        src={item.src}
+                        alt={item.alt}
+                        onLoad={handleImageLoaded}
+                        className="w-full h-full object-cover"
+                        style={{ objectPosition: item.objectPosition || "center" }}
+                        whileHover={{ scale: 1.05 }}
+                        transition={{ duration: 0.5 }}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div className="p-4 text-white w-full">
+                          <h4 className="font-medium">{item.alt}</h4>
+                          <p className="text-sm text-white/80">{item.description}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </Masonry>
+            </ResponsiveMasonry>
           </div>
 
           {/* Visual separator */}
