@@ -305,14 +305,9 @@ const AwardsAndPics = () => {
       aspectRatio: "aspect-w-3 aspect-h-2",
     },
     {
-      image: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.45_PM_(5).jpeg",
-      caption: "Team collaboration milestone",
-      aspectRatio: "aspect-w-5 aspect-h-4",
-    },
-    {
       image: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.45_PM_(6).jpeg",
-      caption: "Development planning session",
-      aspectRatio: "aspect-w-3 aspect-h-4",
+      caption: "Innovation workshop session",
+      aspectRatio: "aspect-w-16 aspect-h-9",
     },
     {
       image: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.45_PM_(7).jpeg",
@@ -326,8 +321,8 @@ const AwardsAndPics = () => {
     },
     {
       image: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.45_PM_(9).jpeg",
-      caption: "Innovation workshop session",
-      aspectRatio: "aspect-w-16 aspect-h-9",
+      caption: "Development planning session",
+      aspectRatio: "aspect-w-3 aspect-h-4",
     },
   ];
 
@@ -456,12 +451,12 @@ const AwardsAndPics = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.3 }}
                 className="col-span-7 row-span-3 relative group bg-darkPink/5 rounded-2xl overflow-hidden"
-                onClick={() => setSelectedMedia({src: "/gallery/basf.jpeg", type: 'image'})}
+                onClick={() => setSelectedMedia({src: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.45_PM_(5).jpeg", type: 'image'})}
               >
                 <img 
-                  src="/gallery/basf.jpeg"
+                  src="/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.45_PM_(5).jpeg"
                   alt="BASF Team"
-                  className="w-full h-full object-contain bg-white transition-transform duration-700 group-hover:scale-[1.03]"
+                  className="w-full h-full object-cover object-center bg-white transition-transform duration-700 group-hover:scale-[1.03]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </motion.div>
