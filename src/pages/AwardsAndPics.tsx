@@ -629,8 +629,15 @@ const AwardsAndPics = () => {
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                       className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer"
                       onClick={() => setSelectedMedia({src: item.src, type: item.type === 'video' ? 'video' : 'image', loop: item.loop})}
+                      style={{ 
+                        padding: 0, 
+                        border: 'none', 
+                        borderRadius: '0.75rem', 
+                        overflow: 'hidden',
+                        backgroundColor: 'transparent'
+                      }}
                     >
-                      <div className="overflow-hidden">
+                      <div className="overflow-hidden p-0 m-0 bg-transparent">
                         {item.type === 'image' ? (
                           <img 
                             src={item.src} 
@@ -640,13 +647,21 @@ const AwardsAndPics = () => {
                                 ? "h-auto object-contain" 
                                 : "h-auto object-contain"
                             }`}
-                            style={item.src.includes('krish-hospital') ? { maxHeight: '400px' } : {}}
+                            style={{
+                              maxHeight: item.src.includes('krish-hospital') ? '400px' : 'none',
+                              transform: item.src.includes('steps.png') ? 'rotate(90deg)' : 'none',
+                              transformOrigin: item.src.includes('steps.png') ? 'center center' : 'none',
+                              padding: 0,
+                              margin: 0,
+                              border: 'none'
+                            }}
                           />
                         ) : (
-                          <div className="relative">
+                          <div className="relative p-0 m-0">
                             <video 
                               src={item.src}
                               className="w-full h-full object-contain"
+                              style={{ padding: 0, margin: 0, border: 'none' }}
                               autoPlay
                               muted
                               loop
