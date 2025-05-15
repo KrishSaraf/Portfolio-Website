@@ -589,10 +589,26 @@ const AwardsAndPics = () => {
                         className="w-full h-full object-cover"
                         style={{ 
                           objectPosition: item.objectPosition || "center",
-                          ...(item.id === 'stakeholders' ? { maxHeight: '550px', minHeight: '550px' } : {}),
-                          ...(item.id === 'basf' ? { maxHeight: '750px' } : {}),
-                          ...(item.id === 'technology' ? { maxHeight: '150px' } : {}),
-                          ...(item.id.includes('outdoor') ? { maxHeight: '550px', minHeight: '550px' } : {})
+                          ...(item.id === 'stakeholders' ? { 
+                            maxHeight: '450px', 
+                            minHeight: '450px',
+                            width: '100%',
+                            maxWidth: '350px'
+                          } : {}),
+                          ...(item.id === 'basf' ? { 
+                            maxHeight: '750px',
+                            width: '100%'
+                          } : {}),
+                          ...(item.id === 'technology' ? { 
+                            maxHeight: '550px',
+                            width: '100%'
+                          } : {}),
+                          ...(item.id.includes('outdoor') ? { 
+                            maxHeight: '450px', 
+                            minHeight: '450px',
+                            width: '100%',
+                            maxWidth: '350px'
+                          } : {})
                         }}
                         whileHover={{ scale: 1.05 }}
                         transition={{ duration: 0.5 }}
