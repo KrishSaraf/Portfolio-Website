@@ -6,6 +6,7 @@ import Skills from './pages/Skills';
 import Projects from './pages/Projects';
 import Contact from './pages/Contact';
 import AwardsAndPics from './pages/AwardsAndPics';
+import ScrollToTop from './components/ScrollToTop';
 
 // Single page application layout component for the home page
 function SinglePageApp() {
@@ -36,19 +37,21 @@ function SinglePageApp() {
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-white">
-        <Navbar />
-        <main>
-          <Routes>
-            <Route path="/" element={<SinglePageApp />} />
-            <Route path="/experience" element={<WorkExperience />} />
-            <Route path="/skills" element={<Skills />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/awards" element={<AwardsAndPics />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
-        </main>
-      </div>
+      <ScrollToTop>
+        <div className="min-h-screen bg-white">
+          <Navbar />
+          <main>
+            <Routes>
+              <Route path="/" element={<SinglePageApp />} />
+              <Route path="/experience" element={<WorkExperience />} />
+              <Route path="/skills" element={<Skills />} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/awards" element={<AwardsAndPics />} />
+              <Route path="/contact" element={<Contact />} />
+            </Routes>
+          </main>
+        </div>
+      </ScrollToTop>
     </Router>
   );
 }
