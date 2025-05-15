@@ -41,10 +41,10 @@ const AwardsAndPics = () => {
       src: "/gallery/timeline/j.jpeg",
       alt: "BASF Team",
       description: "Team photo at BASF's innovation showcase",
-      aspectRatio: 16/9,
-      highlight: true,
+      aspectRatio: 25/9,
+      highlight: false,
       objectPosition: "center 25%",
-      maxHeight: 550
+      maxHeight: 750
     },
     // {
     //   id: 'presentation',
@@ -163,10 +163,10 @@ const AwardsAndPics = () => {
       src: "/gallery/timeline/i.jpeg",
       alt: "Technology Demo",
       description: "Demonstrating the latest tech solutions",
-      aspectRatio: 3/2,
+      aspectRatio: 1/2,
       highlight: false,
-      objectPosition: "center 30%",
-      maxHeight: 550
+      objectPosition: "center 10%",
+      maxHeight: 150
     },
     {
       id: 'stakeholders',
@@ -588,9 +588,11 @@ const AwardsAndPics = () => {
                         onLoad={handleImageLoaded}
                         className="w-full h-full object-cover"
                         style={{ 
-                          objectPosition: item.objectPosition || "center", 
-                          maxHeight: item.maxHeight ? `${item.maxHeight}px` : '550px',
-                          minHeight: '400px'
+                          objectPosition: item.objectPosition || "center",
+                          ...(item.id === 'stakeholders' ? { maxHeight: '550px', minHeight: '550px' } : {}),
+                          ...(item.id === 'basf' ? { maxHeight: '750px' } : {}),
+                          ...(item.id === 'technology' ? { maxHeight: '150px' } : {}),
+                          ...(item.id.includes('outdoor') ? { maxHeight: '550px', minHeight: '550px' } : {})
                         }}
                         whileHover={{ scale: 1.05 }}
                         transition={{ duration: 0.5 }}
