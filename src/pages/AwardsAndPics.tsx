@@ -47,25 +47,6 @@ const AwardsAndPics = () => {
       objectPosition: "center 25%",
       maxHeight: 750
     },
-    // {
-    //   id: 'presentation',
-    //   src: "/gallery/timeline/m.jpeg",
-    //   alt: "Innovation Presentation",
-    //   description: "Presenting research findings at the tech conference",
-    //   aspectRatio: 5/4,
-    //   highlight: true,
-    //   objectPosition: "center 40%" 
-    // },
-    // {
-    //   id: 'research',
-    //   src: "/gallery/timeline/d.jpeg",
-    //   alt: "Research Meeting",
-    //   description: "Research planning at university lab",
-    //   aspectRatio: 3/4,
-    //   highlight: false,
-    //   objectPosition: "center 25%"
-    // },
-    
     // Group landscape orientation images
     {
       id: 'presentation2',
@@ -177,7 +158,6 @@ const AwardsAndPics = () => {
       aspectRatio: 2/3,
       highlight: false,
       maxHeight: 550,
-      // The objectPosition property is set to "center 30%", which means the image will be positioned such that the center of the image is aligned horizontally, and vertically it is positioned at 30% from the top. This helps in focusing on a specific part of the image when displayed.
     }
   ];
 
@@ -310,7 +290,6 @@ const AwardsAndPics = () => {
       src: "/gallery/gauze.jpeg", 
       caption: "Gauze detection system in action",
       aspectRatio: "aspect-w-16 aspect-h-9",
-      // transform: "scaleX(-1)", // Flip horizontally
     },
     {
       type: 'image',
@@ -333,27 +312,27 @@ const AwardsAndPics = () => {
     return (
       <AnimatePresence>
         {media && (
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 backdrop-blur-sm"
-        onClick={onClose}
-      >
-        <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          exit={{ scale: 0.9, opacity: 0 }}
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 backdrop-blur-sm"
+            onClick={onClose}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
-          className="relative max-w-7xl max-h-[90vh] overflow-hidden rounded-xl"
-          onClick={(e) => e.stopPropagation()}
-        >
+              className="relative max-w-7xl max-h-[90vh] overflow-hidden rounded-xl"
+              onClick={(e) => e.stopPropagation()}
+            >
               {media.type === 'image' ? (
-          <img 
+                <img 
                   src={media.src} 
                   alt="Gallery image" 
-            className="max-h-[90vh] max-w-full object-contain"
-          />
+                  className="max-h-[90vh] max-w-full object-contain"
+                />
               ) : (
                 <div className="relative">
                   <video 
@@ -368,15 +347,15 @@ const AwardsAndPics = () => {
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
-            onClick={onClose}
-            className="absolute top-4 right-4 bg-darkPink/80 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-darkPink transition-colors duration-300"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
+                onClick={onClose}
+                className="absolute top-4 right-4 bg-darkPink/80 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-darkPink transition-colors duration-300"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
               </motion.button>
-        </motion.div>
-      </motion.div>
+            </motion.div>
+          </motion.div>
         )}
       </AnimatePresence>
     );
@@ -432,11 +411,6 @@ const AwardsAndPics = () => {
                         alt={item.alt}
                         onLoad={handleImageLoaded}
                         className="w-full h-full object-cover"
-                        // style={{ 
-                        //   objectPosition: item.objectPosition || "center", 
-                        //   maxHeight: item.maxHeight ? `${item.maxHeight}px` : '150px',
-                        //   minHeight: '100px'
-                        // }}
                         whileHover={{ scale: 1.05 }}
                         transition={{ duration: 0.5 }}
                       />
@@ -481,36 +455,37 @@ const AwardsAndPics = () => {
                   Official recognition from the India Book of Records for an extraordinary achievement
                 </p>
                 
-                <div className="relative overflow-hidden rounded-xl shadow-lg">
-                  <div className="w-full relative" style={{ height: '500px', overflow: 'hidden' }}>
-                    <div style={{ position: 'absolute', top: '-120px', bottom: '-200px', left: 0, right: 0 }}>
-                      <iframe 
-                        src="https://indiabookofrecords.in/krish-saraf-appreciation/" 
-                        title="India Book of Records - Krish Saraf Appreciation" 
-                        className="w-full h-full border-0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        loading="lazy"
-                        style={{
-                          width: '100%',
-                          height: '820px',
-                          overflow: 'hidden',
-                          display: 'block',
-                          maxWidth: '100%'
-                        }}
-                        sandbox="allow-same-origin allow-scripts"
-                      ></iframe>
-                    </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                  <div className="rounded-xl overflow-hidden shadow-md cursor-pointer">
+                    <img 
+                      src="/gallery/india book of records.png" 
+                      alt="India Book of Records Achievement" 
+                      className="w-full h-auto object-cover"
+                      onClick={() => setSelectedMedia({src: "/gallery/india book of records.png", type: 'image'})}
+                    />
                   </div>
                   
-                  {/* Fallback link in case iframe doesn't load properly */}
-                  <div className="mt-4 text-center">
+                  <div className="flex flex-col space-y-6">
+                    <div className="prose prose-lg">
+                      <h4 className="text-2xl font-bold text-darkPink">National Recognition</h4>
+                      <p className="text-gray-700">
+                        Honored to be recognized by the India Book of Records for exceptional achievement. This official acknowledgment represents dedication, commitment, and pushing boundaries.
+                      </p>
+                      <p className="text-gray-700 font-medium">
+                        The certification showcases excellence and stands as a testament to what can be achieved with determination and focus.
+                      </p>
+                    </div>
+                    
                     <a 
                       href="https://indiabookofrecords.in/krish-saraf-appreciation/" 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="text-darkPink hover:text-darkPink/80 underline text-sm"
+                      className="inline-flex items-center gap-2 self-start px-6 py-3 bg-darkPink text-white rounded-xl hover:bg-pink-700 transition-colors font-medium group"
                     >
-                      View my India Book of Records achievement
+                      <span>View Official Record Page</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transform group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                      </svg>
                     </a>
                   </div>
                 </div>
@@ -627,19 +602,19 @@ const AwardsAndPics = () => {
               >
                 <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
                   Clean Tech Challenge (2023-2024)
-            </h3>
+                </h3>
                 <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
                   Images from our 1st Prize winning projects two years in a row, featuring sustainability solutions and shipment prediction models.
                 </p>
             
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {cleanTechImages.map((item, index) => (
-                <motion.div
+                    <motion.div
                       key={`cleantech-${index}`}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
                       className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer"
                       onClick={() => setSelectedMedia({src: item.image, type: 'image'})}
                     >
@@ -648,13 +623,13 @@ const AwardsAndPics = () => {
                           src={item.image} 
                           alt={item.caption} 
                           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                  </div>
+                        />
+                      </div>
                     </motion.div>
                   ))}
                 </div>
               </motion.div>
-                    </div>
+            </div>
 
             {/* NTU IEEE Intuition Hackathon Section - Always displayed */}
             <div id="intuition-section" className="border-2 border-darkPink/20 p-8 rounded-2xl bg-white/50 backdrop-blur-sm">
@@ -688,12 +663,12 @@ const AwardsAndPics = () => {
                           alt={item.caption} 
                           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         />
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
               </motion.div>
-          </div>
+            </div>
 
             {/* Code with AI Hackathon Section - Always displayed */}
             <div id="codewithai-section" className="border-2 border-darkPink/20 p-8 rounded-2xl bg-white/50 backdrop-blur-sm">
@@ -705,34 +680,34 @@ const AwardsAndPics = () => {
               >
                 <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
                   "Code with AI" Hackathon - Get My Leadz
-            </h3>
+                </h3>
                 <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
                   3rd Place winning project where we built an AI-driven lead generation platform that automates prospect discovery, qualification, and scoring.
                 </p>
             
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {codeWithAIImages.map((item, index) => (
-                <motion.div
+                    <motion.div
                       key={`codewithai-${index}`}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                       className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer"
                       onClick={() => setSelectedMedia({src: item.image, type: 'image'})}
                     >
                       <div className="overflow-hidden aspect-video">
-                    <img 
-                      src={item.image} 
-                      alt={item.caption} 
+                        <img 
+                          src={item.image} 
+                          alt={item.caption} 
                           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
+                        />
                       </div>
                     </motion.div>
                   ))}
                 </div>
               </motion.div>
-                    </div>
+            </div>
 
             {/* NTU PEAK Leadership Program Section - Always displayed */}
             <div id="peak-section" className="border-2 border-darkPink/20 p-8 rounded-2xl bg-white/50 backdrop-blur-sm">
@@ -766,9 +741,9 @@ const AwardsAndPics = () => {
                           alt={item.caption} 
                           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         />
-                  </div>
-                </motion.div>
-              ))}
+                      </div>
+                    </motion.div>
+                  ))}
                 </div>
               </motion.div>
             </div>
@@ -806,4 +781,4 @@ const AwardsAndPics = () => {
   );
 };
 
-export default AwardsAndPics; 
+export default AwardsAndPics;
