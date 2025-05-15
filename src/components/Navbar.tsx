@@ -17,31 +17,32 @@ const Navbar = () => {
   const location = useLocation();
 
   return (
-    <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-md z-50 border-b border-darkPink/10 h-[clamp(3.5rem,10vh,4rem)] shadow-sm">
-      <div className="w-[min(100%,1400px)] mx-auto px-[clamp(1rem,3vw,2rem)] h-full">
+    <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-md z-50 border-b border-darkPink/10 h-[var(--navbar-height-mobile)] md:h-[var(--navbar-height)] shadow-sm">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
         <div className="flex items-center justify-between h-full">
-          <Link to="/" className="flex items-center gap-[clamp(0.5rem,1vw,0.75rem)]">
-            <img src={profileImage} alt="Krish Saraf" className="h-[clamp(1.75rem,5vw,2rem)] w-[clamp(1.75rem,5vw,2rem)] rounded-full object-cover" />
-            <span className="text-[clamp(1.125rem,2.5vw,1.5rem)] font-bold text-darkPink">Krish Saraf</span>
+          <Link to="/" className="flex items-center gap-3">
+            <img src={profileImage} alt="Krish Saraf" className="h-9 w-9 rounded-full object-cover border border-darkPink/20" />
+            <span className="text-xl md:text-2xl font-bold text-darkPink">Krish Saraf</span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex gap-[clamp(1rem,3vw,2rem)] relative">
+          <div className="hidden md:flex space-x-8 items-center">
             {navigation.map((item) => (
-              <div key={item.name} className="relative">
+              <div key={item.name} className="relative group">
                 <Link
                   to={item.href}
                   className={`${
                     location.pathname === item.href
-                      ? 'text-darkPink'
+                      ? 'text-darkPink font-medium'
                       : 'text-darkPink/70 hover:text-darkPink'
-                  } transition-colors duration-300 text-[clamp(0.875rem,1vw,1rem)]`}
+                  } transition-colors duration-300 py-2 px-1`}
                 >
                   {item.name}
                 </Link>
                 {location.pathname === item.href && (
-                  <div className="absolute -bottom-[clamp(0.5rem,1vh,0.75rem)] left-0 w-full h-[0.125rem] bg-darkPink rounded-full"></div>
+                  <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-darkPink rounded-full"></div>
                 )}
+                <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-darkPink rounded-full transition-all duration-300 group-hover:w-full"></div>
               </div>
             ))}
           </div>
@@ -50,37 +51,34 @@ const Navbar = () => {
           <div className="md:hidden">
             <button
               type="button"
-              className="text-darkPink/70 hover:text-darkPink p-[clamp(0.25rem,0.5vw,0.5rem)]"
+              className="text-darkPink/70 hover:text-darkPink p-2 rounded-md"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               {mobileMenuOpen ? (
-                <XMarkIcon className="h-[clamp(1.25rem,6vw,1.5rem)] w-[clamp(1.25rem,6vw,1.5rem)]" />
+                <XMarkIcon className="h-6 w-6" />
               ) : (
-                <Bars3Icon className="h-[clamp(1.25rem,6vw,1.5rem)] w-[clamp(1.25rem,6vw,1.5rem)]" />
+                <Bars3Icon className="h-6 w-6" />
               )}
             </button>
           </div>
         </div>
 
-        {/* Mobile Navigation - using container query approach */}
+        {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <div className="md:hidden absolute top-[clamp(3.5rem,10vh,4rem)] left-0 w-full bg-white/95 border-b border-darkPink/10 shadow-md z-50">
-            <div className="px-[clamp(1rem,4vw,1.5rem)] py-[clamp(0.5rem,2vh,0.75rem)] space-y-[clamp(0.25rem,1vh,0.5rem)]">
+          <div className="md:hidden absolute top-[var(--navbar-height-mobile)] left-0 w-full bg-white/95 border-b border-darkPink/10 shadow-md z-50">
+            <div className="px-4 py-2 space-y-1">
               {navigation.map((item) => (
                 <div key={item.name} className="relative">
                   <Link
                     to={item.href}
                     className={`${
                       location.pathname === item.href
-                        ? 'text-darkPink'
-                        : 'text-darkPink/70 hover:text-darkPink'
-                    } block px-[clamp(0.75rem,2vw,1rem)] py-[clamp(0.75rem,3vh,1rem)] text-[clamp(0.9375rem,4vw,1.125rem)] transition-colors duration-300`}
+                        ? 'text-darkPink font-medium bg-darkPink/5'
+                        : 'text-darkPink/70 hover:text-darkPink hover:bg-darkPink/5'
+                    } block px-4 py-3 text-base transition-colors duration-300 rounded-md`}
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {item.name}
-                    {location.pathname === item.href && (
-                      <div className="absolute left-0 w-[0.25rem] h-full bg-darkPink rounded-r-full top-0"></div>
-                    )}
                   </Link>
                 </div>
               ))}
