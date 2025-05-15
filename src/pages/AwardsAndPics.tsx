@@ -540,22 +540,6 @@ const AwardsAndPics = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </motion.div>
-
-              {/* Row 2 - BASF Photo */}
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.3 }}
-                className="col-span-7 row-span-4 relative group bg-darkPink/5 rounded-2xl overflow-hidden"
-                onClick={() => setSelectedMedia({src: "/gallery/timeline/j.jpeg", type: 'image'})}
-              >
-                <img 
-                  src="/gallery/timeline/j.jpeg"
-                  alt="BASF Team"
-                  className="w-full h-full object-cover object-[center_35%] bg-white transition-transform duration-700 group-hover:scale-[1.03]"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </motion.div>
             </div>
           </div>
 
