@@ -259,11 +259,11 @@ const AwardsAndPics = () => {
 
   // Timeline images from WhatsApp - added in different dimensions
   const timelineImages = [
-    {
-      image: "/gallery/timeline/a.jpeg",
-      caption: "Academic presentation",
-      aspectRatio: "aspect-w-1 aspect-h-1",
-    },
+    // {
+    //   image: "/gallery/timeline/a.jpeg",
+    //   caption: "Academic presentation",
+    //   aspectRatio: "aspect-w-1 aspect-h-1",
+    // },
     {
       image: "/gallery/timeline/b.jpeg",
       caption: "Technical discussion with team",
@@ -346,11 +346,11 @@ const AwardsAndPics = () => {
           onClick={(e) => e.stopPropagation()}
         >
           {media.type === 'image' ? (
-            <img 
+          <img 
               src={media.src} 
               alt="Gallery image" 
-              className="max-h-[90vh] max-w-full object-contain"
-            />
+            className="max-h-[90vh] max-w-full object-contain"
+          />
           ) : (
             <div className="relative">
               <video 
@@ -414,15 +414,31 @@ const AwardsAndPics = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </motion.div>
 
+              {/* Top right section - Added portrait emphasis */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.1 }}
+                className="col-span-3 row-span-5 relative group bg-darkPink/5 rounded-2xl overflow-hidden"
+                onClick={() => setSelectedMedia({src: "/gallery/timeline/d.jpeg", type: 'image'})}
+              >
+                <img 
+                  src="/gallery/timeline/d.jpeg"
+                  alt="Team"
+                  className="w-full h-full object-cover object-[center_15%] transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </motion.div>
+
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.2 }}
-                className="col-span-7 row-span-5 relative group bg-darkPink/5 rounded-2xl overflow-hidden"
-                onClick={() => setSelectedMedia({src: "/gallery/timeline/a.jpeg", type: 'image'})}
+                className="col-span-4 row-span-5 relative group bg-darkPink/5 rounded-2xl overflow-hidden"
+                onClick={() => setSelectedMedia({src: "/gallery/timeline/c.jpeg", type: 'image'})}
               >
                 <img 
-                  src="/gallery/timeline/a.jpeg"
+                  src="/gallery/timeline/c.jpeg"
                   alt="Discussion"
                   className="w-full h-full object-cover object-[center_15%] transition-transform duration-700 group-hover:scale-105"
                 />
@@ -440,7 +456,7 @@ const AwardsAndPics = () => {
                 <img 
                   src="/gallery/timeline/j.jpeg"
                   alt="BASF Team"
-                  className="w-full h-full object-cover object-center bg-white transition-transform duration-700 group-hover:scale-[1.03]"
+                  className="w-full h-full object-cover object-[center_25%] bg-white transition-transform duration-700 group-hover:scale-[1.03]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </motion.div>
@@ -456,7 +472,7 @@ const AwardsAndPics = () => {
                 <img 
                   src="/gallery/timeline/d.jpeg"
                   alt="Research"
-                  className="w-full h-full object-cover object-[center_15%] transition-transform duration-700 group-hover:scale-105"
+                  className="w-full h-full object-cover object-[center_25%] transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </motion.div>
@@ -520,9 +536,27 @@ const AwardsAndPics = () => {
                 <img 
                   src="/gallery/timeline/h.jpeg"
                   alt="Technology"
-                  className="w-full h-full object-cover object-[center_40%] transition-transform duration-700 group-hover:scale-105"
+                  src="/gallery/timeline/c.jpeg"
+                  alt="Project Development"
+                  className="w-full h-full object-cover object-[center_30%] transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </motion.div>
+
+              {/* Row 2 - BASF Photo */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.3 }}
+                className="col-span-7 row-span-4 relative group bg-darkPink/5 rounded-2xl overflow-hidden"
+                onClick={() => setSelectedMedia({src: "/gallery/timeline/j.jpeg", type: 'image'})}
+              >
+                <img 
+                  src="/gallery/timeline/j.jpeg"
+                  alt="BASF Team"
+                  className="w-full h-full object-cover object-[center_35%] bg-white transition-transform duration-700 group-hover:scale-[1.03]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </motion.div>
             </div>
           </div>
@@ -766,30 +800,30 @@ const AwardsAndPics = () => {
                 <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
                   3rd Place winning project where we built an AI-driven lead generation platform that automates prospect discovery, qualification, and scoring.
                 </p>
-                
+            
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {codeWithAIImages.map((item, index) => (
-                    <motion.div
+                <motion.div
                       key={`codewithai-${index}`}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                       className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer"
                       onClick={() => setSelectedMedia({src: item.image, type: 'image'})}
                     >
                       <div className="overflow-hidden aspect-video">
-                        <img 
-                          src={item.image} 
-                          alt={item.caption} 
+                    <img 
+                      src={item.image} 
+                      alt={item.caption} 
                           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        />
+                    />
                       </div>
                     </motion.div>
                   ))}
                 </div>
               </motion.div>
-            </div>
+                    </div>
 
             {/* NTU PEAK Leadership Program Section - Always displayed */}
             <div id="peak-section" className="border-2 border-darkPink/20 p-8 rounded-2xl bg-white/50 backdrop-blur-sm">
@@ -823,9 +857,9 @@ const AwardsAndPics = () => {
                           alt={item.caption} 
                           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         />
-                      </div>
-                    </motion.div>
-                  ))}
+                  </div>
+                </motion.div>
+              ))}
                 </div>
               </motion.div>
             </div>
