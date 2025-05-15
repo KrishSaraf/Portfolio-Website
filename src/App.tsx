@@ -8,32 +8,6 @@ import Contact from './pages/Contact';
 import AwardsAndPics from './pages/AwardsAndPics';
 import ScrollToTop from './components/ScrollToTop';
 
-// Single page application layout component for the home page
-function SinglePageApp() {
-  return (
-    <>
-      <div id="home-section">
-        <Home />
-      </div>
-      <div id="projects-section">
-        <Projects />
-      </div>
-      <div id="awards-section">
-        <AwardsAndPics />
-      </div>
-      <div id="experience-section">
-        <WorkExperience />
-      </div>
-      <div id="skills-section">
-        <Skills />
-      </div>
-      <div id="contact-section">
-        <Contact />
-      </div>
-    </>
-  );
-}
-
 function App() {
   return (
     <Router>
@@ -42,7 +16,7 @@ function App() {
           <Navbar />
           <main>
             <Routes>
-              <Route path="/" element={<SinglePageApp />} />
+              <Route path="/" element={<Home />} />
               <Route path="/experience" element={<WorkExperience />} />
               <Route path="/skills" element={<Skills />} />
               <Route path="/projects" element={<Projects />} />
