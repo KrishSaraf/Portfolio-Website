@@ -19,7 +19,8 @@ const AwardsAndPics = () => {
                          event === 'intuition' ? 'intuition-section' :
                          event === 'codewithai' ? 'codewithai-section' :
                          event === 'peak' ? 'peak-section' :
-                         event === 'gauze' ? 'gauze-section' : null;
+                         event === 'gauze' ? 'gauze-section' :
+                         event === 'timeline' ? 'timeline-section' : null;
         if (sectionId) {
           const section = document.getElementById(sectionId);
           if (section) {
@@ -175,21 +176,21 @@ const AwardsAndPics = () => {
       organization: "Tech Innovation Summit",
       year: "2023",
       description: "Recognized for exceptional work on AI-driven automation solutions.",
-      image: "/awards/award_certificate1.jpeg",
+      image: "/awards/award1.jpg",
     },
     {
       title: "Data Science Excellence",
       organization: "Data Analytics Association",
       year: "2022",
       description: "Awarded for innovative time-series forecasting model implementation.",
-      image: "/awards/synapse_award1.jpeg",
+      image: "/awards/award2.jpg",
     },
     {
       title: "Hackathon Winner",
       organization: "Global CodeFest",
       year: "2021",
       description: "First place in the annual 48-hour coding competition.",
-      image: "/awards/cleantech_award1.jpeg",
+      image: "/awards/award3.jpg",
     },
   ];
 
@@ -256,6 +257,85 @@ const AwardsAndPics = () => {
     }
   ];
 
+  // Timeline images from WhatsApp - added in different dimensions
+  const timelineImages = [
+    {
+      image: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.44_PM.jpeg",
+      caption: "Academic presentation",
+      aspectRatio: "aspect-w-1 aspect-h-1",
+    },
+    {
+      image: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.44_PM_(1).jpeg",
+      caption: "Technical discussion with team",
+      aspectRatio: "aspect-w-3 aspect-h-4",
+    },
+    {
+      image: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.44_PM_(2).jpeg",
+      caption: "Project development session",
+      aspectRatio: "aspect-w-4 aspect-h-3",
+    },
+    {
+      image: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.44_PM_(3).jpeg",
+      caption: "Collaborative work environment",
+      aspectRatio: "aspect-w-4 aspect-h-3",
+    },
+    {
+      image: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.44_PM_(4).jpeg",
+      caption: "Presenting research findings",
+      aspectRatio: "aspect-w-3 aspect-h-5",
+    },
+    {
+      image: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.45_PM.jpeg",
+      caption: "Team problem-solving session",
+      aspectRatio: "aspect-w-7 aspect-h-5",
+    },
+    {
+      image: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.45_PM_(1).jpeg",
+      caption: "Whiteboard strategy planning",
+      aspectRatio: "aspect-w-16 aspect-h-9",
+    },
+    {
+      image: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.45_PM_(2).jpeg",
+      caption: "Conference presentation",
+      aspectRatio: "aspect-w-4 aspect-h-3",
+    },
+    {
+      image: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.45_PM_(3).jpeg",
+      caption: "Technology demonstration",
+      aspectRatio: "aspect-w-3 aspect-h-2",
+    },
+    {
+      image: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.45_PM_(4).jpeg",
+      caption: "Team collaboration milestone",
+      aspectRatio: "aspect-w-5 aspect-h-4",
+    },
+    {
+      image: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.45_PM_(5).jpeg",
+      caption: "Development planning session",
+      aspectRatio: "aspect-w-3 aspect-h-4",
+    },
+    {
+      image: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.45_PM_(6).jpeg",
+      caption: "Project progress review",
+      aspectRatio: "aspect-w-4 aspect-h-3",
+    },
+    {
+      image: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.45_PM_(7).jpeg",
+      caption: "Engaging with stakeholders",
+      aspectRatio: "aspect-w-3 aspect-h-2",
+    },
+    {
+      image: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.45_PM_(8).jpeg",
+      caption: "Technical implementation discussion",
+      aspectRatio: "aspect-w-5 aspect-h-4",
+    },
+    {
+      image: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.45_PM_(9).jpeg",
+      caption: "Innovation workshop session",
+      aspectRatio: "aspect-w-16 aspect-h-9",
+    },
+  ];
+
   // Updated Modal to handle both images and videos
   const MediaModal = ({ media, onClose }: { media: {src: string, type: 'image' | 'video', loop?: boolean} | null, onClose: () => void }) => {
     if (!media) return null;
@@ -306,7 +386,7 @@ const AwardsAndPics = () => {
   };
 
   return (
-    <section className="w-full min-h-screen pt-24 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-darkPink/5 relative">
+    <section className="w-full min-h-screen pt-28 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-darkPink/5 relative">
       {/* Blurred background shapes */}
       <div className="absolute -top-32 -left-32 w-96 h-96 bg-darkPink/10 rounded-full filter blur-3xl z-0" />
       <div className="absolute bottom-0 right-0 w-[500px] h-[400px] bg-darkPink/10 rounded-full filter blur-3xl z-0" />
@@ -318,9 +398,12 @@ const AwardsAndPics = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-5xl font-extrabold text-darkPink mb-16 text-center tracking-tight">
+          <h2 className="text-5xl font-extrabold text-darkPink mb-8 text-center tracking-tight">
             Awards & Pics
           </h2>
+          <p className="text-xl text-darkPink/70 text-center max-w-3xl mx-auto mb-20">
+            Showcasing memorable moments from my professional journey and achievements
+          </p>
 
           {/* Event Sections - Always displayed */}
           <div className="space-y-24 mb-32">
@@ -580,6 +663,54 @@ const AwardsAndPics = () => {
             </div>
           </div>
 
+          {/* Timeline Section */}
+          <div className="mb-32" id="timeline-section">
+            <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
+              Journey Timeline
+            </h3>
+            <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-12">
+              A visual chronicle of my professional journey through key moments, collaborations, and achievements.
+            </p>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+              {timelineImages.map((item, index) => {
+                // Define different grid sizes based on image index for varied layout
+                const spanClasses = [
+                  "col-span-1 row-span-1",  // Square
+                  "col-span-1 row-span-2",  // Tall
+                  "col-span-2 row-span-1",  // Wide
+                  "sm:col-span-2 sm:row-span-2", // Big
+                ][index % 4];
+                
+                return (
+                  <motion.div
+                    key={`timeline-${index}`}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.5, delay: (index % 5) * 0.1 }}
+                    className={`relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer ${spanClasses} h-auto`}
+                    onClick={() => setSelectedMedia({src: item.image, type: 'image'})}
+                  >
+                    <div className="overflow-hidden h-full">
+                      <img 
+                        src={item.image} 
+                        alt={item.caption} 
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        loading="lazy"
+                      />
+                      
+                      {/* Hover caption overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+                        <h4 className="text-white font-medium text-lg">{item.caption}</h4>
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+
           {/* Awards Section */}
           <div className="mb-32">
             <h3 className="text-3xl font-bold text-darkPink mb-12 text-center md:text-left">
@@ -683,6 +814,184 @@ const AwardsAndPics = () => {
                   </div>
                 </motion.div>
               ))}
+            </div>
+          </div>
+
+          {/* Curated Photo Wall - Premium Gallery Layout */}
+          <div className="mb-32">
+            <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
+              Curated Photo Wall
+            </h3>
+            <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-12">
+              A carefully curated collection showcasing highlights from various projects and collaborations.
+            </p>
+            
+            {/* Visually stunning layout */}
+            <div className="grid grid-cols-1 md:grid-cols-6 gap-3 auto-rows-auto">
+              {/* Feature image - hero shot */}
+              <div className="md:col-span-6 md:h-[500px]">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.7 }}
+                  className="relative group rounded-xl overflow-hidden shadow-lg hover:shadow-xl h-full cursor-pointer"
+                  onClick={() => setSelectedMedia({src: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.45_PM_(9).jpeg", type: 'image'})}
+                >
+                  <img 
+                    src="/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.45_PM_(9).jpeg"
+                    alt="Team collaboration"
+                    className="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6">
+                    <h4 className="text-white font-bold text-2xl">Innovation in Action</h4>
+                    <p className="text-white/90">Collaborative design and implementation session</p>
+                  </div>
+                </motion.div>
+              </div>
+              
+              {/* First row - 3 spans */}
+              <div className="md:col-span-2 md:h-[300px]">
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  className="relative group rounded-xl overflow-hidden shadow-lg hover:shadow-xl h-full cursor-pointer"
+                  onClick={() => setSelectedMedia({src: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.44_PM_(2).jpeg", type: 'image'})}
+                >
+                  <img 
+                    src="/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.44_PM_(2).jpeg"
+                    alt="Project development"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+                    <h4 className="text-white font-medium">Project Development</h4>
+                  </div>
+                </motion.div>
+              </div>
+              
+              <div className="md:col-span-2 md:h-[300px]">
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  className="relative group rounded-xl overflow-hidden shadow-lg hover:shadow-xl h-full cursor-pointer"
+                  onClick={() => setSelectedMedia({src: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.45_PM_(3).jpeg", type: 'image'})}
+                >
+                  <img 
+                    src="/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.45_PM_(3).jpeg"
+                    alt="Technology demonstration"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+                    <h4 className="text-white font-medium">Tech Showcase</h4>
+                  </div>
+                </motion.div>
+              </div>
+              
+              <div className="md:col-span-2 md:h-[300px]">
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                  className="relative group rounded-xl overflow-hidden shadow-lg hover:shadow-xl h-full cursor-pointer"
+                  onClick={() => setSelectedMedia({src: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.45_PM_(4).jpeg", type: 'image'})}
+                >
+                  <img 
+                    src="/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.45_PM_(4).jpeg"
+                    alt="Team collaboration"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+                    <h4 className="text-white font-medium">Team Milestone</h4>
+                  </div>
+                </motion.div>
+              </div>
+              
+              {/* Second row - 4+2 spans */}
+              <div className="md:col-span-4 md:h-[350px]">
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
+                  className="relative group rounded-xl overflow-hidden shadow-lg hover:shadow-xl h-full cursor-pointer"
+                  onClick={() => setSelectedMedia({src: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.45_PM_(2).jpeg", type: 'image'})}
+                >
+                  <img 
+                    src="/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.45_PM_(2).jpeg"
+                    alt="Conference presentation"
+                    className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+                    <h4 className="text-white font-medium">Conference Keynote</h4>
+                  </div>
+                </motion.div>
+              </div>
+              
+              <div className="md:col-span-2 md:h-[350px]">
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.5 }}
+                  className="relative group rounded-xl overflow-hidden shadow-lg hover:shadow-xl h-full cursor-pointer"
+                  onClick={() => setSelectedMedia({src: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.44_PM_(1).jpeg", type: 'image'})}
+                >
+                  <img 
+                    src="/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.44_PM_(1).jpeg"
+                    alt="Technical discussion"
+                    className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+                    <h4 className="text-white font-medium">Technical Planning</h4>
+                  </div>
+                </motion.div>
+              </div>
+              
+              {/* Third row - 2 spans */}
+              <div className="md:col-span-3 md:h-[250px]">
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.6 }}
+                  className="relative group rounded-xl overflow-hidden shadow-lg hover:shadow-xl h-full cursor-pointer"
+                  onClick={() => setSelectedMedia({src: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.45_PM_(7).jpeg", type: 'image'})}
+                >
+                  <img 
+                    src="/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.45_PM_(7).jpeg"
+                    alt="Stakeholder engagement"
+                    className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+                    <h4 className="text-white font-medium">Stakeholder Presentation</h4>
+                  </div>
+                </motion.div>
+              </div>
+              
+              <div className="md:col-span-3 md:h-[250px]">
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.7 }}
+                  className="relative group rounded-xl overflow-hidden shadow-lg hover:shadow-xl h-full cursor-pointer"
+                  onClick={() => setSelectedMedia({src: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.45_PM.jpeg", type: 'image'})}
+                >
+                  <img 
+                    src="/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.45_PM.jpeg"
+                    alt="Problem-solving session"
+                    className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+                    <h4 className="text-white font-medium">Problem-Solving Workshop</h4>
+                  </div>
+                </motion.div>
+              </div>
             </div>
           </div>
 
