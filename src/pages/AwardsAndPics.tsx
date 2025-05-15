@@ -175,21 +175,21 @@ const AwardsAndPics = () => {
       organization: "Tech Innovation Summit",
       year: "2023",
       description: "Recognized for exceptional work on AI-driven automation solutions.",
-      image: "/awards/award1.jpg",
+      image: "/awards/award_certificate1.jpeg",
     },
     {
       title: "Data Science Excellence",
       organization: "Data Analytics Association",
       year: "2022",
       description: "Awarded for innovative time-series forecasting model implementation.",
-      image: "/awards/award2.jpg",
+      image: "/awards/synapse_award1.jpeg",
     },
     {
       title: "Hackathon Winner",
       organization: "Global CodeFest",
       year: "2021",
       description: "First place in the annual 48-hour coding competition.",
-      image: "/awards/award3.jpg",
+      image: "/awards/cleantech_award1.jpeg",
     },
   ];
 
