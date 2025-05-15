@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import profileImage from '../assets/Titopic.jpeg';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   const companyLogos = [
@@ -13,7 +14,7 @@ const Home = () => {
   ];
 
   return (
-    <section className="min-h-screen flex flex-col items-center py-[max(10vh,6rem)] px-[5%] overflow-hidden relative">
+    <section className="min-h-screen flex flex-col justify-center pt-16 pb-8 px-[5%] overflow-hidden relative">
       {/* Background blobs using relative positioning and viewport units */}
       <div className="absolute top-[-10vh] left-[-5vw] w-[40vw] max-w-[30rem] aspect-square bg-darkPink/10 rounded-full filter blur-3xl z-0" />
       <div className="absolute top-1/2 left-0 w-[30vw] max-w-[25rem] aspect-square bg-darkPink/20 rounded-full filter blur-2xl z-0" />
@@ -21,7 +22,7 @@ const Home = () => {
       <div className="absolute top-0 right-1/3 w-[25vw] max-w-[20rem] aspect-square bg-darkPink/10 rounded-full filter blur-2xl z-0" />
 
       <div className="w-full max-w-[90rem] mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-[5vw] items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-center">
           {/* Profile Image Container with fluid dimensions */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -29,7 +30,7 @@ const Home = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="relative flex justify-center lg:justify-start order-1"
           >
-            <div className="w-[min(80vw,25rem)] aspect-square lg:w-[min(40vw,30rem)] lg:aspect-[3/4] rounded-full overflow-hidden border-[min(0.5vw,0.25rem)] border-darkPink shadow-xl">
+            <div className="w-[min(70vw,22rem)] aspect-square lg:w-[min(35vw,26rem)] lg:aspect-square rounded-full overflow-hidden border-[min(0.4vw,0.2rem)] border-darkPink shadow-xl">
               <img
                 src={profileImage}
                 alt="Krish Saraf"
@@ -45,40 +46,40 @@ const Home = () => {
             transition={{ duration: 0.5 }}
             className="text-center lg:text-center order-2 flex flex-col items-center lg:items-center"
           >
-            <h1 className="text-[clamp(1.75rem,5vw,3.5rem)] font-extrabold text-darkPink mb-[min(4vh,2rem)] mt-[min(4vh,2rem)] leading-tight text-center">
+            <h1 className="text-[clamp(1.75rem,4.5vw,3rem)] font-extrabold text-darkPink mb-3 leading-tight text-center">
               Hi, I'm <strong>Krish Saraf</strong>
             </h1>
-            <p className="text-darkPink/70 text-[clamp(1rem,2vw,1.125rem)] mb-[min(6vh,3rem)] w-full max-w-[50ch] leading-relaxed">
-              Currently pursuing Economics & Data Science at NTU, I've engineered tools, deployed scalable backend systems, and built investment algorithms that outperform benchmarks. 
-              <br />
-              <br />
+            <p className="text-darkPink/70 text-[clamp(0.95rem,1.7vw,1.1rem)] mb-4 w-full max-w-[50ch] leading-relaxed">
+              Currently pursuing Economics & Data Science at NTU, I've engineered tools, deployed scalable backend systems, and built investment algorithms that outperform benchmarks.
+            </p>
+            <p className="text-darkPink/70 text-[clamp(0.95rem,1.7vw,1.1rem)] mb-4 w-full max-w-[50ch] leading-relaxed">
               From winning 5 Hackathons to being a Dean's Lister- I combine deep technical skill with sharp product sense
-              <br />
-              <br />
+            </p>
+            <p className="text-darkPink/70 text-[clamp(0.95rem,1.7vw,1.1rem)] mb-5 w-full max-w-[50ch] leading-relaxed">
               Explore my work below — I build fast, think deep, and execute smarter.
             </p>
 
             {/* Button Container with fluid spacing */}
-            <div className="flex flex-col sm:flex-row gap-[min(3vw,1rem)] mb-[min(6vh,3rem)] w-full">
-              <a href="#projects-section" className="no-underline w-full sm:w-1/2">
+            <div className="flex flex-col sm:flex-row gap-3 mb-5 w-full">
+              <Link to="/projects" className="no-underline w-full sm:w-1/2">
                 <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-darkPink text-white px-[min(4vw,1.5rem)] py-[min(2vh,0.75rem)] rounded-md font-medium hover:bg-darkPink/90 transition-colors duration-300 w-full text-center text-[clamp(0.875rem,1.5vw,1rem)]"
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="bg-darkPink text-white px-4 py-2 rounded-md font-medium hover:bg-darkPink/90 transition-colors duration-300 w-full text-center text-[clamp(0.875rem,1.4vw,1rem)]"
                 >
                   Check out my work!
                 </motion.button>
-              </a>
+              </Link>
               
-              <a href="#contact-section" className="no-underline w-full sm:w-1/2">
+              <Link to="/contact" className="no-underline w-full sm:w-1/2">
                 <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-darkPink text-white px-[min(4vw,1.5rem)] py-[min(2vh,0.75rem)] rounded-md font-medium hover:bg-darkPink/90 transition-colors duration-300 w-full text-center text-[clamp(0.875rem,1.5vw,1rem)]"
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="bg-darkPink text-white px-4 py-2 rounded-md font-medium hover:bg-darkPink/90 transition-colors duration-300 w-full text-center text-[clamp(0.875rem,1.4vw,1rem)]"
                 >
                   Get in touch
                 </motion.button>
-              </a>
+              </Link>
             </div>
             
             {/* Company Logos Section with fluid layout */}
@@ -86,26 +87,26 @@ const Home = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="w-full mt-[min(3vh,1.5rem)]"
+              className="w-full mt-2"
             >
-              <h3 className="text-[clamp(1.125rem,3vw,1.5rem)] font-bold text-darkPink mb-[min(4vh,2rem)] text-center">
+              <h3 className="text-[clamp(1.125rem,2.5vw,1.4rem)] font-bold text-darkPink mb-4 text-center">
                 Companies I have worked with
               </h3>
               
-              {/* Single responsive logo grid */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-8 gap-y-10">
+              {/* Responsive logo grid with smaller gaps */}
+              <div className="grid grid-cols-3 md:grid-cols-4 gap-x-4 gap-y-5 items-center justify-items-center">
                 {companyLogos.map((logo, index) => (
                   <motion.div
                     key={logo.alt}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
-                    className="flex items-center justify-center"
+                    className="flex items-center justify-center h-12 lg:h-14"
                   >
                     <img 
                       src={logo.src} 
                       alt={logo.alt} 
-                      className="max-h-full w-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
+                      className="h-full w-auto max-w-full object-contain opacity-90 hover:opacity-100 transition-opacity duration-300"
                     />
                   </motion.div>
                 ))}
