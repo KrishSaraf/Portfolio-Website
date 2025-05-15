@@ -93,7 +93,7 @@ const Home = () => {
                 Companies I have worked with
               </h3>
               
-              {/* Uniform logo container grid */}
+              {/* Uniform logo container grid with fixed-size containers */}
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 items-center justify-items-center">
                 {companyLogos.map((logo, index) => (
                   <motion.div
@@ -101,13 +101,13 @@ const Home = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
-                    className="flex items-center justify-center w-full aspect-[3/2]"
+                    className="flex items-center justify-center w-full h-20 sm:h-24"
                   >
-                    <div className="w-full h-full flex items-center justify-center px-2">
+                    <div className="flex items-center justify-center w-full h-full">
                       <img 
                         src={logo.src} 
                         alt={logo.alt} 
-                        className="max-w-full max-h-full object-contain opacity-90 hover:opacity-100 transition-opacity duration-300"
+                        className="max-h-[90%] w-auto object-contain opacity-90 hover:opacity-100 transition-opacity duration-300"
                       />
                     </div>
                   </motion.div>
