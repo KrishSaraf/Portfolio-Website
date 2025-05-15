@@ -297,7 +297,7 @@ const AwardsAndPics = () => {
       src: "/gallery/gauze.jpeg", 
       caption: "Gauze detection system in action",
       aspectRatio: "aspect-w-16 aspect-h-9",
-      transform: "scaleX(-1)", // Flip horizontally
+      // transform: "scaleX(-1)", // Flip horizontally
     },
     {
       type: 'image',
@@ -643,7 +643,7 @@ const AwardsAndPics = () => {
                             }`}
                             style={{
                               ...(item.src.includes('krish-hospital') ? { maxHeight: '400px' } : {}),
-                              ...(item.src.includes('gauze.jpeg') ? { transform: 'scaleX(-1)' } : {})
+                              ...(item.src.includes('gauze.jpeg') ? { maxHeight: '350px' } : {})
                             }}
                           />
                         ) : (
