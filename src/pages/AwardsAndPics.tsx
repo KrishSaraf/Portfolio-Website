@@ -1,6 +1,7 @@
-import { useState, useMemo, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLocation } from 'react-router-dom';
+import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 
 const AwardsAndPics = () => {
   const [selectedMedia, setSelectedMedia] = useState<{src: string, type: 'image' | 'video', loop?: boolean} | null>(null);
@@ -400,46 +401,55 @@ const AwardsAndPics = () => {
             Showcasing memorable moments from my professional journey and achievements
           </p>
 
-          {/* NEW: Gallery Grid with CSS instead of Masonry */}
+          {/* NEW: Responsive Masonry Gallery */}
           <div className="mb-24">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {featuredGallery.map((item, index) => (
-                <motion.div
-                  key={item.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ 
-                    opacity: imagesLoaded > index / 2 ? 1 : 0,
-                    y: imagesLoaded > index / 2 ? 0 : 20
-                  }}
-                  transition={{ 
-                    duration: 0.5, 
-                    delay: Math.min(index * 0.1, 0.8),
-                    ease: "easeOut"
-                  }}
-                  className={`relative group rounded-xl overflow-hidden shadow-sm hover:shadow-xl cursor-pointer transition-all duration-300 ${
-                    item.highlight ? 'border-2 border-darkPink/20' : ''
-                  }`}
-                  onClick={() => setSelectedMedia({src: item.src, type: 'image'})}
-                >
-                  <div className={`overflow-hidden ${item.highlight ? 'aspect-[4/3]' : 'aspect-auto'}`}>
-                    <motion.img 
-                      src={item.src}
-                      alt={item.alt}
-                      onLoad={handleImageLoaded}
-                      className="w-full h-full object-cover"
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ duration: 0.5 }}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                      <div className="p-4 text-white w-full">
-                        <h4 className="font-medium">{item.alt}</h4>
-                        <p className="text-sm text-white/80">{item.description}</p>
+            <ResponsiveMasonry
+              columnsCountBreakPoints={{ 350: 1, 750: 2, 1024: 3, 1280: 4 }}
+            >
+              <Masonry gutter="16px">
+                {featuredGallery.map((item, index) => (
+                  <motion.div
+                    key={item.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ 
+                      opacity: imagesLoaded > index / 2 ? 1 : 0,
+                      y: imagesLoaded > index / 2 ? 0 : 20
+                    }}
+                    transition={{ 
+                      duration: 0.5, 
+                      delay: Math.min(index * 0.1, 0.8),
+                      ease: "easeOut"
+                    }}
+                    className={`relative group rounded-xl overflow-hidden shadow-sm hover:shadow-xl cursor-pointer transition-all duration-300 ${
+                      item.highlight ? 'border-2 border-darkPink/20' : ''
+                    }`}
+                    onClick={() => setSelectedMedia({src: item.src, type: 'image'})}
+                  >
+                    <div className={`overflow-hidden ${item.highlight ? 'aspect-[4/3]' : 'aspect-auto'}`}>
+                      <motion.img 
+                        src={item.src}
+                        alt={item.alt}
+                        onLoad={handleImageLoaded}
+                        className="w-full h-full object-cover"
+                        // style={{ 
+                        //   objectPosition: item.objectPosition || "center", 
+                        //   maxHeight: item.maxHeight ? `${item.maxHeight}px` : '150px',
+                        //   minHeight: '100px'
+                        // }}
+                        whileHover={{ scale: 1.05 }}
+                        transition={{ duration: 0.5 }}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div className="p-4 text-white w-full">
+                          <h4 className="font-medium">{item.alt}</h4>
+                          <p className="text-sm text-white/80">{item.description}</p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+                  </motion.div>
+                ))}
+              </Masonry>
+            </ResponsiveMasonry>
           </div>
 
           {/* Visual separator */}
