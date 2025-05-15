@@ -22,6 +22,7 @@ const AwardsAndPics = () => {
                          event === 'codewithai' ? 'codewithai-section' :
                          event === 'peak' ? 'peak-section' :
                          event === 'gauze' ? 'gauze-section' :
+                         event === 'india-records' ? 'india-book-records-section' :
                          event === 'timeline' ? 'timeline-section' : null;
         if (sectionId) {
           const section = document.getElementById(sectionId);
@@ -465,6 +466,47 @@ const AwardsAndPics = () => {
 
           {/* Event Sections - Always displayed */}
           <div className="space-y-24 mb-32">
+            {/* India Book of Records Section - New section at the top */}
+            <div id="india-book-records-section" className="border-2 border-darkPink/20 p-8 rounded-2xl bg-white/50 backdrop-blur-sm">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+              >
+                <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
+                  Did Something Crazy
+                </h3>
+                <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
+                  Official recognition from the India Book of Records for an extraordinary achievement
+                </p>
+                
+                <div className="relative overflow-hidden rounded-xl shadow-lg">
+                  <div className="aspect-video w-full">
+                    <iframe 
+                      src="https://indiabookofrecords.in/krish-saraf-appreciation/" 
+                      title="India Book of Records - Krish Saraf Appreciation" 
+                      className="w-full h-full border-0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      loading="lazy"
+                    ></iframe>
+                  </div>
+                  
+                  {/* Fallback link in case iframe doesn't load properly */}
+                  <div className="mt-4 text-center">
+                    <a 
+                      href="https://indiabookofrecords.in/krish-saraf-appreciation/" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-darkPink hover:text-darkPink/80 underline text-sm"
+                    >
+                      View my India Book of Records achievement
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+
             {/* Surgical Gauze Detection Section - Always displayed */}
             <div id="gauze-section" className="border-2 border-darkPink/20 p-8 rounded-2xl bg-white/50 backdrop-blur-sm">
               <motion.div
