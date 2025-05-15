@@ -35,6 +35,7 @@ const AwardsAndPics = () => {
 
   // Featured gallery items with better metadata
   const featuredGallery = [
+    // Highlight images first
     {
       id: 'basf',
       src: "/gallery/timeline/j.jpeg",
@@ -44,14 +45,61 @@ const AwardsAndPics = () => {
       highlight: true,
       objectPosition: "center 25%"
     },
+    // {
+    //   id: 'presentation',
+    //   src: "/gallery/timeline/m.jpeg",
+    //   alt: "Innovation Presentation",
+    //   description: "Presenting research findings at the tech conference",
+    //   aspectRatio: 5/4,
+    //   highlight: true,
+    //   objectPosition: "center 40%" 
+    // },
+    // {
+    //   id: 'research',
+    //   src: "/gallery/timeline/d.jpeg",
+    //   alt: "Research Meeting",
+    //   description: "Research planning at university lab",
+    //   aspectRatio: 3/4,
+    //   highlight: false,
+    //   objectPosition: "center 25%"
+    // },
+    
+    // Group landscape orientation images
     {
-      id: 'presentation',
-      src: "/gallery/timeline/n.jpeg",
-      alt: "Innovation Presentation",
-      description: "Presenting research findings at the tech conference",
-      aspectRatio: 3/4,
-      highlight: true,
-      objectPosition: "center 40%" 
+      id: 'presentation2',
+      src: "/gallery/timeline/g.jpeg",
+      alt: "Technical Presentation",
+      description: "Sharing project insights with the team",
+      aspectRatio: 16/9,
+      highlight: false,
+      objectPosition: "center 30%"
+    },
+    {
+      id: 'workshop2',
+      src: "/gallery/timeline/k.jpeg",
+      alt: "Innovation Workshop",
+      description: "Collaborative workshop session",
+      aspectRatio: 16/9,
+      highlight: false,
+      objectPosition: "center 30%"
+    },
+    {
+      id: 'mountain',
+      src: "/gallery/timeline/l.jpeg",
+      alt: "Mountain View", 
+      description: "Project planning retreat",
+      aspectRatio: 4/3,
+      highlight: false,
+      objectPosition: "center 30%"
+    },
+    {
+      id: 'outdoor',
+      src: "/gallery/timeline/o.jpeg",
+      alt: "Outdoor Strategy Session",
+      description: "Team planning in an outdoor setting",
+      aspectRatio: 4/3,
+      highlight: false,
+      objectPosition: "center 30%"
     },
     {
       id: 'discussion',
@@ -63,23 +111,16 @@ const AwardsAndPics = () => {
       objectPosition: "center 15%"
     },
     {
-      id: 'research',
-      src: "/gallery/timeline/d.jpeg",
-      alt: "Research Meeting",
-      description: "Research planning at university lab",
-      aspectRatio: 3/4,
-      highlight: false,
-      objectPosition: "center 25%"
-    },
-    {
-      id: 'mountain',
-      src: "/gallery/timeline/l.jpeg",
-      alt: "Mountain View", 
-      description: "Project planning retreat",
+      id: 'project',
+      src: "/gallery/timeline/h.jpeg",
+      alt: "Project Development",
+      description: "Whiteboarding system architecture",
       aspectRatio: 4/3,
       highlight: false,
       objectPosition: "center 30%"
     },
+    
+    // Group portrait and irregular orientation images
     {
       id: 'development',
       src: "/gallery/timeline/b.jpeg",
@@ -99,15 +140,6 @@ const AwardsAndPics = () => {
       objectPosition: "center 35%"
     },
     {
-      id: 'project',
-      src: "/gallery/timeline/h.jpeg",
-      alt: "Project Development",
-      description: "Whiteboarding system architecture",
-      aspectRatio: 4/3,
-      highlight: false,
-      objectPosition: "center 30%"
-    },
-    {
       id: 'innovation',
       src: "/gallery/timeline/f.jpeg",
       alt: "Innovation Work",
@@ -115,15 +147,6 @@ const AwardsAndPics = () => {
       aspectRatio: 7/5,
       highlight: false,
       objectPosition: "center 40%"
-    },
-    {
-      id: 'presentation2',
-      src: "/gallery/timeline/g.jpeg",
-      alt: "Technical Presentation",
-      description: "Sharing project insights with the team",
-      aspectRatio: 16/9,
-      highlight: false,
-      objectPosition: "center 30%"
     },
     {
       id: 'technology',
@@ -135,29 +158,11 @@ const AwardsAndPics = () => {
       objectPosition: "center 30%"
     },
     {
-      id: 'workshop2',
-      src: "/gallery/timeline/k.jpeg",
-      alt: "Innovation Workshop",
-      description: "Collaborative workshop session",
-      aspectRatio: 16/9,
-      highlight: false,
-      objectPosition: "center 30%"
-    },
-    {
       id: 'stakeholders',
       src: "/gallery/timeline/m.jpeg",
       alt: "Stakeholder Meeting",
       description: "Engaging with project stakeholders",
       aspectRatio: 3/2,
-      highlight: false,
-      objectPosition: "center 30%"
-    },
-    {
-      id: 'outdoor',
-      src: "/gallery/timeline/o.jpeg",
-      alt: "Outdoor Strategy Session",
-      description: "Team planning in an outdoor setting",
-      aspectRatio: 4/3,
       highlight: false,
       objectPosition: "center 30%"
     }
