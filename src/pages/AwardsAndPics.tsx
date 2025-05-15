@@ -554,41 +554,6 @@ const AwardsAndPics = () => {
             <div className="h-px w-16 bg-darkPink/20"></div>
           </div>
 
-          {/* Awards Section - Compact Modern Design */}
-          <div className="mb-24">
-            <h3 className="text-2xl font-bold text-darkPink mb-10 text-center">
-              Awards & Recognition
-            </h3>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {awards.map((award, index) => (
-                <motion.div
-                  key={award.title}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className="bg-white/60 backdrop-blur-sm shadow-sm hover:shadow-md rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-1 group"
-                >
-                  <div className="h-40 overflow-hidden">
-                    <img 
-                      src={award.image} 
-                      alt={award.title} 
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      onClick={() => setSelectedMedia({src: award.image, type: 'image'})}
-                    />
-                  </div>
-                  <div className="p-5">
-                    <h4 className="text-lg font-bold text-darkPink">{award.title}</h4>
-                    <div className="flex justify-between items-center mt-1 mb-1">
-                      <span className="text-darkPink/70 text-sm font-medium">{award.organization}</span>
-                      <span className="text-darkPink/60 text-xs bg-darkPink/5 px-2 py-1 rounded-full">{award.year}</span>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
           {/* Event Sections - Always displayed */}
           <div className="space-y-24 mb-32">
             {/* Surgical Gauze Detection Section - Always displayed */}
