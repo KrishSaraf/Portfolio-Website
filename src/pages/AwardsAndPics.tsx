@@ -482,14 +482,24 @@ const AwardsAndPics = () => {
                 </p>
                 
                 <div className="relative overflow-hidden rounded-xl shadow-lg">
-                  <div className="aspect-video w-full">
-                    <iframe 
-                      src="https://indiabookofrecords.in/krish-saraf-appreciation/" 
-                      title="India Book of Records - Krish Saraf Appreciation" 
-                      className="w-full h-full border-0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      loading="lazy"
-                    ></iframe>
+                  <div className="w-full relative" style={{ height: '500px', overflow: 'hidden' }}>
+                    <div style={{ position: 'absolute', top: '-120px', bottom: '-200px', left: 0, right: 0 }}>
+                      <iframe 
+                        src="https://indiabookofrecords.in/krish-saraf-appreciation/" 
+                        title="India Book of Records - Krish Saraf Appreciation" 
+                        className="w-full h-full border-0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        loading="lazy"
+                        style={{
+                          width: '100%',
+                          height: '820px',
+                          overflow: 'hidden',
+                          display: 'block',
+                          maxWidth: '100%'
+                        }}
+                        sandbox="allow-same-origin allow-scripts"
+                      ></iframe>
+                    </div>
                   </div>
                   
                   {/* Fallback link in case iframe doesn't load properly */}
