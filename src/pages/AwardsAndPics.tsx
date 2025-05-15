@@ -260,67 +260,67 @@ const AwardsAndPics = () => {
   // Timeline images from WhatsApp - added in different dimensions
   const timelineImages = [
     {
-      image: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.44_PM_(1).jpeg",
+      image: "/gallery/timeline/a.jpeg",
       caption: "Academic presentation",
       aspectRatio: "aspect-w-1 aspect-h-1",
     },
     {
-      image: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.44_PM_(2).jpeg",
+      image: "/gallery/timeline/b.jpeg",
       caption: "Technical discussion with team",
       aspectRatio: "aspect-w-3 aspect-h-4",
     },
     {
-      image: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.44_PM_(3).jpeg",
+      image: "/gallery/timeline/c.jpeg",
       caption: "Project development session",
       aspectRatio: "aspect-w-4 aspect-h-3",
     },
     {
-      image: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.44_PM_(4).jpeg",
+      image: "/gallery/timeline/d.jpeg",
       caption: "Collaborative work environment",
       aspectRatio: "aspect-w-4 aspect-h-3",
     },
     {
-      image: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.45_PM.jpeg",
+      image: "/gallery/timeline/e.jpeg",
       caption: "Presenting research findings",
       aspectRatio: "aspect-w-3 aspect-h-5",
     },
     {
-      image: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.45_PM_(1).jpeg",
+      image: "/gallery/timeline/f.jpeg",
       caption: "Team problem-solving session",
       aspectRatio: "aspect-w-7 aspect-h-5",
     },
     {
-      image: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.45_PM_(2).jpeg",
+      image: "/gallery/timeline/g.jpeg",
       caption: "Whiteboard strategy planning",
       aspectRatio: "aspect-w-16 aspect-h-9",
     },
     {
-      image: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.45_PM_(3).jpeg",
+      image: "/gallery/timeline/h.jpeg",
       caption: "Conference presentation",
       aspectRatio: "aspect-w-4 aspect-h-3",
     },
     {
-      image: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.45_PM_(4).jpeg",
+      image: "/gallery/timeline/i.jpeg",
       caption: "Technology demonstration",
       aspectRatio: "aspect-w-3 aspect-h-2",
     },
     {
-      image: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.45_PM_(6).jpeg",
+      image: "/gallery/timeline/k.jpeg",
       caption: "Innovation workshop session",
       aspectRatio: "aspect-w-16 aspect-h-9",
     },
     {
-      image: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.45_PM_(7).jpeg",
+      image: "/gallery/timeline/l.jpeg",
       caption: "Project progress review",
       aspectRatio: "aspect-w-4 aspect-h-3",
     },
     {
-      image: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.45_PM_(8).jpeg",
+      image: "/gallery/timeline/m.jpeg",
       caption: "Engaging with stakeholders",
       aspectRatio: "aspect-w-3 aspect-h-2",
     },
     {
-      image: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.45_PM_(9).jpeg",
+      image: "/gallery/timeline/n.jpeg",
       caption: "Development planning session",
       aspectRatio: "aspect-w-3 aspect-h-4",
     },
@@ -404,10 +404,10 @@ const AwardsAndPics = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7 }}
                 className="col-span-5 row-span-8 relative group bg-darkPink/5 rounded-2xl overflow-hidden"
-                onClick={() => setSelectedMedia({src: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.45_PM_(9).jpeg", type: 'image'})}
+                onClick={() => setSelectedMedia({src: "/gallery/timeline/n.jpeg", type: 'image'})}
               >
                 <img 
-                  src="/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.45_PM_(9).jpeg"
+                  src="/gallery/timeline/n.jpeg"
                   alt="Innovation"
                   className="w-full h-full object-cover object-[center_40%] transition-transform duration-700 group-hover:scale-105"
                 />
@@ -420,10 +420,10 @@ const AwardsAndPics = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.1 }}
                 className="col-span-3 row-span-5 relative group bg-darkPink/5 rounded-2xl overflow-hidden"
-                onClick={() => setSelectedMedia({src: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.44_PM_(4).jpeg", type: 'image'})}
+                onClick={() => setSelectedMedia({src: "/gallery/timeline/d.jpeg", type: 'image'})}
               >
                 <img 
-                  src="/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.44_PM_(4).jpeg"
+                  src="/gallery/timeline/d.jpeg"
                   alt="Team"
                   className="w-full h-full object-cover object-[center_15%] transition-transform duration-700 group-hover:scale-105"
                 />
@@ -435,10 +435,10 @@ const AwardsAndPics = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.2 }}
                 className="col-span-4 row-span-5 relative group bg-darkPink/5 rounded-2xl overflow-hidden"
-                onClick={() => setSelectedMedia({src: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.44_PM_(1).jpeg", type: 'image'})}
+                onClick={() => setSelectedMedia({src: "/gallery/timeline/a.jpeg", type: 'image'})}
               >
                 <img 
-                  src="/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.44_PM_(1).jpeg"
+                  src="/gallery/timeline/a.jpeg"
                   alt="Discussion"
                   className="w-full h-full object-cover object-[center_15%] transition-transform duration-700 group-hover:scale-105"
                 />
@@ -451,10 +451,10 @@ const AwardsAndPics = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.3 }}
                 className="col-span-7 row-span-3 relative group bg-darkPink/5 rounded-2xl overflow-hidden"
-                onClick={() => setSelectedMedia({src: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.45_PM_(5).jpeg", type: 'image'})}
+                onClick={() => setSelectedMedia({src: "/gallery/timeline/j.jpeg", type: 'image'})}
               >
                 <img 
-                  src="/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.45_PM_(5).jpeg"
+                  src="/gallery/timeline/j.jpeg"
                   alt="BASF Team"
                   className="w-full h-full object-cover object-center bg-white transition-transform duration-700 group-hover:scale-[1.03]"
                 />
@@ -467,10 +467,10 @@ const AwardsAndPics = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.4 }}
                 className="col-span-2 row-span-7 relative group bg-darkPink/5 rounded-2xl overflow-hidden"
-                onClick={() => setSelectedMedia({src: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.44_PM_(4).jpeg", type: 'image'})}
+                onClick={() => setSelectedMedia({src: "/gallery/timeline/d.jpeg", type: 'image'})}
               >
                 <img 
-                  src="/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.44_PM_(4).jpeg"
+                  src="/gallery/timeline/d.jpeg"
                   alt="Research"
                   className="w-full h-full object-cover object-[center_15%] transition-transform duration-700 group-hover:scale-105"
                 />
@@ -483,10 +483,10 @@ const AwardsAndPics = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.5 }}
                 className="col-span-4 row-span-4 relative group bg-darkPink/5 rounded-2xl overflow-hidden"
-                onClick={() => setSelectedMedia({src: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.45_PM_(7).jpeg", type: 'image'})}
+                onClick={() => setSelectedMedia({src: "/gallery/timeline/l.jpeg", type: 'image'})}
               >
                 <img 
-                  src="/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.45_PM_(7).jpeg"
+                  src="/gallery/timeline/l.jpeg"
                   alt="Mountain View"
                   className="w-full h-full object-cover object-[center_30%] transition-transform duration-700 group-hover:scale-105"
                 />
@@ -499,10 +499,10 @@ const AwardsAndPics = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.6 }}
                 className="col-span-3 row-span-7 relative group bg-darkPink/5 rounded-2xl overflow-hidden"
-                onClick={() => setSelectedMedia({src: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.44_PM_(2).jpeg", type: 'image'})}
+                onClick={() => setSelectedMedia({src: "/gallery/timeline/b.jpeg", type: 'image'})}
               >
                 <img 
-                  src="/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.44_PM_(2).jpeg"
+                  src="/gallery/timeline/b.jpeg"
                   alt="Development"
                   className="w-full h-full object-cover object-[center_20%] transition-transform duration-700 group-hover:scale-105"
                 />
@@ -515,10 +515,10 @@ const AwardsAndPics = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.7 }}
                 className="col-span-3 row-span-3 relative group bg-darkPink/5 rounded-2xl overflow-hidden"
-                onClick={() => setSelectedMedia({src: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.45_PM.jpeg", type: 'image'})}
+                onClick={() => setSelectedMedia({src: "/gallery/timeline/e.jpeg", type: 'image'})}
               >
                 <img 
-                  src="/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.45_PM.jpeg"
+                  src="/gallery/timeline/e.jpeg"
                   alt="Workshop"
                   className="w-full h-full object-cover object-[center_35%] transition-transform duration-700 group-hover:scale-105"
                 />
@@ -531,10 +531,10 @@ const AwardsAndPics = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.8 }}
                 className="col-span-3 row-span-4 relative group bg-darkPink/5 rounded-2xl overflow-hidden"
-                onClick={() => setSelectedMedia({src: "/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.45_PM_(3).jpeg", type: 'image'})}
+                onClick={() => setSelectedMedia({src: "/gallery/timeline/h.jpeg", type: 'image'})}
               >
                 <img 
-                  src="/gallery/timeline/WhatsApp_Image_2025-05-15_at_5.20.45_PM_(3).jpeg"
+                  src="/gallery/timeline/h.jpeg"
                   alt="Technology"
                   className="w-full h-full object-cover object-[center_40%] transition-transform duration-700 group-hover:scale-105"
                 />
