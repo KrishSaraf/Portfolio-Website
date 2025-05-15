@@ -83,7 +83,7 @@ const AwardsAndPics = () => {
     {
       id: 'development',
       src: "/gallery/timeline/b.jpeg",
-      alt: "Development",
+      alt: "Development Session",
       description: "Technical discussion during sprint planning",
       aspectRatio: 3/4,
       highlight: false,
@@ -100,9 +100,63 @@ const AwardsAndPics = () => {
     },
     {
       id: 'project',
-      src: "/gallery/timeline/c.jpeg",
+      src: "/gallery/timeline/h.jpeg",
       alt: "Project Development",
       description: "Whiteboarding system architecture",
+      aspectRatio: 4/3,
+      highlight: false,
+      objectPosition: "center 30%"
+    },
+    {
+      id: 'innovation',
+      src: "/gallery/timeline/f.jpeg",
+      alt: "Innovation Work",
+      description: "Creative brainstorming for new solutions",
+      aspectRatio: 7/5,
+      highlight: false,
+      objectPosition: "center 40%"
+    },
+    {
+      id: 'presentation2',
+      src: "/gallery/timeline/g.jpeg",
+      alt: "Technical Presentation",
+      description: "Sharing project insights with the team",
+      aspectRatio: 16/9,
+      highlight: false,
+      objectPosition: "center 30%"
+    },
+    {
+      id: 'technology',
+      src: "/gallery/timeline/i.jpeg",
+      alt: "Technology Demo",
+      description: "Demonstrating the latest tech solutions",
+      aspectRatio: 3/2,
+      highlight: false,
+      objectPosition: "center 30%"
+    },
+    {
+      id: 'workshop2',
+      src: "/gallery/timeline/k.jpeg",
+      alt: "Innovation Workshop",
+      description: "Collaborative workshop session",
+      aspectRatio: 16/9,
+      highlight: false,
+      objectPosition: "center 30%"
+    },
+    {
+      id: 'stakeholders',
+      src: "/gallery/timeline/m.jpeg",
+      alt: "Stakeholder Meeting",
+      description: "Engaging with project stakeholders",
+      aspectRatio: 3/2,
+      highlight: false,
+      objectPosition: "center 30%"
+    },
+    {
+      id: 'outdoor',
+      src: "/gallery/timeline/o.jpeg",
+      alt: "Outdoor Strategy Session",
+      description: "Team planning in an outdoor setting",
       aspectRatio: 4/3,
       highlight: false,
       objectPosition: "center 30%"
