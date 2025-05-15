@@ -700,9 +700,9 @@ const AwardsAndPics = () => {
                         loading="lazy"
                       />
                       
-                      {/* Hover caption overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-                        <h4 className="text-white font-medium text-lg">{item.caption}</h4>
+                      {/* Remove hover caption overlay in the Timeline section */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        {/* Caption text removed */}
                       </div>
                     </div>
                   </motion.div>
@@ -843,9 +843,8 @@ const AwardsAndPics = () => {
                     alt="Team collaboration"
                     className="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6">
-                    <h4 className="text-white font-bold text-2xl">Innovation in Action</h4>
-                    <p className="text-white/90">Collaborative design and implementation session</p>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    {/* Text captions removed */}
                   </div>
                 </motion.div>
               </div>
@@ -865,8 +864,8 @@ const AwardsAndPics = () => {
                     alt="Project development"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-                    <h4 className="text-white font-medium">Project Development</h4>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    {/* Caption removed */}
                   </div>
                 </motion.div>
               </div>
@@ -885,8 +884,8 @@ const AwardsAndPics = () => {
                     alt="Technology demonstration"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-                    <h4 className="text-white font-medium">Tech Showcase</h4>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    {/* Caption removed */}
                   </div>
                 </motion.div>
               </div>
@@ -905,8 +904,8 @@ const AwardsAndPics = () => {
                     alt="Team collaboration"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-                    <h4 className="text-white font-medium">Team Milestone</h4>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    {/* Caption removed */}
                   </div>
                 </motion.div>
               </div>
@@ -926,8 +925,8 @@ const AwardsAndPics = () => {
                     alt="Conference presentation"
                     className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-                    <h4 className="text-white font-medium">Conference Keynote</h4>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    {/* Caption removed */}
                   </div>
                 </motion.div>
               </div>
@@ -946,8 +945,8 @@ const AwardsAndPics = () => {
                     alt="Technical discussion"
                     className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-                    <h4 className="text-white font-medium">Technical Planning</h4>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    {/* Caption removed */}
                   </div>
                 </motion.div>
               </div>
@@ -967,8 +966,8 @@ const AwardsAndPics = () => {
                     alt="Stakeholder engagement"
                     className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-                    <h4 className="text-white font-medium">Stakeholder Presentation</h4>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    {/* Caption removed */}
                   </div>
                 </motion.div>
               </div>
@@ -987,8 +986,8 @@ const AwardsAndPics = () => {
                     alt="Problem-solving session"
                     className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-                    <h4 className="text-white font-medium">Problem-Solving Workshop</h4>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    {/* Caption removed */}
                   </div>
                 </motion.div>
               </div>
