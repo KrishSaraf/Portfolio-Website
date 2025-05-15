@@ -101,13 +101,13 @@ const Home = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
-                    className="flex items-center justify-center w-full h-24 md:h-28"
+                    className="flex items-center justify-center w-full aspect-[3/2]"
                   >
-                    <div className="flex items-center justify-center px-2">
+                    <div className="w-full h-full flex items-center justify-center px-2">
                       <img 
                         src={logo.src} 
                         alt={logo.alt} 
-                        className="h-16 md:h-20 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity duration-300"
+                        className={`${index >= 4 ? 'scale-125 max-w-[80%] md:scale-110 md:max-w-[90%]' : 'max-w-full'} max-h-full object-contain opacity-90 hover:opacity-100 transition-opacity duration-300`}
                       />
                     </div>
                   </motion.div>
