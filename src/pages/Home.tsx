@@ -23,12 +23,12 @@ const Home = () => {
 
       <div className="w-full max-w-[90rem] mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-center">
-          {/* Profile Image Container with fluid dimensions */}
+          {/* Profile Image Container - Always centered */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="relative flex justify-center lg:justify-start order-1"
+            className="relative flex justify-center order-1 mx-auto"
           >
             <div className="w-[min(70vw,22rem)] aspect-square lg:w-[min(35vw,26rem)] lg:aspect-square rounded-full overflow-hidden border-[min(0.4vw,0.2rem)] border-darkPink shadow-xl">
               <img
@@ -44,7 +44,7 @@ const Home = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-center lg:text-center order-2 flex flex-col items-center lg:items-center"
+            className="text-center order-2 flex flex-col items-center"
           >
             <h1 className="text-[clamp(1.75rem,4.5vw,3rem)] font-extrabold text-darkPink mb-3 leading-tight text-center">
               Hi, I'm <strong>Krish Saraf</strong>
@@ -82,7 +82,7 @@ const Home = () => {
               </Link>
             </div>
             
-            {/* Company Logos Section with fluid layout */}
+            {/* Company Logos Section with consistent sizing */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -93,21 +93,23 @@ const Home = () => {
                 Companies I have worked with
               </h3>
               
-              {/* Responsive logo grid with smaller gaps */}
-              <div className="grid grid-cols-3 md:grid-cols-4 gap-x-4 gap-y-5 items-center justify-items-center">
+              {/* Uniform logo container grid */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 items-center justify-items-center">
                 {companyLogos.map((logo, index) => (
                   <motion.div
                     key={logo.alt}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
-                    className="flex items-center justify-center h-12 lg:h-14"
+                    className="flex items-center justify-center w-full aspect-[3/2]"
                   >
-                    <img 
-                      src={logo.src} 
-                      alt={logo.alt} 
-                      className="h-full w-auto max-w-full object-contain opacity-90 hover:opacity-100 transition-opacity duration-300"
-                    />
+                    <div className="w-full h-full flex items-center justify-center px-2">
+                      <img 
+                        src={logo.src} 
+                        alt={logo.alt} 
+                        className="max-w-full max-h-full object-contain opacity-90 hover:opacity-100 transition-opacity duration-300"
+                      />
+                    </div>
                   </motion.div>
                 ))}
               </div>
