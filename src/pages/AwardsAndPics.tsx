@@ -44,26 +44,7 @@ const AwardsAndPics = () => {
       aspectRatio: 25/9,
       highlight: false,
       objectPosition: "center 25%",
-      maxHeight: 750
     },
-    // {
-    //   id: 'presentation',
-    //   src: "/gallery/timeline/m.jpeg",
-    //   alt: "Innovation Presentation",
-    //   description: "Presenting research findings at the tech conference",
-    //   aspectRatio: 5/4,
-    //   highlight: true,
-    //   objectPosition: "center 40%" 
-    // },
-    // {
-    //   id: 'research',
-    //   src: "/gallery/timeline/d.jpeg",
-    //   alt: "Research Meeting",
-    //   description: "Research planning at university lab",
-    //   aspectRatio: 3/4,
-    //   highlight: false,
-    //   objectPosition: "center 25%"
-    // },
     
     // Group landscape orientation images
     {
@@ -74,7 +55,6 @@ const AwardsAndPics = () => {
       aspectRatio: 16/9,
       highlight: false,
       objectPosition: "center 30%",
-      maxHeight: 550
     },
     {
       id: 'workshop2',
@@ -84,7 +64,6 @@ const AwardsAndPics = () => {
       aspectRatio: 16/9,
       highlight: false,
       objectPosition: "center 30%",
-      maxHeight: 550
     },
     {
       id: 'mountain',
@@ -94,7 +73,6 @@ const AwardsAndPics = () => {
       aspectRatio: 4/3,
       highlight: false,
       objectPosition: "center 30%",
-      maxHeight: 550
     },
     {
       id: 'outdoor',
@@ -104,7 +82,6 @@ const AwardsAndPics = () => {
       aspectRatio: 4/3,
       highlight: false,
       objectPosition: "center 30%",
-      maxHeight: 550
     },
     {
       id: 'discussion',
@@ -114,7 +91,6 @@ const AwardsAndPics = () => {
       aspectRatio: 4/3,
       highlight: false,
       objectPosition: "center 15%",
-      maxHeight: 550
     },
     {
       id: 'project',
@@ -124,7 +100,6 @@ const AwardsAndPics = () => {
       aspectRatio: 4/3,
       highlight: false,
       objectPosition: "center 30%",
-      maxHeight: 550
     },
     
     // Group portrait and irregular orientation images
@@ -136,7 +111,6 @@ const AwardsAndPics = () => {
       aspectRatio: 3/4,
       highlight: false,
       objectPosition: "center 20%",
-      maxHeight: 550
     },
     {
       id: 'workshop',
@@ -146,7 +120,6 @@ const AwardsAndPics = () => {
       aspectRatio: 4/3,
       highlight: false,
       objectPosition: "center 35%",
-      maxHeight: 550
     },
     {
       id: 'innovation',
@@ -156,7 +129,6 @@ const AwardsAndPics = () => {
       aspectRatio: 7/5,
       highlight: false,
       objectPosition: "center 40%",
-      maxHeight: 550
     },
     {
       id: 'technology',
@@ -166,7 +138,6 @@ const AwardsAndPics = () => {
       aspectRatio: 1/2,
       highlight: false,
       objectPosition: "center 10%",
-      maxHeight: 150
     },
     {
       id: 'stakeholders',
@@ -175,8 +146,6 @@ const AwardsAndPics = () => {
       description: "Engaging with project stakeholders",
       aspectRatio: 2/3,
       highlight: false,
-      maxHeight: 550,
-      // The objectPosition property is set to "center 30%", which means the image will be positioned such that the center of the image is aligned horizontally, and vertically it is positioned at 30% from the top. This helps in focusing on a specific part of the image when displayed.
     }
   ];
 
@@ -332,81 +301,81 @@ const AwardsAndPics = () => {
     return (
       <AnimatePresence>
         {media && (
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 backdrop-blur-sm"
-        onClick={onClose}
-      >
-        <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          exit={{ scale: 0.9, opacity: 0 }}
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-[max(2vw,1rem)] backdrop-blur-sm"
+            onClick={onClose}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
-          className="relative max-w-7xl max-h-[90vh] overflow-hidden rounded-xl"
-          onClick={(e) => e.stopPropagation()}
-        >
+              className="relative w-[min(95vw,1400px)] h-auto max-h-[90vh] overflow-hidden rounded-xl"
+              onClick={(e) => e.stopPropagation()}
+            >
               {media.type === 'image' ? (
-          <img 
+                <img 
                   src={media.src} 
                   alt="Gallery image" 
-            className="max-h-[90vh] max-w-full object-contain"
-          />
+                  className="w-full h-auto max-h-[90vh] object-contain"
+                />
               ) : (
-                <div className="relative">
+                <div className="relative w-full h-auto">
                   <video 
                     src={media.src} 
                     controls 
                     autoPlay 
                     loop={media.loop}
-                    className="max-h-[90vh] max-w-full"
+                    className="w-full h-auto max-h-[90vh]"
                   />
                 </div>
               )}
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
-            onClick={onClose}
-            className="absolute top-4 right-4 bg-darkPink/80 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-darkPink transition-colors duration-300"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
+                onClick={onClose}
+                className="absolute top-[min(4vw,1rem)] right-[min(4vw,1rem)] bg-darkPink/80 text-white w-[clamp(2.5rem,5vw,3rem)] h-[clamp(2.5rem,5vw,3rem)] rounded-full flex items-center justify-center hover:bg-darkPink transition-colors duration-300"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-[clamp(1.25rem,2.5vw,1.5rem)] w-[clamp(1.25rem,2.5vw,1.5rem)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
               </motion.button>
-        </motion.div>
-      </motion.div>
+            </motion.div>
+          </motion.div>
         )}
       </AnimatePresence>
     );
   };
 
   return (
-    <section className="w-full min-h-screen pt-28 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-darkPink/5 relative">
-      {/* Blurred background shapes */}
-      <div className="absolute -top-32 -left-32 w-96 h-96 bg-darkPink/10 rounded-full filter blur-3xl z-0" />
-      <div className="absolute bottom-0 right-0 w-[500px] h-[400px] bg-darkPink/10 rounded-full filter blur-3xl z-0" />
+    <section className="w-full min-h-screen py-[max(15vh,7rem)] px-[max(4vw,1rem)] overflow-hidden bg-darkPink/5 relative">
+      {/* Blurred background shapes - using relative positioning with viewport units */}
+      <div className="absolute top-[-10vh] left-[-8vw] w-[40vw] aspect-square bg-darkPink/10 rounded-full filter blur-3xl z-0" />
+      <div className="absolute bottom-0 right-0 w-[45vw] aspect-square bg-darkPink/10 rounded-full filter blur-3xl z-0" />
       
       {/* Content container */}
-      <div className="relative z-10 max-w-7xl mx-auto">
+      <div className="relative z-10 w-[min(100%,1400px)] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-5xl font-extrabold text-darkPink mb-8 text-center tracking-tight">
+          <h2 className="text-[clamp(2.5rem,5vw,4rem)] font-extrabold text-darkPink mb-[clamp(1.5rem,4vh,3rem)] text-center tracking-tight">
             Awards & Pics
           </h2>
-          <p className="text-xl text-darkPink/70 text-center max-w-3xl mx-auto mb-12">
+          <p className="text-[clamp(1rem,2vw,1.25rem)] text-darkPink/70 text-center max-w-[min(90vw,50rem)] mx-auto mb-[clamp(2rem,6vh,3rem)]">
             Showcasing memorable moments from my professional journey and achievements
           </p>
 
-          {/* NEW: Responsive Masonry Gallery */}
-          <div className="mb-24">
+          {/* Responsive Masonry Gallery with fluid gutters */}
+          <div className="mb-[clamp(3rem,8vh,6rem)]">
             <ResponsiveMasonry
-              columnsCountBreakPoints={{ 350: 1, 750: 2, 1024: 3, 1280: 4 }}
+              columnsCountBreakPoints={{ 350: 1, 650: 2, 900: 3, 1200: 4 }}
             >
-              <Masonry gutter="16px">
+              <Masonry gutter="clamp(0.5rem, 1.5vw, 1rem)">
                 {featuredGallery.map((item, index) => (
                   <motion.div
                     key={item.id}
@@ -425,24 +394,21 @@ const AwardsAndPics = () => {
                     }`}
                     onClick={() => setSelectedMedia({src: item.src, type: 'image'})}
                   >
-                    <div className={`overflow-hidden ${item.highlight ? 'aspect-[4/3]' : 'aspect-auto'}`}>
+                    <div className={`overflow-hidden ${item.highlight ? 'aspect-[4/3]' : 'aspect-auto'}`}
+                         style={{ aspectRatio: item.aspectRatio }}>
                       <motion.img 
                         src={item.src}
                         alt={item.alt}
                         onLoad={handleImageLoaded}
                         className="w-full h-full object-cover"
-                        // style={{ 
-                        //   objectPosition: item.objectPosition || "center", 
-                        //   maxHeight: item.maxHeight ? `${item.maxHeight}px` : '150px',
-                        //   minHeight: '100px'
-                        // }}
+                        style={{ objectPosition: item.objectPosition || "center" }}
                         whileHover={{ scale: 1.05 }}
                         transition={{ duration: 0.5 }}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                        <div className="p-4 text-white w-full">
-                          <h4 className="font-medium">{item.alt}</h4>
-                          <p className="text-sm text-white/80">{item.description}</p>
+                        <div className="p-[clamp(0.5rem,2vw,1rem)] text-white w-full">
+                          <h4 className="font-medium text-[clamp(0.875rem,1.5vw,1rem)]">{item.alt}</h4>
+                          <p className="text-[clamp(0.75rem,1.25vw,0.875rem)] text-white/80">{item.description}</p>
                         </div>
                       </div>
                     </div>
@@ -452,35 +418,35 @@ const AwardsAndPics = () => {
             </ResponsiveMasonry>
           </div>
 
-          {/* Visual separator */}
-          <div className="w-full flex items-center justify-center mb-16 mt-4">
-            <div className="h-px w-16 bg-darkPink/20"></div>
-            <div className="mx-4 text-darkPink/40">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          {/* Visual separator with fluid dimensions */}
+          <div className="w-full flex items-center justify-center mb-[clamp(2rem,5vh,4rem)] mt-[clamp(1rem,2vh,2rem)]">
+            <div className="h-px w-[clamp(2rem,5vw,4rem)] bg-darkPink/20"></div>
+            <div className="mx-[clamp(0.5rem,1.5vw,1rem)] text-darkPink/40">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-[clamp(1rem,1.5vw,1.5rem)] w-[clamp(1rem,1.5vw,1.5rem)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
               </svg>
             </div>
-            <div className="h-px w-16 bg-darkPink/20"></div>
+            <div className="h-px w-[clamp(2rem,5vw,4rem)] bg-darkPink/20"></div>
           </div>
 
-          {/* Event Sections - Always displayed */}
-          <div className="space-y-24 mb-32">
-            {/* Surgical Gauze Detection Section - Always displayed */}
-            <div id="gauze-section" className="border-2 border-darkPink/20 p-8 rounded-2xl bg-white/50 backdrop-blur-sm">
+          {/* Event Sections with fluid spacing */}
+          <div className="space-y-[clamp(3rem,8vh,6rem)] mb-[clamp(4rem,10vh,8rem)]">
+            {/* Surgical Gauze Detection Section */}
+            <div id="gauze-section" className="border-2 border-darkPink/20 p-[clamp(1rem,3vw,2rem)] rounded-2xl bg-white/50 backdrop-blur-sm">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7 }}
               >
-                <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
+                <h3 className="text-[clamp(1.5rem,3vw,2.25rem)] font-bold text-darkPink mb-[clamp(0.75rem,2vh,1rem)] text-center">
                   Surgical Gauze Detection using Computer Vision
                 </h3>
-                <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
+                <p className="text-[clamp(0.875rem,1.75vw,1rem)] text-darkPink/70 text-center max-w-[min(90vw,50rem)] mx-auto mb-[clamp(1.5rem,4vh,2.5rem)]">
                   Developed and deployed a real-time gauze detection system with SGH using YOLOv8, achieving 98% detection accuracy and doubling throughput to 34 FPS.
                 </p>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-[clamp(0.75rem,2vw,1.5rem)]">
                   {gauzeMedia.map((item, index) => (
                     <motion.div
                       key={`gauze-${index}`}
@@ -496,22 +462,13 @@ const AwardsAndPics = () => {
                           <img 
                             src={item.src} 
                             alt={item.caption} 
-                            className={`w-full transition-transform duration-700 group-hover:scale-105 ${
-                              item.src.includes('krish-hospital') 
-                                ? "h-auto object-contain" 
-                                : "h-auto object-contain"
-                            }`}
-                            style={{
-                              ...(item.src.includes('krish-hospital') ? { maxHeight: '400px' } : {}),
-                              ...(item.src.includes('gauze.jpeg') ? { maxHeight: '550px' } : {}),
-                              ...(item.src.includes('o.jpeg') ? { maxHeight: '550px' } : {})
-                            }}
+                            className="w-full h-auto object-contain min-h-[200px] max-h-[min(550px,50vh)] transition-transform duration-700 group-hover:scale-105"
                           />
                         ) : (
                           <div className="relative">
                             <video 
                               src={item.src}
-                              className="w-full h-full object-contain"
+                              className="w-full h-auto object-contain min-h-[200px] max-h-[min(550px,50vh)]"
                               autoPlay
                               muted
                               loop
@@ -526,22 +483,22 @@ const AwardsAndPics = () => {
               </motion.div>
             </div>
 
-            {/* Synapse Hackathon Section - Always displayed */}
-            <div id="synapse-section" className="border-2 border-darkPink/20 p-8 rounded-2xl bg-white/50 backdrop-blur-sm">
+            {/* Synapse Hackathon Section */}
+            <div id="synapse-section" className="border-2 border-darkPink/20 p-[clamp(1rem,3vw,2rem)] rounded-2xl bg-white/50 backdrop-blur-sm">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7 }}
               >
-                <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
+                <h3 className="text-[clamp(1.5rem,3vw,2.25rem)] font-bold text-darkPink mb-[clamp(0.75rem,2vh,1rem)] text-center">
                   IEEE NTU & NUS Synapse Hackathon 2024
                 </h3>
-                <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
+                <p className="text-[clamp(0.875rem,1.75vw,1rem)] text-darkPink/70 text-center max-w-[min(90vw,50rem)] mx-auto mb-[clamp(1.5rem,4vh,2.5rem)]">
                   Images from our 1st Prize winning project at the Synapse Hackathon, where we built an AI-powered platform for content creation.
                 </p>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-[clamp(0.75rem,2vw,1.5rem)]">
                   {synapseImages.map((item, index) => (
                     <motion.div
                       key={`synapse-${index}`}
@@ -565,29 +522,29 @@ const AwardsAndPics = () => {
               </motion.div>
             </div>
 
-            {/* Clean Tech Challenge Section - Always displayed */}
-            <div id="cleantech-section" className="border-2 border-darkPink/20 p-8 rounded-2xl bg-white/50 backdrop-blur-sm">
+            {/* Clean Tech Challenge Section */}
+            <div id="cleantech-section" className="border-2 border-darkPink/20 p-[clamp(1rem,3vw,2rem)] rounded-2xl bg-white/50 backdrop-blur-sm">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7 }}
               >
-                <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
+                <h3 className="text-[clamp(1.5rem,3vw,2.25rem)] font-bold text-darkPink mb-[clamp(0.75rem,2vh,1rem)] text-center">
                   Clean Tech Challenge (2023-2024)
-            </h3>
-                <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
+                </h3>
+                <p className="text-[clamp(0.875rem,1.75vw,1rem)] text-darkPink/70 text-center max-w-[min(90vw,50rem)] mx-auto mb-[clamp(1.5rem,4vh,2.5rem)]">
                   Images from our 1st Prize winning projects two years in a row, featuring sustainability solutions and shipment prediction models.
                 </p>
             
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-[clamp(0.75rem,2vw,1.5rem)]">
                   {cleanTechImages.map((item, index) => (
-                <motion.div
+                    <motion.div
                       key={`cleantech-${index}`}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
                       className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer"
                       onClick={() => setSelectedMedia({src: item.image, type: 'image'})}
                     >
@@ -596,30 +553,30 @@ const AwardsAndPics = () => {
                           src={item.image} 
                           alt={item.caption} 
                           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                  </div>
+                        />
+                      </div>
                     </motion.div>
                   ))}
                 </div>
               </motion.div>
-                    </div>
+            </div>
 
-            {/* NTU IEEE Intuition Hackathon Section - Always displayed */}
-            <div id="intuition-section" className="border-2 border-darkPink/20 p-8 rounded-2xl bg-white/50 backdrop-blur-sm">
+            {/* NTU IEEE Intuition Hackathon Section */}
+            <div id="intuition-section" className="border-2 border-darkPink/20 p-[clamp(1rem,3vw,2rem)] rounded-2xl bg-white/50 backdrop-blur-sm">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7 }}
               >
-                <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
+                <h3 className="text-[clamp(1.5rem,3vw,2.25rem)] font-bold text-darkPink mb-[clamp(0.75rem,2vh,1rem)] text-center">
                   NTU IEEE Intuition Hackathon
                 </h3>
-                <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
+                <p className="text-[clamp(0.875rem,1.75vw,1rem)] text-darkPink/70 text-center max-w-[min(90vw,50rem)] mx-auto mb-[clamp(1.5rem,4vh,2.5rem)]">
                   1st Runner-Up at the NTU IEEE Intuition Hackathon, where we developed an AI system that transforms prompts into fully-functional websites.
                 </p>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-[clamp(0.75rem,2vw,1.5rem)]">
                   {intuitionImages.map((item, index) => (
                     <motion.div
                       key={`intuition-${index}`}
@@ -636,68 +593,68 @@ const AwardsAndPics = () => {
                           alt={item.caption} 
                           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         />
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
               </motion.div>
-          </div>
+            </div>
 
-            {/* Code with AI Hackathon Section - Always displayed */}
-            <div id="codewithai-section" className="border-2 border-darkPink/20 p-8 rounded-2xl bg-white/50 backdrop-blur-sm">
+            {/* Code with AI Hackathon Section */}
+            <div id="codewithai-section" className="border-2 border-darkPink/20 p-[clamp(1rem,3vw,2rem)] rounded-2xl bg-white/50 backdrop-blur-sm">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7 }}
               >
-                <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
+                <h3 className="text-[clamp(1.5rem,3vw,2.25rem)] font-bold text-darkPink mb-[clamp(0.75rem,2vh,1rem)] text-center">
                   "Code with AI" Hackathon - Get My Leadz
-            </h3>
-                <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
+                </h3>
+                <p className="text-[clamp(0.875rem,1.75vw,1rem)] text-darkPink/70 text-center max-w-[min(90vw,50rem)] mx-auto mb-[clamp(1.5rem,4vh,2.5rem)]">
                   3rd Place winning project where we built an AI-driven lead generation platform that automates prospect discovery, qualification, and scoring.
                 </p>
             
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-[clamp(0.75rem,2vw,1.5rem)]">
                   {codeWithAIImages.map((item, index) => (
-                <motion.div
+                    <motion.div
                       key={`codewithai-${index}`}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                       className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer"
                       onClick={() => setSelectedMedia({src: item.image, type: 'image'})}
                     >
                       <div className="overflow-hidden aspect-video">
-                    <img 
-                      src={item.image} 
-                      alt={item.caption} 
+                        <img 
+                          src={item.image} 
+                          alt={item.caption} 
                           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
+                        />
                       </div>
                     </motion.div>
                   ))}
                 </div>
               </motion.div>
-                    </div>
+            </div>
 
-            {/* NTU PEAK Leadership Program Section - Always displayed */}
-            <div id="peak-section" className="border-2 border-darkPink/20 p-8 rounded-2xl bg-white/50 backdrop-blur-sm">
+            {/* NTU PEAK Leadership Program Section */}
+            <div id="peak-section" className="border-2 border-darkPink/20 p-[clamp(1rem,3vw,2rem)] rounded-2xl bg-white/50 backdrop-blur-sm">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7 }}
               >
-                <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
+                <h3 className="text-[clamp(1.5rem,3vw,2.25rem)] font-bold text-darkPink mb-[clamp(0.75rem,2vh,1rem)] text-center">
                   NTU PEAK Leadership Program
                 </h3>
-                <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
+                <p className="text-[clamp(0.875rem,1.75vw,1rem)] text-darkPink/70 text-center max-w-[min(90vw,50rem)] mx-auto mb-[clamp(1.5rem,4vh,2.5rem)]">
                   1st Runners Up and Best Ideation Award for designing a future-proof MRT system blueprint for 2030 in collaboration with the Land Transport Authority.
                 </p>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-[clamp(0.75rem,2vw,1.5rem)]">
                   {peakImages.map((item, index) => (
                     <motion.div
                       key={`peak-${index}`}
@@ -714,26 +671,26 @@ const AwardsAndPics = () => {
                           alt={item.caption} 
                           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         />
-                  </div>
-                </motion.div>
-              ))}
+                      </div>
+                    </motion.div>
+                  ))}
                 </div>
               </motion.div>
             </div>
           </div>
 
-          {/* Call to action */}
+          {/* Call to action with fluid spacing and font sizing */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-center mt-16"
+            className="text-center mt-[clamp(2rem,5vh,4rem)]"
           >
-            <p className="text-lg text-darkPink/70 mb-8">More photos coming soon!</p>
-            <div className="inline-flex items-center gap-2 text-white bg-darkPink px-6 py-3 rounded-full font-medium shadow-lg hover:shadow-xl hover:bg-darkPink/90 transition-all duration-300 hover:-translate-y-1">
-              <span>Follow me for updates</span>
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <p className="text-[clamp(1rem,1.75vw,1.125rem)] text-darkPink/70 mb-[clamp(1rem,3vh,2rem)]">More photos coming soon!</p>
+            <div className="inline-flex items-center gap-[clamp(0.5rem,1vw,0.75rem)] text-white bg-darkPink px-[clamp(1rem,3vw,1.5rem)] py-[clamp(0.5rem,1.5vh,0.75rem)] rounded-full font-medium shadow-lg hover:shadow-xl hover:bg-darkPink/90 transition-all duration-300 hover:-translate-y-1">
+              <span className="text-[clamp(0.875rem,1.5vw,1rem)]">Follow me for updates</span>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-[clamp(1rem,1.5vw,1.25rem)] w-[clamp(1rem,1.5vw,1.25rem)]" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
               </svg>
             </div>
