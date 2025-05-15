@@ -196,53 +196,53 @@ const AwardsAndPics = () => {
   // Extended gallery with more images and varied aspect ratios for masonry effect
   const gallery = [
     {
-      image: "/gallery/image1.jpg",
+      image: "/gallery/basf.jpeg",
       caption: "Speaking at Tech Conference 2023",
       aspectRatio: "aspect-w-3 aspect-h-4",
     },
     {
-      image: "/gallery/image2.jpg",
+      image: "/gallery/krish-hospital.jpeg",
       caption: "Team collaboration session",
       aspectRatio: "aspect-w-1 aspect-h-1",
     },
     {
-      image: "/gallery/image3.jpg",
-      caption: "Receiving Outstanding Project Award",
+      image: "/gallery/steps.png",
+      caption: "Project workflow diagram",
       aspectRatio: "aspect-w-4 aspect-h-3",
     },
     {
-      image: "/gallery/image4.jpg",
-      caption: "Data Science workshop",
+      image: "/gallery/gauze.jpeg",
+      caption: "Surgical Gauze Detection system",
       aspectRatio: "aspect-w-1 aspect-h-1",
     },
     {
-      image: "/gallery/image1.jpg", // Placeholder - replace with actual image
-      caption: "Company retreat 2023",
+      image: "/gallery/t1.jpeg",
+      caption: "Synapse Hackathon presentation",
       aspectRatio: "aspect-w-3 aspect-h-2",
     },
     {
-      image: "/gallery/image2.jpg", // Placeholder - replace with actual image
+      image: "/gallery/l1.jpeg",
       caption: "Presenting at industry panel",
       aspectRatio: "aspect-w-1 aspect-h-1",
     },
     {
-      image: "/gallery/image3.jpg", // Placeholder - replace with actual image
-      caption: "Networking event",
+      image: "/gallery/p1.jpeg",
+      caption: "PEAK Leadership Program presentation",
       aspectRatio: "aspect-w-4 aspect-h-5",
     },
     {
-      image: "/gallery/image4.jpg", // Placeholder - replace with actual image
-      caption: "Project demonstration",
+      image: "/gallery/c1.jpeg",
+      caption: "CleanTech Challenge presentation",
       aspectRatio: "aspect-w-16 aspect-h-9",
     },
     {
-      image: "/gallery/image1.jpg", // Placeholder - replace with actual image
-      caption: "Team building activity",
+      image: "/gallery/1.jpeg",
+      caption: "IEEE Intuition Hackathon",
       aspectRatio: "aspect-w-1 aspect-h-1",
     },
     {
-      image: "/gallery/image2.jpg", // Placeholder - replace with actual image
-      caption: "Office celebration",
+      image: "/gallery/c2.jpeg",
+      caption: "Team celebrations",
       aspectRatio: "aspect-w-3 aspect-h-2",
     },
   ];
@@ -250,9 +250,9 @@ const AwardsAndPics = () => {
   // Videos for the gallery
   const videos = [
     {
-      src: "/gallery/videos/ae458008-e3a9-4c1f-aab7-4834da652a15.mp4",
-      caption: "Project demonstration video",
-      thumbnail: "/gallery/videos/ae458008-e3a9-4c1f-aab7-4834da652a15-thumb.jpg", // Will use the video itself as thumbnail if missing
+      src: "/gallery/videos/video-counting.mp4",
+      caption: "Surgical gauze detection and counting system demonstration",
+      // No thumbnail image, will use the video itself
     }
   ];
 
@@ -665,21 +665,12 @@ const AwardsAndPics = () => {
                   onClick={() => setSelectedMedia({src: item.src, type: 'video'})}
                 >
                   <div className="overflow-hidden aspect-video relative">
-                    {/* Use video itself as poster if no thumbnail */}
-                    {item.thumbnail ? (
-                      <img 
-                        src={item.thumbnail} 
-                        alt={item.caption} 
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        loading="lazy"
-                      />
-                    ) : (
-                      <video 
-                        src={item.src}
-                        className="w-full h-full object-cover"
-                        preload="metadata"
-                      />
-                    )}
+                    {/* Since we don't have thumbnails, always show the video element */}
+                    <video 
+                      src={item.src}
+                      className="w-full h-full object-cover"
+                      preload="metadata"
+                    />
                     
                     {/* Play button overlay */}
                     <div className="absolute inset-0 flex items-center justify-center">
