@@ -458,10 +458,10 @@ const AwardsAndPics = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                   <div className="rounded-xl overflow-hidden shadow-md cursor-pointer">
                     <img 
-                      src="/gallery/india book of records.png" 
+                      src="/gallery/india-book-of-records.png" 
                       alt="India Book of Records Achievement" 
                       className="w-full h-auto object-cover"
-                      onClick={() => setSelectedMedia({src: "/gallery/india book of records.png", type: 'image'})}
+                      onClick={() => setSelectedMedia({src: "/gallery/india-book-of-records.png", type: 'image'})}
                     />
                   </div>
                   
