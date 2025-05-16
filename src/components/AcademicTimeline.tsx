@@ -62,25 +62,18 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
       .domain([0, academicData.length - 1])
       .range([0, width - margin.left - margin.right]);
     
-    // Generate points for the wavy path
-    const lineGenerator = d3.line<[number, number]>()
-      .x(d => d[0])
-      .y(d => d[1])
-      .curve(d3.curveBasis);
+    // Generate points for the straight line (no wave)
+    const lineGenerator = d3.line<[number, number]>();
 
-    // Create wave points with a slight randomness
-    const pointsCount = 100;
-    const wavePoints: [number, number][] = Array.from({ length: pointsCount }, (_, i) => {
-      const x = (width - margin.left - margin.right) * (i / (pointsCount - 1));
-      // Create a smooth sine wave with randomness
-      const baseY = Math.sin(i / (pointsCount / (academicData.length * 0.8))) * 30;
-      const randomOffset = Math.random() * 5 - 2.5; // Small random offset
-      return [x, 50 + baseY + randomOffset];
-    });
+    // Create straight line points
+    const linePoints: [number, number][] = [
+      [0, 50],
+      [width - margin.left - margin.right, 50]
+    ];
 
     // Create the path
     g.append('path')
-      .datum(wavePoints)
+      .datum(linePoints)
       .attr('d', lineGenerator)
       .attr('fill', 'none')
       .attr('stroke', '#e91e63') // Pink color matching site theme
@@ -92,38 +85,6 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
       .transition()
       .duration(1000)
       .style('opacity', 1);
-    
-    // Find the y-coordinate on the path for a given x position
-    const findYOnPath = (pathNode: SVGPathElement, xPosition: number): number => {
-      try {
-        const pathLength = pathNode.getTotalLength();
-        let start = 0;
-        let end = pathLength;
-        let target = (start + end) / 2;
-        
-        // Binary search to find point on path
-        while (target >= start && target <= end) {
-          const pos = pathNode.getPointAtLength(target);
-          if (Math.abs(pos.x - xPosition) < 0.1) {
-            return pos.y;
-          } else if (pos.x > xPosition) {
-            end = target;
-          } else {
-            start = target;
-          }
-          target = (start + end) / 2;
-        }
-        
-        // Return fallback if search fails
-        return 50;
-      } catch (e) {
-        console.error('Error finding point on path:', e);
-        return 50;
-      }
-    };
-
-    // Get the path node
-    const pathNode = g.select('path').node() as SVGPathElement;
       
     // Create marker groups
     const markers = g.selectAll('.marker')
@@ -133,8 +94,8 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
       .attr('class', 'marker')
       .attr('transform', (d, i) => {
         const x = xScale(i);
-        const y = findYOnPath(pathNode, x);
-        return `translate(${x}, ${y})`;
+        // Using fixed y position for straight line
+        return `translate(${x}, 50)`;
       })
       .attr('aria-label', d => `${d.class}: ${d.details}`)
       .style('cursor', 'pointer');
@@ -165,12 +126,12 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
       .duration(500)
       .attr('r', 10);
 
-    // Add class labels
+    // Add class labels with normal weight
     markers.append('text')
       .attr('dy', -20)
       .attr('text-anchor', 'middle')
       .attr('font-size', '14px')
-      .attr('font-weight', 'bold')
+      .attr('font-weight', 'normal') // Changed to normal weight
       .attr('fill', '#333')
       .style('text-shadow', '0 1px 1px rgba(255,255,255,0.8)')
       .style('opacity', 0)
@@ -180,15 +141,44 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
       .duration(500)
       .style('opacity', 1);
 
-    // Add achievement text
+    // Add achievement text with bold weight
     markers.append('text')
       .attr('dy', 30)
       .attr('text-anchor', 'middle')
       .attr('font-size', '12px')
+      .attr('font-weight', 'bold') // Changed to bold
       .attr('fill', '#555')
       .style('text-shadow', '0 1px 1px rgba(255,255,255,0.8)')
       .style('opacity', 0)
-      .text(d => d.achievement)
+      // Handle long text by limiting width and adding ellipsis for very long text
+      .each(function(d) {
+        const text = d3.select(this);
+        const words = d.achievement.split(' ');
+        
+        // Single-line text for short achievements
+        if (d.achievement.length < 15) {
+          text.text(d.achievement);
+        } 
+        // Special handling for long achievements (Classes 10-12)
+        else {
+          // For Class 10, just display the score and AIR separately
+          if (d.class === "Class 10") {
+            text.text("98.2% — AIR 7");
+          } 
+          // For Class 11, keep it simple
+          else if (d.class === "Class 11") {
+            text.text("1st in Class");
+          }
+          // For Class 12, format it better
+          else if (d.class === "Class 12") {
+            text.text("1st in School & State");
+          }
+          // For others, just use the text as is
+          else {
+            text.text(d.achievement);
+          }
+        }
+      })
       .transition()
       .delay((_, i) => i * 100 + 500)
       .duration(500)
@@ -247,25 +237,21 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
       // Update scales
       xScale.range([0, newWidth - margin.left - margin.right]);
       
-      // Regenerate wave points
-      const newWavePoints: [number, number][] = Array.from({ length: pointsCount }, (_, i) => {
-        const x = (newWidth - margin.left - margin.right) * (i / (pointsCount - 1));
-        const baseY = Math.sin(i / (pointsCount / (academicData.length * 0.8))) * 30;
-        const randomOffset = Math.random() * 5 - 2.5;
-        return [x, 50 + baseY + randomOffset];
-      });
+      // Update straight line points
+      const newLinePoints: [number, number][] = [
+        [0, 50],
+        [newWidth - margin.left - margin.right, 50]
+      ];
       
       // Update path
       g.select('path')
-        .datum(newWavePoints)
+        .datum(newLinePoints)
         .attr('d', lineGenerator);
       
       // Update marker positions
-      const newPathNode = g.select('path').node() as SVGPathElement;
       markers.attr('transform', (_, i) => {
         const x = xScale(i);
-        const y = findYOnPath(newPathNode, x);
-        return `translate(${x}, ${y})`;
+        return `translate(${x}, 50)`;
       });
     };
 
