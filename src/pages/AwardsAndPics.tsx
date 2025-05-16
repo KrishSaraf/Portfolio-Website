@@ -87,56 +87,6 @@ const AwardsAndPics = () => {
     return () => {};
   }, [location]);
 
-  // New collage images grouped by aspect ratio and visual appearance
-  const featuredGallery = [
-    {
-      id: 'featured-1',
-      src: '/images/certificate.jpg',
-      alt: 'Academic certificates and medals',
-      description: 'Academic achievements and recognitions',
-      aspectRatio: 1.33,
-      highlight: true,
-      objectPosition: 'center center',
-      maxHeight: 650
-    },
-    {
-      id: 'featured-2',
-      src: '/images/medals.jpg',
-      alt: 'Competition medals collection',
-      description: 'Medals from various competitions',
-      aspectRatio: 1.5,
-      highlight: false,
-      objectPosition: 'center center',
-      maxHeight: 400
-    },
-    {
-      id: 'featured-3',
-      src: '/images/school-certificate.jpg',
-      alt: 'School achievement certificate',
-      description: 'Academic excellence certificate',
-      aspectRatio: 1.33,
-      highlight: false,
-      objectPosition: 'center center',
-      maxHeight: 550
-    },
-    {
-      id: 'featured-4',
-      src: '/images/appreciation.jpg',
-      alt: 'Community appreciation award',
-      description: 'Recognition for community service',
-      aspectRatio: 1.5,
-      highlight: false,
-      objectPosition: 'center center',
-      maxHeight: 650
-    }
-  ];
-
-  // Combine both collageGallery and featuredGallery to get total count
-  const totalImagesToLoad = featuredGallery.length;
-  
-  // Percentage of images loaded for progress indicator - using a fixed 100 value instead of state
-  const loadingProgress = 100; // Always set to 100% since we're not tracking loaded images anymore
-
   // Synapse hackathon images
   const synapseImages = [
     {
@@ -347,17 +297,6 @@ const AwardsAndPics = () => {
             <p className="text-darkPink/70 text-lg max-w-3xl mx-auto mb-6">
               A visual showcase of my achievements, collaborations, and memorable moments from various events, competitions, and projects.
             </p>
-            
-            {/* Loading progress indicator - removing since we're not tracking loaded images anymore */}
-            {/* {loadingProgress < 100 && (
-              <div className="w-full max-w-md mx-auto bg-pink-100 rounded-full h-2.5 mb-6 overflow-hidden">
-                <div 
-                  className="bg-darkPink h-2.5 rounded-full transition-all duration-300 ease-out"
-                  style={{ width: `${loadingProgress}%` }}
-                ></div>
-                <p className="text-xs text-darkPink/60 mt-1">Loading gallery: {loadingProgress}%</p>
-              </div>
-            )} */}
           </div>
 
           {/* Navigation to sections */}
