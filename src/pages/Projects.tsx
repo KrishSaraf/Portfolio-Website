@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import trendz from '../assets/Projects/Synapse.png';
 import EXE from '../assets/Projects/EXE.png';
-import gauzeImg from '../assets/Projects/gauze.png';
+import gauzeImg from '../assets/Projects/gauze.jpeg';
 import cleantech1 from '../assets/Projects/cleantech1.png';
 import cleantech2 from '../assets/Projects/cleantech2.png';
 import finagent from '../assets/Projects/finagent.png';
