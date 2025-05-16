@@ -50,11 +50,10 @@ const Home = () => {
               Hi, I'm <strong>Krish Saraf</strong>
             </h1>
             <p className="text-darkPink/70 text-[clamp(0.95rem,1.7vw,1.1rem)] mb-3 sm:mb-4 w-full max-w-[50ch] leading-relaxed">
-              Currently pursuing Economics & Data Science at NTU, I've engineered tools, deployed scalable backend systems, and built investment algorithms that outperform benchmarks.
+              Currently pursuing Economics & Data Science at NTU, in a nutshell, I'm versatile
             </p>
             <p className="text-darkPink/70 text-[clamp(0.95rem,1.7vw,1.1rem)] mb-3 sm:mb-4 w-full max-w-[50ch] leading-relaxed">
-              From winning 5 Hackathons to being a Dean's Lister- I combine deep technical skill with sharp product sense
-            </p>
+              From coming 1st to playing tennis at the Nationals - I do it all
             <p className="text-darkPink/70 text-[clamp(0.95rem,1.7vw,1.1rem)] mb-4 sm:mb-5 w-full max-w-[50ch] leading-relaxed">
               Explore my work below — I build fast, think deep, and execute smarter.
             </p>
