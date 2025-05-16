@@ -3,6 +3,38 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useLocation, Link } from 'react-router-dom';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 
+// Map section IDs to project indexes for back navigation
+const sectionToProjectMapping = {
+  'gauze-section': 0, // Surgical Gauze Detection (first project)
+  'synapse-section': 1, // IEEE NTU & NUS Synapse Hackathon
+  'cleantech-section': 2, // Clean-Tech Challenge
+  'intuition-section': 3, // NTU IEEE Intuition Hackathon
+  'codewithai-section': 4, // "Code with AI" Hackathon
+  'peak-section': 5, // NTU PEAK Leadership Program
+};
+
+// Back button component with project linking
+const BackToProjectButton = ({ sectionId }: { sectionId: string }) => {
+  // If this section has a project mapping, show back button
+  const projectIndex = sectionToProjectMapping[sectionId as keyof typeof sectionToProjectMapping];
+  
+  if (projectIndex !== undefined) {
+    return (
+      <Link 
+        to={`/projects#project-${projectIndex}`}
+        className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-darkPink hover:bg-pink-50 font-medium text-sm px-4 py-2 rounded-full shadow-sm flex items-center transition-all duration-300 hover:shadow-md"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        Back to Project
+      </Link>
+    );
+  }
+  
+  return null;
+};
+
 const AwardsAndPics = () => {
   const [selectedMedia, setSelectedMedia] = useState<{src: string, type: 'image' | 'video', loop?: boolean} | null>(null);
   const [imagesLoaded, setImagesLoaded] = useState(0);
@@ -534,7 +566,8 @@ const AwardsAndPics = () => {
           {/* Event Sections - Always displayed */}
           <div className="space-y-24 mb-32">
             {/* Surgical Gauze Detection Section - Always displayed */}
-            <div id="gauze-section" className="border-2 border-darkPink/20 p-8 rounded-2xl bg-white/50 backdrop-blur-sm">
+            <div id="gauze-section" className="border-2 border-darkPink/20 p-8 rounded-2xl bg-white/50 backdrop-blur-sm relative">
+              <BackToProjectButton sectionId="gauze-section" />
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -595,7 +628,8 @@ const AwardsAndPics = () => {
             </div>
 
             {/* Synapse Hackathon Section - Always displayed */}
-            <div id="synapse-section" className="border-2 border-darkPink/20 p-8 rounded-2xl bg-white/50 backdrop-blur-sm">
+            <div id="synapse-section" className="border-2 border-darkPink/20 p-8 rounded-2xl bg-white/50 backdrop-blur-sm relative">
+              <BackToProjectButton sectionId="synapse-section" />
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -634,7 +668,8 @@ const AwardsAndPics = () => {
             </div>
 
             {/* Clean Tech Challenge Section - Always displayed */}
-            <div id="cleantech-section" className="border-2 border-darkPink/20 p-8 rounded-2xl bg-white/50 backdrop-blur-sm">
+            <div id="cleantech-section" className="border-2 border-darkPink/20 p-8 rounded-2xl bg-white/50 backdrop-blur-sm relative">
+              <BackToProjectButton sectionId="cleantech-section" />
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -673,7 +708,8 @@ const AwardsAndPics = () => {
             </div>
 
             {/* NTU IEEE Intuition Hackathon Section - Always displayed */}
-            <div id="intuition-section" className="border-2 border-darkPink/20 p-8 rounded-2xl bg-white/50 backdrop-blur-sm">
+            <div id="intuition-section" className="border-2 border-darkPink/20 p-8 rounded-2xl bg-white/50 backdrop-blur-sm relative">
+              <BackToProjectButton sectionId="intuition-section" />
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -712,7 +748,8 @@ const AwardsAndPics = () => {
             </div>
 
             {/* Code with AI Hackathon Section - Always displayed */}
-            <div id="codewithai-section" className="border-2 border-darkPink/20 p-8 rounded-2xl bg-white/50 backdrop-blur-sm">
+            <div id="codewithai-section" className="border-2 border-darkPink/20 p-8 rounded-2xl bg-white/50 backdrop-blur-sm relative">
+              <BackToProjectButton sectionId="codewithai-section" />
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -751,7 +788,8 @@ const AwardsAndPics = () => {
             </div>
 
             {/* NTU PEAK Leadership Program Section - Always displayed */}
-            <div id="peak-section" className="border-2 border-darkPink/20 p-8 rounded-2xl bg-white/50 backdrop-blur-sm">
+            <div id="peak-section" className="border-2 border-darkPink/20 p-8 rounded-2xl bg-white/50 backdrop-blur-sm relative">
+              <BackToProjectButton sectionId="peak-section" />
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}

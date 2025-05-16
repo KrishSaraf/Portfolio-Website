@@ -481,7 +481,18 @@ const Projects = () => {
                     {projects[selected].title === "Clean-Tech Challenge" && (
                       <Link
                         to="/awards#cleantech-section"
-                        onClick={() => setSelected(null)}
+                        onClick={() => {
+                          setSelected(null);
+                          setTimeout(() => {
+                            const element = document.getElementById('cleantech-section');
+                            if (element) {
+                              const isMobile = window.innerWidth < 768;
+                              const offset = isMobile ? 120 : 40;
+                              const scrollTo = element.getBoundingClientRect().top + window.pageYOffset - offset;
+                              window.scrollTo({ top: scrollTo, behavior: 'smooth' });
+                            }
+                          }, 1000);
+                        }}
                         className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-darkPink rounded-lg hover:bg-pink-600 transition-colors duration-200"
                       >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -493,7 +504,18 @@ const Projects = () => {
                     {projects[selected].title === "NTU IEEE Intuition Hackathon" && (
                       <Link
                         to="/awards#intuition-section"
-                        onClick={() => setSelected(null)}
+                        onClick={() => {
+                          setSelected(null);
+                          setTimeout(() => {
+                            const element = document.getElementById('intuition-section');
+                            if (element) {
+                              const isMobile = window.innerWidth < 768;
+                              const offset = isMobile ? 120 : 40;
+                              const scrollTo = element.getBoundingClientRect().top + window.pageYOffset - offset;
+                              window.scrollTo({ top: scrollTo, behavior: 'smooth' });
+                            }
+                          }, 1000);
+                        }}
                         className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-darkPink rounded-lg hover:bg-pink-600 transition-colors duration-200"
                       >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -505,7 +527,18 @@ const Projects = () => {
                     {projects[selected].title === '"Code with AI" Hackathon - Get My Leadz' && (
                       <Link
                         to="/awards#codewithai-section"
-                        onClick={() => setSelected(null)}
+                        onClick={() => {
+                          setSelected(null);
+                          setTimeout(() => {
+                            const element = document.getElementById('codewithai-section');
+                            if (element) {
+                              const isMobile = window.innerWidth < 768;
+                              const offset = isMobile ? 120 : 40;
+                              const scrollTo = element.getBoundingClientRect().top + window.pageYOffset - offset;
+                              window.scrollTo({ top: scrollTo, behavior: 'smooth' });
+                            }
+                          }, 1000);
+                        }}
                         className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-darkPink rounded-lg hover:bg-pink-600 transition-colors duration-200"
                       >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -517,7 +550,18 @@ const Projects = () => {
                     {projects[selected].title === "NTU PEAK Leadership Program" && (
                       <Link
                         to="/awards#peak-section"
-                        onClick={() => setSelected(null)}
+                        onClick={() => {
+                          setSelected(null);
+                          setTimeout(() => {
+                            const element = document.getElementById('peak-section');
+                            if (element) {
+                              const isMobile = window.innerWidth < 768;
+                              const offset = isMobile ? 120 : 40;
+                              const scrollTo = element.getBoundingClientRect().top + window.pageYOffset - offset;
+                              window.scrollTo({ top: scrollTo, behavior: 'smooth' });
+                            }
+                          }, 1000);
+                        }}
                         className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-darkPink rounded-lg hover:bg-pink-600 transition-colors duration-200"
                       >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -529,7 +573,18 @@ const Projects = () => {
                     {projects[selected].title === "Surgical Gauze Detection using Computer Vision" && (
                       <Link
                         to="/awards#gauze-section"
-                        onClick={() => setSelected(null)}
+                        onClick={() => {
+                          setSelected(null);
+                          setTimeout(() => {
+                            const element = document.getElementById('gauze-section');
+                            if (element) {
+                              const isMobile = window.innerWidth < 768;
+                              const offset = isMobile ? 120 : 40;
+                              const scrollTo = element.getBoundingClientRect().top + window.pageYOffset - offset;
+                              window.scrollTo({ top: scrollTo, behavior: 'smooth' });
+                            }
+                          }, 1000);
+                        }}
                         className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-darkPink rounded-lg hover:bg-pink-600 transition-colors duration-200"
                       >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
