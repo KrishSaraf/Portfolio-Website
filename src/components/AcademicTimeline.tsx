@@ -15,7 +15,7 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
   const svgRef = useRef<SVGSVGElement>(null);
   const tooltipRef = useRef<HTMLDivElement>(null);
   
-  // Academic journey data
+  // Academic K-12 journey data
   const academicData: AchievementData[] = [
     { "class": "Class 1", "achievement": "3rd", "details": "Ranked 3rd in class" },
     { "class": "Class 2", "achievement": "1st", "details": "Ranked 1st in class" },
@@ -31,6 +31,14 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
     { "class": "Class 12", "achievement": "1st in School, 1st in State", "details": "Achieved top position in both school and state" }
   ];
 
+  // College journey data
+  const collegeData: AchievementData[] = [
+    { "class": "College Year 1", "achievement": "Dean's List", "details": "Achieved Dean's List recognition for academic excellence" },
+    { "class": "College Year 2", "achievement": "Dean's List", "details": "Maintained Dean's List standing for second consecutive year" },
+    { "class": "College Year 3", "achievement": "Dean's List", "details": "Continued academic excellence with Dean's List recognition" },
+    { "class": "College Year 4", "achievement": "Ongoing", "details": "Current academic year in progress" }
+  ];
+
   useEffect(() => {
     if (!svgRef.current) return;
 
@@ -40,7 +48,7 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
     // Define dimensions and margins
     const margin = { top: 40, right: 30, bottom: 100, left: 30 };
     const width = svgRef.current.clientWidth || 1000;
-    const height = 240;
+    const height = 500; // Increased height to accommodate both timelines
     
     // The main SVG
     const svg = d3.select(svgRef.current)
@@ -51,15 +59,37 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
     // Add a title for accessibility
     svg.append('title')
       .attr('id', 'academic-timeline-title')
-      .text('Academic Journey Timeline from Class 1 to Class 12');
+      .text('Academic Journey Timeline from Primary School through College');
     
     // Create a group for all timeline elements
     const g = svg.append('g')
       .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
-    // X scale for placing markers with better spacing
+    // Add section labels
+    g.append('text')
+      .attr('x', 0)
+      .attr('y', -15)
+      .attr('font-size', '14px')
+      .attr('font-weight', 'bold')
+      .attr('fill', '#333')
+      .text('Primary & Secondary Education');
+
+    g.append('text')
+      .attr('x', 0)
+      .attr('y', 225) // Position for the college section label
+      .attr('font-size', '14px')
+      .attr('font-weight', 'bold')
+      .attr('fill', '#333')
+      .text('College Education');
+
+    // X scale for placing K-12 markers with better spacing
     const xScale = d3.scaleLinear()
       .domain([0, academicData.length - 1])
+      .range([0, width - margin.left - margin.right]);
+    
+    // X scale for college markers
+    const collegeXScale = d3.scaleLinear()
+      .domain([0, collegeData.length - 1])
       .range([0, width - margin.left - margin.right]);
     
     // Generate points for the wavy path with more points for smoother curve
@@ -68,8 +98,8 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
       .y(d => d[1])
       .curve(d3.curveCatmullRom.alpha(0.5)); // Smoother curve type
 
-    // Create wave points with more resolution for smoothness
-    const pointsCount = 300; // Increased from 100 for smoother curve
+    // Create wave points for K-12 with more resolution for smoothness
+    const pointsCount = 300; // Increased for smoother curve
     const wavePoints: [number, number][] = Array.from({ length: pointsCount }, (_, i) => {
       const x = (width - margin.left - margin.right) * (i / (pointsCount - 1));
       // Create a smooth sine wave with subtle randomness
@@ -78,10 +108,32 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
       return [x, 50 + baseY + randomOffset];
     });
 
-    // Calculate the total length of the path for animation
+    // Create wave points for college timeline - slightly different frequency
+    const collegeWavePoints: [number, number][] = Array.from({ length: pointsCount }, (_, i) => {
+      const x = (width - margin.left - margin.right) * (i / (pointsCount - 1));
+      // Different sine wave pattern for visual distinction
+      const baseY = Math.sin(i / (pointsCount / (collegeData.length * 1.8))) * 25;
+      const randomOffset = Math.random() * 2 - 1;
+      return [x, 280 + baseY + randomOffset]; // Positioned lower on the SVG
+    });
+
+    // Calculate the total length of the paths for animation
     const pathLength = (width - margin.left - margin.right) * 1.3; // Approximation
 
-    // Create the path with drawing animation
+    // Create connector between timelines
+    const connector = g.append('path')
+      .attr('d', `M${xScale(academicData.length-1)},80 
+                 C${xScale(academicData.length-1)+40},100 
+                  ${xScale(academicData.length-1)-20},260 
+                  ${collegeXScale(0)},260`)
+      .attr('fill', 'none')
+      .attr('stroke', '#e91e63')
+      .attr('stroke-width', 2.5)
+      .attr('stroke-dasharray', '5,3')
+      .attr('stroke-linecap', 'round')
+      .style('opacity', 0);
+
+    // Create the K-12 path with drawing animation
     const path = g.append('path')
       .datum(wavePoints)
       .attr('d', lineGenerator)
@@ -93,15 +145,43 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
       .style('filter', 'drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.2))')
       .style('opacity', 1);
     
-    // Animate path drawing
+    // Create the college path with drawing animation
+    const collegePath = g.append('path')
+      .datum(collegeWavePoints)
+      .attr('d', lineGenerator)
+      .attr('fill', 'none')
+      .attr('stroke', '#e91e63')
+      .attr('stroke-width', 4)
+      .attr('stroke-linecap', 'round')
+      .attr('stroke-linejoin', 'round')
+      .style('filter', 'drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.2))')
+      .style('opacity', 0); // Start invisible
+    
+    // Animate K-12 path drawing
     path.attr('stroke-dasharray', pathLength)
       .attr('stroke-dashoffset', pathLength)
       .transition()
       .duration(2000) // 2 seconds for animation
       .ease(d3.easePolyInOut)
-      .attr('stroke-dashoffset', 0);
+      .attr('stroke-dashoffset', 0)
+      .on('end', () => {
+        // After K-12 path animation, show the connector
+        connector.transition()
+          .duration(800)
+          .style('opacity', 1)
+          .on('end', () => {
+            // After connector animation, animate the college path
+            collegePath.style('opacity', 1)
+              .attr('stroke-dasharray', pathLength)
+              .attr('stroke-dashoffset', pathLength)
+              .transition()
+              .duration(1500)
+              .ease(d3.easePolyInOut)
+              .attr('stroke-dashoffset', 0);
+          });
+      });
     
-    // Find the y-coordinate on the path for a given x position
+    // Utility function to find Y coordinate on a path
     const findYOnPath = (pathNode: SVGPathElement, xPosition: number): number => {
       try {
         const pathLength = pathNode.getTotalLength();
@@ -130,28 +210,6 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
       }
     };
 
-    // Get the path node
-    const pathNode = g.select('path').node() as SVGPathElement;
-      
-    // Create marker groups with delayed appearance for sequential reveal
-    const markers = g.selectAll('.marker')
-      .data(academicData)
-      .enter()
-      .append('g')
-      .attr('class', 'marker')
-      .attr('transform', (d, i) => {
-        const x = xScale(i);
-        const y = findYOnPath(pathNode, x);
-        return `translate(${x}, ${y})`;
-      })
-      .attr('aria-label', d => `${d.class}: ${d.details}`)
-      .style('cursor', 'pointer')
-      .style('opacity', 0) // Start invisible
-      .transition() // Fade in markers after path animation
-      .delay((_, i) => 1800 + i * 100) // Start after path animation is mostly done
-      .duration(300)
-      .style('opacity', 1);
-
     // Create tooltip with enhanced styling
     const tooltip = d3.select(tooltipRef.current)
       .style('position', 'absolute')
@@ -170,119 +228,105 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
       .style('transform', 'translateY(5px)')
       .style('color', '#333');
 
-    // Add circles to markers
-    g.selectAll('.marker').append('circle')
-      .attr('r', 10)
-      .attr('fill', 'white')
-      .attr('stroke', '#e91e63')
-      .attr('stroke-width', 2);
+    // Function to create markers and labels
+    const createMarkers = (data: AchievementData[], pathElement: SVGPathElement, xScaleFunc: d3.ScaleLinear<number, number>, delayOffset: number = 0) => {
+      const markers = g.selectAll(`.marker-${delayOffset ? 'college' : 'k12'}`)
+        .data(data)
+        .enter()
+        .append('g')
+        .attr('class', delayOffset ? 'marker-college' : 'marker-k12')
+        .attr('transform', (d, i) => {
+          const x = xScaleFunc(i);
+          const y = findYOnPath(pathElement, x);
+          return `translate(${x}, ${y})`;
+        })
+        .style('cursor', 'pointer')
+        .style('opacity', 0) // Start invisible
+        .transition() // Fade in markers after path animation
+        .delay((_, i) => delayOffset + 1800 + i * 100) // Start after path animation is mostly done
+        .duration(300)
+        .style('opacity', 1);
 
-    // Add class labels - not bold
-    g.selectAll('.marker').append('text')
-      .attr('dy', -20)
-      .attr('text-anchor', 'middle')
-      .attr('font-size', '14px')
-      .attr('font-weight', 'normal') // Explicitly normal
-      .attr('fill', '#333')
-      .style('text-shadow', '0 1px 1px rgba(255,255,255,0.8)')
-      .text(d => d.class);
+      // Add circles to markers
+      g.selectAll(delayOffset ? '.marker-college' : '.marker-k12').append('circle')
+        .attr('r', 10)
+        .attr('fill', 'white')
+        .attr('stroke', '#e91e63')
+        .attr('stroke-width', 2);
 
-    // Add achievement text - bold with special handling for long text
-    g.selectAll('.marker').append('text')
-      .attr('dy', 30)
-      .attr('text-anchor', (d: AchievementData) => {
-        // Special handling for Class 12 with long text
-        return d.class === 'Class 12' ? 'end' : 'middle';
-      })
-      .attr('dx', (d: AchievementData) => {
-        // Offset for Class 12
-        return d.class === 'Class 12' ? -10 : 0;
-      })
-      .attr('font-size', (d: AchievementData) => {
-        // Smaller font for longer achievements
-        return d.achievement.length > 10 ? '11px' : '12px';
-      })
-      .attr('font-weight', 'bold') // Make achievement text bold
-      .attr('fill', '#e91e63') // Match path color
-      .style('text-shadow', '0 1px 1px rgba(255,255,255,0.8)')
-      .text(d => d.achievement);
+      // Add class labels - not bold
+      g.selectAll(delayOffset ? '.marker-college' : '.marker-k12').append('text')
+        .attr('dy', -20)
+        .attr('text-anchor', 'middle')
+        .attr('font-size', '14px')
+        .attr('fill', '#333')
+        .style('text-shadow', '0 1px 1px rgba(255,255,255,0.8)')
+        .text(d => d.class);
 
-    // Add specific handling for very long texts
-    g.selectAll('.marker').filter((d: AchievementData) => d.class === 'Class 10' || d.class === 'Class 12')
-      .append('foreignObject')
-      .attr('width', 120)
-      .attr('height', 40)
-      .attr('x', -60)
-      .attr('y', 20)
-      .html((d: AchievementData) => `<div style="
-          font-size: 11px; 
-          font-weight: bold; 
-          color: #e91e63; 
-          text-align: center;
-          text-shadow: 0 1px 1px rgba(255,255,255,0.8);
-          width: 100%;
-          overflow: visible;
-          white-space: normal;
-        ">${d.achievement}</div>`)
-      .style('opacity', 0); // Hide initially, will show and hide foreign objects as needed
+      // Add achievement text - bold
+      g.selectAll(delayOffset ? '.marker-college' : '.marker-k12').append('text')
+        .attr('dy', 30)
+        .attr('text-anchor', 'middle')
+        .attr('font-size', '12px')
+        .attr('font-weight', 'bold')
+        .attr('fill', '#e91e63')
+        .style('text-shadow', '0 1px 1px rgba(255,255,255,0.8)')
+        .text(d => d.achievement);
 
-    // Handle hover events with enhanced interactions
-    g.selectAll('.marker')
-      .on('mouseover', function(event, d: AchievementData) {
-        // Highlight the marker
-        d3.select(this).select('circle')
-          .transition()
-          .duration(300)
-          .attr('r', 13.5) // 135% size
-          .attr('fill', '#fff0f5')
-          .style('filter', 'drop-shadow(0px 3px 5px rgba(0, 0, 0, 0.25))');
-        
-        // For Class 10 and 12, show foreign object and hide text
-        if (d.class === 'Class 10' || d.class === 'Class 12') {
-          d3.select(this).select('foreignObject').style('opacity', 1);
-          d3.select(this).select('text:nth-child(3)').style('opacity', 0);
-        }
-        
-        // Show tooltip with enhanced animation
-        tooltip
-          .html(`<strong>${d.class}</strong><br/>${d.details}`)
-          .style('visibility', 'visible')
-          .style('left', `${event.pageX + 12}px`)
-          .style('top', `${event.pageY - 25}px`)
-          .transition()
-          .duration(200)
-          .style('opacity', '1')
-          .style('transform', 'translateY(0)');
-      })
-      .on('mousemove', function(event) {
-        // Move tooltip with cursor
-        tooltip
-          .style('left', `${event.pageX + 12}px`)
-          .style('top', `${event.pageY - 25}px`);
-      })
-      .on('mouseout', function(event, d: AchievementData) {
-        // Restore marker
-        d3.select(this).select('circle')
-          .transition()
-          .duration(300)
-          .attr('r', 10)
-          .attr('fill', 'white')
-          .style('filter', 'none');
-        
-        // For Class 10 and 12, hide foreign object and show text
-        if (d.class === 'Class 10' || d.class === 'Class 12') {
-          d3.select(this).select('foreignObject').style('opacity', 0);
-          d3.select(this).select('text:nth-child(3)').style('opacity', 1);
-        }
-        
-        // Hide tooltip with animation
-        tooltip
-          .transition()
-          .duration(200)
-          .style('opacity', '0')
-          .style('transform', 'translateY(5px)')
-          .on('end', () => tooltip.style('visibility', 'hidden'));
-      });
+      // Handle hover events
+      g.selectAll(delayOffset ? '.marker-college' : '.marker-k12')
+        .on('mouseover', function(event, d) {
+          // Highlight the marker
+          d3.select(this).select('circle')
+            .transition()
+            .duration(300)
+            .attr('r', 13.5) // 135% size
+            .attr('fill', '#fff0f5')
+            .style('filter', 'drop-shadow(0px 3px 5px rgba(0, 0, 0, 0.25))');
+          
+          // Show tooltip
+          tooltip
+            .html(`<strong>${d.class}</strong><br/>${d.details}`)
+            .style('visibility', 'visible')
+            .style('left', `${event.pageX + 12}px`)
+            .style('top', `${event.pageY - 25}px`)
+            .transition()
+            .duration(200)
+            .style('opacity', '1')
+            .style('transform', 'translateY(0)');
+        })
+        .on('mousemove', function(event) {
+          // Move tooltip with cursor
+          tooltip
+            .style('left', `${event.pageX + 12}px`)
+            .style('top', `${event.pageY - 25}px`);
+        })
+        .on('mouseout', function() {
+          // Restore marker
+          d3.select(this).select('circle')
+            .transition()
+            .duration(300)
+            .attr('r', 10)
+            .attr('fill', 'white')
+            .style('filter', 'none');
+          
+          // Hide tooltip
+          tooltip
+            .transition()
+            .duration(200)
+            .style('opacity', '0')
+            .style('transform', 'translateY(5px)')
+            .on('end', () => tooltip.style('visibility', 'hidden'));
+        });
+    };
+
+    // Get path nodes
+    const pathNode = path.node() as SVGPathElement;
+    const collegePathNode = collegePath.node() as SVGPathElement;
+
+    // Create markers for both timelines
+    createMarkers(academicData, pathNode, xScale, 0);
+    createMarkers(collegeData, collegePathNode, collegeXScale, 2000); // Delay college markers
 
     // Handle resize
     const handleResize = () => {
@@ -296,27 +340,53 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
       
       // Update scales
       xScale.range([0, newWidth - margin.left - margin.right]);
+      collegeXScale.range([0, newWidth - margin.left - margin.right]);
       
-      // Regenerate wave points with increased smoothness
+      // Regenerate wave points
       const newWavePoints: [number, number][] = Array.from({ length: pointsCount }, (_, i) => {
         const x = (newWidth - margin.left - margin.right) * (i / (pointsCount - 1));
         const baseY = Math.sin(i / (pointsCount / (academicData.length * 1.0))) * 30;
         const randomOffset = Math.random() * 2 - 1;
         return [x, 50 + baseY + randomOffset];
       });
+
+      const newCollegeWavePoints: [number, number][] = Array.from({ length: pointsCount }, (_, i) => {
+        const x = (newWidth - margin.left - margin.right) * (i / (pointsCount - 1));
+        const baseY = Math.sin(i / (pointsCount / (collegeData.length * 1.8))) * 25;
+        const randomOffset = Math.random() * 2 - 1;
+        return [x, 280 + baseY + randomOffset];
+      });
       
-      // Update path
-      g.select('path')
-        .datum(newWavePoints)
+      // Update paths
+      path.datum(newWavePoints)
         .attr('d', lineGenerator)
-        .attr('stroke-dasharray', null) // Remove animation properties after resize
+        .attr('stroke-dasharray', null)
+        .attr('stroke-dashoffset', null);
+
+      collegePath.datum(newCollegeWavePoints)
+        .attr('d', lineGenerator)
+        .attr('stroke-dasharray', null)
         .attr('stroke-dashoffset', null);
       
+      // Update connector
+      connector.attr('d', `M${xScale(academicData.length-1)},80 
+                          C${xScale(academicData.length-1)+40},100 
+                           ${xScale(academicData.length-1)-20},260 
+                           ${collegeXScale(0)},260`);
+      
       // Update marker positions
-      const newPathNode = g.select('path').node() as SVGPathElement;
-      g.selectAll('.marker').attr('transform', (_, i) => {
+      const newPathNode = path.node() as SVGPathElement;
+      const newCollegePathNode = collegePath.node() as SVGPathElement;
+      
+      g.selectAll('.marker-k12').attr('transform', (_, i) => {
         const x = xScale(i);
         const y = findYOnPath(newPathNode, x);
+        return `translate(${x}, ${y})`;
+      });
+
+      g.selectAll('.marker-college').attr('transform', (_, i) => {
+        const x = collegeXScale(i);
+        const y = findYOnPath(newCollegePathNode, x);
         return `translate(${x}, ${y})`;
       });
     };
@@ -335,7 +405,7 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
       <svg 
         ref={svgRef} 
         className="w-full h-auto" 
-        style={{ minHeight: '240px' }}
+        style={{ minHeight: '500px' }} // Increased for both timelines
       />
       <div 
         ref={tooltipRef} 
