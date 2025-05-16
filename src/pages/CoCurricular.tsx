@@ -225,6 +225,88 @@ const CoCurricular = () => {
       highlight: false,
       objectPosition: "center center",
     },
+    // Additional images (image copy 20-29)
+    {
+      id: 'additional-1',
+      src: "/images/image copy 20.png", 
+      alt: "Additional image 20",
+      description: "Academic recognition",
+      aspectRatio: 4/3, // Approximate, adjust as needed
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'additional-2',
+      src: "/images/image copy 21.png", 
+      alt: "Additional image 21",
+      description: "Team celebration",
+      aspectRatio: 4/3, // Approximate, adjust as needed
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'additional-3',
+      src: "/images/image copy 22.png", 
+      alt: "Additional image 22",
+      description: "Award ceremony",
+      aspectRatio: 4/3, // Approximate, adjust as needed
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'additional-4',
+      src: "/images/image copy 23.png", 
+      alt: "Additional image 23",
+      description: "Special recognition",
+      aspectRatio: 4/3, // Approximate, adjust as needed
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'additional-5',
+      src: "/images/image copy 24.png", 
+      alt: "Additional image 24",
+      description: "Certificate of achievement",
+      aspectRatio: 4/3, // Approximate, adjust as needed
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'additional-6',
+      src: "/images/image copy 25.png", 
+      alt: "Additional image 25",
+      description: "Academic accomplishment",
+      aspectRatio: 4/3, // Approximate, adjust as needed
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'additional-7',
+      src: "/images/image copy 26.png", 
+      alt: "Additional image 26",
+      description: "Educational recognition",
+      aspectRatio: 4/3, // Approximate, adjust as needed
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'additional-8',
+      src: "/images/image copy 27.png", 
+      alt: "Additional image 27",
+      description: "School certificate",
+      aspectRatio: 4/3, // Approximate, adjust as needed
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'additional-9',
+      src: "/images/image copy 28.png", 
+      alt: "Additional image 28",
+      description: "Achievement award",
+      aspectRatio: 4/3, // Approximate, adjust as needed
+      highlight: false,
+      objectPosition: "center center",
+    },
     // WhatsApp vertical images (very tall)
     {
       id: 'whatsapp-1',
@@ -242,6 +324,43 @@ const CoCurricular = () => {
       description: "Group celebration",
       aspectRatio: 368/794,
       highlight: false,
+      objectPosition: "center center",
+    },
+    // WhatsApp images with varied aspects
+    {
+      id: 'whatsapp-3',
+      src: "/images/WhatsApp Image 2025-05-15 at 5.20.45 PM (3).jpeg", 
+      alt: "Portrait format",
+      description: "Team celebration",
+      aspectRatio: 960/1280,
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'whatsapp-4',
+      src: "/images/WhatsApp Image 2025-05-15 at 5.20.45 PM (4).jpeg", 
+      alt: "Portrait format",
+      description: "Award recognition",
+      aspectRatio: 960/1280,
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'whatsapp-5',
+      src: "/images/WhatsApp Image 2025-05-15 at 5.20.45 PM (7).jpeg", 
+      alt: "Portrait format",
+      description: "Conference participation",
+      aspectRatio: 960/1280,
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'whatsapp-6',
+      src: "/images/WhatsApp Image 2025-05-15 at 5.20.44 PM (2).jpeg", 
+      alt: "Landscape format",
+      description: "Team photo",
+      aspectRatio: 1280/960,
+      highlight: true,
       objectPosition: "center center",
     },
     {
@@ -385,7 +504,7 @@ const CoCurricular = () => {
                 transition={{ duration: 0.7 }}
               >
                 <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
-                  Photo Collage
+                  GALLERY
                 </h3>
                 <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
                   A collection of moments from various events, competitions and collaborations that have shaped my journey.
