@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import trendz from '../assets/Projects/Synapse.png';
 import EXE from '../assets/Projects/EXE.png';
-import gauzeImg from '../assets/Projects/gauze.jpeg';
+import mautImg from '../assets/Projects/maut.png';
 import cleantech1 from '../assets/Projects/cleantech1.png';
 import cleantech2 from '../assets/Projects/cleantech2.png';
 import finagent from '../assets/Projects/finagent.png';
@@ -70,7 +70,7 @@ const projects: Project[] = [
     subtitle: 'Undergraduate Research Project',
     github: 'https://github.com/KrishSaraf/AI-for-gauze-detection-in-OT',
     live: '',
-    image: gauzeImg,
+    image: mautImg,
     liveSee: 'Deployed a real-time surgical gauze detection system with 98% accuracy for SGH, doubling throughput to 34 FPS with projected savings of SGD $1M.',
     description: [
       'Developed and deployed a real-time gauze detection system with SGH using YOLOv8 (PyTorch), achieving 98% detection accuracy.',
