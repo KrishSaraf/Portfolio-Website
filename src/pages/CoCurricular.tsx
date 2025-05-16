@@ -426,15 +426,15 @@ const CoCurricular = () => {
       highlight: false,
       objectPosition: "center center",
     },
-    {
-      id: 'whatsapp-portrait-5',
-      src: "/images/WhatsApp Image 2025-05-15 at 5.20.45 PM (8).jpeg", 
-      alt: "Tall portrait format",
-      description: "Special achievement",
-      aspectRatio: 736/1280, // 0.57:1 ratio - very tall and narrow
-      highlight: false,
-      objectPosition: "center center",
-    },
+    // {
+    //   id: 'whatsapp-portrait-5',
+    //   src: "/images/WhatsApp Image 2025-05-15 at 5.20.45 PM (8).jpeg", 
+    //   alt: "Tall portrait format",
+    //   description: "Special achievement",
+    //   aspectRatio: 736/1280, // 0.57:1 ratio - very tall and narrow
+    //   highlight: false,
+    //   objectPosition: "center center",
+    // },
     {
       id: 'whatsapp-landscape-6',
       src: "/images/WhatsApp Image 2025-05-15 at 5.20.45 PM (9).jpeg", 
@@ -453,48 +453,6 @@ const CoCurricular = () => {
       highlight: false,
       objectPosition: "center center",
     },
-    
-    // Other featured images
-    {
-      id: 'featured-1',
-      src: '/images/image copy 27.png',
-      alt: 'School certificates',
-      description: 'Academic achievements and recognitions',
-      aspectRatio: 926/868, // Close to 1:1 ratio
-      highlight: true,
-      objectPosition: 'center center',
-      maxHeight: 650
-    },
-    {
-      id: 'featured-2',
-      src: '/images/image copy 28.png',
-      alt: 'Awards and certificates',
-      description: 'Educational achievements',
-      aspectRatio: 742/493, // 1.5:1 ratio
-      highlight: false,
-      objectPosition: 'center center',
-      maxHeight: 550
-    },
-    {
-      id: 'featured-3',
-      src: '/images/image copy 26.png',
-      alt: 'School achievement certificate',
-      description: 'Academic excellence certificate',
-      aspectRatio: 776/517, // 1.5:1 ratio
-      highlight: false,
-      objectPosition: 'center center',
-      maxHeight: 550
-    },
-    {
-      id: 'featured-4',
-      src: '/images/image copy 25.png',
-      alt: 'Community appreciation award',
-      description: 'Recognition for community service',
-      aspectRatio: 609/512, // 1.19:1 ratio
-      highlight: false,
-      objectPosition: 'center center',
-      maxHeight: 650
-    }
   ];
 
   // Increment loaded images counter
@@ -571,8 +529,11 @@ const CoCurricular = () => {
               Co-curricular
             </h2>
             <p className="text-darkPink/70 text-lg max-w-3xl mx-auto mb-6">
-              A visual showcase of my achievements, collaborations, and memorable moments from various events, competitions, and projects.
-            </p>
+            A visual snapshot of my journey beyond academics—12+ years of elocution, state-level tennis tournaments, kickboxing championship gold, school tennis captaincy, and a drama play close to my heart. 
+            <br></br>
+            <br></br>
+            <br></br>
+            You'll also find my scuba diving certification, a letter from the Chief Minister  and even a glimpse into a startup that didn't take off—but taught me plenty. From adventure trips to community leadership, it's all here.            </p>
             
             {/* Loading progress indicator - visible only during initial loading */}
             {imagesLoaded < collageGallery.length && (
@@ -599,7 +560,7 @@ const CoCurricular = () => {
                   GALLERY
                 </h3>
                 <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
-                  A collection of moments from various events, competitions and collaborations that have shaped my journey.
+                  {/* A collection of moments from various events, competitions and collaborations that have shaped my journey. */}
                 </p>
 
                 <ResponsiveMasonry
@@ -623,8 +584,6 @@ const CoCurricular = () => {
                         item.id.startsWith('landscape') && 
                         item.id !== 'landscape-1'
                       ),
-                      // Key featured images
-                      ...collageGallery.filter(item => item.id.startsWith('featured')),
                       // Move portrait-5 and portrait-8 to the end to fill the bottom left
                       ...collageGallery.filter(item => item.id === 'portrait-5' || item.id === 'portrait-8'),
                       // WhatsApp images at the end
