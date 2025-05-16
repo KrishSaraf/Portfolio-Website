@@ -310,42 +310,42 @@ const Projects = () => {
                       
                       {/* View Pics buttons aligned with View Details */}
                       {project.title === "IEEE NTU & NUS Synapse Hackathon 2024" && (
-                        <Link to="/awards#synapse-section" className="px-6 py-3 text-sm font-semibold text-white bg-darkPink rounded-xl hover:bg-pink-600 transition-colors duration-200 flex items-center gap-2 group-hover:shadow-md">
+                        <Link to="/awards?from=1#synapse-section" className="px-6 py-3 text-sm font-semibold text-white bg-darkPink rounded-xl hover:bg-pink-600 transition-colors duration-200 flex items-center gap-2 group-hover:shadow-md">
                           View Pics
                           <span className="transform group-hover:translate-x-1 transition-transform duration-200">→</span>
                         </Link>
                       )}
 
                       {project.title === "Clean-Tech Challenge" && (
-                        <Link to="/awards#cleantech-section" className="px-6 py-3 text-sm font-semibold text-white bg-darkPink rounded-xl hover:bg-pink-600 transition-colors duration-200 flex items-center gap-2 group-hover:shadow-md">
+                        <Link to="/awards?from=2#cleantech-section" className="px-6 py-3 text-sm font-semibold text-white bg-darkPink rounded-xl hover:bg-pink-600 transition-colors duration-200 flex items-center gap-2 group-hover:shadow-md">
                           View Pics
                           <span className="transform group-hover:translate-x-1 transition-transform duration-200">→</span>
                         </Link>
                       )}
                       
                       {project.title === "NTU IEEE Intuition Hackathon" && (
-                        <Link to="/awards#intuition-section" className="px-6 py-3 text-sm font-semibold text-white bg-darkPink rounded-xl hover:bg-pink-600 transition-colors duration-200 flex items-center gap-2 group-hover:shadow-md">
+                        <Link to="/awards?from=3#intuition-section" className="px-6 py-3 text-sm font-semibold text-white bg-darkPink rounded-xl hover:bg-pink-600 transition-colors duration-200 flex items-center gap-2 group-hover:shadow-md">
                           View Pics
                           <span className="transform group-hover:translate-x-1 transition-transform duration-200">→</span>
                         </Link>
                       )}
                       
                       {project.title === '"Code with AI" Hackathon - Get My Leadz' && (
-                        <Link to="/awards#codewithai-section" className="px-6 py-3 text-sm font-semibold text-white bg-darkPink rounded-xl hover:bg-pink-600 transition-colors duration-200 flex items-center gap-2 group-hover:shadow-md">
+                        <Link to="/awards?from=4#codewithai-section" className="px-6 py-3 text-sm font-semibold text-white bg-darkPink rounded-xl hover:bg-pink-600 transition-colors duration-200 flex items-center gap-2 group-hover:shadow-md">
                           View Pics
                           <span className="transform group-hover:translate-x-1 transition-transform duration-200">→</span>
                         </Link>
                       )}
 
                       {project.title === "NTU PEAK Leadership Program" && (
-                        <Link to="/awards#peak-section" className="px-6 py-3 text-sm font-semibold text-white bg-darkPink rounded-xl hover:bg-pink-600 transition-colors duration-200 flex items-center gap-2 group-hover:shadow-md">
+                        <Link to="/awards?from=5#peak-section" className="px-6 py-3 text-sm font-semibold text-white bg-darkPink rounded-xl hover:bg-pink-600 transition-colors duration-200 flex items-center gap-2 group-hover:shadow-md">
                           View Pics
                           <span className="transform group-hover:translate-x-1 transition-transform duration-200">→</span>
                         </Link>
                       )}
                       
                       {project.title === "Surgical Gauze Detection using Computer Vision" && (
-                        <Link to="/awards#gauze-section" className="px-6 py-3 text-sm font-semibold text-white bg-darkPink rounded-xl hover:bg-pink-600 transition-colors duration-200 flex items-center gap-2 group-hover:shadow-md">
+                        <Link to="/awards?from=0#gauze-section" className="px-6 py-3 text-sm font-semibold text-white bg-darkPink rounded-xl hover:bg-pink-600 transition-colors duration-200 flex items-center gap-2 group-hover:shadow-md">
                           View Pics
                           <span className="transform group-hover:translate-x-1 transition-transform duration-200">→</span>
                         </Link>
@@ -457,7 +457,7 @@ const Projects = () => {
                     )}
                     {projects[selected].title === "IEEE NTU & NUS Synapse Hackathon 2024" && (
                       <Link
-                        to="/awards#synapse-section"
+                        to="/awards?from=1#synapse-section"
                         onClick={() => {
                           setSelected(null);
                           setTimeout(() => {
@@ -480,7 +480,7 @@ const Projects = () => {
                     )}
                     {projects[selected].title === "Clean-Tech Challenge" && (
                       <Link
-                        to="/awards#cleantech-section"
+                        to="/awards?from=2#cleantech-section"
                         onClick={() => {
                           setSelected(null);
                           setTimeout(() => {
@@ -503,7 +503,7 @@ const Projects = () => {
                     )}
                     {projects[selected].title === "NTU IEEE Intuition Hackathon" && (
                       <Link
-                        to="/awards#intuition-section"
+                        to="/awards?from=3#intuition-section"
                         onClick={() => {
                           setSelected(null);
                           setTimeout(() => {
@@ -526,7 +526,7 @@ const Projects = () => {
                     )}
                     {projects[selected].title === '"Code with AI" Hackathon - Get My Leadz' && (
                       <Link
-                        to="/awards#codewithai-section"
+                        to="/awards?from=4#codewithai-section"
                         onClick={() => {
                           setSelected(null);
                           setTimeout(() => {
@@ -549,7 +549,7 @@ const Projects = () => {
                     )}
                     {projects[selected].title === "NTU PEAK Leadership Program" && (
                       <Link
-                        to="/awards#peak-section"
+                        to="/awards?from=5#peak-section"
                         onClick={() => {
                           setSelected(null);
                           setTimeout(() => {
@@ -572,7 +572,7 @@ const Projects = () => {
                     )}
                     {projects[selected].title === "Surgical Gauze Detection using Computer Vision" && (
                       <Link
-                        to="/awards#gauze-section"
+                        to="/awards?from=0#gauze-section"
                         onClick={() => {
                           setSelected(null);
                           setTimeout(() => {

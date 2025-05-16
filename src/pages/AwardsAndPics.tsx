@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation, Link, useSearchParams } from 'react-router-dom';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 
 // Map section IDs to project indexes for back navigation
@@ -15,14 +15,17 @@ const sectionToProjectMapping = {
 
 // Back button component with project linking
 const BackToProjectButton = ({ sectionId }: { sectionId: string }) => {
-  // If this section has a project mapping, show back button
-  const projectIndex = sectionToProjectMapping[sectionId as keyof typeof sectionToProjectMapping];
+  const [searchParams] = useSearchParams();
+  const sourceProject = searchParams.get('from');
+  
+  // If we have a source project parameter, use that, otherwise fall back to our mapping
+  const projectIndex = sourceProject || sectionToProjectMapping[sectionId as keyof typeof sectionToProjectMapping];
   
   if (projectIndex !== undefined) {
     return (
       <Link 
         to={`/projects#project-${projectIndex}`}
-        className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-darkPink hover:bg-pink-50 font-medium text-sm px-4 py-2 rounded-full shadow-sm flex items-center transition-all duration-300 hover:shadow-md"
+        className="absolute top-4 left-4 bg-darkPink backdrop-blur-sm text-white hover:bg-pink-600 font-medium text-sm px-4 py-2 rounded-full shadow-sm flex items-center transition-all duration-300 hover:shadow-md"
       >
         <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
