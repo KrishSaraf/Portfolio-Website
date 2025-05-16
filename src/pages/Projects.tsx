@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import trendz from '../assets/Projects/Synapse.png';
 import EXE from '../assets/Projects/EXE.png';
@@ -11,7 +11,60 @@ import montecarlo from '../assets/Projects/montecarlo.png';
 import ntupeak from '../assets/Projects/ntupeak.png';
 import { Link } from 'react-router-dom';
 
-const projects = [
+// Image Carousel Component for rotating between images
+type ImageCarouselProps = {
+  images: string[];
+  alt: string;
+  interval?: number;
+};
+
+const ImageCarousel: React.FC<ImageCarouselProps> = ({ images, alt, interval = 5000 }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, interval);
+    
+    return () => clearInterval(timer);
+  }, [images.length, interval]);
+  
+  return (
+    <div className="relative w-full h-full min-h-[200px]">
+      {images.map((image, index) => (
+        <AnimatePresence initial={false} mode="wait" key={`carousel-${index}`}>
+          {index === currentIndex && (
+            <motion.img
+              key={`image-${index}`}
+              src={image}
+              alt={`${alt} ${index + 1}`}
+              className="absolute inset-0 w-full h-full object-contain"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+            />
+          )}
+        </AnimatePresence>
+      ))}
+    </div>
+  );
+};
+
+// Project type definition
+type Project = {
+  title: string;
+  subtitle: string;
+  github: string;
+  live: string;
+  image?: string;
+  imageCarousel?: string[];
+  liveSee: string;
+  description: string[];
+  technologies: string[];
+};
+
+const projects: Project[] = [
   {
     title: 'Surgical Gauze Detection using Computer Vision',
     subtitle: 'Undergraduate Research Project',
@@ -45,7 +98,7 @@ const projects = [
     subtitle: '1st Prize - Two years in a row',
     github: '',
     live: '',
-    image: cleantech1,
+    imageCarousel: [cleantech1, cleantech2], // Using an array of images for carousel
     liveSee: 'Back-to-back champion project once creating a ETA prediction model for ships and the next time a sustainability platform for Singapore SMEs to get Green Credits.',
     description: [
       '2024: Designed a deep learning model for robust shipment predictions, enhancing our efficiency with a feedback loop & Adjusted Scheduler algorithm for dynamic shipment processing- achieving 91% accuracy & reduced human effort by 30%.',
@@ -169,8 +222,10 @@ const Projects = () => {
             >
               <div className="flex flex-col md:flex-row">
                 {/* Image Section */}
-                <div className="md:w-2/5 relative">
-                  {project.image ? (
+                <div className="md:w-2/5 relative min-h-[200px]">
+                  {project.imageCarousel ? (
+                    <ImageCarousel images={project.imageCarousel} alt={project.title} />
+                  ) : project.image ? (
                     <img
                       src={project.image}
                       alt={project.title}
@@ -333,7 +388,15 @@ const Projects = () => {
                 <div className="space-y-6">
                   {/* Header */}
                   <div className="flex items-start gap-6">
-                    {projects[selected].image && (
+                    {projects[selected].imageCarousel ? (
+                      <div className="w-30 h-24 rounded-xl shadow-lg overflow-hidden">
+                        <ImageCarousel 
+                          images={projects[selected].imageCarousel} 
+                          alt={projects[selected].title} 
+                          interval={3000} 
+                        />
+                      </div>
+                    ) : projects[selected].image && (
                       <img
                         src={projects[selected].image}
                         alt={projects[selected].title}
