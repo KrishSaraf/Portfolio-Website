@@ -158,6 +158,27 @@ const AwardsAndPics = () => {
       aspectRatio: 2/3,
       highlight: false,
       maxHeight: 550,
+    },
+    // Adding new timeline images
+    {
+      id: 'dance',
+      src: "/gallery/timeline/dance.jpeg",
+      alt: "Dance Performance",
+      description: "Performing at a cultural event",
+      aspectRatio: 4/3,
+      highlight: false,
+      objectPosition: "center 30%",
+      maxHeight: 550
+    },
+    {
+      id: 'deans-list',
+      src: "/gallery/timeline/deans-2023.jpeg",
+      alt: "Dean's List Award",
+      description: "Recognition for academic excellence",
+      aspectRatio: 16/9,
+      highlight: true,
+      objectPosition: "center 25%",
+      maxHeight: 600
     }
   ];
 
@@ -452,6 +473,7 @@ const AwardsAndPics = () => {
                   Did Something Crazy
                 </h3>
                 <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
+                  Official recognition from the India Book of Records for an extraordinary achievement
                 </p>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
@@ -503,6 +525,7 @@ const AwardsAndPics = () => {
                   Surgical Gauze Detection using Computer Vision
                 </h3>
                 <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
+                  Developed and deployed a real-time gauze detection system with SGH using YOLOv8, achieving 98% detection accuracy and doubling throughput to 34 FPS.
                 </p>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -563,6 +586,7 @@ const AwardsAndPics = () => {
                   IEEE NTU & NUS Synapse Hackathon 2024
                 </h3>
                 <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
+                  Images from our 1st Prize winning project at the Synapse Hackathon, where we built an AI-powered platform for content creation.
                 </p>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -601,6 +625,7 @@ const AwardsAndPics = () => {
                   Clean Tech Challenge (2023-2024)
                 </h3>
                 <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
+                  Images from our 1st Prize winning projects two years in a row, featuring sustainability solutions and shipment prediction models.
                 </p>
             
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -639,6 +664,7 @@ const AwardsAndPics = () => {
                   NTU IEEE Intuition Hackathon
                 </h3>
                 <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
+                  1st Runner-Up at the NTU IEEE Intuition Hackathon, where we developed an AI system that transforms prompts into fully-functional websites.
                 </p>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -677,6 +703,7 @@ const AwardsAndPics = () => {
                   "Code with AI" Hackathon - Get My Leadz
                 </h3>
                 <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
+                  3rd Place winning project where we built an AI-driven lead generation platform that automates prospect discovery, qualification, and scoring.
                 </p>
             
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -715,6 +742,7 @@ const AwardsAndPics = () => {
                   NTU PEAK Leadership Program
                 </h3>
                 <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
+                  1st Runners Up and Best Ideation Award for designing a future-proof MRT system blueprint for 2030 in collaboration with the Land Transport Authority.
                 </p>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
