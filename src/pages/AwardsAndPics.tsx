@@ -67,22 +67,31 @@ const AcademicTimeline = () => {
       className="w-full overflow-x-hidden mb-16"
       ref={timelineRef}
     >
-      <div className="relative w-full overflow-x-auto py-20 px-4">
+      <div className="relative w-full overflow-x-auto py-10 px-4">
         <div className="min-w-[1000px] md:min-w-[1200px] relative mx-auto">
           {/* SVG Timeline */}
           <svg 
             width="100%" 
-            height="160" 
-            viewBox="0 0 1200 160" 
+            height="240" 
+            viewBox="0 0 1200 240" 
             fill="none" 
             xmlns="http://www.w3.org/2000/svg"
             className="relative z-10"
           >
-            {/* Wavy Path */}
+            {/* Decorative background elements */}
+            <g className="decorative-elements" opacity="0.1">
+              <circle cx="200" cy="90" r="20" fill="#e60023" />
+              <circle cx="800" cy="150" r="30" fill="#e60023" />
+              <circle cx="500" cy="50" r="15" fill="#e60023" />
+              <circle cx="1100" cy="60" r="25" fill="#e60023" />
+            </g>
+            
+            {/* Wavy Path with improved curve */}
             <path 
-              d="M0,80 C50,40 100,120 200,80 C300,40 400,120 500,80 C600,40 700,120 800,80 C900,40 1000,120 1100,80 C1150,60 1200,100 1200,80" 
+              d="M50,110 C150,50 250,170 350,110 C450,50 550,170 650,110 C750,50 850,170 950,110 C1050,50 1150,170 1200,110" 
               stroke="#e60023" 
-              strokeWidth="4" 
+              strokeWidth="6" 
+              strokeLinecap="round"
               fill="none" 
               className="path-animation"
             />
@@ -90,72 +99,128 @@ const AcademicTimeline = () => {
             {/* Timeline Points */}
             {academicJourney.map((item, index) => {
               // Calculate position along the path
-              const xPos = 50 + (index * (1100 / 11));
+              const xPos = 50 + index * (1150 / 11);
+              
               // Calculate y position with a sine wave function to follow the path
-              const yPos = 80 + (Math.sin((index / 11) * Math.PI * 2) * 40);
+              // Alternating positions for better wave effect
+              const yPos = 110 + (Math.sin(Math.PI * index / 5.5)) * 60;
+              
+              // Determine if point is on the upper or lower part of the wave
+              const isTop = Math.sin(Math.PI * index / 5.5) < 0;
               
               return (
                 <g key={index}>
-                  {/* Circle Marker */}
-                  <motion.circle
-                    cx={xPos}
-                    cy={yPos}
-                    r={activePoint === index ? 12 : 10}
-                    fill={activePoint === index ? "#e60023" : "white"}
-                    stroke="#e60023"
-                    strokeWidth="3"
+                  {/* Circle Marker with nicer shadow */}
+                  <motion.g
                     whileHover={{ scale: 1.2 }}
-                    onMouseEnter={() => setActivePoint(index)}
-                    onMouseLeave={() => setActivePoint(null)}
-                    className="cursor-pointer transition-all duration-300"
-                  />
+                    transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                    onClick={() => setActivePoint(activePoint === index ? null : index)}
+                    className="cursor-pointer"
+                  >
+                    {/* Subtle Shadow/Glow */}
+                    <circle
+                      cx={xPos}
+                      cy={yPos}
+                      r={15}
+                      fill="rgba(230, 0, 35, 0.2)"
+                      opacity={activePoint === index ? 0.8 : 0}
+                      className="transition-all duration-300"
+                    />
+                    
+                    {/* Main Circle */}
+                    <circle
+                      cx={xPos}
+                      cy={yPos}
+                      r={activePoint === index ? 14 : 12}
+                      fill={activePoint === index ? "#e60023" : "white"}
+                      stroke="#e60023"
+                      strokeWidth="3"
+                      className="transition-all duration-300"
+                    />
+                    
+                    {/* Inner Circle for visual interest */}
+                    <circle
+                      cx={xPos}
+                      cy={yPos}
+                      r={activePoint === index ? 6 : 5}
+                      fill={activePoint === index ? "white" : "#e60023"}
+                      className="transition-all duration-300"
+                    />
+                  </motion.g>
                   
-                  {/* Class Label */}
+                  {/* Class Label - positioned above or below based on wave position */}
                   <motion.text
                     x={xPos}
-                    y={yPos - 25}
-                    fontSize="14"
-                    fontWeight={activePoint === index ? "bold" : "normal"}
+                    y={isTop ? yPos - 30 : yPos + 30}
+                    fontSize="15"
+                    fontWeight={activePoint === index ? "bold" : "medium"}
                     fill="#333"
                     textAnchor="middle"
+                    dominantBaseline={isTop ? "auto" : "hanging"}
                     initial={{ opacity: 0.7 }}
-                    animate={{ opacity: activePoint === index ? 1 : 0.7, y: activePoint === index ? yPos - 30 : yPos - 25 }}
-                    className="pointer-events-none"
+                    animate={{ 
+                      opacity: activePoint === index ? 1 : 0.7,
+                      y: isTop 
+                        ? (activePoint === index ? yPos - 35 : yPos - 30)
+                        : (activePoint === index ? yPos + 35 : yPos + 30)
+                    }}
+                    className="pointer-events-none font-medium"
                   >
                     {item.class}
                   </motion.text>
                   
-                  {/* Achievement Tooltip */}
+                  {/* Achievement Tooltip with improved design */}
                   <motion.g
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ 
                       opacity: activePoint === index ? 1 : 0,
                       scale: activePoint === index ? 1 : 0.8,
                     }}
-                    transition={{ duration: 0.2 }}
+                    transition={{ duration: 0.3, type: "spring", stiffness: 300, damping: 20 }}
                   >
-                    {/* Background Pill */}
-                    <rect
-                      x={xPos - 60}
-                      y={yPos + 15}
-                      width={120}
-                      height={30}
-                      rx={15}
-                      fill="#e60023"
-                      className="shadow-lg"
-                    />
-                    {/* Achievement Text */}
-                    <text
-                      x={xPos}
-                      y={yPos + 35}
-                      fontSize="12"
-                      fontWeight="medium"
-                      fill="white"
-                      textAnchor="middle"
-                      className="pointer-events-none"
-                    >
-                      {item.achievement}
-                    </text>
+                    {/* Tooltip direction depends on position in wave */}
+                    <g transform={`translate(${xPos}, ${yPos}) translate(0, ${isTop ? -65 : 45})`}>
+                      {/* Pill Background with gradient */}
+                      <linearGradient id={`gradient-${index}`} x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stopColor="#e60023" />
+                        <stop offset="100%" stopColor="#f73955" />
+                      </linearGradient>
+                      
+                      <rect
+                        x="-70"
+                        y="-15"
+                        width="140"
+                        height="30"
+                        rx="15"
+                        fill={`url(#gradient-${index})`}
+                        filter="drop-shadow(0px 2px 4px rgba(0,0,0,0.25))"
+                      />
+                      
+                      {/* Connecting line */}
+                      <line
+                        x1="0"
+                        y1={isTop ? "15" : "-15"}
+                        x2="0"
+                        y2={isTop ? "25" : "-25"}
+                        stroke="#e60023"
+                        strokeWidth="2"
+                        strokeDasharray={isTop ? "0" : "3,2"}
+                      />
+                      
+                      {/* Achievement Text */}
+                      <text
+                        x="0"
+                        y="5"
+                        fontSize="13"
+                        fontWeight="bold"
+                        fill="white"
+                        textAnchor="middle"
+                        dominantBaseline="middle"
+                        className="pointer-events-none"
+                      >
+                        {item.achievement}
+                      </text>
+                    </g>
                   </motion.g>
                 </g>
               );

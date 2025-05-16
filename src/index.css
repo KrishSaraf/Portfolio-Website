@@ -268,21 +268,64 @@ button:focus-visible {
 .path-animation {
   stroke-dasharray: 2000;
   stroke-dashoffset: 2000;
-  animation: dash 3s ease-in-out forwards;
+  animation: dash 2.5s ease-in-out forwards;
+  filter: drop-shadow(0px 1px 3px rgba(230, 0, 35, 0.3));
 }
 
 @keyframes dash {
-  to {
+  0% {
+    stroke-dashoffset: 2000;
+  }
+  60% {
+    stroke-dashoffset: 0;
+  }
+  100% {
     stroke-dashoffset: 0;
   }
 }
 
 /* Timeline hover effects */
 .timeline-point {
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .timeline-point:hover {
   transform: scale(1.2);
+}
+
+/* Pulsing animation for timeline dots */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+}
+
+.decorative-elements circle {
+  animation: pulse 8s infinite alternate;
+}
+
+.decorative-elements circle:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.decorative-elements circle:nth-child(2) {
+  animation-delay: 2s;
+}
+
+.decorative-elements circle:nth-child(3) {
+  animation-delay: 4s;
+}
+
+.decorative-elements circle:nth-child(4) {
+  animation-delay: 6s;
 }
 
