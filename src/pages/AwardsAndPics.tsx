@@ -27,10 +27,28 @@ const AwardsAndPics = () => {
         if (sectionId) {
           const section = document.getElementById(sectionId);
           if (section) {
-            section.scrollIntoView({ behavior: 'smooth' });
+            // Check if it's a mobile device (roughly)
+            const isMobile = window.innerWidth < 768;
+            
+            // Scroll with specific options
+            section.scrollIntoView({ 
+              behavior: 'smooth',
+              block: 'start' 
+            });
+            
+            // Additional adjustment for mobile header
+            if (isMobile) {
+              setTimeout(() => {
+                // Add extra offset for mobile header
+                window.scrollBy({
+                  top: -80, // Adjust this value based on your mobile header height
+                  behavior: 'smooth'
+                });
+              }, 100);
+            }
           }
         }
-      }, 500);
+      }, 800); // Increased timeout to ensure page is fully loaded
     }
   }, [location]);
 
