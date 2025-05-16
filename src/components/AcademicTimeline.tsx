@@ -97,69 +97,85 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
     const collegeBaseY = 240; // Increased separation between waves
     const collegeAmplitude = 30; // Same amplitude for visual consistency
     
-    // Create a mathematically perfect cubic Bezier wave
-    const createPerfectBezierWave = (
+    // Create a true sine wave path
+    const createSineWave = (
       width: number,
       baseY: number,
       amplitude: number,
-      markerCount: number
+      dataLength: number
     ): string => {
-      // Calculate how many wave cycles to create for smooth appearance
-      const cycleRatio = markerCount / 6; // Adjust to get proper wave frequency
-      const cycles = Math.max(2, Math.min(5, cycleRatio)); // Between 2-5 cycles
+      // Create one complete wave cycle per data set
+      const points: [number, number][] = [];
       
-      // Segment width
-      const segmentWidth = width / (cycles * 2); // Each cycle has 2 segments (up and down)
-      
-      // Create path segments
-      let pathCommands = `M0,${baseY}`; // Start at the beginning
-      
-      for (let i = 0; i < cycles * 2; i++) {
-        const xStart = i * segmentWidth;
-        const xEnd = (i + 1) * segmentWidth;
-        
-        // Calculate y positions based on whether this is an up or down segment
-        const isUpCurve = i % 2 === 0;
-        const yEnd = isUpCurve ? baseY - amplitude : baseY + amplitude;
-        const yStart = isUpCurve ? baseY + amplitude : baseY - amplitude;
-        
-        // Control points - precisely placed at 1/3 intervals for perfect curves
-        const control1X = xStart + segmentWidth / 3;
-        const control2X = xEnd - segmentWidth / 3;
-        
-        pathCommands += ` C${control1X},${yStart} ${control2X},${yEnd} ${xEnd},${baseY}`;
+      // Draw a single sine wave that spans the entire width
+      // with data points at 180° intervals (peaks and troughs)
+      for (let i = 0; i <= 100; i++) {
+        const x = (i / 100) * width;
+        // We use a simple sine function with period that ensures
+        // data points will fall at peaks and troughs
+        const angle = (i / 100) * Math.PI * dataLength;
+        const y = baseY + amplitude * Math.sin(angle);
+        points.push([x, y]);
       }
       
-      return pathCommands;
+      // Create SVG path command
+      return `M${points.map(p => `${p[0]},${p[1]}`).join(' L')}`;
+    };
+
+    // Calculate marker positions at 180° intervals (peaks and troughs)
+    const calculateMarkerPositions = (
+      dataLength: number,
+      width: number,
+      baseY: number,
+      amplitude: number
+    ): { x: number, y: number }[] => {
+      const positions: { x: number, y: number }[] = [];
+      
+      for (let i = 0; i < dataLength; i++) {
+        // Place markers at 180° intervals (π radians)
+        // This ensures markers are at peaks and troughs
+        const x = (width / (dataLength - 1)) * i;
+        const angle = i * Math.PI; // 180° intervals
+        const y = baseY + amplitude * Math.sin(angle);
+        positions.push({ x, y });
+      }
+      
+      return positions;
     };
 
     // Calculate total path lengths for animations
     const schoolPathLength = waveWidth * 1.5; // Approximation for wave length
     const collegePathLength = waveWidth * 1.5;
     
-    // Create perfect bezier waves
-    const schoolPathCommand = createPerfectBezierWave(
+    // Create sine waves
+    const schoolPathCommand = createSineWave(
       waveWidth,
       schoolBaseY,
       schoolAmplitude,
       schoolData.length
     );
     
-    const collegePathCommand = createPerfectBezierWave(
+    const collegePathCommand = createSineWave(
       waveWidth,
       collegeBaseY,
       collegeAmplitude,
       collegeData.length
     );
 
-    // Create X scales for marker placement
-    const schoolXScale = d3.scaleLinear()
-      .domain([0, schoolData.length - 1])
-      .range([0, waveWidth]);
+    // Calculate marker positions
+    const schoolMarkerPositions = calculateMarkerPositions(
+      schoolData.length,
+      waveWidth,
+      schoolBaseY,
+      schoolAmplitude
+    );
     
-    const collegeXScale = d3.scaleLinear()
-      .domain([0, collegeData.length - 1])
-      .range([0, waveWidth]);
+    const collegeMarkerPositions = calculateMarkerPositions(
+      collegeData.length,
+      waveWidth,
+      collegeBaseY,
+      collegeAmplitude
+    );
 
     // Create the school path with drawing animation
     const schoolPath = g.append('path')
@@ -199,48 +215,6 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
           .ease(d3.easePolyInOut)
           .attr('stroke-dashoffset', 0);
       });
-    
-    // Calculate Y-coordinate on a given path for a specific X position
-    const findYOnPath = (pathNode: SVGPathElement, xPosition: number): number => {
-      try {
-        const pathLength = pathNode.getTotalLength();
-        let start = 0;
-        let end = pathLength;
-        let target = (start + end) / 2;
-        
-        // Binary search for optimal precision finding the Y coordinate
-        let iterations = 0;
-        const maxIterations = 50; // Ensure we don't get stuck in an infinite loop
-        
-        while (target >= start && target <= end && iterations < maxIterations) {
-          const pos = pathNode.getPointAtLength(target);
-          
-          // Accept a very small margin of error for smoother results
-          if (Math.abs(pos.x - xPosition) < 0.1) {
-            return pos.y;
-          } else if (pos.x > xPosition) {
-            end = target;
-          } else {
-            start = target;
-          }
-          target = (start + end) / 2;
-          iterations++;
-        }
-        
-        // If we exit the loop without finding an exact match, interpolate between closest points
-        const beforePos = pathNode.getPointAtLength(start);
-        const afterPos = pathNode.getPointAtLength(end);
-        
-        // Linear interpolation between the two closest points
-        if (afterPos.x === beforePos.x) return beforePos.y; // Avoid division by zero
-        
-        const ratio = (xPosition - beforePos.x) / (afterPos.x - beforePos.x);
-        return beforePos.y + ratio * (afterPos.y - beforePos.y);
-      } catch (e) {
-        console.error('Error finding point on path:', e);
-        return 50; // Fallback
-      }
-    };
 
     // Create tooltip with enhanced styling
     const tooltip = d3.select(tooltipRef.current)
@@ -263,8 +237,7 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
     // Function to create markers and labels with proper typing
     const createMarkers = (
       data: AchievementData[], 
-      pathElement: SVGPathElement, 
-      xScaleFunc: d3.ScaleLinear<number, number>, 
+      positions: { x: number, y: number }[], 
       className: string,
       delayOffset: number = 0
     ) => {
@@ -273,10 +246,9 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
         .enter()
         .append('g')
         .attr('class', `marker-${className}`)
-        .attr('transform', (d, i) => {
-          const x = xScaleFunc(i);
-          const y = findYOnPath(pathElement, x);
-          return `translate(${x}, ${y})`;
+        .attr('transform', (_, i) => {
+          const pos = positions[i];
+          return `translate(${pos.x}, ${pos.y})`;
         })
         .style('cursor', 'pointer')
         .style('opacity', 0) // Start invisible
@@ -362,13 +334,9 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
         });
     };
 
-    // Get path nodes
-    const schoolPathNode = schoolPath.node() as SVGPathElement;
-    const collegePathNode = collegePath.node() as SVGPathElement;
-
     // Create markers for both timelines
-    createMarkers(schoolData, schoolPathNode, schoolXScale, 'school', 0);
-    createMarkers(collegeData, collegePathNode, collegeXScale, 'college', 1800); // Delayed to appear after school timeline
+    createMarkers(schoolData, schoolMarkerPositions, 'school', 0);
+    createMarkers(collegeData, collegeMarkerPositions, 'college', 1800); // Delayed to appear after school timeline
 
     // Handle resize
     const handleResize = () => {
@@ -381,19 +349,15 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
       // Update viewBox
       svg.attr('viewBox', `0 0 ${newWidth} ${height}`);
       
-      // Update scales
-      schoolXScale.range([0, newWaveWidth]);
-      collegeXScale.range([0, newWaveWidth]);
-      
-      // Recalculate perfect bezier paths
-      const newSchoolPathCommand = createPerfectBezierWave(
+      // Recalculate sine wave paths
+      const newSchoolPathCommand = createSineWave(
         newWaveWidth,
         schoolBaseY,
         schoolAmplitude,
         schoolData.length
       );
       
-      const newCollegePathCommand = createPerfectBezierWave(
+      const newCollegePathCommand = createSineWave(
         newWaveWidth,
         collegeBaseY,
         collegeAmplitude,
@@ -409,23 +373,33 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
         .attr('stroke-dasharray', null)
         .attr('stroke-dashoffset', null);
       
-      // Update marker positions, give time for the paths to update first
-      setTimeout(() => {
-        const newSchoolPathNode = schoolPath.node() as SVGPathElement;
-        const newCollegePathNode = collegePath.node() as SVGPathElement;
-        
-        g.selectAll('.marker-school').attr('transform', (_, i) => {
-          const x = schoolXScale(i);
-          const y = findYOnPath(newSchoolPathNode, x);
-          return `translate(${x}, ${y})`;
+      // Recalculate marker positions
+      const newSchoolMarkerPositions = calculateMarkerPositions(
+        schoolData.length,
+        newWaveWidth,
+        schoolBaseY,
+        schoolAmplitude
+      );
+      
+      const newCollegeMarkerPositions = calculateMarkerPositions(
+        collegeData.length,
+        newWaveWidth,
+        collegeBaseY,
+        collegeAmplitude
+      );
+      
+      // Update marker positions
+      g.selectAll('.marker-school')
+        .attr('transform', (_, i) => {
+          const pos = newSchoolMarkerPositions[i];
+          return `translate(${pos.x}, ${pos.y})`;
         });
 
-        g.selectAll('.marker-college').attr('transform', (_, i) => {
-          const x = collegeXScale(i);
-          const y = findYOnPath(newCollegePathNode, x);
-          return `translate(${x}, ${y})`;
+      g.selectAll('.marker-college')
+        .attr('transform', (_, i) => {
+          const pos = newCollegeMarkerPositions[i];
+          return `translate(${pos.x}, ${pos.y})`;
         });
-      }, 10);
     };
 
     // Add resize event listener
