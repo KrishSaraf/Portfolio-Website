@@ -53,9 +53,10 @@ const Home = () => {
               Currently pursuing Economics & Data Science at NTU, in a nutshell, I'm versatile
             </p>
             <p className="text-darkPink/70 text-[clamp(0.95rem,1.7vw,1.1rem)] mb-3 sm:mb-4 w-full max-w-[50ch] leading-relaxed">
-              From coming 1st to playing tennis at the Nationals - I do it all
+              From scoring 99% in Grade 12 and earning a 4.84/5.0 CGPA, to being a national-level tennis player, black belt in Taekwondo, certified scuba diver—and someone who can act, dance, and lead—I don't just learn fast, I deliver faster.
+            </p>
             <p className="text-darkPink/70 text-[clamp(0.95rem,1.7vw,1.1rem)] mb-4 sm:mb-5 w-full max-w-[50ch] leading-relaxed">
-              Explore my work below — I build fast, think deep, and execute smarter.
+              {/* Explore my work below — I build fast, think deep, and execute smarter. */}
             </p>
 
             {/* Button Container with fluid spacing */}
