@@ -57,318 +57,410 @@ const CoCurricular = () => {
 
   // New collage images grouped by aspect ratio and visual appearance
   const collageGallery = [
-    // Wide landscape images
+    // Very wide landscape images
     {
       id: 'wide-1',
       src: "/images/image copy 4.png", 
-      alt: "Wide landscape format",
+      alt: "Conference presentation",
       description: "Conference presentation",
-      aspectRatio: 843/226,
+      aspectRatio: 843/226, // 3.73:1 ratio - very wide
       highlight: true,
       objectPosition: "center center",
     },
-    // Portrait format images
-    {
-      id: 'portrait-1',
-      src: "/images/image copy 10.png", 
-      alt: "Portrait format",
-      description: "Award ceremony",
-      aspectRatio: 442/610,
-      highlight: false,
-      objectPosition: "center center",
-    },
-    {
-      id: 'portrait-2',
-      src: "/images/image copy 15.png", 
-      alt: "Portrait format",
-      description: "Team presentation",
-      aspectRatio: 442/559,
-      highlight: false,
-      objectPosition: "center center",
-    },
-    {
-      id: 'portrait-3',
-      src: "/images/image copy 7.png", 
-      alt: "Portrait format",
-      description: "Conference participation",
-      aspectRatio: 385/568,
-      highlight: false,
-      objectPosition: "center center",
-    },
-    {
-      id: 'portrait-4',
-      src: "/images/image copy.png", 
-      alt: "Portrait format",
-      description: "Award recognition",
-      aspectRatio: 385/594,
-      highlight: false,
-      objectPosition: "center center",
-    },
-    {
-      id: 'portrait-5',
-      src: "/images/image.png", 
-      alt: "Portrait format",
-      description: "Team photo",
-      aspectRatio: 437/600,
-      highlight: false,
-      objectPosition: "center center",
-    },
-    // Square-ish images
-    {
-      id: 'square-1',
-      src: "/images/image copy 3.png", 
-      alt: "Square format",
-      description: "Conference presentation",
-      aspectRatio: 595/596,
-      highlight: true,
-      objectPosition: "center center",
-    },
-    {
-      id: 'square-2',
-      src: "/images/image copy 5.png", 
-      alt: "Vertical rectangle",
-      description: "Team activity",
-      aspectRatio: 317/470,
-      highlight: false,
-      objectPosition: "center center",
-    },
-    // Landscape format images - large
+    
+    // Landscape images (width > height)
     {
       id: 'landscape-1',
       src: "/images/image copy 2.png", 
-      alt: "Large landscape",
+      alt: "Group photo",
       description: "Group photo",
-      aspectRatio: 1170/858,
+      aspectRatio: 1170/858, // 1.36:1 ratio
       highlight: true,
       objectPosition: "center center",
     },
-    // Landscape format images - medium
     {
       id: 'landscape-2',
       src: "/images/image copy 11.png", 
-      alt: "Landscape format",
+      alt: "Team presentation",
       description: "Team presentation",
-      aspectRatio: 625/385,
+      aspectRatio: 625/385, // 1.62:1 ratio
       highlight: false,
       objectPosition: "center center",
     },
     {
       id: 'landscape-3',
       src: "/images/image copy 12.png", 
-      alt: "Landscape format",
+      alt: "Award ceremony",
       description: "Award ceremony",
-      aspectRatio: 622/381,
+      aspectRatio: 622/381, // 1.63:1 ratio
       highlight: false,
       objectPosition: "center center",
     },
     {
       id: 'landscape-4',
       src: "/images/image copy 18.png", 
-      alt: "Landscape format",
+      alt: "Conference discussion",
       description: "Conference discussion",
-      aspectRatio: 624/416,
+      aspectRatio: 624/416, // 1.5:1 ratio
       highlight: false,
       objectPosition: "center center",
     },
     {
       id: 'landscape-5',
       src: "/images/image copy 19.png", 
-      alt: "Landscape format",
+      alt: "Project presentation",
       description: "Project presentation",
-      aspectRatio: 618/426,
-      highlight: false,
-      objectPosition: "center center",
-    },
-    // More balanced aspect ratios
-    {
-      id: 'balanced-1',
-      src: "/images/image copy 13.png", 
-      alt: "Balanced format",
-      description: "Team discussion",
-      aspectRatio: 450/442,
+      aspectRatio: 618/426, // 1.45:1 ratio
       highlight: false,
       objectPosition: "center center",
     },
     {
-      id: 'balanced-2',
-      src: "/images/image copy 14.png", 
-      alt: "Balanced format",
-      description: "Award ceremony",
-      aspectRatio: 566/439,
-      highlight: false,
-      objectPosition: "center center",
-    },
-    {
-      id: 'balanced-3',
-      src: "/images/image copy 16.png", 
-      alt: "Balanced format",
-      description: "Conference presentation",
-      aspectRatio: 604/440,
-      highlight: false,
-      objectPosition: "center center",
-    },
-    {
-      id: 'balanced-4',
-      src: "/images/image copy 17.png", 
-      alt: "Balanced format",
-      description: "Group discussion",
-      aspectRatio: 558/441,
-      highlight: false,
-      objectPosition: "center center",
-    },
-    {
-      id: 'balanced-5',
-      src: "/images/image copy 6.png", 
-      alt: "Balanced format",
-      description: "Award presentation",
-      aspectRatio: 559/417,
-      highlight: false,
-      objectPosition: "center center",
-    },
-    // Additional images (image copy 20-29)
-    {
-      id: 'additional-1',
+      id: 'landscape-6',
       src: "/images/image copy 20.png", 
-      alt: "Additional image 20",
+      alt: "Academic recognition",
       description: "Academic recognition",
-      aspectRatio: 4/3, // Approximate, adjust as needed
+      aspectRatio: 601/434, // 1.38:1 ratio
       highlight: false,
       objectPosition: "center center",
     },
     {
-      id: 'additional-2',
-      src: "/images/image copy 21.png", 
-      alt: "Additional image 21",
-      description: "Team celebration",
-      aspectRatio: 4/3, // Approximate, adjust as needed
-      highlight: false,
-      objectPosition: "center center",
-    },
-    {
-      id: 'additional-3',
+      id: 'landscape-7',
       src: "/images/image copy 22.png", 
-      alt: "Additional image 22",
+      alt: "Award ceremony",
       description: "Award ceremony",
-      aspectRatio: 4/3, // Approximate, adjust as needed
+      aspectRatio: 583/438, // 1.33:1 ratio
       highlight: false,
       objectPosition: "center center",
     },
     {
-      id: 'additional-4',
+      id: 'landscape-8',
       src: "/images/image copy 23.png", 
-      alt: "Additional image 23",
+      alt: "Special recognition",
       description: "Special recognition",
-      aspectRatio: 4/3, // Approximate, adjust as needed
+      aspectRatio: 493/444, // 1.11:1 ratio - nearly square but wider
       highlight: false,
       objectPosition: "center center",
     },
     {
-      id: 'additional-5',
-      src: "/images/image copy 24.png", 
-      alt: "Additional image 24",
-      description: "Certificate of achievement",
-      aspectRatio: 4/3, // Approximate, adjust as needed
-      highlight: false,
-      objectPosition: "center center",
-    },
-    {
-      id: 'additional-6',
-      src: "/images/image copy 25.png", 
-      alt: "Additional image 25",
-      description: "Academic accomplishment",
-      aspectRatio: 4/3, // Approximate, adjust as needed
-      highlight: false,
-      objectPosition: "center center",
-    },
-    {
-      id: 'additional-7',
+      id: 'landscape-9',
       src: "/images/image copy 26.png", 
-      alt: "Additional image 26",
+      alt: "Educational recognition",
       description: "Educational recognition",
-      aspectRatio: 4/3, // Approximate, adjust as needed
+      aspectRatio: 776/517, // 1.5:1 ratio
       highlight: false,
       objectPosition: "center center",
     },
     {
-      id: 'additional-8',
+      id: 'landscape-10',
       src: "/images/image copy 27.png", 
-      alt: "Additional image 27",
+      alt: "School certificate",
       description: "School certificate",
-      aspectRatio: 4/3, // Approximate, adjust as needed
-      highlight: false,
+      aspectRatio: 926/868, // 1.07:1 ratio - nearly square
+      highlight: true, // Larger, more important image
       objectPosition: "center center",
     },
     {
-      id: 'additional-9',
+      id: 'landscape-11',
       src: "/images/image copy 28.png", 
-      alt: "Additional image 28",
+      alt: "Achievement award",
       description: "Achievement award",
-      aspectRatio: 4/3, // Approximate, adjust as needed
+      aspectRatio: 742/493, // 1.5:1 ratio
       highlight: false,
       objectPosition: "center center",
     },
-    // WhatsApp vertical images (very tall)
     {
-      id: 'whatsapp-1',
+      id: 'landscape-12',
+      src: "/images/image copy 29.png", 
+      alt: "Recognition certificate",
+      description: "Recognition certificate",
+      aspectRatio: 574/402, // 1.43:1 ratio
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'landscape-13',
+      src: "/images/image copy 6.png", 
+      alt: "Award presentation",
+      description: "Award presentation",
+      aspectRatio: 467/294, // 1.59:1 ratio
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'landscape-14',
       src: "/images/image copy 8.png", 
-      alt: "WhatsApp format",
+      alt: "Special moment",
       description: "Special moment",
-      aspectRatio: 364/800,
+      aspectRatio: 495/403, // 1.23:1 ratio
       highlight: false,
       objectPosition: "center center",
     },
     {
-      id: 'whatsapp-2',
+      id: 'landscape-15',
       src: "/images/image copy 9.png", 
-      alt: "WhatsApp format",
+      alt: "Group celebration",
       description: "Group celebration",
-      aspectRatio: 368/794,
+      aspectRatio: 566/386, // 1.47:1 ratio
       highlight: false,
       objectPosition: "center center",
     },
-    // WhatsApp images with varied aspects
+    
+    // Nearly square images (width ≈ height)
     {
-      id: 'whatsapp-3',
-      src: "/images/WhatsApp Image 2025-05-15 at 5.20.45 PM (3).jpeg", 
-      alt: "Portrait format",
-      description: "Team celebration",
-      aspectRatio: 960/1280,
-      highlight: false,
-      objectPosition: "center center",
-    },
-    {
-      id: 'whatsapp-4',
-      src: "/images/WhatsApp Image 2025-05-15 at 5.20.45 PM (4).jpeg", 
-      alt: "Portrait format",
-      description: "Award recognition",
-      aspectRatio: 960/1280,
-      highlight: false,
-      objectPosition: "center center",
-    },
-    {
-      id: 'whatsapp-5',
-      src: "/images/WhatsApp Image 2025-05-15 at 5.20.45 PM (7).jpeg", 
-      alt: "Portrait format",
-      description: "Conference participation",
-      aspectRatio: 960/1280,
-      highlight: false,
-      objectPosition: "center center",
-    },
-    {
-      id: 'whatsapp-6',
-      src: "/images/WhatsApp Image 2025-05-15 at 5.20.44 PM (2).jpeg", 
-      alt: "Landscape format",
-      description: "Team photo",
-      aspectRatio: 1280/960,
+      id: 'square-1',
+      src: "/images/image copy 3.png", 
+      alt: "Conference presentation",
+      description: "Conference presentation",
+      aspectRatio: 595/596, // 1:1 ratio - almost perfectly square
       highlight: true,
       objectPosition: "center center",
     },
+    {
+      id: 'square-2',
+      src: "/images/image copy 13.png", 
+      alt: "Team discussion",
+      description: "Team discussion",
+      aspectRatio: 450/442, // 1.02:1 ratio - very close to square
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'square-3',
+      src: "/images/image copy 14.png", 
+      alt: "Award ceremony",
+      description: "Award ceremony",
+      aspectRatio: 566/439, // 1.29:1 ratio - slightly wider than tall but close to square
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'square-4',
+      src: "/images/image copy 16.png", 
+      alt: "Conference presentation",
+      description: "Conference presentation",
+      aspectRatio: 604/440, // 1.37:1 ratio
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'square-5',
+      src: "/images/image copy 17.png", 
+      alt: "Group discussion",
+      description: "Group discussion",
+      aspectRatio: 558/441, // 1.27:1 ratio
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'square-6',
+      src: "/images/image copy 24.png", 
+      alt: "Certificate of achievement",
+      description: "Certificate of achievement",
+      aspectRatio: 420/453, // 0.93:1 ratio - slightly taller than wide
+      highlight: false,
+      objectPosition: "center center",
+    },
+    
+    // Portrait images (height > width)
+    {
+      id: 'portrait-1',
+      src: "/images/image copy 10.png", 
+      alt: "Award ceremony",
+      description: "Award ceremony",
+      aspectRatio: 442/610, // 0.72:1 ratio
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'portrait-2',
+      src: "/images/image copy 15.png", 
+      alt: "Team presentation",
+      description: "Team presentation",
+      aspectRatio: 442/559, // 0.79:1 ratio
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'portrait-3',
+      src: "/images/image copy 21.png", 
+      alt: "Team celebration",
+      description: "Team celebration",
+      aspectRatio: 433/487, // 0.89:1 ratio
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'portrait-4',
+      src: "/images/image copy 25.png", 
+      alt: "Academic accomplishment",
+      description: "Academic accomplishment",
+      aspectRatio: 609/512, // 1.19:1 ratio - wider than tall but still portrait-like
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'portrait-5',
+      src: "/images/image copy 5.png", 
+      alt: "Team activity",
+      description: "Team activity",
+      aspectRatio: 317/470, // 0.67:1 ratio
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'portrait-6',
+      src: "/images/image copy 7.png", 
+      alt: "Conference participation",
+      description: "Conference participation",
+      aspectRatio: 385/568, // 0.68:1 ratio
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'portrait-7',
+      src: "/images/image copy.png", 
+      alt: "Award recognition",
+      description: "Award recognition",
+      aspectRatio: 385/594, // 0.65:1 ratio
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'portrait-8',
+      src: "/images/image.png", 
+      alt: "Team photo",
+      description: "Team photo",
+      aspectRatio: 437/600, // 0.73:1 ratio
+      highlight: false,
+      objectPosition: "center center",
+    },
+    
+    // WhatsApp images with specific dimensions
+    {
+      id: 'whatsapp-landscape-1',
+      src: "/images/WhatsApp Image 2025-05-15 at 5.20.44 PM (2).jpeg", 
+      alt: "Team photo",
+      description: "Team photo",
+      aspectRatio: 1280/960, // 1.33:1 ratio
+      highlight: true,
+      objectPosition: "center center",
+    },
+    {
+      id: 'whatsapp-landscape-2',
+      src: "/images/WhatsApp Image 2025-05-15 at 5.20.44 PM (3).jpeg", 
+      alt: "Group activity",
+      description: "Group activity",
+      aspectRatio: 1280/960, // 1.33:1 ratio
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'whatsapp-portrait-1',
+      src: "/images/WhatsApp Image 2025-05-15 at 5.20.44 PM.jpeg", 
+      alt: "Portrait format",
+      description: "Special event",
+      aspectRatio: 537/580, // 0.93:1 ratio - nearly square but taller
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'whatsapp-landscape-3',
+      src: "/images/WhatsApp Image 2025-05-15 at 5.20.45 PM (1).jpeg", 
+      alt: "Landscape format",
+      description: "Team event",
+      aspectRatio: 1280/853, // 1.5:1 ratio
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'whatsapp-landscape-4',
+      src: "/images/WhatsApp Image 2025-05-15 at 5.20.45 PM (2).jpeg", 
+      alt: "Landscape format",
+      description: "Award ceremony",
+      aspectRatio: 1280/853, // 1.5:1 ratio
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'whatsapp-portrait-2',
+      src: "/images/WhatsApp Image 2025-05-15 at 5.20.45 PM (3).jpeg", 
+      alt: "Portrait format",
+      description: "Team celebration",
+      aspectRatio: 960/1280, // 0.75:1 ratio - distinctly portrait
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'whatsapp-portrait-3',
+      src: "/images/WhatsApp Image 2025-05-15 at 5.20.45 PM (4).jpeg", 
+      alt: "Portrait format",
+      description: "Award recognition",
+      aspectRatio: 960/1280, // 0.75:1 ratio
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'whatsapp-square',
+      src: "/images/WhatsApp Image 2025-05-15 at 5.20.45 PM (5).jpeg", 
+      alt: "Square format",
+      description: "Special moment",
+      aspectRatio: 898/882, // 1.02:1 ratio - very close to square
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'whatsapp-landscape-5',
+      src: "/images/WhatsApp Image 2025-05-15 at 5.20.45 PM (6).jpeg", 
+      alt: "Landscape format",
+      description: "Team discussion",
+      aspectRatio: 828/607, // 1.36:1 ratio
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'whatsapp-portrait-4',
+      src: "/images/WhatsApp Image 2025-05-15 at 5.20.45 PM (7).jpeg", 
+      alt: "Portrait format",
+      description: "Conference participation",
+      aspectRatio: 960/1280, // 0.75:1 ratio
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'whatsapp-portrait-5',
+      src: "/images/WhatsApp Image 2025-05-15 at 5.20.45 PM (8).jpeg", 
+      alt: "Tall portrait format",
+      description: "Special achievement",
+      aspectRatio: 736/1280, // 0.57:1 ratio - very tall and narrow
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'whatsapp-landscape-6',
+      src: "/images/WhatsApp Image 2025-05-15 at 5.20.45 PM (9).jpeg", 
+      alt: "Landscape format",
+      description: "Team collaboration",
+      aspectRatio: 1280/960, // 1.33:1 ratio
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'whatsapp-landscape-7',
+      src: "/images/WhatsApp Image 2025-05-15 at 5.20.45 PM.jpeg", 
+      alt: "Landscape format",
+      description: "Group discussion",
+      aspectRatio: 1280/853, // 1.5:1 ratio
+      highlight: false,
+      objectPosition: "center center",
+    },
+    
+    // Other featured images
     {
       id: 'featured-1',
       src: '/images/certificate.jpg',
       alt: 'Academic certificates and medals',
       description: 'Academic achievements and recognitions',
-      aspectRatio: 1.33,
+      aspectRatio: 1.33, // 4:3 ratio
       highlight: true,
       objectPosition: 'center center',
       maxHeight: 650
@@ -378,7 +470,7 @@ const CoCurricular = () => {
       src: '/images/medals.jpg',
       alt: 'Competition medals collection',
       description: 'Medals from various competitions',
-      aspectRatio: 1.5,
+      aspectRatio: 1.5, // 3:2 ratio
       highlight: false,
       objectPosition: 'center center',
       maxHeight: 400
@@ -388,7 +480,7 @@ const CoCurricular = () => {
       src: '/images/school-certificate.jpg',
       alt: 'School achievement certificate',
       description: 'Academic excellence certificate',
-      aspectRatio: 1.33,
+      aspectRatio: 1.33, // 4:3 ratio
       highlight: false,
       objectPosition: 'center center',
       maxHeight: 550
@@ -398,7 +490,7 @@ const CoCurricular = () => {
       src: '/images/appreciation.jpg',
       alt: 'Community appreciation award',
       description: 'Recognition for community service',
-      aspectRatio: 1.5,
+      aspectRatio: 1.5, // 3:2 ratio
       highlight: false,
       objectPosition: 'center center',
       maxHeight: 650
