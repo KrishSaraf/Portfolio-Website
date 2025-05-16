@@ -89,6 +89,215 @@ const AwardsAndPics = () => {
     return () => {};
   }, [location]);
 
+  // New collage images grouped by aspect ratio and visual appearance
+  const collageGallery = [
+    // Wide landscape images
+    {
+      id: 'wide-1',
+      src: "/images/image copy 4.png", 
+      alt: "Wide landscape format",
+      description: "Conference presentation",
+      aspectRatio: 843/226,
+      highlight: true,
+      objectPosition: "center center",
+    },
+    // Portrait format images
+    {
+      id: 'portrait-1',
+      src: "/images/image copy 10.png", 
+      alt: "Portrait format",
+      description: "Award ceremony",
+      aspectRatio: 442/610,
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'portrait-2',
+      src: "/images/image copy 15.png", 
+      alt: "Portrait format",
+      description: "Team presentation",
+      aspectRatio: 442/559,
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'portrait-3',
+      src: "/images/image copy 7.png", 
+      alt: "Portrait format",
+      description: "Conference participation",
+      aspectRatio: 385/568,
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'portrait-4',
+      src: "/images/image copy.png", 
+      alt: "Portrait format",
+      description: "Award recognition",
+      aspectRatio: 385/594,
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'portrait-5',
+      src: "/images/image.png", 
+      alt: "Portrait format",
+      description: "Team photo",
+      aspectRatio: 437/600,
+      highlight: false,
+      objectPosition: "center center",
+    },
+    // Square-ish images
+    {
+      id: 'square-1',
+      src: "/images/image copy 3.png", 
+      alt: "Square format",
+      description: "Conference presentation",
+      aspectRatio: 595/596,
+      highlight: true,
+      objectPosition: "center center",
+    },
+    {
+      id: 'square-2',
+      src: "/images/image copy 5.png", 
+      alt: "Vertical rectangle",
+      description: "Team activity",
+      aspectRatio: 317/470,
+      highlight: false,
+      objectPosition: "center center",
+    },
+    // Landscape format images - large
+    {
+      id: 'landscape-1',
+      src: "/images/image copy 2.png", 
+      alt: "Large landscape",
+      description: "Group photo",
+      aspectRatio: 1170/858,
+      highlight: true,
+      objectPosition: "center center",
+    },
+    // Landscape format images - medium
+    {
+      id: 'landscape-2',
+      src: "/images/image copy 11.png", 
+      alt: "Landscape format",
+      description: "Team presentation",
+      aspectRatio: 625/385,
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'landscape-3',
+      src: "/images/image copy 12.png", 
+      alt: "Landscape format",
+      description: "Award ceremony",
+      aspectRatio: 622/381,
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'landscape-4',
+      src: "/images/image copy 18.png", 
+      alt: "Landscape format",
+      description: "Conference discussion",
+      aspectRatio: 624/416,
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'landscape-5',
+      src: "/images/image copy 19.png", 
+      alt: "Landscape format",
+      description: "Project presentation",
+      aspectRatio: 618/426,
+      highlight: false,
+      objectPosition: "center center",
+    },
+    // More balanced aspect ratios
+    {
+      id: 'balanced-1',
+      src: "/images/image copy 13.png", 
+      alt: "Balanced format",
+      description: "Team discussion",
+      aspectRatio: 450/442,
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'balanced-2',
+      src: "/images/image copy 14.png", 
+      alt: "Balanced format",
+      description: "Award ceremony",
+      aspectRatio: 566/439,
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'balanced-3',
+      src: "/images/image copy 16.png", 
+      alt: "Balanced format",
+      description: "Conference presentation",
+      aspectRatio: 604/440,
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'balanced-4',
+      src: "/images/image copy 17.png", 
+      alt: "Balanced format",
+      description: "Group discussion",
+      aspectRatio: 558/441,
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'balanced-5',
+      src: "/images/image copy 20.png", 
+      alt: "Balanced format",
+      description: "Team activity",
+      aspectRatio: 601/434,
+      highlight: false,
+      objectPosition: "center center",
+    },
+    // WhatsApp images with varied aspects
+    {
+      id: 'whatsapp-1',
+      src: "/images/WhatsApp Image 2025-05-15 at 5.20.45 PM (3).jpeg", 
+      alt: "Portrait format",
+      description: "Team celebration",
+      aspectRatio: 960/1280,
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'whatsapp-2',
+      src: "/images/WhatsApp Image 2025-05-15 at 5.20.45 PM (4).jpeg", 
+      alt: "Portrait format",
+      description: "Award recognition",
+      aspectRatio: 960/1280,
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'whatsapp-3',
+      src: "/images/WhatsApp Image 2025-05-15 at 5.20.45 PM (7).jpeg", 
+      alt: "Portrait format",
+      description: "Conference participation",
+      aspectRatio: 960/1280,
+      highlight: false,
+      objectPosition: "center center",
+    },
+    {
+      id: 'whatsapp-4',
+      src: "/images/WhatsApp Image 2025-05-15 at 5.20.44 PM (2).jpeg", 
+      alt: "Landscape format",
+      description: "Team photo",
+      aspectRatio: 1280/960,
+      highlight: true,
+      objectPosition: "center center",
+    },
+  ];
+
   // Featured gallery items with better metadata
   const featuredGallery = [
     // Highlight images first
@@ -438,138 +647,416 @@ const AwardsAndPics = () => {
   };
 
   return (
-    <section className="w-full min-h-screen pt-28 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-darkPink/5 relative">
-      {/* Blurred background shapes */}
-      <div className="absolute -top-32 -left-32 w-96 h-96 bg-darkPink/10 rounded-full filter blur-3xl z-0" />
-      <div className="absolute bottom-0 right-0 w-[500px] h-[400px] bg-darkPink/10 rounded-full filter blur-3xl z-0" />
-      
-      {/* Content container */}
-      <div className="relative z-10 max-w-7xl mx-auto">
+    <section className="pb-20 relative overflow-hidden bg-gradient-to-b from-white via-pink-50 to-pink-100">
+      <div className="pt-32 container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-5xl font-extrabold text-darkPink mb-8 text-center tracking-tight">
-            Awards & Pics
-          </h2>
-          <p className="text-xl text-darkPink/70 text-center max-w-3xl mx-auto mb-12">
-            Showcasing memorable moments from my professional journey and achievements
-          </p>
-
-          {/* India Book of Records Section - Moved to the top */}
-          <div id="india-book-records-section" className="border-2 border-darkPink/20 p-8 rounded-2xl bg-white/50 backdrop-blur-sm mb-24">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-            >
-              <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
-                Did Something Crazy
-              </h3>
-              <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
-                Official recognition from the India Book of Records for an extraordinary achievement
-              </p>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                <div className="rounded-xl overflow-hidden shadow-md cursor-pointer">
-                  <img 
-                    src="/gallery/india-book-of-records.png" 
-                    alt="India Book of Records Achievement" 
-                    className="w-full h-auto object-cover"
-                    onClick={() => setSelectedMedia({src: "/gallery/india-book-of-records.png", type: 'image'})}
-                  />
-                </div>
-                
-                <div className="flex flex-col space-y-6">
-                  <div className="prose prose-lg">
-                    <h4 className="text-2xl font-bold text-darkPink">National Recognition</h4>
-                    <p className="text-gray-700">
-                      Honored to be recognized by the India Book of Records for exceptional achievement. This official acknowledgment represents dedication, commitment, and pushing boundaries.
-                    </p>
-                    <p className="text-gray-700 font-medium">
-                      The certification showcases excellence and stands as a testament to what can be achieved with determination and focus.
-                    </p>
-                  </div>
-                  
-                  <a 
-                    href="https://indiabookofrecords.in/krish-saraf-appreciation/" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 self-start px-6 py-3 bg-darkPink text-white rounded-xl hover:bg-pink-700 transition-colors font-medium group"
-                  >
-                    <span>View Official Record Page</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transform group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                    </svg>
-                  </a>
-                </div>
-              </div>
-            </motion.div>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-darkPink mb-6 leading-tight">
+              Awards & Pics
+            </h2>
+            <p className="text-darkPink/70 text-lg max-w-3xl mx-auto mb-6">
+              A visual showcase of my achievements, collaborations, and memorable moments from various events, competitions, and projects.
+            </p>
           </div>
 
-          {/* NEW: Responsive Masonry Gallery */}
-          <div className="mb-24">
-            <ResponsiveMasonry
-              columnsCountBreakPoints={{ 350: 1, 750: 2, 1024: 3, 1280: 4 }}
+          {/* Navigation to sections */}
+          <div className="flex flex-wrap justify-center gap-3 md:gap-4 mb-16">
+            <motion.button
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.1 }}
+              onClick={() => scrollToElement('collage-section')}
+              className="px-5 py-2.5 bg-darkPink text-white rounded-full hover:bg-pink-700 transition-all duration-300 text-sm md:text-base font-medium shadow-md hover:shadow-lg"
             >
-              <Masonry gutter="16px">
-                {featuredGallery.map((item, index) => (
-                  <motion.div
-                    key={item.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ 
-                      opacity: imagesLoaded > index / 2 ? 1 : 0,
-                      y: imagesLoaded > index / 2 ? 0 : 20
-                    }}
-                    transition={{ 
-                      duration: 0.5, 
-                      delay: Math.min(index * 0.1, 0.8),
-                      ease: "easeOut"
-                    }}
-                    className={`relative group rounded-xl overflow-hidden shadow-sm hover:shadow-xl cursor-pointer transition-all duration-300 ${
-                      item.highlight ? 'border-2 border-darkPink/20' : ''
-                    }`}
-                    onClick={() => setSelectedMedia({src: item.src, type: 'image'})}
-                  >
-                    <div className={`overflow-hidden ${item.highlight ? 'aspect-[4/3]' : 'aspect-auto'}`}>
-                      <motion.img 
-                        src={item.src}
-                        alt={item.alt}
-                        onLoad={handleImageLoaded}
-                        className="w-full h-full object-cover"
-                        whileHover={{ scale: 1.05 }}
-                        transition={{ duration: 0.5 }}
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                        <div className="p-4 text-white w-full">
-                          <h4 className="font-medium">{item.alt}</h4>
-                          <p className="text-sm text-white/80">{item.description}</p>
+              Photo Collage
+            </motion.button>
+            <motion.button
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.2 }}
+              onClick={() => scrollToElement('featured-gallery')}
+              className="px-5 py-2.5 bg-darkPink text-white rounded-full hover:bg-pink-700 transition-all duration-300 text-sm md:text-base font-medium shadow-md hover:shadow-lg"
+            >
+              Featured Gallery
+            </motion.button>
+            <motion.button
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.3 }}
+              onClick={() => scrollToElement('synapse-section')}
+              className="px-5 py-2.5 bg-darkPink text-white rounded-full hover:bg-pink-700 transition-all duration-300 text-sm md:text-base font-medium shadow-md hover:shadow-lg"
+            >
+              Synapse Hackathon
+            </motion.button>
+            <motion.button
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.4 }}
+              onClick={() => scrollToElement('cleantech-section')}
+              className="px-5 py-2.5 bg-darkPink text-white rounded-full hover:bg-pink-700 transition-all duration-300 text-sm md:text-base font-medium shadow-md hover:shadow-lg"
+            >
+              Clean Tech Challenge
+            </motion.button>
+            <motion.button
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.5 }}
+              onClick={() => scrollToElement('intuition-section')}
+              className="px-5 py-2.5 bg-darkPink text-white rounded-full hover:bg-pink-700 transition-all duration-300 text-sm md:text-base font-medium shadow-md hover:shadow-lg"
+            >
+              IEEE Intuition Hackathon
+            </motion.button>
+            <motion.button
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.6 }}
+              onClick={() => scrollToElement('codewithai-section')}
+              className="px-5 py-2.5 bg-darkPink text-white rounded-full hover:bg-pink-700 transition-all duration-300 text-sm md:text-base font-medium shadow-md hover:shadow-lg"
+            >
+              Code with AI Hackathon
+            </motion.button>
+            <motion.button
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.7 }}
+              onClick={() => scrollToElement('peak-section')}
+              className="px-5 py-2.5 bg-darkPink text-white rounded-full hover:bg-pink-700 transition-all duration-300 text-sm md:text-base font-medium shadow-md hover:shadow-lg"
+            >
+              PEAK Leadership
+            </motion.button>
+            <motion.button
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.8 }}
+              onClick={() => scrollToElement('gauze-section')}
+              className="px-5 py-2.5 bg-darkPink text-white rounded-full hover:bg-pink-700 transition-all duration-300 text-sm md:text-base font-medium shadow-md hover:shadow-lg"
+            >
+              Surgical Gauze Detection
+            </motion.button>
+          </div>
+            
+          <div className="space-y-24">
+            {/* New Photo Collage Section */}
+            <div id="collage-section" className="border-2 border-darkPink/20 p-6 md:p-8 rounded-2xl bg-white/50 backdrop-blur-sm">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+              >
+                <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
+                  Photo Collage
+                </h3>
+                <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
+                  A collection of moments from various events, competitions and collaborations that have shaped my journey.
+                </p>
+
+                <ResponsiveMasonry
+                  columnsCountBreakPoints={{ 350: 1, 500: 2, 900: 3, 1200: 4 }}
+                >
+                  <Masonry gutter="16px">
+                    {collageGallery.map((item, index) => (
+                      <motion.div
+                        key={`collage-${item.id}`}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: index * 0.05 }}
+                        className={`relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer ${item.highlight ? 'col-span-2' : ''}`}
+                        onClick={() => setSelectedMedia({src: item.src, type: 'image'})}
+                        style={item.highlight ? { gridColumn: 'span 2' } : {}}
+                      >
+                        <div className="overflow-hidden" style={{ 
+                          aspectRatio: `${item.aspectRatio}`,
+                          maxHeight: item.highlight ? '600px' : '450px'
+                        }}>
+                          <img 
+                            src={item.src} 
+                            alt={item.alt}
+                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            style={{ objectPosition: item.objectPosition || 'center' }}
+                            onLoad={handleImageLoaded}
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div className="absolute bottom-4 left-4 right-4 text-white">
+                              <p className="font-medium">{item.description}</p>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </Masonry>
-            </ResponsiveMasonry>
-          </div>
-
-          {/* Visual separator */}
-          <div className="w-full flex items-center justify-center mb-16 mt-4">
-            <div className="h-px w-16 bg-darkPink/20"></div>
-            <div className="mx-4 text-darkPink/40">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
-              </svg>
+                      </motion.div>
+                    ))}
+                  </Masonry>
+                </ResponsiveMasonry>
+              </motion.div>
             </div>
-            <div className="h-px w-16 bg-darkPink/20"></div>
-          </div>
 
-          {/* Event Sections - Always displayed */}
-          <div className="space-y-24 mb-32">
-            {/* Surgical Gauze Detection Section - Always displayed */}
-            <div id="gauze-section" className="border-2 border-darkPink/20 p-8 rounded-2xl bg-white/50 backdrop-blur-sm relative">
+            {/* Featured Gallery - Existing section */}
+            <div id="featured-gallery" className="border-2 border-darkPink/20 p-6 md:p-8 rounded-2xl bg-white/50 backdrop-blur-sm">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+              >
+                <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
+                  Featured Gallery
+                </h3>
+                <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
+                  Highlights from my professional journey showcasing notable achievements and experiences
+                </p>
+
+                <ResponsiveMasonry
+                  columnsCountBreakPoints={{ 350: 1, 750: 2, 1024: 3, 1280: 4 }}
+                >
+                  <Masonry gutter="16px">
+                    {featuredGallery.map((item, index) => (
+                      <motion.div
+                        key={item.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ 
+                          opacity: imagesLoaded > index / 2 ? 1 : 0,
+                          y: imagesLoaded > index / 2 ? 0 : 20
+                        }}
+                        transition={{ 
+                          duration: 0.5, 
+                          delay: Math.min(index * 0.1, 0.8),
+                          ease: "easeOut"
+                        }}
+                        className={`relative group rounded-xl overflow-hidden shadow-sm hover:shadow-xl cursor-pointer transition-all duration-300 ${
+                          item.highlight ? 'border-2 border-darkPink/20' : ''
+                        }`}
+                        onClick={() => setSelectedMedia({src: item.src, type: 'image'})}
+                      >
+                        <div className={`overflow-hidden ${item.highlight ? 'aspect-[4/3]' : 'aspect-auto'}`}>
+                          <motion.img 
+                            src={item.src}
+                            alt={item.alt}
+                            onLoad={handleImageLoaded}
+                            className="w-full h-full object-cover"
+                            whileHover={{ scale: 1.05 }}
+                            transition={{ duration: 0.5 }}
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                            <div className="p-4 text-white w-full">
+                              <h4 className="font-medium">{item.alt}</h4>
+                              <p className="text-sm text-white/80">{item.description}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </Masonry>
+                </ResponsiveMasonry>
+              </motion.div>
+            </div>
+
+            {/* Keep other original project sections with BackToProjectButton */}
+            {/* Synapse Hackathon Section */}
+            <div id="synapse-section" className="border-2 border-darkPink/20 p-6 md:p-8 rounded-2xl bg-white/50 backdrop-blur-sm relative">
+              <BackToProjectButton sectionId="synapse-section" />
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+              >
+                <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
+                  IEEE NTU & NUS Synapse Hackathon 2024
+                </h3>
+                <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
+                  Images from our 1st Prize winning project at the Synapse Hackathon, where we built an AI-powered platform for content creation.
+                </p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {synapseImages.map((item, index) => (
+                    <motion.div
+                      key={`synapse-${index}`}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer"
+                      onClick={() => setSelectedMedia({src: item.image, type: 'image'})}
+                    >
+                      <div className="overflow-hidden aspect-video">
+                        <img 
+                          src={item.image} 
+                          alt={item.caption} 
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Clean Tech Challenge Section */}
+            <div id="cleantech-section" className="border-2 border-darkPink/20 p-6 md:p-8 rounded-2xl bg-white/50 backdrop-blur-sm relative">
+              <BackToProjectButton sectionId="cleantech-section" />
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+              >
+                <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
+                  Clean Tech Challenge (2023-2024)
+                </h3>
+                <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
+                  Images from our 1st Prize winning projects two years in a row, featuring sustainability solutions and shipment prediction models.
+                </p>
+            
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {cleanTechImages.map((item, index) => (
+                    <motion.div
+                      key={`cleantech-${index}`}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer"
+                      onClick={() => setSelectedMedia({src: item.image, type: 'image'})}
+                    >
+                      <div className="overflow-hidden aspect-video">
+                        <img 
+                          src={item.image} 
+                          alt={item.caption} 
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+
+            {/* NTU IEEE Intuition Hackathon Section */}
+            <div id="intuition-section" className="border-2 border-darkPink/20 p-6 md:p-8 rounded-2xl bg-white/50 backdrop-blur-sm relative">
+              <BackToProjectButton sectionId="intuition-section" />
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+              >
+                <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
+                  NTU IEEE Intuition Hackathon
+                </h3>
+                <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
+                  1st Runner-Up at the NTU IEEE Intuition Hackathon, where we developed an AI system that transforms prompts into fully-functional websites.
+                </p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {intuitionImages.map((item, index) => (
+                    <motion.div
+                      key={`intuition-${index}`}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer"
+                      onClick={() => setSelectedMedia({src: item.image, type: 'image'})}
+                    >
+                      <div className="overflow-hidden aspect-video">
+                        <img 
+                          src={item.image} 
+                          alt={item.caption} 
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Code with AI Hackathon Section */}
+            <div id="codewithai-section" className="border-2 border-darkPink/20 p-6 md:p-8 rounded-2xl bg-white/50 backdrop-blur-sm relative">
+              <BackToProjectButton sectionId="codewithai-section" />
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+              >
+                <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
+                  "Code with AI" Hackathon - Get My Leadz
+                </h3>
+                <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
+                  3rd Place winning project where we built an AI-driven lead generation platform that automates prospect discovery, qualification, and scoring.
+                </p>
+            
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {codeWithAIImages.map((item, index) => (
+                    <motion.div
+                      key={`codewithai-${index}`}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer"
+                      onClick={() => setSelectedMedia({src: item.image, type: 'image'})}
+                    >
+                      <div className="overflow-hidden aspect-video">
+                        <img 
+                          src={item.image} 
+                          alt={item.caption} 
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+
+            {/* NTU PEAK Leadership Program Section */}
+            <div id="peak-section" className="border-2 border-darkPink/20 p-6 md:p-8 rounded-2xl bg-white/50 backdrop-blur-sm relative">
+              <BackToProjectButton sectionId="peak-section" />
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+              >
+                <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
+                  NTU PEAK Leadership Program
+                </h3>
+                <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
+                  1st Runners Up and Best Ideation Award for designing a future-proof MRT system blueprint for 2030 in collaboration with the Land Transport Authority.
+                </p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {peakImages.map((item, index) => (
+                    <motion.div
+                      key={`peak-${index}`}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer"
+                      onClick={() => setSelectedMedia({src: item.image, type: 'image'})}
+                    >
+                      <div className="overflow-hidden aspect-video">
+                        <img 
+                          src={item.image} 
+                          alt={item.caption} 
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Surgical Gauze Detection Section */}
+            <div id="gauze-section" className="border-2 border-darkPink/20 p-6 md:p-8 rounded-2xl bg-white/50 backdrop-blur-sm relative">
               <BackToProjectButton sectionId="gauze-section" />
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -583,7 +1070,7 @@ const AwardsAndPics = () => {
                 <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
                   Developed and deployed a real-time gauze detection system with SGH using YOLOv8, achieving 98% detection accuracy and doubling throughput to 34 FPS.
                 </p>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {gauzeMedia.map((item, index) => (
                     <motion.div
@@ -629,208 +1116,8 @@ const AwardsAndPics = () => {
                 </div>
               </motion.div>
             </div>
-
-            {/* Synapse Hackathon Section - Always displayed */}
-            <div id="synapse-section" className="border-2 border-darkPink/20 p-8 rounded-2xl bg-white/50 backdrop-blur-sm relative">
-              <BackToProjectButton sectionId="synapse-section" />
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7 }}
-              >
-                <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
-                  IEEE NTU & NUS Synapse Hackathon 2024
-                </h3>
-                <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
-                  Images from our 1st Prize winning project at the Synapse Hackathon, where we built an AI-powered platform for content creation.
-                </p>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {synapseImages.map((item, index) => (
-                    <motion.div
-                      key={`synapse-${index}`}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer"
-                      onClick={() => setSelectedMedia({src: item.image, type: 'image'})}
-                    >
-                      <div className="overflow-hidden aspect-video">
-                        <img 
-                          src={item.image} 
-                          alt={item.caption} 
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        />
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-            </div>
-
-            {/* Clean Tech Challenge Section - Always displayed */}
-            <div id="cleantech-section" className="border-2 border-darkPink/20 p-8 rounded-2xl bg-white/50 backdrop-blur-sm relative">
-              <BackToProjectButton sectionId="cleantech-section" />
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7 }}
-              >
-                <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
-                  Clean Tech Challenge (2023-2024)
-                </h3>
-                <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
-                  Images from our 1st Prize winning projects two years in a row, featuring sustainability solutions and shipment prediction models.
-                </p>
-            
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {cleanTechImages.map((item, index) => (
-                    <motion.div
-                      key={`cleantech-${index}`}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer"
-                      onClick={() => setSelectedMedia({src: item.image, type: 'image'})}
-                    >
-                      <div className="overflow-hidden aspect-video">
-                        <img 
-                          src={item.image} 
-                          alt={item.caption} 
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        />
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-            </div>
-
-            {/* NTU IEEE Intuition Hackathon Section - Always displayed */}
-            <div id="intuition-section" className="border-2 border-darkPink/20 p-8 rounded-2xl bg-white/50 backdrop-blur-sm relative">
-              <BackToProjectButton sectionId="intuition-section" />
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7 }}
-              >
-                <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
-                  NTU IEEE Intuition Hackathon
-                </h3>
-                <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
-                  1st Runner-Up at the NTU IEEE Intuition Hackathon, where we developed an AI system that transforms prompts into fully-functional websites.
-                </p>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {intuitionImages.map((item, index) => (
-                    <motion.div
-                      key={`intuition-${index}`}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer"
-                      onClick={() => setSelectedMedia({src: item.image, type: 'image'})}
-                    >
-                      <div className="overflow-hidden aspect-video">
-                        <img 
-                          src={item.image} 
-                          alt={item.caption} 
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        />
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-            </div>
-
-            {/* Code with AI Hackathon Section - Always displayed */}
-            <div id="codewithai-section" className="border-2 border-darkPink/20 p-8 rounded-2xl bg-white/50 backdrop-blur-sm relative">
-              <BackToProjectButton sectionId="codewithai-section" />
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7 }}
-              >
-                <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
-                  "Code with AI" Hackathon - Get My Leadz
-                </h3>
-                <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
-                  3rd Place winning project where we built an AI-driven lead generation platform that automates prospect discovery, qualification, and scoring.
-                </p>
-            
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {codeWithAIImages.map((item, index) => (
-                    <motion.div
-                      key={`codewithai-${index}`}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer"
-                      onClick={() => setSelectedMedia({src: item.image, type: 'image'})}
-                    >
-                      <div className="overflow-hidden aspect-video">
-                        <img 
-                          src={item.image} 
-                          alt={item.caption} 
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        />
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-            </div>
-
-            {/* NTU PEAK Leadership Program Section - Always displayed */}
-            <div id="peak-section" className="border-2 border-darkPink/20 p-8 rounded-2xl bg-white/50 backdrop-blur-sm relative">
-              <BackToProjectButton sectionId="peak-section" />
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7 }}
-              >
-                <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
-                  NTU PEAK Leadership Program
-                </h3>
-                <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
-                  1st Runners Up and Best Ideation Award for designing a future-proof MRT system blueprint for 2030 in collaboration with the Land Transport Authority.
-                </p>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {peakImages.map((item, index) => (
-                    <motion.div
-                      key={`peak-${index}`}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer"
-                      onClick={() => setSelectedMedia({src: item.image, type: 'image'})}
-                    >
-                      <div className="overflow-hidden aspect-video">
-                        <img 
-                          src={item.image} 
-                          alt={item.caption} 
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        />
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-            </div>
           </div>
-
+          
           {/* Call to action */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
