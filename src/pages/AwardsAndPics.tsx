@@ -306,10 +306,10 @@ const AwardsAndPics = () => {
       src: "/gallery/timeline/j.jpeg",
       alt: "BASF Team",
       description: "Team visit to BASF chemical company",
-      aspectRatio: 25/9,
+      aspectRatio: 1/1,
       highlight: false,
-      objectPosition: "center 25%",
-      maxHeight: 750
+      objectPosition: "center center",
+      maxHeight: 600
     },
     // Group landscape orientation images
     {
@@ -439,10 +439,10 @@ const AwardsAndPics = () => {
       src: "/gallery/timeline/deans-2023.jpeg",
       alt: "Dean's List Award",
       description: "Recognition for academic excellence",
-      aspectRatio: 16/9,
+      aspectRatio: 3/4,
       highlight: true,
-      objectPosition: "center 25%",
-      maxHeight: 600
+      objectPosition: "center center",
+      maxHeight: 650
     }
   ];
 
