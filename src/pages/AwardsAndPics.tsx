@@ -1238,15 +1238,9 @@ const AwardsAndPics = () => {
                             style={{ objectPosition: item.objectPosition || 'center' }}
                             onLoad={handleImageLoaded}
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <div className="absolute bottom-4 left-4 right-4 text-white">
-                              <h4 className="font-medium">{item.alt}</h4>
-                              <p className="text-sm text-white/80">{item.description}</p>
-                          </div>
-                          </div>
-                      </div>
-                    </motion.div>
-                  ))}
+                        </div>
+                      </motion.div>
+                    ))}
                   </Masonry>
                 </ResponsiveMasonry>
               </motion.div>
