@@ -961,13 +961,13 @@ const AwardsAndPics = () => {
                             { sem: "Semester 1", gpa: "4.92" }
                           ],
                           achievement: "Dean's List",
-                          details: "Professional Attachment at Keppel Management"
+                          details: ""
                         },
                         { 
                           year: "Year 4", 
                           semesters: [],
-                          achievement: "Dean's List",
-                          details: "Ongoing"
+                          achievement: "Ongoing",
+                          details: ""
                         }
                       ].map((item, index) => (
                         <motion.div 
@@ -993,7 +993,7 @@ const AwardsAndPics = () => {
                           )}
                           
                           <div className={`
-                            p-5 w-[220px] relative
+                            p-5 w-[180px] min-h-[180px] relative flex flex-col
                             bg-white border border-pink-200
                             ${index === 0 ? "border-l-4 border-l-pink-400" : ""}
                             ${index === 1 ? "border-l-4 border-l-pink-500" : ""}
@@ -1010,8 +1010,8 @@ const AwardsAndPics = () => {
                               </div>
                             </div>
                             
-                            {item.semesters.length > 0 && (
-                              <div className="space-y-1.5 mb-3">
+                            {item.semesters.length > 0 ? (
+                              <div className="space-y-1.5 mb-auto">
                                 {item.semesters.map((sem, idx) => (
                                   <div key={`sem-${index}-${idx}`} className="flex justify-between text-xs">
                                     <span className="text-gray-500">{sem.sem}</span>
@@ -1019,11 +1019,17 @@ const AwardsAndPics = () => {
                                   </div>
                                 ))}
                               </div>
+                            ) : (
+                              <div className="text-center text-xs text-gray-500 mb-auto">
+                                {item.achievement}
+                              </div>
                             )}
                             
-                            <p className="text-xs text-center text-gray-600">
-                              {item.details}
-                            </p>
+                            {item.details && (
+                              <p className="text-xs text-center text-gray-600 mt-auto">
+                                {item.details}
+                              </p>
+                            )}
                             
                             {/* Visual progress indicator */}
                             <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-pink-300 to-pink-400"></div>
@@ -1067,13 +1073,13 @@ const AwardsAndPics = () => {
                             { sem: "Semester 1", gpa: "4.92" }
                           ],
                           achievement: "Dean's List",
-                          details: "Professional Attachment at Keppel Management"
+                          details: ""
                         },
                         { 
                           year: "Year 4", 
                           semesters: [],
-                          achievement: "Dean's List",
-                          details: "Ongoing"
+                          achievement: "Ongoing",
+                          details: ""
                         }
                       ].map((item, index) => (
                         <motion.div 
@@ -1110,7 +1116,7 @@ const AwardsAndPics = () => {
                               </span>
                             </div>
                             
-                            {item.semesters.length > 0 && (
+                            {item.semesters.length > 0 ? (
                               <div className="space-y-1 mb-2 text-xs">
                                 {item.semesters.map((sem, idx) => (
                                   <div key={`sem-mobile-${index}-${idx}`} className="flex justify-between">
@@ -1119,9 +1125,15 @@ const AwardsAndPics = () => {
                                   </div>
                                 ))}
                               </div>
+                            ) : (
+                              <div className="text-xs text-gray-500 mb-2">
+                                {item.achievement}
+                              </div>
                             )}
                             
-                            <p className="text-xs text-gray-600">{item.details}</p>
+                            {item.details && (
+                              <p className="text-xs text-gray-600">{item.details}</p>
+                            )}
                             
                             {/* Visual progress indicator */}
                             <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-pink-300 to-pink-400"></div>
