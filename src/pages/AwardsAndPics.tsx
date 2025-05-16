@@ -39,8 +39,6 @@ const BackToProjectButton = ({ sectionId }: { sectionId: string }) => {
 
 const AwardsAndPics = () => {
   const [selectedMedia, setSelectedMedia] = useState<{src: string, type: 'image' | 'video', loop?: boolean} | null>(null);
-  // Track when images are loaded for better UX feedback
-  const [imagesLoaded, setImagesLoaded] = useState(0);
   const location = useLocation();
   
   // Scroll to the element with the given ID
@@ -136,10 +134,8 @@ const AwardsAndPics = () => {
   // Combine both collageGallery and featuredGallery to get total count
   const totalImagesToLoad = featuredGallery.length;
   
-  // Percentage of images loaded for progress indicator
-  const loadingProgress = totalImagesToLoad > 0 
-    ? Math.min(100, Math.round((imagesLoaded / totalImagesToLoad) * 100)) 
-    : 100;
+  // Percentage of images loaded for progress indicator - using a fixed 100 value instead of state
+  const loadingProgress = 100; // Always set to 100% since we're not tracking loaded images anymore
 
   // Synapse hackathon images
   const synapseImages = [
@@ -352,8 +348,8 @@ const AwardsAndPics = () => {
               A visual showcase of my achievements, collaborations, and memorable moments from various events, competitions, and projects.
             </p>
             
-            {/* Loading progress indicator - visible only during initial loading */}
-            {loadingProgress < 100 && (
+            {/* Loading progress indicator - removing since we're not tracking loaded images anymore */}
+            {/* {loadingProgress < 100 && (
               <div className="w-full max-w-md mx-auto bg-pink-100 rounded-full h-2.5 mb-6 overflow-hidden">
                 <div 
                   className="bg-darkPink h-2.5 rounded-full transition-all duration-300 ease-out"
@@ -361,7 +357,7 @@ const AwardsAndPics = () => {
                 ></div>
                 <p className="text-xs text-darkPink/60 mt-1">Loading gallery: {loadingProgress}%</p>
               </div>
-            )}
+            )} */}
           </div>
 
           {/* Navigation to sections */}
