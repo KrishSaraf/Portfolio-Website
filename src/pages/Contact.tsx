@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
-import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp } from 'react-icons/fa';
 
 /*
  * EMAILJS SETUP INSTRUCTIONS:
@@ -197,6 +197,29 @@ const Contact = () => {
                     <div className="text-sm text-gray-600">Connect with me professionally</div>
                   </div>
                   <div className="text-gray-400 group-hover:text-blue-600 transform group-hover:translate-x-1 transition-all z-10">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </div>
+                </motion.a>
+
+                <motion.a
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                  href="https://wa.me/6598117311"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-4 p-4 rounded-xl border border-gray-200 bg-white shadow-md hover:shadow-lg group transition-all duration-300 overflow-hidden relative"
+                >
+                  <div className="absolute left-0 top-0 bottom-0 w-1 bg-green-500 group-hover:w-full opacity-10 group-hover:opacity-5 transition-all duration-500"></div>
+                  <div className="bg-green-500 text-white p-3 rounded-xl z-10">
+                    <FaWhatsapp size={30} />
+                  </div>
+                  <div className="flex-1 z-10">
+                    <div className="font-semibold text-lg text-gray-800">WhatsApp</div>
+                    <div className="text-sm text-gray-600">Chat with me directly</div>
+                  </div>
+                  <div className="text-gray-400 group-hover:text-green-500 transform group-hover:translate-x-1 transition-all z-10">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                     </svg>
