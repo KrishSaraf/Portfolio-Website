@@ -169,15 +169,15 @@ const Projects = () => {
             >
               <div className="flex flex-col md:flex-row">
                 {/* Image Section */}
-                <div className="md:w-1/3 relative">
+                <div className="md:w-2/5 relative">
                   {project.image ? (
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-full min-h-[100px]"
+                      className="w-full h-full object-cover min-h-[250px] max-h-[300px]"
                     />
                   ) : (
-                    <div className="w-full h-full min-h-[200px] bg-gradient-to-br from-pink-50 to-darkPink/10 flex items-center justify-center">
+                    <div className="w-full h-full min-h-[250px] bg-gradient-to-br from-pink-50 to-darkPink/10 flex items-center justify-center">
                       <svg className="w-16 h-16 text-darkPink/20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                       </svg>
@@ -191,7 +191,7 @@ const Projects = () => {
                 </div>
 
                 {/* Content Section */}
-                <div className="md:w-2/3 p-8 flex flex-col">
+                <div className="md:w-3/5 p-8 flex flex-col">
                   {/* Title and Description */}
                   <div className="flex-1">
                     <h3 className="text-2xl font-bold text-darkPink group-hover:text-pink-600 transition-colors duration-200 mb-4">
