@@ -402,6 +402,58 @@ const AwardsAndPics = () => {
             Showcasing memorable moments from my professional journey and achievements
           </p>
 
+          {/* India Book of Records Section - Moved to the top */}
+          <div id="india-book-records-section" className="border-2 border-darkPink/20 p-8 rounded-2xl bg-white/50 backdrop-blur-sm mb-24">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+            >
+              <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
+                Did Something Crazy
+              </h3>
+              <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
+                Official recognition from the India Book of Records for an extraordinary achievement
+              </p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div className="rounded-xl overflow-hidden shadow-md cursor-pointer">
+                  <img 
+                    src="/gallery/india-book-of-records.png" 
+                    alt="India Book of Records Achievement" 
+                    className="w-full h-auto object-cover"
+                    onClick={() => setSelectedMedia({src: "/gallery/india-book-of-records.png", type: 'image'})}
+                  />
+                </div>
+                
+                <div className="flex flex-col space-y-6">
+                  <div className="prose prose-lg">
+                    <h4 className="text-2xl font-bold text-darkPink">National Recognition</h4>
+                    <p className="text-gray-700">
+                      Honored to be recognized by the India Book of Records for exceptional achievement. This official acknowledgment represents dedication, commitment, and pushing boundaries.
+                    </p>
+                    <p className="text-gray-700 font-medium">
+                      The certification showcases excellence and stands as a testament to what can be achieved with determination and focus.
+                    </p>
+                  </div>
+                  
+                  <a 
+                    href="https://indiabookofrecords.in/krish-saraf-appreciation/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 self-start px-6 py-3 bg-darkPink text-white rounded-xl hover:bg-pink-700 transition-colors font-medium group"
+                  >
+                    <span>View Official Record Page</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transform group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
           {/* NEW: Responsive Masonry Gallery */}
           <div className="mb-24">
             <ResponsiveMasonry
@@ -461,58 +513,6 @@ const AwardsAndPics = () => {
 
           {/* Event Sections - Always displayed */}
           <div className="space-y-24 mb-32">
-            {/* India Book of Records Section - New section at the top */}
-            <div id="india-book-records-section" className="border-2 border-darkPink/20 p-8 rounded-2xl bg-white/50 backdrop-blur-sm">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7 }}
-              >
-                <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
-                  Did Something Crazy
-                </h3>
-                <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
-                  Official recognition from the India Book of Records for an extraordinary achievement
-                </p>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                  <div className="rounded-xl overflow-hidden shadow-md cursor-pointer">
-                    <img 
-                      src="/gallery/india-book-of-records.png" 
-                      alt="India Book of Records Achievement" 
-                      className="w-full h-auto object-cover"
-                      onClick={() => setSelectedMedia({src: "/gallery/india-book-of-records.png", type: 'image'})}
-                    />
-                  </div>
-                  
-                  <div className="flex flex-col space-y-6">
-                    <div className="prose prose-lg">
-                      <h4 className="text-2xl font-bold text-darkPink">National Recognition</h4>
-                      <p className="text-gray-700">
-                        Honored to be recognized by the India Book of Records for exceptional achievement. This official acknowledgment represents dedication, commitment, and pushing boundaries.
-                      </p>
-                      <p className="text-gray-700 font-medium">
-                        The certification showcases excellence and stands as a testament to what can be achieved with determination and focus.
-                      </p>
-                    </div>
-                    
-                    <a 
-                      href="https://indiabookofrecords.in/krish-saraf-appreciation/" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 self-start px-6 py-3 bg-darkPink text-white rounded-xl hover:bg-pink-700 transition-colors font-medium group"
-                    >
-                      <span>View Official Record Page</span>
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transform group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
-                        <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-
             {/* Surgical Gauze Detection Section - Always displayed */}
             <div id="gauze-section" className="border-2 border-darkPink/20 p-8 rounded-2xl bg-white/50 backdrop-blur-sm">
               <motion.div
