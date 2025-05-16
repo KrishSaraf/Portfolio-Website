@@ -57,23 +57,33 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
     const g = svg.append('g')
       .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
-    // X scale for placing markers
+    // X scale for placing markers with better spacing
     const xScale = d3.scaleLinear()
       .domain([0, academicData.length - 1])
       .range([0, width - margin.left - margin.right]);
     
-    // Generate points for the straight line (no wave)
-    const lineGenerator = d3.line<[number, number]>();
+    // Generate points for the wavy path with more points for smoother curve
+    const lineGenerator = d3.line<[number, number]>()
+      .x(d => d[0])
+      .y(d => d[1])
+      .curve(d3.curveCatmullRom.alpha(0.5)); // Smoother curve type
 
-    // Create straight line points
-    const linePoints: [number, number][] = [
-      [0, 50],
-      [width - margin.left - margin.right, 50]
-    ];
+    // Create wave points with more resolution for smoothness
+    const pointsCount = 300; // Increased from 100 for smoother curve
+    const wavePoints: [number, number][] = Array.from({ length: pointsCount }, (_, i) => {
+      const x = (width - margin.left - margin.right) * (i / (pointsCount - 1));
+      // Create a smooth sine wave with subtle randomness
+      const baseY = Math.sin(i / (pointsCount / (academicData.length * 1.0))) * 30;
+      const randomOffset = Math.random() * 2 - 1; // Reduced randomness for smoother appearance
+      return [x, 50 + baseY + randomOffset];
+    });
 
-    // Create the path
-    g.append('path')
-      .datum(linePoints)
+    // Calculate the total length of the path for animation
+    const pathLength = (width - margin.left - margin.right) * 1.3; // Approximation
+
+    // Create the path with drawing animation
+    const path = g.append('path')
+      .datum(wavePoints)
       .attr('d', lineGenerator)
       .attr('fill', 'none')
       .attr('stroke', '#e91e63') // Pink color matching site theme
@@ -81,12 +91,49 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
       .attr('stroke-linecap', 'round')
       .attr('stroke-linejoin', 'round')
       .style('filter', 'drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.2))')
-      .style('opacity', 0)
-      .transition()
-      .duration(1000)
       .style('opacity', 1);
+    
+    // Animate path drawing
+    path.attr('stroke-dasharray', pathLength)
+      .attr('stroke-dashoffset', pathLength)
+      .transition()
+      .duration(2000) // 2 seconds for animation
+      .ease(d3.easePolyInOut)
+      .attr('stroke-dashoffset', 0);
+    
+    // Find the y-coordinate on the path for a given x position
+    const findYOnPath = (pathNode: SVGPathElement, xPosition: number): number => {
+      try {
+        const pathLength = pathNode.getTotalLength();
+        let start = 0;
+        let end = pathLength;
+        let target = (start + end) / 2;
+        
+        // Binary search to find point on path
+        while (target >= start && target <= end) {
+          const pos = pathNode.getPointAtLength(target);
+          if (Math.abs(pos.x - xPosition) < 0.1) {
+            return pos.y;
+          } else if (pos.x > xPosition) {
+            end = target;
+          } else {
+            start = target;
+          }
+          target = (start + end) / 2;
+        }
+        
+        // Return fallback if search fails
+        return 50;
+      } catch (e) {
+        console.error('Error finding point on path:', e);
+        return 50;
+      }
+    };
+
+    // Get the path node
+    const pathNode = g.select('path').node() as SVGPathElement;
       
-    // Create marker groups
+    // Create marker groups with delayed appearance for sequential reveal
     const markers = g.selectAll('.marker')
       .data(academicData)
       .enter()
@@ -94,122 +141,126 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
       .attr('class', 'marker')
       .attr('transform', (d, i) => {
         const x = xScale(i);
-        // Using fixed y position for straight line
-        return `translate(${x}, 50)`;
+        const y = findYOnPath(pathNode, x);
+        return `translate(${x}, ${y})`;
       })
       .attr('aria-label', d => `${d.class}: ${d.details}`)
-      .style('cursor', 'pointer');
+      .style('cursor', 'pointer')
+      .style('opacity', 0) // Start invisible
+      .transition() // Fade in markers after path animation
+      .delay((_, i) => 1800 + i * 100) // Start after path animation is mostly done
+      .duration(300)
+      .style('opacity', 1);
 
-    // Create tooltip
+    // Create tooltip with enhanced styling
     const tooltip = d3.select(tooltipRef.current)
       .style('position', 'absolute')
       .style('visibility', 'hidden')
       .style('background-color', 'rgba(255, 255, 255, 0.95)')
-      .style('padding', '8px 12px')
+      .style('padding', '10px 14px')
       .style('border-radius', '8px')
-      .style('box-shadow', '0 4px 6px rgba(0, 0, 0, 0.1)')
+      .style('border', '1px solid rgba(233, 30, 99, 0.2)')
+      .style('box-shadow', '0 4px 8px rgba(0, 0, 0, 0.15)')
       .style('font-size', '14px')
       .style('pointer-events', 'none')
       .style('z-index', '100')
-      .style('max-width', '200px')
-      .style('transition', 'opacity 0.3s')
-      .style('opacity', '0');
+      .style('max-width', '220px')
+      .style('transition', 'opacity 0.2s, transform 0.2s')
+      .style('opacity', '0')
+      .style('transform', 'translateY(5px)')
+      .style('color', '#333');
 
     // Add circles to markers
-    markers.append('circle')
-      .attr('r', 0) // Start with radius 0 for animation
+    g.selectAll('.marker').append('circle')
+      .attr('r', 10)
       .attr('fill', 'white')
       .attr('stroke', '#e91e63')
-      .attr('stroke-width', 2)
-      .transition()
-      .delay((_, i) => i * 100)
-      .duration(500)
-      .attr('r', 10);
+      .attr('stroke-width', 2);
 
-    // Add class labels with normal weight
-    markers.append('text')
+    // Add class labels - not bold
+    g.selectAll('.marker').append('text')
       .attr('dy', -20)
       .attr('text-anchor', 'middle')
       .attr('font-size', '14px')
-      .attr('font-weight', 'normal') // Changed to normal weight
+      .attr('font-weight', 'normal') // Explicitly normal
       .attr('fill', '#333')
       .style('text-shadow', '0 1px 1px rgba(255,255,255,0.8)')
-      .style('opacity', 0)
-      .text(d => d.class)
-      .transition()
-      .delay((_, i) => i * 100 + 300)
-      .duration(500)
-      .style('opacity', 1);
+      .text(d => d.class);
 
-    // Add achievement text with bold weight
-    markers.append('text')
+    // Add achievement text - bold with special handling for long text
+    g.selectAll('.marker').append('text')
       .attr('dy', 30)
-      .attr('text-anchor', 'middle')
-      .attr('font-size', '12px')
-      .attr('font-weight', 'bold') // Changed to bold
-      .attr('fill', '#555')
-      .style('text-shadow', '0 1px 1px rgba(255,255,255,0.8)')
-      .style('opacity', 0)
-      // Handle long text by limiting width and adding ellipsis for very long text
-      .each(function(d) {
-        const text = d3.select(this);
-        const words = d.achievement.split(' ');
-        
-        // Single-line text for short achievements
-        if (d.achievement.length < 15) {
-          text.text(d.achievement);
-        } 
-        // Special handling for long achievements (Classes 10-12)
-        else {
-          // For Class 10, just display the score and AIR separately
-          if (d.class === "Class 10") {
-            text.text("98.2% — AIR 7");
-          } 
-          // For Class 11, keep it simple
-          else if (d.class === "Class 11") {
-            text.text("1st in Class");
-          }
-          // For Class 12, format it better
-          else if (d.class === "Class 12") {
-            text.text("1st in School & State");
-          }
-          // For others, just use the text as is
-          else {
-            text.text(d.achievement);
-          }
-        }
+      .attr('text-anchor', (d: AchievementData) => {
+        // Special handling for Class 12 with long text
+        return d.class === 'Class 12' ? 'end' : 'middle';
       })
-      .transition()
-      .delay((_, i) => i * 100 + 500)
-      .duration(500)
-      .style('opacity', 1);
+      .attr('dx', (d: AchievementData) => {
+        // Offset for Class 12
+        return d.class === 'Class 12' ? -10 : 0;
+      })
+      .attr('font-size', (d: AchievementData) => {
+        // Smaller font for longer achievements
+        return d.achievement.length > 10 ? '11px' : '12px';
+      })
+      .attr('font-weight', 'bold') // Make achievement text bold
+      .attr('fill', '#e91e63') // Match path color
+      .style('text-shadow', '0 1px 1px rgba(255,255,255,0.8)')
+      .text(d => d.achievement);
 
-    // Handle hover events
-    markers
-      .on('mouseover', function(event, d) {
+    // Add specific handling for very long texts
+    g.selectAll('.marker').filter((d: AchievementData) => d.class === 'Class 10' || d.class === 'Class 12')
+      .append('foreignObject')
+      .attr('width', 120)
+      .attr('height', 40)
+      .attr('x', -60)
+      .attr('y', 20)
+      .html((d: AchievementData) => `<div style="
+          font-size: 11px; 
+          font-weight: bold; 
+          color: #e91e63; 
+          text-align: center;
+          text-shadow: 0 1px 1px rgba(255,255,255,0.8);
+          width: 100%;
+          overflow: visible;
+          white-space: normal;
+        ">${d.achievement}</div>`)
+      .style('opacity', 0); // Hide initially, will show and hide foreign objects as needed
+
+    // Handle hover events with enhanced interactions
+    g.selectAll('.marker')
+      .on('mouseover', function(event, d: AchievementData) {
         // Highlight the marker
         d3.select(this).select('circle')
           .transition()
           .duration(300)
-          .attr('r', 12)
+          .attr('r', 13.5) // 135% size
           .attr('fill', '#fff0f5')
-          .style('filter', 'drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.2))');
+          .style('filter', 'drop-shadow(0px 3px 5px rgba(0, 0, 0, 0.25))');
         
-        // Show tooltip
+        // For Class 10 and 12, show foreign object and hide text
+        if (d.class === 'Class 10' || d.class === 'Class 12') {
+          d3.select(this).select('foreignObject').style('opacity', 1);
+          d3.select(this).select('text:nth-child(3)').style('opacity', 0);
+        }
+        
+        // Show tooltip with enhanced animation
         tooltip
           .html(`<strong>${d.class}</strong><br/>${d.details}`)
           .style('visibility', 'visible')
+          .style('left', `${event.pageX + 12}px`)
+          .style('top', `${event.pageY - 25}px`)
+          .transition()
+          .duration(200)
           .style('opacity', '1')
-          .style('left', `${event.pageX + 10}px`)
-          .style('top', `${event.pageY - 20}px`);
+          .style('transform', 'translateY(0)');
       })
       .on('mousemove', function(event) {
         // Move tooltip with cursor
         tooltip
-          .style('left', `${event.pageX + 10}px`)
-          .style('top', `${event.pageY - 20}px`);
+          .style('left', `${event.pageX + 12}px`)
+          .style('top', `${event.pageY - 25}px`);
       })
-      .on('mouseout', function() {
+      .on('mouseout', function(event, d: AchievementData) {
         // Restore marker
         d3.select(this).select('circle')
           .transition()
@@ -218,10 +269,19 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
           .attr('fill', 'white')
           .style('filter', 'none');
         
-        // Hide tooltip
+        // For Class 10 and 12, hide foreign object and show text
+        if (d.class === 'Class 10' || d.class === 'Class 12') {
+          d3.select(this).select('foreignObject').style('opacity', 0);
+          d3.select(this).select('text:nth-child(3)').style('opacity', 1);
+        }
+        
+        // Hide tooltip with animation
         tooltip
+          .transition()
+          .duration(200)
           .style('opacity', '0')
-          .style('visibility', 'hidden');
+          .style('transform', 'translateY(5px)')
+          .on('end', () => tooltip.style('visibility', 'hidden'));
       });
 
     // Handle resize
@@ -237,21 +297,27 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
       // Update scales
       xScale.range([0, newWidth - margin.left - margin.right]);
       
-      // Update straight line points
-      const newLinePoints: [number, number][] = [
-        [0, 50],
-        [newWidth - margin.left - margin.right, 50]
-      ];
+      // Regenerate wave points with increased smoothness
+      const newWavePoints: [number, number][] = Array.from({ length: pointsCount }, (_, i) => {
+        const x = (newWidth - margin.left - margin.right) * (i / (pointsCount - 1));
+        const baseY = Math.sin(i / (pointsCount / (academicData.length * 1.0))) * 30;
+        const randomOffset = Math.random() * 2 - 1;
+        return [x, 50 + baseY + randomOffset];
+      });
       
       // Update path
       g.select('path')
-        .datum(newLinePoints)
-        .attr('d', lineGenerator);
+        .datum(newWavePoints)
+        .attr('d', lineGenerator)
+        .attr('stroke-dasharray', null) // Remove animation properties after resize
+        .attr('stroke-dashoffset', null);
       
       // Update marker positions
-      markers.attr('transform', (_, i) => {
+      const newPathNode = g.select('path').node() as SVGPathElement;
+      g.selectAll('.marker').attr('transform', (_, i) => {
         const x = xScale(i);
-        return `translate(${x}, 50)`;
+        const y = findYOnPath(newPathNode, x);
+        return `translate(${x}, ${y})`;
       });
     };
 
