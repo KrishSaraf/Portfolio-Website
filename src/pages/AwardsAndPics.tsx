@@ -1,7 +1,8 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLocation, Link, useSearchParams } from 'react-router-dom';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
+import AcademicTimeline from '../components/AcademicTimeline';
 
 // Map section IDs to project indexes for back navigation
 const sectionToProjectMapping = {
@@ -36,170 +37,6 @@ const BackToProjectButton = ({ sectionId }: { sectionId: string }) => {
   }
   
   return null;
-};
-
-// Academic timeline data
-const academicJourney = [
-  { class: "Class 1", achievement: "3rd" },
-  { class: "Class 2", achievement: "1st" },
-  { class: "Class 3", achievement: "2nd" },
-  { class: "Class 4", achievement: "2nd" },
-  { class: "Class 5", achievement: "1st" },
-  { class: "Class 6", achievement: "2nd" },
-  { class: "Class 7", achievement: "2nd" },
-  { class: "Class 8", achievement: "3rd" },
-  { class: "Class 9", achievement: "+1 promoted" },
-  { class: "Class 10", achievement: "98.2% — All India Rank 7" },
-  { class: "Class 11", achievement: "1st in Class" },
-  { class: "Class 12", achievement: "1st in School, 1st in State" }
-];
-
-// Academic Timeline Component
-const AcademicTimeline = () => {
-  const [activePoint, setActivePoint] = useState<number | null>(null);
-  const timelineRef = useRef<HTMLDivElement>(null);
-  
-  return (
-    <motion.div 
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.8 }}
-      className="w-full overflow-x-hidden mb-16"
-      ref={timelineRef}
-    >
-      <div className="relative w-full overflow-x-auto py-4 px-4">
-        <div className="min-w-[1000px] md:min-w-[1200px] relative mx-auto">
-          {/* SVG Timeline */}
-          <svg 
-            width="100%" 
-            height="240" 
-            viewBox="0 0 1200 240" 
-            fill="none" 
-            xmlns="http://www.w3.org/2000/svg"
-            className="relative z-10"
-          >
-            {/* Decorative background circles */}
-            <g className="decorative-elements">
-              <circle cx="200" cy="90" r="40" fill="#ffcfd3" opacity="0.2" />
-              <circle cx="800" cy="150" r="70" fill="#ffcfd3" opacity="0.2" />
-              <circle cx="500" cy="50" r="30" fill="#ffcfd3" opacity="0.2" />
-              <circle cx="1100" cy="60" r="50" fill="#ffcfd3" opacity="0.2" />
-              <circle cx="350" cy="170" r="45" fill="#ffcfd3" opacity="0.2" />
-              <circle cx="950" cy="200" r="60" fill="#ffcfd3" opacity="0.2" />
-            </g>
-            
-            {/* Main wavy path */}
-            <path 
-              d="M30,120 C130,60 230,180 330,120 C430,60 530,180 630,120 C730,60 830,180 930,120 C1030,60 1130,180 1170,120" 
-              stroke="#e60023" 
-              strokeWidth="5" 
-              strokeLinecap="round"
-              fill="none" 
-              className="path-animation"
-            />
-            
-            {/* Timeline Points */}
-            {academicJourney.map((item, index) => {
-              // Calculate position along the path
-              const xPos = 30 + index * (1140 / 11);
-              
-              // Calculate y position with a sine wave function to follow the path
-              // Alternating positions for better wave effect
-              const yPos = 120 + (Math.sin(Math.PI * index / 5.5)) * 60;
-              
-              // Determine if point is on the upper or lower part of the wave
-              const isTop = Math.sin(Math.PI * index / 5.5) < 0;
-              
-              // Determine if this point is active/selected
-              const isActive = activePoint === index;
-              
-              return (
-                <g key={index}>
-                  {/* Simple Circle Marker */}
-                  <circle
-                    cx={xPos}
-                    cy={yPos}
-                    r="12"
-                    fill={isActive ? "#e60023" : "white"}
-                    stroke="#e60023"
-                    strokeWidth="2.5"
-                    onClick={() => setActivePoint(isActive ? null : index)}
-                    className="cursor-pointer transition-all duration-300 hover:scale-110"
-                  />
-                  
-                  {/* Simple center dot for non-active points */}
-                  {!isActive && (
-                    <circle
-                      cx={xPos}
-                      cy={yPos}
-                      r="4"
-                      fill="#e60023"
-                    />
-                  )}
-                  
-                  {/* Class Label */}
-                  <text
-                    x={xPos}
-                    y={isTop ? yPos - 20 : yPos + 25}
-                    fontSize="14"
-                    fontWeight="500"
-                    fill="#333"
-                    textAnchor="middle"
-                    dominantBaseline={isTop ? "auto" : "hanging"}
-                    className="pointer-events-none"
-                  >
-                    {item.class}
-                  </text>
-                  
-                  {/* Achievement Pill - only shown when active */}
-                  {isActive && (
-                    <g>
-                      {/* Simple connector line */}
-                      {!isTop && (
-                        <line
-                          x1={xPos}
-                          y1={yPos + 13}
-                          x2={xPos}
-                          y2={yPos + 40}
-                          stroke="#e60023"
-                          strokeWidth="1.5"
-                        />
-                      )}
-                      
-                      {/* Achievement pill */}
-                      <rect
-                        x={xPos - 60}
-                        y={isTop ? yPos - 70 : yPos + 45}
-                        width="120"
-                        height="30"
-                        rx="15"
-                        fill="#e60023"
-                        className="transition-all duration-300"
-                      />
-                      
-                      {/* Achievement Text */}
-                      <text
-                        x={xPos}
-                        y={isTop ? yPos - 55 : yPos + 60}
-                        fontSize="13"
-                        fontWeight="500"
-                        fill="white"
-                        textAnchor="middle"
-                        dominantBaseline="middle"
-                        className="pointer-events-none"
-                      >
-                        {item.achievement}
-                      </text>
-                    </g>
-                  )}
-                </g>
-              );
-            })}
-          </svg>
-        </div>
-      </div>
-    </motion.div>
-  );
 };
 
 const AwardsAndPics = () => {
@@ -826,12 +663,19 @@ const AwardsAndPics = () => {
               A visual showcase of my achievements, collaborations, and memorable moments from various events, competitions, and projects.
             </p>
           </div>
-          
-          {/* Academic Journey Timeline */}
-          <div className="mb-16">
-            <h3 className="text-2xl font-bold text-darkPink mb-6 text-center">Academic Journey</h3>
-            <AcademicTimeline />
-          </div>
+
+          {/* Academic Timeline */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="border-2 border-darkPink/20 p-6 md:p-8 rounded-2xl bg-white/50 backdrop-blur-sm mb-16"
+          >
+            <h3 className="text-2xl font-bold text-darkPink mb-6 text-center">
+              My Academic Journey
+            </h3>
+            <AcademicTimeline className="mt-4" />
+          </motion.div>
             
           <div className="space-y-24">
             {/* India Book of Records Section */}
