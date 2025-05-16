@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLocation, Link, useSearchParams } from 'react-router-dom';
-import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 
 // Map section IDs to project indexes for back navigation
 const sectionToProjectMapping = {
@@ -141,11 +140,6 @@ const AwardsAndPics = () => {
   const loadingProgress = totalImagesToLoad > 0 
     ? Math.min(100, Math.round((imagesLoaded / totalImagesToLoad) * 100)) 
     : 100;
-
-  // Increment loaded images counter
-  const handleImageLoaded = () => {
-    setImagesLoaded(prev => prev + 1);
-  };
 
   // Synapse hackathon images
   const synapseImages = [
