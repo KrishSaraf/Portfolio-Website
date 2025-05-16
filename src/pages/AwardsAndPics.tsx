@@ -67,7 +67,7 @@ const AcademicTimeline = () => {
       className="w-full overflow-x-hidden mb-16"
       ref={timelineRef}
     >
-      <div className="relative w-full overflow-x-auto py-10 px-4">
+      <div className="relative w-full overflow-x-auto py-4 px-4">
         <div className="min-w-[1000px] md:min-w-[1200px] relative mx-auto">
           {/* SVG Timeline */}
           <svg 
@@ -78,19 +78,21 @@ const AcademicTimeline = () => {
             xmlns="http://www.w3.org/2000/svg"
             className="relative z-10"
           >
-            {/* Decorative background elements */}
-            <g className="decorative-elements" opacity="0.1">
-              <circle cx="200" cy="90" r="20" fill="#e60023" />
-              <circle cx="800" cy="150" r="30" fill="#e60023" />
-              <circle cx="500" cy="50" r="15" fill="#e60023" />
-              <circle cx="1100" cy="60" r="25" fill="#e60023" />
+            {/* Decorative background circles */}
+            <g className="decorative-elements">
+              <circle cx="200" cy="90" r="40" fill="#ffcfd3" opacity="0.2" />
+              <circle cx="800" cy="150" r="70" fill="#ffcfd3" opacity="0.2" />
+              <circle cx="500" cy="50" r="30" fill="#ffcfd3" opacity="0.2" />
+              <circle cx="1100" cy="60" r="50" fill="#ffcfd3" opacity="0.2" />
+              <circle cx="350" cy="170" r="45" fill="#ffcfd3" opacity="0.2" />
+              <circle cx="950" cy="200" r="60" fill="#ffcfd3" opacity="0.2" />
             </g>
             
-            {/* Wavy Path with improved curve */}
+            {/* Main wavy path */}
             <path 
-              d="M50,110 C150,50 250,170 350,110 C450,50 550,170 650,110 C750,50 850,170 950,110 C1050,50 1150,170 1200,110" 
+              d="M30,120 C130,60 230,180 330,120 C430,60 530,180 630,120 C730,60 830,180 930,120 C1030,60 1130,180 1170,120" 
               stroke="#e60023" 
-              strokeWidth="6" 
+              strokeWidth="5" 
               strokeLinecap="round"
               fill="none" 
               className="path-animation"
@@ -99,120 +101,88 @@ const AcademicTimeline = () => {
             {/* Timeline Points */}
             {academicJourney.map((item, index) => {
               // Calculate position along the path
-              const xPos = 50 + index * (1150 / 11);
+              const xPos = 30 + index * (1140 / 11);
               
               // Calculate y position with a sine wave function to follow the path
               // Alternating positions for better wave effect
-              const yPos = 110 + (Math.sin(Math.PI * index / 5.5)) * 60;
+              const yPos = 120 + (Math.sin(Math.PI * index / 5.5)) * 60;
               
               // Determine if point is on the upper or lower part of the wave
               const isTop = Math.sin(Math.PI * index / 5.5) < 0;
               
+              // Determine if this point is active/selected
+              const isActive = activePoint === index;
+              
               return (
                 <g key={index}>
-                  {/* Circle Marker with nicer shadow */}
-                  <motion.g
-                    whileHover={{ scale: 1.2 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                    onClick={() => setActivePoint(activePoint === index ? null : index)}
-                    className="cursor-pointer"
-                  >
-                    {/* Subtle Shadow/Glow */}
-                    <circle
-                      cx={xPos}
-                      cy={yPos}
-                      r={15}
-                      fill="rgba(230, 0, 35, 0.2)"
-                      opacity={activePoint === index ? 0.8 : 0}
-                      className="transition-all duration-300"
-                    />
-                    
-                    {/* Main Circle */}
-                    <circle
-                      cx={xPos}
-                      cy={yPos}
-                      r={activePoint === index ? 14 : 12}
-                      fill={activePoint === index ? "#e60023" : "white"}
-                      stroke="#e60023"
-                      strokeWidth="3"
-                      className="transition-all duration-300"
-                    />
-                    
-                    {/* Inner Circle for visual interest */}
-                    <circle
-                      cx={xPos}
-                      cy={yPos}
-                      r={activePoint === index ? 6 : 5}
-                      fill={activePoint === index ? "white" : "#e60023"}
-                      className="transition-all duration-300"
-                    />
-                  </motion.g>
+                  {/* Simple Circle Marker */}
+                  <circle
+                    cx={xPos}
+                    cy={yPos}
+                    r="12"
+                    fill={isActive ? "#e60023" : "white"}
+                    stroke="#e60023"
+                    strokeWidth="2.5"
+                    onClick={() => setActivePoint(isActive ? null : index)}
+                    className="cursor-pointer transition-all duration-300 hover:scale-110"
+                  />
                   
-                  {/* Class Label - positioned above or below based on wave position */}
-                  <motion.text
+                  {/* Simple center dot for non-active points */}
+                  {!isActive && (
+                    <circle
+                      cx={xPos}
+                      cy={yPos}
+                      r="4"
+                      fill="#e60023"
+                    />
+                  )}
+                  
+                  {/* Class Label */}
+                  <text
                     x={xPos}
-                    y={isTop ? yPos - 30 : yPos + 30}
-                    fontSize="15"
-                    fontWeight={activePoint === index ? "bold" : "medium"}
+                    y={isTop ? yPos - 20 : yPos + 25}
+                    fontSize="14"
+                    fontWeight="500"
                     fill="#333"
                     textAnchor="middle"
                     dominantBaseline={isTop ? "auto" : "hanging"}
-                    initial={{ opacity: 0.7 }}
-                    animate={{ 
-                      opacity: activePoint === index ? 1 : 0.7,
-                      y: isTop 
-                        ? (activePoint === index ? yPos - 35 : yPos - 30)
-                        : (activePoint === index ? yPos + 35 : yPos + 30)
-                    }}
-                    className="pointer-events-none font-medium"
+                    className="pointer-events-none"
                   >
                     {item.class}
-                  </motion.text>
+                  </text>
                   
-                  {/* Achievement Tooltip with improved design */}
-                  <motion.g
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ 
-                      opacity: activePoint === index ? 1 : 0,
-                      scale: activePoint === index ? 1 : 0.8,
-                    }}
-                    transition={{ duration: 0.3, type: "spring", stiffness: 300, damping: 20 }}
-                  >
-                    {/* Tooltip direction depends on position in wave */}
-                    <g transform={`translate(${xPos}, ${yPos}) translate(0, ${isTop ? -65 : 45})`}>
-                      {/* Pill Background with gradient */}
-                      <linearGradient id={`gradient-${index}`} x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stopColor="#e60023" />
-                        <stop offset="100%" stopColor="#f73955" />
-                      </linearGradient>
+                  {/* Achievement Pill - only shown when active */}
+                  {isActive && (
+                    <g>
+                      {/* Simple connector line */}
+                      {!isTop && (
+                        <line
+                          x1={xPos}
+                          y1={yPos + 13}
+                          x2={xPos}
+                          y2={yPos + 40}
+                          stroke="#e60023"
+                          strokeWidth="1.5"
+                        />
+                      )}
                       
+                      {/* Achievement pill */}
                       <rect
-                        x="-70"
-                        y="-15"
-                        width="140"
+                        x={xPos - 60}
+                        y={isTop ? yPos - 70 : yPos + 45}
+                        width="120"
                         height="30"
                         rx="15"
-                        fill={`url(#gradient-${index})`}
-                        filter="drop-shadow(0px 2px 4px rgba(0,0,0,0.25))"
-                      />
-                      
-                      {/* Connecting line */}
-                      <line
-                        x1="0"
-                        y1={isTop ? "15" : "-15"}
-                        x2="0"
-                        y2={isTop ? "25" : "-25"}
-                        stroke="#e60023"
-                        strokeWidth="2"
-                        strokeDasharray={isTop ? "0" : "3,2"}
+                        fill="#e60023"
+                        className="transition-all duration-300"
                       />
                       
                       {/* Achievement Text */}
                       <text
-                        x="0"
-                        y="5"
+                        x={xPos}
+                        y={isTop ? yPos - 55 : yPos + 60}
                         fontSize="13"
-                        fontWeight="bold"
+                        fontWeight="500"
                         fill="white"
                         textAnchor="middle"
                         dominantBaseline="middle"
@@ -221,7 +191,7 @@ const AcademicTimeline = () => {
                         {item.achievement}
                       </text>
                     </g>
-                  </motion.g>
+                  )}
                 </g>
               );
             })}
