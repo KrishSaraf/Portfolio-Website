@@ -457,40 +457,40 @@ const CoCurricular = () => {
     // Other featured images
     {
       id: 'featured-1',
-      src: '/images/certificate.jpg',
-      alt: 'Academic certificates and medals',
+      src: '/images/image copy 27.png',
+      alt: 'School certificates',
       description: 'Academic achievements and recognitions',
-      aspectRatio: 1.33, // 4:3 ratio
+      aspectRatio: 926/868, // Close to 1:1 ratio
       highlight: true,
       objectPosition: 'center center',
       maxHeight: 650
     },
     {
       id: 'featured-2',
-      src: '/images/medals.jpg',
-      alt: 'Competition medals collection',
-      description: 'Medals from various competitions',
-      aspectRatio: 1.5, // 3:2 ratio
+      src: '/images/image copy 28.png',
+      alt: 'Awards and certificates',
+      description: 'Educational achievements',
+      aspectRatio: 742/493, // 1.5:1 ratio
       highlight: false,
       objectPosition: 'center center',
-      maxHeight: 400
+      maxHeight: 550
     },
     {
       id: 'featured-3',
-      src: '/images/school-certificate.jpg',
+      src: '/images/image copy 26.png',
       alt: 'School achievement certificate',
       description: 'Academic excellence certificate',
-      aspectRatio: 1.33, // 4:3 ratio
+      aspectRatio: 776/517, // 1.5:1 ratio
       highlight: false,
       objectPosition: 'center center',
       maxHeight: 550
     },
     {
       id: 'featured-4',
-      src: '/images/appreciation.jpg',
+      src: '/images/image copy 25.png',
       alt: 'Community appreciation award',
       description: 'Recognition for community service',
-      aspectRatio: 1.5, // 3:2 ratio
+      aspectRatio: 609/512, // 1.19:1 ratio
       highlight: false,
       objectPosition: 'center center',
       maxHeight: 650
