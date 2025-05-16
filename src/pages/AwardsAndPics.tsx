@@ -41,7 +41,7 @@ const AwardsAndPics = () => {
       id: 'basf',
       src: "/gallery/timeline/j.jpeg",
       alt: "BASF Team",
-      description: "Team photo at BASF's innovation showcase",
+      description: "Team visit to BASF chemical company",
       aspectRatio: 25/9,
       highlight: false,
       objectPosition: "center 25%",
@@ -51,8 +51,8 @@ const AwardsAndPics = () => {
     {
       id: 'presentation2',
       src: "/gallery/timeline/g.jpeg",
-      alt: "Technical Presentation",
-      description: "Sharing project insights with the team",
+      alt: "Hanoi Winter Prelude 2024",
+      description: "Award ceremony at international event in Vietnam",
       aspectRatio: 16/9,
       highlight: false,
       objectPosition: "center 30%",
@@ -61,8 +61,8 @@ const AwardsAndPics = () => {
     {
       id: 'workshop2',
       src: "/gallery/timeline/k.jpeg",
-      alt: "Innovation Workshop",
-      description: "Collaborative workshop session",
+      alt: "Classroom Group",
+      description: "Collaborative session at MIT design innovation workshop",
       aspectRatio: 16/9,
       highlight: false,
       objectPosition: "center 30%",
@@ -71,8 +71,8 @@ const AwardsAndPics = () => {
     {
       id: 'mountain',
       src: "/gallery/timeline/l.jpeg",
-      alt: "Mountain View", 
-      description: "Project planning retreat",
+      alt: "Mountain Hiking", 
+      description: "Trek to panoramic viewpoint in Southeast Asia",
       aspectRatio: 4/3,
       highlight: false,
       objectPosition: "center 30%",
@@ -81,8 +81,8 @@ const AwardsAndPics = () => {
     {
       id: 'outdoor',
       src: "/gallery/timeline/o.jpeg",
-      alt: "Outdoor Strategy Session",
-      description: "Team planning in an outdoor setting",
+      alt: "Nature Portrait",
+      description: "Standing among trees at a park or nature reserve",
       aspectRatio: 4/3,
       highlight: false,
       objectPosition: "center 30%",
@@ -91,8 +91,8 @@ const AwardsAndPics = () => {
     {
       id: 'discussion',
       src: "/gallery/timeline/c.jpeg", 
-      alt: "Team Discussion",
-      description: "Collaborative problem-solving session",
+      alt: "Technical Presentation",
+      description: "Presenting project details at a technical seminar",
       aspectRatio: 4/3,
       highlight: false,
       objectPosition: "center 15%",
@@ -101,8 +101,8 @@ const AwardsAndPics = () => {
     {
       id: 'project',
       src: "/gallery/timeline/h.jpeg",
-      alt: "Project Development",
-      description: "Whiteboarding system architecture",
+      alt: "Whiteboard Session",
+      description: "Explaining system design concepts at a whiteboard",
       aspectRatio: 4/3,
       highlight: false,
       objectPosition: "center 30%",
@@ -113,8 +113,8 @@ const AwardsAndPics = () => {
     {
       id: 'development',
       src: "/gallery/timeline/b.jpeg",
-      alt: "Development Session",
-      description: "Technical discussion during sprint planning",
+      alt: "Portrait Photo",
+      description: "Professional headshot in casual setting",
       aspectRatio: 3/4,
       highlight: false,
       objectPosition: "center 20%",
@@ -123,8 +123,8 @@ const AwardsAndPics = () => {
     {
       id: 'workshop',
       src: "/gallery/timeline/e.jpeg",
-      alt: "Workshop Session",
-      description: "Leading a workshop on AI applications",
+      alt: "Classroom Audience",
+      description: "Student audience during a technical lecture",
       aspectRatio: 4/3,
       highlight: false,
       objectPosition: "center 35%",
@@ -133,8 +133,8 @@ const AwardsAndPics = () => {
     {
       id: 'innovation',
       src: "/gallery/timeline/f.jpeg",
-      alt: "Innovation Work",
-      description: "Creative brainstorming for new solutions",
+      alt: "Award Ceremony",
+      description: "Receiving an award plaque at recognition ceremony",
       aspectRatio: 7/5,
       highlight: false,
       objectPosition: "center 40%",
@@ -143,8 +143,8 @@ const AwardsAndPics = () => {
     {
       id: 'technology',
       src: "/gallery/timeline/i.jpeg",
-      alt: "Technology Demo",
-      description: "Demonstrating the latest tech solutions",
+      alt: "Marathon Runner",
+      description: "Participating in OneGlint running event",
       aspectRatio: 1/2,
       highlight: false,
       objectPosition: "center 10%",
@@ -153,8 +153,8 @@ const AwardsAndPics = () => {
     {
       id: 'stakeholders',
       src: "/gallery/timeline/m.jpeg",
-      alt: "Stakeholder Meeting",
-      description: "Engaging with project stakeholders",
+      alt: "Cohase Awards 2023",
+      description: "Receiving Dean's List award at Cohase ceremony",
       aspectRatio: 2/3,
       highlight: false,
       maxHeight: 550,
@@ -191,12 +191,12 @@ const AwardsAndPics = () => {
   const synapseImages = [
     {
       image: "/gallery/t1.jpeg", 
-      caption: "Presenting our AI solution at IEEE NTU & NUS Synapse Hackathon",
+      caption: "Receiving award certificate at IEEE NTU & NUS Synapse Hackathon",
       aspectRatio: "aspect-w-16 aspect-h-9",
     },
     {
       image: "/gallery/t2.jpeg", 
-      caption: "Team photo at Synapse Hackathon auditorium",
+      caption: "Team celebration after successful presentation",
       aspectRatio: "aspect-w-4 aspect-h-3",
     }
   ];
@@ -205,22 +205,22 @@ const AwardsAndPics = () => {
   const cleanTechImages = [
     {
       image: "/gallery/c1.jpeg", 
-      caption: "Clean Tech Challenge 2024 - First Prize presentation",
+      caption: "Receiving First Prize trophy at Clean Tech Challenge 2024",
       aspectRatio: "aspect-w-16 aspect-h-9",
     },
     {
       image: "/gallery/c2.jpeg", 
-      caption: "Team photo at Clean Tech Challenge awards ceremony",
+      caption: "Group photo with judges and sponsors after awards",
       aspectRatio: "aspect-w-4 aspect-h-3",
     },
     {
       image: "/gallery/c3.jpeg", 
-      caption: "Explaining our sustainability model to judges",
+      caption: "Demonstration of our environmental technology solution",
       aspectRatio: "aspect-w-4 aspect-h-3",
     },
     {
       image: "/gallery/c4.jpeg", 
-      caption: "Clean Tech Challenge 2023 - GreenCompass SG Demo",
+      caption: "Presenting GreenCompass SG platform to evaluation panel",
       aspectRatio: "aspect-w-16 aspect-h-9",
     },
   ];
@@ -229,22 +229,22 @@ const AwardsAndPics = () => {
   const intuitionImages = [
     {
       image: "/gallery/1.jpeg", 
-      caption: "Our team at NTU IEEE Intuition Hackathon",
+      caption: "Collaborative group work during NTU IEEE Intuition Hackathon",
       aspectRatio: "aspect-w-16 aspect-h-9",
     },
     {
       image: "/gallery/2.jpeg", 
-      caption: "Demonstrating our project at NTU IEEE Intuition Hackathon",
+      caption: "Live coding session with team members at the hackathon",
       aspectRatio: "aspect-w-4 aspect-h-3",
     },
     {
       image: "/gallery/3.jpeg", 
-      caption: "Receiving award at NTU IEEE Intuition Hackathon",
+      caption: "Accepting 1st Runner-Up award on stage",
       aspectRatio: "aspect-w-4 aspect-h-3",
     },
     {
       image: "/gallery/4.jpeg", 
-      caption: "Final presentation at NTU IEEE Intuition Hackathon",
+      caption: "Final project demonstration to judges and audience",
       aspectRatio: "aspect-w-16 aspect-h-9",
     }
   ];
@@ -253,22 +253,22 @@ const AwardsAndPics = () => {
   const codeWithAIImages = [
     {
       image: "/gallery/l1.jpeg", 
-      caption: "Team presentation at Code with AI Hackathon",
+      caption: "Pitching our Get My Leadz solution to the panel",
       aspectRatio: "aspect-w-16 aspect-h-9",
     },
     {
       image: "/gallery/l2.jpeg", 
-      caption: "Demo of Get My Leadz platform at the hackathon",
+      caption: "Interactive demo of our AI-powered lead generation platform",
       aspectRatio: "aspect-w-4 aspect-h-3",
     },
     {
       image: "/gallery/l3.jpeg", 
-      caption: "Receiving 3rd place award at Code with AI Hackathon",
+      caption: "Third place award ceremony with industry representatives",
       aspectRatio: "aspect-w-4 aspect-h-3",
     },
     {
       image: "/gallery/l4.jpeg", 
-      caption: "Team working session during the hackathon",
+      caption: "Intensive problem-solving session during the hackathon",
       aspectRatio: "aspect-w-16 aspect-h-9",
     }
   ];
@@ -277,22 +277,22 @@ const AwardsAndPics = () => {
   const peakImages = [
     {
       image: "/gallery/p1.jpeg", 
-      caption: "Presenting MRT system blueprint at NTU PEAK Leadership Program",
+      caption: "Presenting urban transportation system innovations",
       aspectRatio: "aspect-w-16 aspect-h-9",
     },
     {
       image: "/gallery/p2.jpeg", 
-      caption: "Team collaboration with Land Transport Authority",
+      caption: "Workshop with Land Transport Authority representatives",
       aspectRatio: "aspect-w-4 aspect-h-3",
     },
     {
       image: "/gallery/p3.jpeg", 
-      caption: "Receiving Best Ideation Award at PEAK Leadership Program",
+      caption: "Receiving the Best Ideation Award for our MRT blueprint",
       aspectRatio: "aspect-w-4 aspect-h-3",
     },
     {
       image: "/gallery/p4.jpeg", 
-      caption: "Final presentation of our project at PEAK",
+      caption: "Final team presentation of future-ready transportation model",
       aspectRatio: "aspect-w-16 aspect-h-9",
     }
   ];
@@ -302,26 +302,26 @@ const AwardsAndPics = () => {
     {
       type: 'video',
       src: "/gallery/videos/video-counting.mp4", 
-      caption: "Gauze counting system demonstration",
+      caption: "Live demonstration of real-time gauze detection algorithm",
       loop: true,
       aspectRatio: "aspect-w-16 aspect-h-9",
     },
     {
       type: 'image',
       src: "/gallery/gauze.jpeg", 
-      caption: "Gauze detection system in action",
+      caption: "AI-powered surgical gauze detection and counting system",
       aspectRatio: "aspect-w-16 aspect-h-9",
     },
     {
       type: 'image',
       src: "/gallery/krish-hospital.jpeg", 
-      caption: "Clinical implementation at hospital",
+      caption: "Hospital implementation and staff training session",
       aspectRatio: "aspect-w-4 aspect-h-3",
     },
     {
       type: 'image',
       src: "/gallery/steps.png", 
-      caption: "System architecture and workflow",
+      caption: "System architecture and computer vision pipeline diagram",
       aspectRatio: "aspect-w-4 aspect-h-3",
     }
   ];
