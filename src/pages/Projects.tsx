@@ -18,7 +18,7 @@ type ImageCarouselProps = {
   interval?: number;
 };
 
-const ImageCarousel: React.FC<ImageCarouselProps> = ({ images, alt, interval = 5000 }) => {
+const ImageCarousel: React.FC<ImageCarouselProps> = ({ images, alt, interval = 2000 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   
   useEffect(() => {
