@@ -374,16 +374,16 @@ const AwardsAndPics = () => {
     },
     
     // Group portrait and irregular orientation images
-    {
-      id: 'development',
-      src: "/gallery/timeline/b.jpeg",
-      alt: "Portrait Photo",
-      description: "Professional headshot in casual setting",
-      aspectRatio: 3/4,
-      highlight: false,
-      objectPosition: "center 20%",
-      maxHeight: 550
-    },
+    // {
+    //   id: 'development',
+    //   src: "/gallery/timeline/b.jpeg",
+    //   alt: "Portrait Photo",
+    //   description: "Professional headshot in casual setting",
+    //   aspectRatio: 3/4,
+    //   highlight: false,
+    //   objectPosition: "center 20%",
+    //   maxHeight: 550
+    // },
     {
       id: 'workshop',
       src: "/gallery/timeline/e.jpeg",
@@ -648,14 +648,14 @@ const AwardsAndPics = () => {
 
   return (
     <section className="pb-20 relative overflow-hidden bg-gradient-to-b from-white via-pink-50 to-pink-100">
-      <div className="pt-32 container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="pt-20 container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <div className="text-center mb-16">
-            <h2 className="text-4xl sm:text-5xl font-extrabold text-darkPink mb-6 leading-tight">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-darkPink mb-4 leading-tight">
               Awards & Pics
             </h2>
             <p className="text-darkPink/70 text-lg max-w-3xl mx-auto mb-6">
@@ -664,80 +664,6 @@ const AwardsAndPics = () => {
           </div>
 
           {/* Navigation to sections */}
-          <div className="flex flex-wrap justify-center gap-3 md:gap-4 mb-16">
-            <motion.button
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: 0.1 }}
-              onClick={() => scrollToElement('india-book-records-section')}
-              className="px-5 py-2.5 bg-darkPink text-white rounded-full hover:bg-pink-700 transition-all duration-300 text-sm md:text-base font-medium shadow-md hover:shadow-lg"
-            >
-              India Book of Records
-            </motion.button>
-            <motion.button
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: 0.2 }}
-              onClick={() => scrollToElement('photo-collage')}
-              className="px-5 py-2.5 bg-darkPink text-white rounded-full hover:bg-pink-700 transition-all duration-300 text-sm md:text-base font-medium shadow-md hover:shadow-lg"
-            >
-              Photo Collage
-            </motion.button>
-            <motion.button
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: 0.3 }}
-              onClick={() => scrollToElement('synapse-section')}
-              className="px-5 py-2.5 bg-darkPink text-white rounded-full hover:bg-pink-700 transition-all duration-300 text-sm md:text-base font-medium shadow-md hover:shadow-lg"
-            >
-              Synapse Hackathon
-            </motion.button>
-            <motion.button
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: 0.4 }}
-              onClick={() => scrollToElement('cleantech-section')}
-              className="px-5 py-2.5 bg-darkPink text-white rounded-full hover:bg-pink-700 transition-all duration-300 text-sm md:text-base font-medium shadow-md hover:shadow-lg"
-            >
-              Clean Tech Challenge
-            </motion.button>
-            <motion.button
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: 0.5 }}
-              onClick={() => scrollToElement('intuition-section')}
-              className="px-5 py-2.5 bg-darkPink text-white rounded-full hover:bg-pink-700 transition-all duration-300 text-sm md:text-base font-medium shadow-md hover:shadow-lg"
-            >
-              IEEE Intuition Hackathon
-            </motion.button>
-            <motion.button
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: 0.6 }}
-              onClick={() => scrollToElement('codewithai-section')}
-              className="px-5 py-2.5 bg-darkPink text-white rounded-full hover:bg-pink-700 transition-all duration-300 text-sm md:text-base font-medium shadow-md hover:shadow-lg"
-            >
-              Code with AI Hackathon
-            </motion.button>
-            <motion.button
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: 0.7 }}
-              onClick={() => scrollToElement('peak-section')}
-              className="px-5 py-2.5 bg-darkPink text-white rounded-full hover:bg-pink-700 transition-all duration-300 text-sm md:text-base font-medium shadow-md hover:shadow-lg"
-            >
-              PEAK Leadership
-            </motion.button>
-            <motion.button
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: 0.8 }}
-              onClick={() => scrollToElement('gauze-section')}
-              className="px-5 py-2.5 bg-darkPink text-white rounded-full hover:bg-pink-700 transition-all duration-300 text-sm md:text-base font-medium shadow-md hover:shadow-lg"
-            >
-              Surgical Gauze Detection
-            </motion.button>
-          </div>
             
           <div className="space-y-24">
             {/* India Book of Records Section */}
