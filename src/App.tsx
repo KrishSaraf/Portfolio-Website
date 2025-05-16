@@ -7,6 +7,7 @@ import Projects from './pages/Projects';
 import Contact from './pages/Contact';
 import AwardsAndPics from './pages/AwardsAndPics';
 import ScrollToTop from './components/ScrollToTop';
+import { useEffect } from 'react';
 
 // // Single page application layout component for the home page
 // function SinglePageApp() {
@@ -35,6 +36,22 @@ import ScrollToTop from './components/ScrollToTop';
 // }
 
 function App() {
+  // Ensure viewport meta tag is properly set
+  useEffect(() => {
+    // Check if viewport meta tag exists
+    let viewport = document.querySelector('meta[name="viewport"]') as HTMLMetaElement | null;
+    
+    // If it doesn't exist, create it
+    if (!viewport) {
+      viewport = document.createElement('meta');
+      viewport.name = 'viewport';
+      document.head.appendChild(viewport);
+    }
+    
+    // Set the viewport content for optimal responsive behavior
+    viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover');
+  }, []);
+
   return (
     <Router>
       <ScrollToTop>

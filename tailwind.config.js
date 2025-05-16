@@ -6,14 +6,23 @@ module.exports = {
   ],
   theme: {
     screens: {
-      'sm': '576px',
-      // => @media (min-width: 576px) { ... } // Mobile styles will be base, sm effectively becomes the larger end of mobile / start of tablet by convention if needed, though not explicitly asked for.
-
-      'md': '577px',
-      // => @media (min-width: 577px) { ... } // Tablet
-
+      'xs': '375px',
+      // => @media (min-width: 375px) { ... } // Small mobile devices (iPhone SE, etc.)
+      
+      'sm': '480px',
+      // => @media (min-width: 480px) { ... } // Medium/large mobile devices in portrait
+      
+      'md': '768px',
+      // => @media (min-width: 768px) { ... } // iPad Mini, iPad, iPad Air in portrait
+      
       'lg': '992px',
-      // => @media (min-width: 992px) { ... } // Desktop
+      // => @media (min-width: 992px) { ... } // Small desktops and iPad Pro in landscape
+      
+      'xl': '1200px',
+      // => @media (min-width: 1200px) { ... } // Larger desktops
+      
+      '2xl': '1536px',
+      // => @media (min-width: 1536px) { ... } // Extra large screens
     },
     extend: {
       colors: {
