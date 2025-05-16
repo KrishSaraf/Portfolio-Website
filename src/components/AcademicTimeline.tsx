@@ -46,9 +46,9 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
     d3.select(svgRef.current).selectAll('*').remove();
 
     // Define dimensions and margins
-    const margin = { top: 40, right: 30, bottom: 100, left: 30 };
+    const margin = { top: 40, right: 30, bottom: 40, left: 30 };
     const width = svgRef.current.clientWidth || 1000;
-    const height = 500; // Increased height to accommodate both timelines
+    const height = 400; // Reduced height but still enough for both timelines
     
     // The main SVG
     const svg = d3.select(svgRef.current)
@@ -76,7 +76,7 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
 
     g.append('text')
       .attr('x', 0)
-      .attr('y', 225) // Position for the college section label
+      .attr('y', 180) // Moved up for better visibility
       .attr('font-size', '14px')
       .attr('font-weight', 'bold')
       .attr('fill', '#333')
@@ -114,7 +114,7 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
       // Different sine wave pattern for visual distinction
       const baseY = Math.sin(i / (pointsCount / (collegeData.length * 1.8))) * 25;
       const randomOffset = Math.random() * 2 - 1;
-      return [x, 280 + baseY + randomOffset]; // Positioned lower on the SVG
+      return [x, 220 + baseY + randomOffset]; // Moved up for better visibility
     });
 
     // Calculate the total length of the paths for animation
@@ -124,8 +124,8 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
     const connector = g.append('path')
       .attr('d', `M${xScale(academicData.length-1)},80 
                  C${xScale(academicData.length-1)+40},100 
-                  ${xScale(academicData.length-1)-20},260 
-                  ${collegeXScale(0)},260`)
+                  ${xScale(academicData.length-1)-20},200 
+                  ${collegeXScale(0)},200`)
       .attr('fill', 'none')
       .attr('stroke', '#e91e63')
       .attr('stroke-width', 2.5)
@@ -157,17 +157,17 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
       .style('filter', 'drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.2))')
       .style('opacity', 0); // Start invisible
     
-    // Animate K-12 path drawing
+    // Animate K-12 path drawing with reduced duration
     path.attr('stroke-dasharray', pathLength)
       .attr('stroke-dashoffset', pathLength)
       .transition()
-      .duration(2000) // 2 seconds for animation
+      .duration(1500) // Reduced for faster animation
       .ease(d3.easePolyInOut)
       .attr('stroke-dashoffset', 0)
       .on('end', () => {
         // After K-12 path animation, show the connector
         connector.transition()
-          .duration(800)
+          .duration(600) // Faster transition
           .style('opacity', 1)
           .on('end', () => {
             // After connector animation, animate the college path
@@ -175,7 +175,7 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
               .attr('stroke-dasharray', pathLength)
               .attr('stroke-dashoffset', pathLength)
               .transition()
-              .duration(1500)
+              .duration(1200) // Faster animation
               .ease(d3.easePolyInOut)
               .attr('stroke-dashoffset', 0);
           });
@@ -228,7 +228,7 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
       .style('transform', 'translateY(5px)')
       .style('color', '#333');
 
-    // Function to create markers and labels
+    // Function to create markers and labels with proper typing
     const createMarkers = (data: AchievementData[], pathElement: SVGPathElement, xScaleFunc: d3.ScaleLinear<number, number>, delayOffset: number = 0) => {
       const markers = g.selectAll(`.marker-${delayOffset ? 'college' : 'k12'}`)
         .data(data)
@@ -243,7 +243,7 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
         .style('cursor', 'pointer')
         .style('opacity', 0) // Start invisible
         .transition() // Fade in markers after path animation
-        .delay((_, i) => delayOffset + 1800 + i * 100) // Start after path animation is mostly done
+        .delay((_, i) => delayOffset + 1400 + i * 80) // Faster appearance with smaller delays
         .duration(300)
         .style('opacity', 1);
 
@@ -254,16 +254,16 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
         .attr('stroke', '#e91e63')
         .attr('stroke-width', 2);
 
-      // Add class labels - not bold
+      // Add class labels - not bold with type assertion for d
       g.selectAll(delayOffset ? '.marker-college' : '.marker-k12').append('text')
         .attr('dy', -20)
         .attr('text-anchor', 'middle')
         .attr('font-size', '14px')
         .attr('fill', '#333')
         .style('text-shadow', '0 1px 1px rgba(255,255,255,0.8)')
-        .text(d => d.class);
+        .text(function(d) { return (d as unknown as AchievementData).class; });
 
-      // Add achievement text - bold
+      // Add achievement text - bold with type assertion for d
       g.selectAll(delayOffset ? '.marker-college' : '.marker-k12').append('text')
         .attr('dy', 30)
         .attr('text-anchor', 'middle')
@@ -271,11 +271,14 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
         .attr('font-weight', 'bold')
         .attr('fill', '#e91e63')
         .style('text-shadow', '0 1px 1px rgba(255,255,255,0.8)')
-        .text(d => d.achievement);
+        .text(function(d) { return (d as unknown as AchievementData).achievement; });
 
-      // Handle hover events
+      // Handle hover events with type assertion for d
       g.selectAll(delayOffset ? '.marker-college' : '.marker-k12')
         .on('mouseover', function(event, d) {
+          // Type assertion for d
+          const data = d as unknown as AchievementData;
+          
           // Highlight the marker
           d3.select(this).select('circle')
             .transition()
@@ -286,7 +289,7 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
           
           // Show tooltip
           tooltip
-            .html(`<strong>${d.class}</strong><br/>${d.details}`)
+            .html(`<strong>${data.class}</strong><br/>${data.details}`)
             .style('visibility', 'visible')
             .style('left', `${event.pageX + 12}px`)
             .style('top', `${event.pageY - 25}px`)
@@ -326,7 +329,7 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
 
     // Create markers for both timelines
     createMarkers(academicData, pathNode, xScale, 0);
-    createMarkers(collegeData, collegePathNode, collegeXScale, 2000); // Delay college markers
+    createMarkers(collegeData, collegePathNode, collegeXScale, 1600); // Reduced delay
 
     // Handle resize
     const handleResize = () => {
@@ -354,7 +357,7 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
         const x = (newWidth - margin.left - margin.right) * (i / (pointsCount - 1));
         const baseY = Math.sin(i / (pointsCount / (collegeData.length * 1.8))) * 25;
         const randomOffset = Math.random() * 2 - 1;
-        return [x, 280 + baseY + randomOffset];
+        return [x, 220 + baseY + randomOffset]; // Keep consistent with initial positioning
       });
       
       // Update paths
@@ -371,8 +374,8 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
       // Update connector
       connector.attr('d', `M${xScale(academicData.length-1)},80 
                           C${xScale(academicData.length-1)+40},100 
-                           ${xScale(academicData.length-1)-20},260 
-                           ${collegeXScale(0)},260`);
+                           ${xScale(academicData.length-1)-20},200 
+                           ${collegeXScale(0)},200`);
       
       // Update marker positions
       const newPathNode = path.node() as SVGPathElement;
@@ -405,7 +408,7 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
       <svg 
         ref={svgRef} 
         className="w-full h-auto" 
-        style={{ minHeight: '500px' }} // Increased for both timelines
+        style={{ minHeight: '400px' }} // Adjusted height
       />
       <div 
         ref={tooltipRef} 
