@@ -310,42 +310,42 @@ const Projects = () => {
                       
                       {/* View Pics buttons aligned with View Details */}
                       {project.title === "IEEE NTU & NUS Synapse Hackathon 2024" && (
-                        <Link to="/awards?event=synapse" className="px-6 py-3 text-sm font-semibold text-white bg-darkPink rounded-xl hover:bg-pink-600 transition-colors duration-200 flex items-center gap-2 group-hover:shadow-md">
+                        <Link to="/awards#synapse-section" className="px-6 py-3 text-sm font-semibold text-white bg-darkPink rounded-xl hover:bg-pink-600 transition-colors duration-200 flex items-center gap-2 group-hover:shadow-md">
                           View Pics
                           <span className="transform group-hover:translate-x-1 transition-transform duration-200">→</span>
                         </Link>
                       )}
 
                       {project.title === "Clean-Tech Challenge" && (
-                        <Link to="/awards?event=cleantech" className="px-6 py-3 text-sm font-semibold text-white bg-darkPink rounded-xl hover:bg-pink-600 transition-colors duration-200 flex items-center gap-2 group-hover:shadow-md">
+                        <Link to="/awards#cleantech-section" className="px-6 py-3 text-sm font-semibold text-white bg-darkPink rounded-xl hover:bg-pink-600 transition-colors duration-200 flex items-center gap-2 group-hover:shadow-md">
                           View Pics
                           <span className="transform group-hover:translate-x-1 transition-transform duration-200">→</span>
                         </Link>
                       )}
                       
                       {project.title === "NTU IEEE Intuition Hackathon" && (
-                        <Link to="/awards?event=intuition" className="px-6 py-3 text-sm font-semibold text-white bg-darkPink rounded-xl hover:bg-pink-600 transition-colors duration-200 flex items-center gap-2 group-hover:shadow-md">
+                        <Link to="/awards#intuition-section" className="px-6 py-3 text-sm font-semibold text-white bg-darkPink rounded-xl hover:bg-pink-600 transition-colors duration-200 flex items-center gap-2 group-hover:shadow-md">
                           View Pics
                           <span className="transform group-hover:translate-x-1 transition-transform duration-200">→</span>
                         </Link>
                       )}
                       
                       {project.title === '"Code with AI" Hackathon - Get My Leadz' && (
-                        <Link to="/awards?event=codewithai" className="px-6 py-3 text-sm font-semibold text-white bg-darkPink rounded-xl hover:bg-pink-600 transition-colors duration-200 flex items-center gap-2 group-hover:shadow-md">
+                        <Link to="/awards#codewithai-section" className="px-6 py-3 text-sm font-semibold text-white bg-darkPink rounded-xl hover:bg-pink-600 transition-colors duration-200 flex items-center gap-2 group-hover:shadow-md">
                           View Pics
                           <span className="transform group-hover:translate-x-1 transition-transform duration-200">→</span>
                         </Link>
                       )}
 
                       {project.title === "NTU PEAK Leadership Program" && (
-                        <Link to="/awards?event=peak" className="px-6 py-3 text-sm font-semibold text-white bg-darkPink rounded-xl hover:bg-pink-600 transition-colors duration-200 flex items-center gap-2 group-hover:shadow-md">
+                        <Link to="/awards#peak-section" className="px-6 py-3 text-sm font-semibold text-white bg-darkPink rounded-xl hover:bg-pink-600 transition-colors duration-200 flex items-center gap-2 group-hover:shadow-md">
                           View Pics
                           <span className="transform group-hover:translate-x-1 transition-transform duration-200">→</span>
                         </Link>
                       )}
                       
                       {project.title === "Surgical Gauze Detection using Computer Vision" && (
-                        <Link to="/awards?event=gauze" className="px-6 py-3 text-sm font-semibold text-white bg-darkPink rounded-xl hover:bg-pink-600 transition-colors duration-200 flex items-center gap-2 group-hover:shadow-md">
+                        <Link to="/awards#gauze-section" className="px-6 py-3 text-sm font-semibold text-white bg-darkPink rounded-xl hover:bg-pink-600 transition-colors duration-200 flex items-center gap-2 group-hover:shadow-md">
                           View Pics
                           <span className="transform group-hover:translate-x-1 transition-transform duration-200">→</span>
                         </Link>
@@ -457,7 +457,7 @@ const Projects = () => {
                     )}
                     {projects[selected].title === "IEEE NTU & NUS Synapse Hackathon 2024" && (
                       <Link
-                        to="/awards?event=synapse"
+                        to="/awards#synapse-section"
                         onClick={() => setSelected(null)}
                         className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-darkPink rounded-lg hover:bg-pink-600 transition-colors duration-200"
                       >
@@ -469,7 +469,7 @@ const Projects = () => {
                     )}
                     {projects[selected].title === "Clean-Tech Challenge" && (
                       <Link
-                        to="/awards?event=cleantech"
+                        to="/awards#cleantech-section"
                         onClick={() => setSelected(null)}
                         className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-darkPink rounded-lg hover:bg-pink-600 transition-colors duration-200"
                       >
@@ -481,7 +481,7 @@ const Projects = () => {
                     )}
                     {projects[selected].title === "NTU IEEE Intuition Hackathon" && (
                       <Link
-                        to="/awards?event=intuition"
+                        to="/awards#intuition-section"
                         onClick={() => setSelected(null)}
                         className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-darkPink rounded-lg hover:bg-pink-600 transition-colors duration-200"
                       >
@@ -493,7 +493,7 @@ const Projects = () => {
                     )}
                     {projects[selected].title === '"Code with AI" Hackathon - Get My Leadz' && (
                       <Link
-                        to="/awards?event=codewithai"
+                        to="/awards#codewithai-section"
                         onClick={() => setSelected(null)}
                         className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-darkPink rounded-lg hover:bg-pink-600 transition-colors duration-200"
                       >
@@ -505,7 +505,7 @@ const Projects = () => {
                     )}
                     {projects[selected].title === "NTU PEAK Leadership Program" && (
                       <Link
-                        to="/awards?event=peak"
+                        to="/awards#peak-section"
                         onClick={() => setSelected(null)}
                         className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-darkPink rounded-lg hover:bg-pink-600 transition-colors duration-200"
                       >
@@ -517,7 +517,7 @@ const Projects = () => {
                     )}
                     {projects[selected].title === "Surgical Gauze Detection using Computer Vision" && (
                       <Link
-                        to="/awards?event=gauze"
+                        to="/awards#gauze-section"
                         onClick={() => setSelected(null)}
                         className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-darkPink rounded-lg hover:bg-pink-600 transition-colors duration-200"
                       >

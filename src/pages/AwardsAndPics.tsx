@@ -8,48 +8,40 @@ const AwardsAndPics = () => {
   const [imagesLoaded, setImagesLoaded] = useState(0);
   const location = useLocation();
   
-  // Parse URL parameters to check for event (only for scrolling)
+  // Use native browser hash scrolling with offset correction
   useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const event = params.get('event');
-    
-    // Scroll to appropriate section if specified in URL
-    if (event) {
-      setTimeout(() => {
-        const sectionId = event === 'synapse' ? 'synapse-section' : 
-                         event === 'cleantech' ? 'cleantech-section' :
-                         event === 'intuition' ? 'intuition-section' :
-                         event === 'codewithai' ? 'codewithai-section' :
-                         event === 'peak' ? 'peak-section' :
-                         event === 'gauze' ? 'gauze-section' :
-                         event === 'india-records' ? 'india-book-records-section' :
-                         event === 'timeline' ? 'timeline-section' : null;
-        if (sectionId) {
-          const section = document.getElementById(sectionId);
-          if (section) {
-            // Check if it's a mobile device (roughly)
-            const isMobile = window.innerWidth < 768;
-            
-            // Scroll with specific options
-            section.scrollIntoView({ 
-              behavior: 'smooth',
-              block: 'start' 
-            });
-            
-            // Additional adjustment for mobile header
-            if (isMobile) {
-              setTimeout(() => {
-                // Add extra offset for mobile header
-                window.scrollBy({
-                  top: -80, // Adjust this value based on your mobile header height
-                  behavior: 'smooth'
-                });
-              }, 100);
-            }
-          }
+    // Small delay to ensure DOM is ready
+    const timer = setTimeout(() => {
+      // Check if there's a hash in the URL
+      if (location.hash) {
+        // Get the element to scroll to
+        const id = location.hash.replace('#', '');
+        const element = document.getElementById(id);
+        
+        if (element) {
+          // Detect if we're on mobile
+          const isMobile = window.innerWidth < 768;
+          
+          // Get the current scroll position
+          const currentScrollPos = window.pageYOffset;
+          
+          // Get the element's position
+          const rect = element.getBoundingClientRect();
+          
+          // Calculate the position to scroll to
+          // On mobile, subtract the header height (approximately 80px)
+          const scrollTo = rect.top + currentScrollPos - (isMobile ? 80 : 0);
+          
+          // Scroll to the element
+          window.scrollTo({
+            top: scrollTo,
+            behavior: 'smooth'
+          });
         }
-      }, 800); // Increased timeout to ensure page is fully loaded
-    }
+      }
+    }, 300);
+    
+    return () => clearTimeout(timer);
   }, [location]);
 
   // Featured gallery items with better metadata
