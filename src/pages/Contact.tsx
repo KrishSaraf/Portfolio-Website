@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
-import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope, FaMapMarkerAlt, FaCalendarAlt, FaClock } from 'react-icons/fa';
 
 /*
  * EMAILJS SETUP INSTRUCTIONS:
@@ -39,6 +39,7 @@ const Contact = () => {
     message: string;
   } | null>(null);
   const [focusedField, setFocusedField] = useState<string | null>(null);
+  const [hoveredLink, setHoveredLink] = useState<string | null>(null);
 
   // Animation variants
   const containerVariants = {
@@ -63,6 +64,23 @@ const Contact = () => {
         damping: 24 
       }
     },
+  };
+
+  const socialButtonVariants = {
+    hover: (id: string) => ({
+      scale: 1.05, 
+      boxShadow: "0 10px 25px -5px rgba(157, 23, 77, 0.2)",
+      backgroundColor: id === "github" ? "#24292e" : id === "linkedin" ? "#0077b5" : "#d1336f",
+      color: "#ffffff",
+      transition: { 
+        type: "spring",
+        stiffness: 400,
+        damping: 10
+      }
+    }),
+    tap: {
+      scale: 0.98,
+    }
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -124,108 +142,201 @@ const Contact = () => {
   };
 
   return (
-    <section className="section-padding py-12 relative overflow-hidden bg-gradient-to-b from-white to-pink-50">
-      {/* Background decorative elements */}
-      <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-darkPink/5 blur-3xl"></div>
-      <div className="absolute bottom-20 right-10 w-64 h-64 rounded-full bg-darkPink/5 blur-3xl"></div>
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-darkPink/3 blur-3xl"></div>
+    <section className="py-16 md:py-24 relative overflow-hidden bg-gradient-to-b from-white via-pink-50 to-pink-100">
+      {/* Enhanced Background Elements */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="absolute top-10 left-10 w-72 h-72 rounded-full bg-gradient-to-br from-pink-200/20 to-purple-300/20 blur-3xl"></div>
+        <div className="absolute bottom-10 right-10 w-80 h-80 rounded-full bg-gradient-to-tr from-darkPink/10 to-amber-200/20 blur-3xl"></div>
+        <div className="absolute top-1/3 right-1/4 w-48 h-48 rounded-full bg-yellow-200/20 blur-3xl"></div>
+        <div className="absolute -bottom-10 -left-10 w-72 h-72 rounded-full bg-darkPink/5 blur-3xl"></div>
+        
+        {/* Decorative Shapes */}
+        <svg className="absolute top-20 right-[5%] w-16 h-16 text-darkPink/10 rotate-12" viewBox="0 0 100 100" fill="currentColor">
+          <circle cx="50" cy="50" r="40" />
+        </svg>
+        <svg className="absolute bottom-20 left-[10%] w-24 h-24 text-darkPink/5 -rotate-12" viewBox="0 0 100 100" fill="currentColor">
+          <rect x="10" y="10" width="80" height="80" rx="10" />
+        </svg>
+        <svg className="absolute top-1/2 left-[80%] w-12 h-12 text-darkPink/10" viewBox="0 0 100 100" fill="currentColor">
+          <polygon points="50,10 90,90 10,90" />
+        </svg>
+      </div>
       
-      <div className="max-w-6xl mx-auto px-4 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial="hidden"
           animate="visible"
           variants={containerVariants}
           className="relative"
         >
-          {/* Centered Title with decorative elements */}
+          {/* Enhanced Page Title */}
           <motion.div 
-            className="text-center mb-8 mt-6 md:mb-16 md:mt-12"
+            className="text-center mb-12 md:mb-20"
             variants={itemVariants}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-darkPink tracking-tight mb-4 md:mb-6 relative inline-block">
+            <h2 className="text-5xl md:text-6xl font-extrabold text-darkPink tracking-tight mb-6 relative inline-block">
               <span className="relative z-10">Get In Touch</span>
-              <div className="absolute -bottom-4 left-0 w-full h-4 bg-darkPink/20 -z-10 skew-x-3 rounded"></div>
+              <div className="absolute -bottom-3 left-0 w-full h-5 bg-gradient-to-r from-pink-200 to-pink-300/50 -z-10 skew-x-3 rounded-md"></div>
             </h2>
 
-            <p className="text-darkPink/70 text-lg mb-2 max-w-2xl mx-auto">
+            <p className="text-darkPink/70 text-xl max-w-3xl mx-auto">
               Whether you have a question or just want to say hi, I'm happy to connect!
             </p>
           </motion.div>
 
-          <div className="flex flex-col gap-10 md:flex-row md:gap-12 items-start">
-            {/* Social Links - Moved to top on mobile */}
+          {/* Quick Info Banner */}
+          <motion.div
+            variants={itemVariants}
+            className="bg-white rounded-2xl shadow-lg border-2 border-pink-100 p-4 md:p-6 mb-16 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6"
+          >
+            <div className="flex items-center p-4 bg-gradient-to-br from-pink-50 to-pink-100/50 rounded-xl">
+              <div className="rounded-full bg-darkPink/10 p-3 mr-4">
+                <FaMapMarkerAlt className="text-darkPink text-xl" />
+              </div>
+              <div>
+                <h3 className="text-darkPink font-medium">Location</h3>
+                <p className="text-gray-600">Singapore & Kolkata, India</p>
+              </div>
+            </div>
+            
+            <div className="flex items-center p-4 bg-gradient-to-br from-pink-50 to-pink-100/50 rounded-xl">
+              <div className="rounded-full bg-darkPink/10 p-3 mr-4">
+                <FaCalendarAlt className="text-darkPink text-xl" />
+              </div>
+              <div>
+                <h3 className="text-darkPink font-medium">Availability</h3>
+                <p className="text-gray-600">Open to Opportunities</p>
+              </div>
+            </div>
+            
+            <div className="flex items-center p-4 bg-gradient-to-br from-pink-50 to-pink-100/50 rounded-xl">
+              <div className="rounded-full bg-darkPink/10 p-3 mr-4">
+                <FaClock className="text-darkPink text-xl" />
+              </div>
+              <div>
+                <h3 className="text-darkPink font-medium">Response Time</h3>
+                <p className="text-gray-600">Usually within 24 hours</p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Main Content Layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            {/* Enhanced Social Links Column */}
             <motion.div 
-              className="w-full md:w-1/3 order-1 flex flex-col items-center md:items-start"
+              className="lg:col-span-5 xl:col-span-4 order-2 lg:order-1"
               variants={itemVariants}
             >
-              <div className="mb-6 md:mb-12 w-full">
-                <h3 className="text-2xl md:text-2xl font-bold text-darkPink mb-6 relative inline-block">
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-xl border-2 border-pink-100 mb-8">
+                <h3 className="text-2xl md:text-3xl font-bold text-darkPink mb-8 relative inline-block">
                   <span className="relative z-10">Connect with me</span>
-                  <div className="absolute -bottom-1 left-0 w-full h-2 bg-darkPink/20 -z-10 rounded"></div>
+                  <div className="absolute -bottom-2 left-0 w-full h-3 bg-pink-200/50 -z-10 rounded"></div>
                 </h3>
-                <div className="flex flex-col gap-4 mt-4">
+
+                <div className="space-y-5">
                   <motion.a
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.97 }}
                     href="https://github.com/KrishSaraf/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-5 text-darkPink/80 hover:text-darkPink transition-all duration-300 p-6 rounded-xl border-2 border-darkPink/20 bg-white shadow-md hover:shadow-lg group"
+                    className="flex items-center gap-5 text-gray-800 p-5 md:p-6 rounded-xl border-2 border-transparent bg-gradient-to-br from-gray-50 to-gray-100 shadow-md transition-all duration-300"
+                    whileHover="hover"
+                    whileTap="tap"
+                    variants={socialButtonVariants}
+                    custom="github"
+                    onMouseEnter={() => setHoveredLink('github')}
+                    onMouseLeave={() => setHoveredLink(null)}
                     aria-label="GitHub Profile"
                   >
-                    <span className="bg-darkPink/10 text-darkPink p-4 rounded-full transition-all duration-300 group-hover:bg-darkPink group-hover:text-white">
-                      <FaGithub size={36} />
+                    <span className={`bg-gray-100 text-gray-800 p-4 rounded-full transition-all duration-300 ${hoveredLink === 'github' ? 'bg-white text-black' : ''}`}>
+                      <FaGithub size={32} />
                     </span>
-                    <span className="font-medium text-xl">GitHub</span>
-                    <span className="ml-auto opacity-50 group-hover:opacity-100 transition-opacity duration-300 text-xl">→</span>
+                    <div className="flex-1">
+                      <span className="font-semibold text-xl block">GitHub</span>
+                      <span className="text-gray-500 text-sm block transition-all duration-300">Check out my code repositories</span>
+                    </div>
+                    <span className="text-2xl opacity-70 group-hover:opacity-100 transition-opacity duration-300">→</span>
                   </motion.a>
                   
                   <motion.a
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.97 }}
                     href="https://www.linkedin.com/in/krishsaraf/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-5 text-darkPink/80 hover:text-darkPink transition-all duration-300 p-6 rounded-xl border-2 border-darkPink/20 bg-white shadow-md hover:shadow-lg group"
+                    className="flex items-center gap-5 text-gray-800 p-5 md:p-6 rounded-xl border-2 border-transparent bg-gradient-to-br from-blue-50 to-blue-100/50 shadow-md transition-all duration-300"
+                    whileHover="hover"
+                    whileTap="tap"
+                    variants={socialButtonVariants}
+                    custom="linkedin"
+                    onMouseEnter={() => setHoveredLink('linkedin')}
+                    onMouseLeave={() => setHoveredLink(null)}
                     aria-label="LinkedIn Profile"
                   >
-                    <span className="bg-darkPink/10 text-darkPink p-4 rounded-full transition-all duration-300 group-hover:bg-darkPink group-hover:text-white">
-                      <FaLinkedin size={36} />
+                    <span className={`bg-blue-100 text-blue-800 p-4 rounded-full transition-all duration-300 ${hoveredLink === 'linkedin' ? 'bg-white text-blue-700' : ''}`}>
+                      <FaLinkedin size={32} />
                     </span>
-                    <span className="font-medium text-xl">LinkedIn</span>
-                    <span className="ml-auto opacity-50 group-hover:opacity-100 transition-opacity duration-300 text-xl">→</span>
+                    <div className="flex-1">
+                      <span className="font-semibold text-xl block">LinkedIn</span>
+                      <span className="text-gray-500 text-sm block transition-all duration-300">Connect professionally</span>
+                    </div>
+                    <span className="text-2xl opacity-70 group-hover:opacity-100 transition-opacity duration-300">→</span>
                   </motion.a>
                   
                   <motion.a
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.97 }}
                     href="mailto:krishsaraf05@gmail.com"
-                    className="flex items-center gap-5 text-darkPink/80 hover:text-darkPink transition-all duration-300 p-6 rounded-xl border-2 border-darkPink/20 bg-white shadow-md hover:shadow-lg group"
+                    className="flex items-center gap-5 text-gray-800 p-5 md:p-6 rounded-xl border-2 border-transparent bg-gradient-to-br from-pink-50 to-pink-100/50 shadow-md transition-all duration-300"
+                    whileHover="hover"
+                    whileTap="tap"
+                    variants={socialButtonVariants}
+                    custom="email"
+                    onMouseEnter={() => setHoveredLink('email')}
+                    onMouseLeave={() => setHoveredLink(null)}
                     aria-label="Email Me"
                   >
-                    <span className="bg-darkPink/10 text-darkPink p-4 rounded-full transition-all duration-300 group-hover:bg-darkPink group-hover:text-white">
-                      <FaEnvelope size={36} />
+                    <span className={`bg-pink-100 text-darkPink p-4 rounded-full transition-all duration-300 ${hoveredLink === 'email' ? 'bg-white' : ''}`}>
+                      <FaEnvelope size={32} />
                     </span>
-                    <span className="font-medium text-xl">Email Me</span>
-                    <span className="ml-auto opacity-50 group-hover:opacity-100 transition-opacity duration-300 text-xl">→</span>
+                    <div className="flex-1">
+                      <span className="font-semibold text-xl block">Email</span>
+                      <span className="text-gray-500 text-sm block transition-all duration-300">krishsaraf05@gmail.com</span>
+                    </div>
+                    <span className="text-2xl opacity-70 group-hover:opacity-100 transition-opacity duration-300">→</span>
                   </motion.a>
                 </div>
               </div>
+
+              {/* Added About Me Summary */}
+              <motion.div
+                variants={itemVariants}
+                className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-xl border-2 border-pink-100"
+              >
+                <h3 className="text-xl font-bold text-darkPink mb-4">About Me</h3>
+                <p className="text-gray-700 mb-3">
+                  I'm a passionate student of Economics & Data Science at Nanyang Technological University with a deep interest in AI, economics, and cutting-edge technology.
+                </p>
+                <p className="text-gray-700 mb-3">
+                  With a CGPA of 4.84/5.00 and a consistent track record of excellence throughout my academic journey, I bring a unique combination of analytical skills and creative problem-solving to any challenge.
+                </p>
+                <p className="text-gray-700">
+                  Feel free to reach out if you'd like to collaborate on projects, discuss opportunities, or just have a conversation about tech and economics!
+                </p>
+              </motion.div>
             </motion.div>
 
-            {/* Contact Form - Second on mobile */}
+            {/* Enhanced Contact Form Column */}
             <motion.div 
-              className="w-full md:w-2/3 order-2"
+              className="lg:col-span-7 xl:col-span-8 order-1 lg:order-2"
               variants={itemVariants}
             >
               <form 
                 ref={form} 
                 onSubmit={handleSubmit} 
-                className="space-y-7 bg-white p-6 sm:p-8 rounded-xl shadow-lg border-2 border-darkPink/10 relative overflow-hidden"
+                className="space-y-7 bg-white p-6 sm:p-8 md:p-10 rounded-2xl shadow-xl border-2 border-pink-100 relative overflow-hidden"
               >
-                {/* Form background decoration */}
-                <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-bl from-darkPink/5 to-transparent rounded-bl-full -z-10"></div>
-                <div className="absolute bottom-0 left-0 w-40 h-40 bg-gradient-to-tr from-darkPink/5 to-transparent rounded-tr-full -z-10"></div>
+                {/* Decorative elements for the form */}
+                <div className="absolute -top-10 -right-10 w-80 h-80 bg-gradient-to-bl from-pink-100/30 to-transparent rounded-full -z-10"></div>
+                <div className="absolute -bottom-10 -left-10 w-80 h-80 bg-gradient-to-tr from-pink-100/30 to-transparent rounded-full -z-10"></div>
+                
+                <h3 className="text-2xl md:text-3xl font-bold text-darkPink mb-6">Send Me a Message</h3>
+                <p className="text-gray-600 mb-8">Have a question or want to work together? I'd love to hear from you!</p>
                 
                 <div className="relative">
                   <label
@@ -246,6 +357,7 @@ const Contact = () => {
                     onBlur={handleBlur}
                     className="w-full px-4 py-4 bg-white border-2 rounded-lg text-darkPink/90 text-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-darkPink/50 focus:border-darkPink"
                     required
+                    placeholder="Your name"
                   />
                   <div className={`h-0.5 bg-darkPink scale-x-0 transition-transform duration-300 origin-left ${
                     focusedField === 'name' ? 'scale-x-100' : ''
@@ -271,6 +383,7 @@ const Contact = () => {
                     onBlur={handleBlur}
                     className="w-full px-4 py-4 bg-white border-2 rounded-lg text-darkPink/90 text-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-darkPink/50 focus:border-darkPink"
                     required
+                    placeholder="your.email@example.com"
                   />
                   <div className={`h-0.5 bg-darkPink scale-x-0 transition-transform duration-300 origin-left ${
                     focusedField === 'email' ? 'scale-x-100' : ''
@@ -296,6 +409,7 @@ const Contact = () => {
                     rows={6}
                     className="w-full px-4 py-4 bg-white border-2 rounded-lg text-darkPink/90 text-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-darkPink/50 focus:border-darkPink resize-none"
                     required
+                    placeholder="Tell me about your project, question, or just say hi!"
                   />
                   <div className={`h-0.5 bg-darkPink scale-x-0 transition-transform duration-300 origin-left ${
                     focusedField === 'message' ? 'scale-x-100' : ''
