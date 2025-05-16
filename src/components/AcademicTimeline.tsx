@@ -48,7 +48,7 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
     // Define dimensions and margins
     const margin = { top: 50, right: 30, bottom: 20, left: 30 };
     const width = svgRef.current.clientWidth || 1000;
-    const height = 420; // Height for both timelines with proper spacing
+    const height = 420; // Height for both timelines
     
     // The main SVG
     const svg = d3.select(svgRef.current)
@@ -65,362 +65,332 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
     const g = svg.append('g')
       .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
-    // Add section headings with enhanced styling
-    // School Education heading
+    // Add section headings
     g.append('text')
       .attr('x', 0)
       .attr('y', -25)
       .attr('font-size', '16px')
       .attr('font-weight', 'bold')
       .attr('fill', '#333')
-      .style('text-shadow', '0 1px 1px rgba(255,255,255,0.8)')
       .text('School Education');
     
-    // College Education heading (positioned below the first wave)
     g.append('text')
       .attr('x', 0)
-      .attr('y', 170) // Positioned between the waves
+      .attr('y', 170)
       .attr('font-size', '16px')
       .attr('font-weight', 'bold')
       .attr('fill', '#333')
-      .style('text-shadow', '0 1px 1px rgba(255,255,255,0.8)')
       .text('College Education');
 
-    // Define wave parameters
+    // Define dimensions
     const waveWidth = width - margin.left - margin.right;
     
     // School wave parameters
     const schoolBaseY = 60;
     const schoolAmplitude = 30;
+    const schoolDataCount = schoolData.length;
     
-    // College wave parameters (positioned lower)
-    const collegeBaseY = 240; // Increased separation between waves
-    const collegeAmplitude = 30; // Same amplitude for visual consistency
+    // College wave parameters
+    const collegeBaseY = 240;
+    const collegeAmplitude = 30;
+    const collegeDataCount = collegeData.length;
     
-    // Create a true sine wave path
-    const createSineWave = (
-      width: number,
-      baseY: number,
-      amplitude: number,
-      dataLength: number
-    ): string => {
-      // Create one complete wave cycle per data set
-      const points: [number, number][] = [];
+    // Generate simple SVG paths for sine waves
+    function generateSineWavePath(baseY: number, amplitude: number, width: number, totalPoints: number): string {
+      // Create enough cycles to place points at 180° intervals
+      const cycles = (totalPoints - 1) / 2;
+      let path = `M0,${baseY}`;
       
-      // Draw a single sine wave that spans the entire width
-      // with data points at 180° intervals (peaks and troughs)
-      for (let i = 0; i <= 100; i++) {
-        const x = (i / 100) * width;
-        // We use a simple sine function with period that ensures
-        // data points will fall at peaks and troughs
-        const angle = (i / 100) * Math.PI * dataLength;
-        const y = baseY + amplitude * Math.sin(angle);
-        points.push([x, y]);
+      // Use more points for a smoother path
+      const resolution = 100; 
+      const step = width / resolution;
+      
+      for (let i = 1; i <= resolution; i++) {
+        const x = i * step;
+        const phase = (i / resolution) * (Math.PI * cycles * 2);
+        const y = baseY + amplitude * Math.sin(phase);
+        path += ` L${x},${y}`;
       }
       
-      // Create SVG path command
-      return `M${points.map(p => `${p[0]},${p[1]}`).join(' L')}`;
-    };
-
-    // Calculate marker positions at 180° intervals (peaks and troughs)
-    const calculateMarkerPositions = (
-      dataLength: number,
-      width: number,
-      baseY: number,
-      amplitude: number
-    ): { x: number, y: number }[] => {
-      const positions: { x: number, y: number }[] = [];
+      return path;
+    }
+    
+    // Calculate positions for markers at 180° intervals precisely
+    function calculateMarkerPositions(baseY: number, amplitude: number, width: number, count: number): {x: number, y: number}[] {
+      const positions: {x: number, y: number}[] = [];
       
-      for (let i = 0; i < dataLength; i++) {
-        // Place markers at 180° intervals (π radians)
-        // This ensures markers are at peaks and troughs
-        const x = (width / (dataLength - 1)) * i;
-        const angle = i * Math.PI; // 180° intervals
-        const y = baseY + amplitude * Math.sin(angle);
+      for (let i = 0; i < count; i++) {
+        // Position spaced evenly with alternating peaks and troughs
+        const x = (width / (count - 1)) * i;
+        // Even positions are peaks, odd positions are troughs
+        const y = baseY + (i % 2 === 0 ? -amplitude : amplitude);
         positions.push({ x, y });
       }
       
       return positions;
-    };
-
-    // Calculate total path lengths for animations
-    const schoolPathLength = waveWidth * 1.5; // Approximation for wave length
-    const collegePathLength = waveWidth * 1.5;
+    }
     
-    // Create sine waves
-    const schoolPathCommand = createSineWave(
-      waveWidth,
-      schoolBaseY,
-      schoolAmplitude,
-      schoolData.length
-    );
+    // Generate the wave paths
+    const schoolPath = g.append('path')
+      .attr('d', generateSineWavePath(schoolBaseY, schoolAmplitude, waveWidth, schoolDataCount))
+      .attr('fill', 'none')
+      .attr('stroke', '#e91e63')
+      .attr('stroke-width', 3)
+      .attr('stroke-linecap', 'round');
     
-    const collegePathCommand = createSineWave(
-      waveWidth,
-      collegeBaseY,
-      collegeAmplitude,
-      collegeData.length
-    );
-
+    const collegePath = g.append('path')
+      .attr('d', generateSineWavePath(collegeBaseY, collegeAmplitude, waveWidth, collegeDataCount))
+      .attr('fill', 'none')
+      .attr('stroke', '#e91e63')
+      .attr('stroke-width', 3)
+      .attr('stroke-linecap', 'round');
+    
     // Calculate marker positions
     const schoolMarkerPositions = calculateMarkerPositions(
-      schoolData.length,
-      waveWidth,
-      schoolBaseY,
-      schoolAmplitude
+      schoolBaseY, 
+      schoolAmplitude, 
+      waveWidth, 
+      schoolDataCount
     );
     
     const collegeMarkerPositions = calculateMarkerPositions(
-      collegeData.length,
-      waveWidth,
-      collegeBaseY,
-      collegeAmplitude
+      collegeBaseY, 
+      collegeAmplitude, 
+      waveWidth, 
+      collegeDataCount
     );
-
-    // Create the school path with drawing animation
-    const schoolPath = g.append('path')
-      .attr('d', schoolPathCommand)
-      .attr('fill', 'none')
-      .attr('stroke', '#e91e63')
-      .attr('stroke-width', 4)
-      .attr('stroke-linecap', 'round')
-      .attr('stroke-linejoin', 'round')
-      .style('filter', 'drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.2))')
-      .style('opacity', 1);
     
-    // Create the college path with drawing animation (appears after school path)
-    const collegePath = g.append('path')
-      .attr('d', collegePathCommand)
-      .attr('fill', 'none')
-      .attr('stroke', '#e91e63')
-      .attr('stroke-width', 4)
-      .attr('stroke-linecap', 'round')
-      .attr('stroke-linejoin', 'round')
-      .style('filter', 'drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.2))')
-      .style('opacity', 1);
+    // Simple stroke animation for paths
+    const schoolPathNode = schoolPath.node();
+    const collegePathNode = collegePath.node();
     
-    // Animate school path drawing
-    schoolPath.attr('stroke-dasharray', schoolPathLength)
-      .attr('stroke-dashoffset', schoolPathLength)
-      .transition()
-      .duration(1500)
-      .ease(d3.easePolyInOut)
-      .attr('stroke-dashoffset', 0)
-      .on('end', () => {
-        // After school path completes, animate college path
-        collegePath.attr('stroke-dasharray', collegePathLength)
-          .attr('stroke-dashoffset', collegePathLength)
-          .transition()
-          .duration(1500)
-          .ease(d3.easePolyInOut)
-          .attr('stroke-dashoffset', 0);
-      });
-
-    // Create tooltip with enhanced styling
+    if (schoolPathNode && collegePathNode) {
+      const schoolPathLength = (schoolPathNode as SVGPathElement).getTotalLength();
+      const collegePathLength = (collegePathNode as SVGPathElement).getTotalLength();
+      
+      schoolPath
+        .attr('stroke-dasharray', schoolPathLength)
+        .attr('stroke-dashoffset', schoolPathLength)
+        .transition()
+        .duration(1500)
+        .ease(d3.easeLinear)
+        .attr('stroke-dashoffset', 0)
+        .on('end', () => {
+          // Animate college path after school path
+          collegePath
+            .attr('stroke-dasharray', collegePathLength)
+            .attr('stroke-dashoffset', collegePathLength)
+            .transition()
+            .duration(1500)
+            .ease(d3.easeLinear)
+            .attr('stroke-dashoffset', 0);
+        });
+    }
+    
+    // Create tooltip
     const tooltip = d3.select(tooltipRef.current)
       .style('position', 'absolute')
       .style('visibility', 'hidden')
-      .style('background-color', 'rgba(255, 255, 255, 0.95)')
-      .style('padding', '10px 14px')
-      .style('border-radius', '8px')
-      .style('border', '1px solid rgba(233, 30, 99, 0.2)')
-      .style('box-shadow', '0 4px 8px rgba(0, 0, 0, 0.15)')
-      .style('font-size', '14px')
+      .style('background-color', 'white')
+      .style('padding', '10px')
+      .style('border-radius', '4px')
+      .style('box-shadow', '0 0 10px rgba(0,0,0,0.1)')
       .style('pointer-events', 'none')
       .style('z-index', '100')
-      .style('max-width', '220px')
-      .style('transition', 'opacity 0.2s, transform 0.2s')
-      .style('opacity', '0')
-      .style('transform', 'translateY(5px)')
-      .style('color', '#333');
-
-    // Function to create markers and labels with proper typing
-    const createMarkers = (
-      data: AchievementData[], 
-      positions: { x: number, y: number }[], 
-      className: string,
-      delayOffset: number = 0
-    ) => {
-      const markers = g.selectAll(`.marker-${className}`)
-        .data(data)
-        .enter()
-        .append('g')
-        .attr('class', `marker-${className}`)
-        .attr('transform', (_, i) => {
-          const pos = positions[i];
-          return `translate(${pos.x}, ${pos.y})`;
-        })
-        .style('cursor', 'pointer')
-        .style('opacity', 0) // Start invisible
-        .transition() // Fade in markers after path animation
-        .delay((_, i) => delayOffset + 1200 + i * 80) // Sequential appearance
-        .duration(300)
-        .style('opacity', 1);
-
-      // Add circles to markers
-      g.selectAll(`.marker-${className}`).append('circle')
+      .style('opacity', '0');
+    
+    // Create markers for school timeline
+    const schoolMarkers = g.selectAll('.school-marker')
+      .data(schoolData)
+      .enter()
+      .append('g')
+      .attr('class', 'school-marker')
+      .style('opacity', 0) // Start invisible
+      .attr('transform', (_, i) => {
+        const pos = schoolMarkerPositions[i];
+        return `translate(${pos.x}, ${pos.y})`;
+      });
+    
+    // Add circles to school markers
+    schoolMarkers.append('circle')
+      .attr('r', 8)
+      .attr('fill', 'white')
+      .attr('stroke', '#e91e63')
+      .attr('stroke-width', 2);
+    
+    // Add class labels to school markers
+    schoolMarkers.append('text')
+      .attr('dy', -15)
+      .attr('text-anchor', 'middle')
+      .attr('font-size', '12px')
+      .attr('fill', '#333')
+      .text(d => d.class);
+    
+    // Add achievement text to school markers
+    schoolMarkers.append('text')
+      .attr('dy', 25)
+      .attr('text-anchor', 'middle')
+      .attr('font-size', '11px')
+      .attr('font-weight', 'bold')
+      .attr('fill', '#e91e63')
+      .text(d => d.achievement);
+    
+    // Create markers for college timeline
+    const collegeMarkers = g.selectAll('.college-marker')
+      .data(collegeData)
+      .enter()
+      .append('g')
+      .attr('class', 'college-marker')
+      .style('opacity', 0) // Start invisible
+      .attr('transform', (_, i) => {
+        const pos = collegeMarkerPositions[i];
+        return `translate(${pos.x}, ${pos.y})`;
+      });
+    
+    // Add circles to college markers
+    collegeMarkers.append('circle')
+      .attr('r', 8)
+      .attr('fill', 'white')
+      .attr('stroke', '#e91e63')
+      .attr('stroke-width', 2);
+    
+    // Add class labels to college markers
+    collegeMarkers.append('text')
+      .attr('dy', -15)
+      .attr('text-anchor', 'middle')
+      .attr('font-size', '12px')
+      .attr('fill', '#333')
+      .text(d => d.class);
+    
+    // Add achievement text to college markers
+    collegeMarkers.append('text')
+      .attr('dy', 25)
+      .attr('text-anchor', 'middle')
+      .attr('font-size', '11px')
+      .attr('font-weight', 'bold')
+      .attr('fill', '#e91e63')
+      .text(d => d.achievement);
+    
+    // Animate markers appearing after path animations
+    schoolMarkers.transition()
+      .delay((_, i) => 1500 + i * 100) // 1500ms for school path + sequential delay
+      .duration(300)
+      .style('opacity', 1);
+    
+    collegeMarkers.transition()
+      .delay((_, i) => 3000 + i * 100) // 1500ms for each path + sequential delay
+      .duration(300)
+      .style('opacity', 1);
+    
+    // Add hover interactions
+    const allMarkers = g.selectAll('.school-marker, .college-marker');
+    
+    allMarkers.on('mouseover', function(event, d) {
+      // Highlight marker
+      d3.select(this).select('circle')
+        .transition()
+        .duration(200)
         .attr('r', 10)
-        .attr('fill', 'white')
-        .attr('stroke', '#e91e63')
-        .attr('stroke-width', 2);
-
-      // Add class labels
-      g.selectAll(`.marker-${className}`).append('text')
-        .attr('dy', -20)
-        .attr('text-anchor', 'middle')
-        .attr('font-size', '14px')
-        .attr('font-weight', 'normal') // Non-bold class names
-        .attr('fill', '#333')
-        .style('text-shadow', '0 1px 1px rgba(255,255,255,0.8)')
-        .text(function(d) { return (d as unknown as AchievementData).class; });
-
-      // Add achievement text
-      g.selectAll(`.marker-${className}`).append('text')
-        .attr('dy', 30)
-        .attr('text-anchor', 'middle')
-        .attr('font-size', '12px')
-        .attr('font-weight', 'bold') // Bold achievements
-        .attr('fill', '#e91e63')
-        .style('text-shadow', '0 1px 1px rgba(255,255,255,0.8)')
-        .text(function(d) { return (d as unknown as AchievementData).achievement; });
-
-      // Handle hover events
-      g.selectAll(`.marker-${className}`)
-        .on('mouseover', function(event, d) {
-          // Type assertion for d
-          const data = d as unknown as AchievementData;
-          
-          // Highlight the marker
-          d3.select(this).select('circle')
-            .transition()
-            .duration(300)
-            .attr('r', 13) // 130% size on hover
-            .attr('fill', '#fff0f5')
-            .style('filter', 'drop-shadow(0px 3px 5px rgba(0, 0, 0, 0.25))');
-          
-          // Show tooltip
-          tooltip
-            .html(`<strong>${data.class}</strong><br/>${data.details}`)
-            .style('visibility', 'visible')
-            .style('left', `${event.pageX + 12}px`)
-            .style('top', `${event.pageY - 25}px`)
-            .transition()
-            .duration(200)
-            .style('opacity', '1')
-            .style('transform', 'translateY(0)');
-        })
-        .on('mousemove', function(event) {
-          // Move tooltip with cursor
-          tooltip
-            .style('left', `${event.pageX + 12}px`)
-            .style('top', `${event.pageY - 25}px`);
-        })
-        .on('mouseout', function() {
-          // Restore marker
-          d3.select(this).select('circle')
-            .transition()
-            .duration(300)
-            .attr('r', 10)
-            .attr('fill', 'white')
-            .style('filter', 'none');
-          
-          // Hide tooltip
-          tooltip
-            .transition()
-            .duration(200)
-            .style('opacity', '0')
-            .style('transform', 'translateY(5px)')
-            .on('end', () => tooltip.style('visibility', 'hidden'));
-        });
-    };
-
-    // Create markers for both timelines
-    createMarkers(schoolData, schoolMarkerPositions, 'school', 0);
-    createMarkers(collegeData, collegeMarkerPositions, 'college', 1800); // Delayed to appear after school timeline
-
+        .attr('fill', '#fff0f5');
+      
+      // Show tooltip
+      tooltip
+        .html(`<strong>${(d as AchievementData).class}</strong><br>${(d as AchievementData).details}`)
+        .style('visibility', 'visible')
+        .style('left', `${event.pageX + 10}px`)
+        .style('top', `${event.pageY - 10}px`)
+        .transition()
+        .duration(200)
+        .style('opacity', 1);
+    })
+    .on('mousemove', function(event) {
+      tooltip
+        .style('left', `${event.pageX + 10}px`)
+        .style('top', `${event.pageY - 10}px`);
+    })
+    .on('mouseout', function() {
+      // Restore marker
+      d3.select(this).select('circle')
+        .transition()
+        .duration(200)
+        .attr('r', 8)
+        .attr('fill', 'white');
+      
+      // Hide tooltip
+      tooltip
+        .transition()
+        .duration(200)
+        .style('opacity', 0)
+        .on('end', () => tooltip.style('visibility', 'hidden'));
+    });
+    
     // Handle resize
     const handleResize = () => {
       if (!svgRef.current) return;
       
-      // Update width based on new container size
       const newWidth = svgRef.current.clientWidth || 1000;
       const newWaveWidth = newWidth - margin.left - margin.right;
       
       // Update viewBox
       svg.attr('viewBox', `0 0 ${newWidth} ${height}`);
       
-      // Recalculate sine wave paths
-      const newSchoolPathCommand = createSineWave(
-        newWaveWidth,
-        schoolBaseY,
-        schoolAmplitude,
-        schoolData.length
-      );
-      
-      const newCollegePathCommand = createSineWave(
-        newWaveWidth,
-        collegeBaseY,
-        collegeAmplitude,
-        collegeData.length
-      );
-      
-      // Update paths, remove animation properties
-      schoolPath.attr('d', newSchoolPathCommand)
+      // Update paths
+      schoolPath.attr('d', generateSineWavePath(schoolBaseY, schoolAmplitude, newWaveWidth, schoolDataCount))
         .attr('stroke-dasharray', null)
         .attr('stroke-dashoffset', null);
-
-      collegePath.attr('d', newCollegePathCommand)
+      
+      collegePath.attr('d', generateSineWavePath(collegeBaseY, collegeAmplitude, newWaveWidth, collegeDataCount))
         .attr('stroke-dasharray', null)
         .attr('stroke-dashoffset', null);
       
       // Recalculate marker positions
-      const newSchoolMarkerPositions = calculateMarkerPositions(
-        schoolData.length,
-        newWaveWidth,
-        schoolBaseY,
-        schoolAmplitude
+      const newSchoolPositions = calculateMarkerPositions(
+        schoolBaseY, 
+        schoolAmplitude, 
+        newWaveWidth, 
+        schoolDataCount
       );
       
-      const newCollegeMarkerPositions = calculateMarkerPositions(
-        collegeData.length,
-        newWaveWidth,
-        collegeBaseY,
-        collegeAmplitude
+      const newCollegePositions = calculateMarkerPositions(
+        collegeBaseY, 
+        collegeAmplitude, 
+        newWaveWidth, 
+        collegeDataCount
       );
       
       // Update marker positions
-      g.selectAll('.marker-school')
+      g.selectAll('.school-marker')
         .attr('transform', (_, i) => {
-          const pos = newSchoolMarkerPositions[i];
+          const pos = newSchoolPositions[i];
           return `translate(${pos.x}, ${pos.y})`;
         });
-
-      g.selectAll('.marker-college')
+      
+      g.selectAll('.college-marker')
         .attr('transform', (_, i) => {
-          const pos = newCollegeMarkerPositions[i];
+          const pos = newCollegePositions[i];
           return `translate(${pos.x}, ${pos.y})`;
         });
     };
-
-    // Add resize event listener
+    
+    // Add resize listener
     window.addEventListener('resize', handleResize);
     
-    // Cleanup function
+    // Cleanup
     return () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
 
   return (
-    <div className={`timeline-container relative ${className}`} aria-label="Academic Journey Timeline">
+    <div className={`relative ${className}`} aria-label="Academic Journey Timeline">
       <svg 
         ref={svgRef} 
-        className="w-full h-auto" 
+        className="w-full" 
         style={{ minHeight: '420px' }}
       />
       <div 
-        ref={tooltipRef} 
-        className="tooltip" 
+        ref={tooltipRef}
+        className="tooltip"
         aria-live="polite"
       />
     </div>
