@@ -91,419 +91,51 @@ const AwardsAndPics = () => {
   }, [location]);
 
   // New collage images grouped by aspect ratio and visual appearance
-  const collageGallery = [
-    // Wide landscape images
-    {
-      id: 'wide-1',
-      src: "/images/image copy 4.png", 
-      alt: "Wide landscape format",
-      description: "Conference presentation",
-      aspectRatio: 843/226,
-      highlight: true,
-      objectPosition: "center center",
-    },
-    // Portrait format images
-    {
-      id: 'portrait-1',
-      src: "/images/image copy 10.png", 
-      alt: "Portrait format",
-      description: "Award ceremony",
-      aspectRatio: 442/610,
-      highlight: false,
-      objectPosition: "center center",
-    },
-    {
-      id: 'portrait-2',
-      src: "/images/image copy 15.png", 
-      alt: "Portrait format",
-      description: "Team presentation",
-      aspectRatio: 442/559,
-      highlight: false,
-      objectPosition: "center center",
-    },
-    {
-      id: 'portrait-3',
-      src: "/images/image copy 7.png", 
-      alt: "Portrait format",
-      description: "Conference participation",
-      aspectRatio: 385/568,
-      highlight: false,
-      objectPosition: "center center",
-    },
-    {
-      id: 'portrait-4',
-      src: "/images/image copy.png", 
-      alt: "Portrait format",
-      description: "Award recognition",
-      aspectRatio: 385/594,
-      highlight: false,
-      objectPosition: "center center",
-    },
-    {
-      id: 'portrait-5',
-      src: "/images/image.png", 
-      alt: "Portrait format",
-      description: "Team photo",
-      aspectRatio: 437/600,
-      highlight: false,
-      objectPosition: "center center",
-    },
-    // Square-ish images
-    {
-      id: 'square-1',
-      src: "/images/image copy 3.png", 
-      alt: "Square format",
-      description: "Conference presentation",
-      aspectRatio: 595/596,
-      highlight: true,
-      objectPosition: "center center",
-    },
-    {
-      id: 'square-2',
-      src: "/images/image copy 5.png", 
-      alt: "Vertical rectangle",
-      description: "Team activity",
-      aspectRatio: 317/470,
-      highlight: false,
-      objectPosition: "center center",
-    },
-    // Landscape format images - large
-    {
-      id: 'landscape-1',
-      src: "/images/image copy 2.png", 
-      alt: "Large landscape",
-      description: "Group photo",
-      aspectRatio: 1170/858,
-      highlight: true,
-      objectPosition: "center center",
-    },
-    // Landscape format images - medium
-    {
-      id: 'landscape-2',
-      src: "/images/image copy 11.png", 
-      alt: "Landscape format",
-      description: "Team presentation",
-      aspectRatio: 625/385,
-      highlight: false,
-      objectPosition: "center center",
-    },
-    {
-      id: 'landscape-3',
-      src: "/images/image copy 12.png", 
-      alt: "Landscape format",
-      description: "Award ceremony",
-      aspectRatio: 622/381,
-      highlight: false,
-      objectPosition: "center center",
-    },
-    {
-      id: 'landscape-4',
-      src: "/images/image copy 18.png", 
-      alt: "Landscape format",
-      description: "Conference discussion",
-      aspectRatio: 624/416,
-      highlight: false,
-      objectPosition: "center center",
-    },
-    {
-      id: 'landscape-5',
-      src: "/images/image copy 19.png", 
-      alt: "Landscape format",
-      description: "Project presentation",
-      aspectRatio: 618/426,
-      highlight: false,
-      objectPosition: "center center",
-    },
-    // More balanced aspect ratios
-    {
-      id: 'balanced-1',
-      src: "/images/image copy 13.png", 
-      alt: "Balanced format",
-      description: "Team discussion",
-      aspectRatio: 450/442,
-      highlight: false,
-      objectPosition: "center center",
-    },
-    {
-      id: 'balanced-2',
-      src: "/images/image copy 14.png", 
-      alt: "Balanced format",
-      description: "Award ceremony",
-      aspectRatio: 566/439,
-      highlight: false,
-      objectPosition: "center center",
-    },
-    {
-      id: 'balanced-3',
-      src: "/images/image copy 16.png", 
-      alt: "Balanced format",
-      description: "Conference presentation",
-      aspectRatio: 604/440,
-      highlight: false,
-      objectPosition: "center center",
-    },
-    {
-      id: 'balanced-4',
-      src: "/images/image copy 17.png", 
-      alt: "Balanced format",
-      description: "Group discussion",
-      aspectRatio: 558/441,
-      highlight: false,
-      objectPosition: "center center",
-    },
-    {
-      id: 'balanced-5',
-      src: "/images/image copy 20.png", 
-      alt: "Balanced format",
-      description: "Team activity",
-      aspectRatio: 601/434,
-      highlight: false,
-      objectPosition: "center center",
-    },
-    // WhatsApp images with varied aspects
-    {
-      id: 'whatsapp-1',
-      src: "/images/WhatsApp Image 2025-05-15 at 5.20.45 PM (3).jpeg", 
-      alt: "Portrait format",
-      description: "Team celebration",
-      aspectRatio: 960/1280,
-      highlight: false,
-      objectPosition: "center center",
-    },
-    {
-      id: 'whatsapp-2',
-      src: "/images/WhatsApp Image 2025-05-15 at 5.20.45 PM (4).jpeg", 
-      alt: "Portrait format",
-      description: "Award recognition",
-      aspectRatio: 960/1280,
-      highlight: false,
-      objectPosition: "center center",
-    },
-    {
-      id: 'whatsapp-3',
-      src: "/images/WhatsApp Image 2025-05-15 at 5.20.45 PM (7).jpeg", 
-      alt: "Portrait format",
-      description: "Conference participation",
-      aspectRatio: 960/1280,
-      highlight: false,
-      objectPosition: "center center",
-    },
-    {
-      id: 'whatsapp-4',
-      src: "/images/WhatsApp Image 2025-05-15 at 5.20.44 PM (2).jpeg", 
-      alt: "Landscape format",
-      description: "Team photo",
-      aspectRatio: 1280/960,
-      highlight: true,
-      objectPosition: "center center",
-    },
-    // Adding the missing image copy files 24-28
-    {
-      id: 'new-image-24',
-      src: "/images/image copy 24.png", 
-      alt: "Achievement certificate",
-      description: "Educational recognition award",
-      aspectRatio: 4/3,
-      highlight: false,
-      objectPosition: "center center",
-    },
-    {
-      id: 'new-image-25',
-      src: "/images/image copy 25.png", 
-      alt: "School certificate",
-      description: "Academic achievement recognition",
-      aspectRatio: 4/3,
-      highlight: false,
-      objectPosition: "center center",
-    },
-    {
-      id: 'new-image-26',
-      src: "/images/image copy 26.png", 
-      alt: "Heritage School certificate",
-      description: "Certificate of achievement",
-      aspectRatio: 4/3,
-      highlight: false,
-      objectPosition: "center center",
-    },
-    {
-      id: 'new-image-27',
-      src: "/images/image copy 27.png", 
-      alt: "Academic achievement",
-      description: "School excellence award",
-      aspectRatio: 4/3,
-      highlight: false,
-      objectPosition: "center center",
-    },
-    {
-      id: 'new-image-28',
-      src: "/images/image copy 28.png", 
-      alt: "Recognition certificate",
-      description: "Educational accomplishment",
-      aspectRatio: 4/3,
-      highlight: false,
-      objectPosition: "center center",
-    },
-    {
-      id: 'new-image-29',
-      src: "/images/image copy 29.png", 
-      alt: "Achievement award",
-      description: "Academic recognition",
-      aspectRatio: 4/3,
-      highlight: false,
-      objectPosition: "center center",
-    },
-  ];
-
-  // Featured gallery items with better metadata
   const featuredGallery = [
-    // Highlight images first
     {
-      id: 'basf',
-      src: "/gallery/timeline/j.jpeg",
-      alt: "BASF Team",
-      description: "Team visit to BASF chemical company",
-      aspectRatio: 1/1,
-      highlight: false,
-      objectPosition: "center center",
-      maxHeight: 600
-    },
-    // Group landscape orientation images
-    {
-      id: 'presentation2',
-      src: "/gallery/timeline/g.jpeg",
-      alt: "Hanoi Winter Prelude 2024",
-      description: "Award ceremony at international event in Vietnam",
-      aspectRatio: 16/9,
-      highlight: false,
-      objectPosition: "center 30%",
-      maxHeight: 550
-    },
-    {
-      id: 'workshop2',
-      src: "/gallery/timeline/k.jpeg",
-      alt: "Classroom Group",
-      description: "Collaborative session at MIT design innovation workshop",
-      aspectRatio: 16/9,
-      highlight: false,
-      objectPosition: "center 30%",
-      maxHeight: 550
-    },
-    {
-      id: 'mountain',
-      src: "/gallery/timeline/l.jpeg",
-      alt: "Mountain Hiking", 
-      description: "Trek to panoramic viewpoint in Southeast Asia",
-      aspectRatio: 4/3,
-      highlight: false,
-      objectPosition: "center 30%",
-      maxHeight: 550
-    },
-    {
-      id: 'outdoor',
-      src: "/gallery/timeline/o.jpeg",
-      alt: "Nature Portrait",
-      description: "Standing among trees at a park or nature reserve",
-      aspectRatio: 4/3,
-      highlight: false,
-      objectPosition: "center 30%",
-      maxHeight: 550
-    },
-    {
-      id: 'discussion',
-      src: "/gallery/timeline/c.jpeg", 
-      alt: "Technical Presentation",
-      description: "Presenting project details at a technical seminar",
-      aspectRatio: 4/3,
-      highlight: false,
-      objectPosition: "center 15%",
-      maxHeight: 550
-    },
-    {
-      id: 'project',
-      src: "/gallery/timeline/h.jpeg",
-      alt: "Whiteboard Session",
-      description: "Explaining system design concepts at a whiteboard",
-      aspectRatio: 4/3,
-      highlight: false,
-      objectPosition: "center 30%",
-      maxHeight: 550
-    },
-    
-    // Group portrait and irregular orientation images
-    // {
-    //   id: 'development',
-    //   src: "/gallery/timeline/b.jpeg",
-    //   alt: "Portrait Photo",
-    //   description: "Professional headshot in casual setting",
-    //   aspectRatio: 3/4,
-    //   highlight: false,
-    //   objectPosition: "center 20%",
-    //   maxHeight: 550
-    // },
-    {
-      id: 'workshop',
-      src: "/gallery/timeline/e.jpeg",
-      alt: "Classroom Audience",
-      description: "Student audience during a technical lecture",
-      aspectRatio: 4/3,
-      highlight: false,
-      objectPosition: "center 35%",
-      maxHeight: 550
-    },
-    {
-      id: 'innovation',
-      src: "/gallery/timeline/f.jpeg",
-      alt: "Award Ceremony",
-      description: "Receiving an award plaque at recognition ceremony",
-      aspectRatio: 7/5,
-      highlight: false,
-      objectPosition: "center 40%",
-      maxHeight: 550
-    },
-    // {
-    //   id: 'technology',
-    //   src: "/gallery/timeline/i.jpeg",
-    //   alt: "Marathon Runner",
-    //   description: "Participating in OneGlint running event",
-    //   aspectRatio: 1/2,
-    //   highlight: false,
-    //   objectPosition: "center 10%",
-    //   maxHeight: 150
-    // },
-    // {
-    //   id: 'stakeholders',
-    //   src: "/gallery/timeline/m.jpeg",
-    //   alt: "Cohase Awards 2023",
-    //   description: "Receiving Dean's List award at Cohase ceremony",
-    //   aspectRatio: 2/3,
-    //   highlight: false,
-    //   maxHeight: 550,
-    // },
-    // Adding new timeline images
-    {
-      id: 'dance',
-      src: "/gallery/timeline/dance.jpeg",
-      alt: "Dance Performance",
-      description: "Performing at a cultural event",
-      aspectRatio: 4/3,
-      highlight: false,
-      objectPosition: "center 30%",
-      maxHeight: 550
-    },
-    {
-      id: 'deans-list',
-      src: "/gallery/timeline/deans-2023.jpeg",
-      alt: "Dean's List Award",
-      description: "Recognition for academic excellence",
-      aspectRatio: 3/4,
+      id: 'featured-1',
+      src: '/images/certificate.jpg',
+      alt: 'Academic certificates and medals',
+      description: 'Academic achievements and recognitions',
+      aspectRatio: 1.33,
       highlight: true,
-      objectPosition: "center center",
+      objectPosition: 'center center',
+      maxHeight: 650
+    },
+    {
+      id: 'featured-2',
+      src: '/images/medals.jpg',
+      alt: 'Competition medals collection',
+      description: 'Medals from various competitions',
+      aspectRatio: 1.5,
+      highlight: false,
+      objectPosition: 'center center',
+      maxHeight: 400
+    },
+    {
+      id: 'featured-3',
+      src: '/images/school-certificate.jpg',
+      alt: 'School achievement certificate',
+      description: 'Academic excellence certificate',
+      aspectRatio: 1.33,
+      highlight: false,
+      objectPosition: 'center center',
+      maxHeight: 550
+    },
+    {
+      id: 'featured-4',
+      src: '/images/appreciation.jpg',
+      alt: 'Community appreciation award',
+      description: 'Recognition for community service',
+      aspectRatio: 1.5,
+      highlight: false,
+      objectPosition: 'center center',
       maxHeight: 650
     }
   ];
 
   // Combine both collageGallery and featuredGallery to get total count
-  const totalImagesToLoad = collageGallery.length + featuredGallery.length;
+  const totalImagesToLoad = featuredGallery.length;
   
   // Percentage of images loaded for progress indicator
   const loadingProgress = totalImagesToLoad > 0 
@@ -1224,7 +856,289 @@ const AwardsAndPics = () => {
                 </div>
               </motion.div>
             </div>
+            
+            {/* Keep other original project sections with BackToProjectButton */}
+            {/* Synapse Hackathon Section */}
+            <div id="synapse-section" className="border-2 border-darkPink/20 p-6 md:p-8 rounded-2xl bg-white/50 backdrop-blur-sm relative">
+              <BackToProjectButton sectionId="synapse-section" />
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+              >
+                <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
+                  IEEE NTU & NUS Synapse Hackathon 2024
+                </h3>
+                <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
+                  Images from our 1st Prize winning project at the Synapse Hackathon, where we built an AI-powered platform for content creation.
+                </p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {synapseImages.map((item, index) => (
+                    <motion.div
+                      key={`synapse-${index}`}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer"
+                      onClick={() => setSelectedMedia({src: item.image, type: 'image'})}
+                    >
+                      <div className="overflow-hidden aspect-video">
+                        <img 
+                          src={item.image} 
+                          alt={item.caption} 
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Clean Tech Challenge Section */}
+            <div id="cleantech-section" className="border-2 border-darkPink/20 p-6 md:p-8 rounded-2xl bg-white/50 backdrop-blur-sm relative">
+              <BackToProjectButton sectionId="cleantech-section" />
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+              >
+                <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
+                  Clean Tech Challenge (2023-2024)
+            </h3>
+                <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
+                  Images from our 1st Prize winning projects two years in a row, featuring sustainability solutions and shipment prediction models.
+                </p>
+            
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {cleanTechImages.map((item, index) => (
+                <motion.div
+                      key={`cleantech-${index}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                      className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer"
+                      onClick={() => setSelectedMedia({src: item.image, type: 'image'})}
+                    >
+                      <div className="overflow-hidden aspect-video">
+                        <img 
+                          src={item.image} 
+                          alt={item.caption} 
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                  </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+                    </div>
+
+            {/* NTU IEEE Intuition Hackathon Section */}
+            <div id="intuition-section" className="border-2 border-darkPink/20 p-6 md:p-8 rounded-2xl bg-white/50 backdrop-blur-sm relative">
+              <BackToProjectButton sectionId="intuition-section" />
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+              >
+                <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
+                  NTU IEEE Intuition Hackathon
+                </h3>
+                <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
+                  1st Runner-Up at the NTU IEEE Intuition Hackathon, where we developed an AI system that transforms prompts into fully-functional websites.
+                </p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {intuitionImages.map((item, index) => (
+                    <motion.div
+                      key={`intuition-${index}`}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer"
+                      onClick={() => setSelectedMedia({src: item.image, type: 'image'})}
+                    >
+                      <div className="overflow-hidden aspect-video">
+                        <img 
+                          src={item.image} 
+                          alt={item.caption} 
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+              </motion.div>
           </div>
+
+            {/* Code with AI Hackathon Section */}
+            <div id="codewithai-section" className="border-2 border-darkPink/20 p-6 md:p-8 rounded-2xl bg-white/50 backdrop-blur-sm relative">
+              <BackToProjectButton sectionId="codewithai-section" />
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+              >
+                <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
+                  "Code with AI" Hackathon - Get My Leadz
+            </h3>
+                <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
+                  3rd Place winning project where we built an AI-driven lead generation platform that automates prospect discovery, qualification, and scoring.
+                </p>
+            
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {codeWithAIImages.map((item, index) => (
+                <motion.div
+                      key={`codewithai-${index}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer"
+                      onClick={() => setSelectedMedia({src: item.image, type: 'image'})}
+                    >
+                      <div className="overflow-hidden aspect-video">
+                    <img 
+                      src={item.image} 
+                      alt={item.caption} 
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+                    </div>
+
+            {/* NTU PEAK Leadership Program Section */}
+            <div id="peak-section" className="border-2 border-darkPink/20 p-6 md:p-8 rounded-2xl bg-white/50 backdrop-blur-sm relative">
+              <BackToProjectButton sectionId="peak-section" />
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+              >
+                <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
+                  NTU PEAK Leadership Program
+                </h3>
+                <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
+                  1st Runners Up and Best Ideation Award for designing a future-proof MRT system blueprint for 2030 in collaboration with the Land Transport Authority.
+                </p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {peakImages.map((item, index) => (
+                    <motion.div
+                      key={`peak-${index}`}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer"
+                      onClick={() => setSelectedMedia({src: item.image, type: 'image'})}
+                    >
+                      <div className="overflow-hidden aspect-video">
+                        <img 
+                          src={item.image} 
+                          alt={item.caption} 
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                  </div>
+                </motion.div>
+              ))}
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Surgical Gauze Detection Section */}
+            <div id="gauze-section" className="border-2 border-darkPink/20 p-6 md:p-8 rounded-2xl bg-white/50 backdrop-blur-sm relative">
+              <BackToProjectButton sectionId="gauze-section" />
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+              >
+                <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
+                  Surgical Gauze Detection using Computer Vision
+                </h3>
+                <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
+                  Developed and deployed a real-time gauze detection system with SGH using YOLOv8, achieving 98% detection accuracy and doubling throughput to 34 FPS.
+                </p>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {gauzeMedia.map((item, index) => (
+                    <motion.div
+                      key={`gauze-${index}`}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer"
+                      onClick={() => setSelectedMedia({src: item.src, type: item.type === 'video' ? 'video' : 'image', loop: item.loop})}
+                    >
+                      <div className="overflow-hidden">
+                        {item.type === 'image' ? (
+                          <img 
+                            src={item.src} 
+                            alt={item.caption} 
+                            className={`w-full transition-transform duration-700 group-hover:scale-105 ${
+                              item.src.includes('krish-hospital') 
+                                ? "h-auto object-contain" 
+                                : "h-auto object-contain"
+                            }`}
+                            style={{
+                              ...(item.src.includes('krish-hospital') ? { maxHeight: '400px' } : {}),
+                              ...(item.src.includes('gauze.jpeg') ? { maxHeight: '550px' } : {}),
+                              ...(item.src.includes('o.jpeg') ? { maxHeight: '550px' } : {})
+                            }}
+                          />
+                        ) : (
+                          <div className="relative">
+                            <video 
+                              src={item.src}
+                              className="w-full h-full object-contain"
+                              autoPlay
+                              muted
+                              loop
+                              playsInline
+                            />
+                          </div>
+                        )}
+                  </div>
+                </motion.div>
+              ))}
+                </div>
+              </motion.div>
+            </div>
+          </div>
+
+          {/* Call to action */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center mt-16"
+          >
+            <p className="text-lg text-darkPink/70 mb-8">More photos coming soon!</p>
+            <Link to="/contact" className="inline-block">
+            <div className="inline-flex items-center gap-2 text-white bg-darkPink px-6 py-3 rounded-full font-medium shadow-lg hover:shadow-xl hover:bg-darkPink/90 transition-all duration-300 hover:-translate-y-1">
+              <span>Follow me for updates</span>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
+            </div>
+            </Link>
+          </motion.div>
         </motion.div>
       </div>
 
