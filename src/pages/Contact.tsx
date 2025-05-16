@@ -129,7 +129,7 @@ const Contact = () => {
       <div className="absolute top-20 right-20 w-64 h-64 rounded-full bg-gradient-to-b from-pink-100 to-pink-200/30 blur-2xl opacity-50"></div>
       <div className="absolute bottom-20 left-20 w-64 h-64 rounded-full bg-gradient-to-t from-pink-100 to-pink-200/30 blur-2xl opacity-50"></div>
       
-      <div className="w-full max-w-6xl mx-auto px-4 py-6 md:py-8">
+      <div className="w-full max-w-6xl mx-auto px-4 py-4 md:py-6">
         <motion.div
           initial="hidden"
           animate="visible"
@@ -138,15 +138,15 @@ const Contact = () => {
         >
           {/* Centered Title */}
           <motion.div 
-            className="text-center mb-6"
+            className="text-center mb-8"
             variants={itemVariants}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-darkPink tracking-tight mb-2 inline-block relative">
+            <h2 className="text-4xl md:text-5xl font-bold text-darkPink tracking-tight mb-4 inline-block relative">
               Get In Touch
               <div className="absolute -bottom-2 left-0 right-0 h-3 bg-pink-200/50 -z-10 rounded"></div>
             </h2>
             <p className="text-darkPink/70 text-base max-w-2xl mx-auto">
-              Whether you have a question or just want to say hi, I'm happy to connect!
+              Feel free to reach out with about anything or if you just want to give in your extra comments or improve on the website, then welcome to that too
             </p>
           </motion.div>
 
