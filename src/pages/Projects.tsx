@@ -9,6 +9,7 @@ import finagent from '../assets/Projects/finagent.png';
 import getmyleadz from '../assets/Projects/getmyleadz.png';
 import montecarlo from '../assets/Projects/montecarlo.png';
 import ntupeak from '../assets/Projects/ntupeak.png';
+import tiger from '../assets/Projects/tiger.png';
 import { Link } from 'react-router-dom';
 
 // Image Carousel Component for rotating between images
@@ -65,6 +66,21 @@ type Project = {
 };
 
 const projects: Project[] = [
+  {
+    title: 'NUS-Tiger Brokers Case Competition 2025',
+    subtitle: 'Team SHER',
+    github: '',
+    live: '',
+    image: tiger,
+    liveSee: 'Developed a comprehensive strategy to create an economic moat for Tiger Brokers Singapore, focusing on engaging tertiary-level students and young entrepreneurs through gamification and community building.',
+    description: [
+      'Created "Tiger Den" - institution-specific investment clubs across universities, polytechnics, and JCs to build brand loyalty and drive user acquisition with a projected 75% conversion rate.',
+      'Designed "Tiger Arena" - a digital extension of Tiger Den featuring portfolio sharing, community features, and school-based competitions to boost user retention and engagement.',
+      'Developed "Tiger Quest" - a gamified investment learning journey with personalized "Tiger DNA" investor archetypes and AI-driven educational pathways to improve financial literacy.',
+      'Projected annual increase of 6000 users with $14.4 Million in AUM, resulting in $86,400 additional revenue per year with program rollout across 48 tertiary institutions.'
+    ],
+    technologies: ['Financial Strategy', 'Gamification', 'Community Building', 'Investor Education', 'Behavioral Economics', 'Customer Retention', 'Business Development'],
+  },
   {
     title: 'Surgical Gauze Detection using Computer Vision',
     subtitle: 'Undergraduate Research Project',
