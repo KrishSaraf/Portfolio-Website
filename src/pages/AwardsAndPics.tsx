@@ -896,6 +896,248 @@ const AwardsAndPics = () => {
               </motion.div>
             </div>
             
+            {/* College Journey Section */}
+            <div className="border-2 border-darkPink/20 p-6 md:p-10 rounded-2xl bg-white/60 backdrop-blur-sm mb-24">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+              >
+                <h3 className="text-4xl font-extrabold text-darkPink text-center mb-8">
+                  College Journey
+                </h3>
+                
+                {/* CGPA Highlight */}
+                <div className="max-w-xl mx-auto mb-10">
+                  <motion.div 
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    className="bg-gradient-to-r from-amber-50 to-yellow-100 rounded-xl p-5 border-2 border-amber-300 shadow-lg"
+                  >
+                    <div className="flex flex-col items-center text-center">
+                      <div className="text-amber-800 text-sm font-medium uppercase tracking-wide mb-1">Current Cumulative Grade Point Average</div>
+                      <div className="text-5xl font-bold text-amber-700 mb-2">4.84 / 5.00</div>
+                      <div className="flex flex-wrap justify-center gap-3 mt-1">
+                        <span className="bg-white px-3 py-1 rounded-full text-sm font-medium text-gray-700 shadow-sm">
+                          Nanyang Technological University
+                        </span>
+                        <span className="bg-white px-3 py-1 rounded-full text-sm font-medium text-gray-700 shadow-sm">
+                          Economics & Data Science
+                        </span>
+                      </div>
+                    </div>
+                  </motion.div>
+                </div>
+
+                {/* Desktop College Timeline (hidden on mobile) */}
+                <div className="hidden md:block mb-10">
+                  <div className="relative mx-auto max-w-5xl px-8">
+                    {/* Journey Path Container */}
+                    <div className="flex flex-wrap justify-center gap-6">
+                      {[
+                        { 
+                          year: "Year 1", 
+                          semesters: [
+                            { sem: "Semester 1", gpa: "4.69" },
+                            { sem: "Semester 2", gpa: "4.87" }
+                          ],
+                          achievement: "Dean's List",
+                          details: "Perfect A/A+ in 11 of 12 courses"
+                        },
+                        { 
+                          year: "Year 2", 
+                          semesters: [
+                            { sem: "Semester 1", gpa: "5.00" },
+                            { sem: "Semester 2", gpa: "4.71" }
+                          ],
+                          achievement: "Dean's List",
+                          details: "5.00 GPA in Semester 1"
+                        },
+                        { 
+                          year: "Year 3", 
+                          semesters: [
+                            { sem: "Semester 1", gpa: "4.92" }
+                          ],
+                          achievement: "Dean's List",
+                          details: "Professional Attachment at Keppel Management"
+                        },
+                        { 
+                          year: "Year 4", 
+                          semesters: [],
+                          achievement: "Dean's List",
+                          details: "Ongoing"
+                        }
+                      ].map((item, index) => (
+                        <motion.div 
+                          key={`college-desktop-${index}`}
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ 
+                            duration: 0.5, 
+                            delay: index * 0.15,
+                            type: "spring",
+                            stiffness: 100
+                          }}
+                          className={`
+                            relative rounded-xl overflow-hidden
+                            ${index < 3 ? "hover:scale-105" : "hover:scale-105 opacity-80"}
+                            transition-all duration-300 hover:shadow-lg z-10
+                          `}
+                        >
+                          {/* Connection line to next card */}
+                          {index < 3 && (
+                            <div className="absolute top-1/2 right-0 w-12 h-0.5 bg-pink-200 transform translate-x-6 z-0"></div>
+                          )}
+                          
+                          <div className={`
+                            p-5 w-[220px] relative
+                            bg-white border border-pink-200
+                            ${index === 0 ? "border-l-4 border-l-pink-400" : ""}
+                            ${index === 1 ? "border-l-4 border-l-pink-500" : ""}
+                            ${index === 2 ? "border-l-4 border-l-pink-600" : ""}
+                            ${index === 3 ? "border-l-4 border-l-pink-400 bg-pink-50/50" : ""}
+                          `}>
+                            <h4 className="text-center font-bold mb-2 text-darkPink">
+                              {item.year}
+                            </h4>
+                            
+                            <div className="bg-pink-50 rounded-lg p-2 mb-3">
+                              <div className="text-center font-medium text-darkPink">
+                                {item.achievement}
+                              </div>
+                            </div>
+                            
+                            {item.semesters.length > 0 && (
+                              <div className="space-y-1.5 mb-3">
+                                {item.semesters.map((sem, idx) => (
+                                  <div key={`sem-${index}-${idx}`} className="flex justify-between text-xs">
+                                    <span className="text-gray-500">{sem.sem}</span>
+                                    <span className="font-medium text-darkPink">{sem.gpa}</span>
+                                  </div>
+                                ))}
+                              </div>
+                            )}
+                            
+                            <p className="text-xs text-center text-gray-600">
+                              {item.details}
+                            </p>
+                            
+                            {/* Visual progress indicator */}
+                            <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-pink-300 to-pink-400"></div>
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Mobile College Timeline (visible only on mobile) */}
+                <div className="md:hidden mb-8">
+                  <div className="relative max-w-xs mx-auto">
+                    {/* Vertical journey path */}
+                    <div className="absolute w-1 bg-gradient-to-b from-pink-300 via-pink-500 to-pink-600 top-2 bottom-2 left-4 rounded-full"></div>
+                    
+                    {/* Journey Items */}
+                    <div className="space-y-6">
+                      {[
+                        { 
+                          year: "Year 1", 
+                          semesters: [
+                            { sem: "Semester 1", gpa: "4.69" },
+                            { sem: "Semester 2", gpa: "4.87" }
+                          ],
+                          achievement: "Dean's List",
+                          details: "Perfect A/A+ in 11 of 12 courses"
+                        },
+                        { 
+                          year: "Year 2", 
+                          semesters: [
+                            { sem: "Semester 1", gpa: "5.00" },
+                            { sem: "Semester 2", gpa: "4.71" }
+                          ],
+                          achievement: "Dean's List",
+                          details: "5.00 GPA in Semester 1"
+                        },
+                        { 
+                          year: "Year 3", 
+                          semesters: [
+                            { sem: "Semester 1", gpa: "4.92" }
+                          ],
+                          achievement: "Dean's List",
+                          details: "Professional Attachment at Keppel Management"
+                        },
+                        { 
+                          year: "Year 4", 
+                          semesters: [],
+                          achievement: "Dean's List",
+                          details: "Ongoing"
+                        }
+                      ].map((item, index) => (
+                        <motion.div 
+                          key={`college-mobile-${index}`}
+                          initial={{ opacity: 0, x: -10 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ 
+                            duration: 0.4, 
+                            delay: index * 0.1,
+                            type: "spring",
+                            stiffness: 100
+                          }}
+                          className={`relative pl-8 pr-2 ${index === 3 ? "opacity-80" : ""}`}
+                        >
+                          {/* Connection to timeline */}
+                          <div className="absolute left-4 top-1/2 w-4 h-0.5 bg-pink-200 transform -translate-y-1/2"></div>
+                          
+                          {/* Timeline marker */}
+                          <div className="absolute left-[9px] top-1/2 w-3 h-3 rounded-full border border-pink-300 bg-white transform -translate-y-1/2 z-10"></div>
+                          
+                          <div className={`
+                            p-4 rounded-lg shadow-sm border border-pink-200 transition-all duration-300 hover:shadow-md relative
+                            ${index === 0 ? "border-l-4 border-l-pink-400" : ""}
+                            ${index === 1 ? "border-l-4 border-l-pink-500" : ""}
+                            ${index === 2 ? "border-l-4 border-l-pink-600" : ""}
+                            ${index === 3 ? "border-l-4 border-l-pink-400 bg-pink-50/50" : ""}
+                            ${index === 3 ? "bg-pink-50/50" : "bg-white"}
+                          `}>
+                            <div className="flex justify-between items-center mb-2">
+                              <h4 className="font-bold text-darkPink">{item.year}</h4>
+                              <span className="px-2 py-0.5 bg-pink-100 text-pink-700 rounded-md text-xs font-medium">
+                                {item.achievement}
+                              </span>
+                            </div>
+                            
+                            {item.semesters.length > 0 && (
+                              <div className="space-y-1 mb-2 text-xs">
+                                {item.semesters.map((sem, idx) => (
+                                  <div key={`sem-mobile-${index}-${idx}`} className="flex justify-between">
+                                    <span className="text-gray-500">{sem.sem}</span>
+                                    <span className="font-medium text-darkPink">{sem.gpa}</span>
+                                  </div>
+                                ))}
+                              </div>
+                            )}
+                            
+                            <p className="text-xs text-gray-600">{item.details}</p>
+                            
+                            {/* Visual progress indicator */}
+                            <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-pink-300 to-pink-400"></div>
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="text-center mt-6">
+                  <p className="text-darkPink/70 italic font-medium">Graduated from High School with a perfect attendance record, continued excellence in college</p>
+                </div>
+              </motion.div>
+            </div>
+            
             {/* Combined Photo Collage Section */}
             <div id="photo-collage" className="border-2 border-darkPink/20 p-6 md:p-8 rounded-2xl bg-white/50 backdrop-blur-sm">
               <motion.div
