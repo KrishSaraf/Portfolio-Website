@@ -2,7 +2,13 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import trendz from '../assets/Projects/Synapse.png';
 import EXE from '../assets/Projects/EXE.png';
-import Disease from '../assets/Projects/DiseasePrediction.png';
+import gauzeImg from '../assets/Projects/gauze.png';
+import cleantech1 from '../assets/Projects/cleantech1.png';
+import cleantech2 from '../assets/Projects/cleantech2.png';
+import finagent from '../assets/Projects/finagent.png';
+import getmyleadz from '../assets/Projects/getmyleadz.png';
+import montecarlo from '../assets/Projects/montecarlo.png';
+import ntupeak from '../assets/Projects/ntupeak.png';
 import { Link } from 'react-router-dom';
 
 const projects = [
@@ -11,7 +17,7 @@ const projects = [
     subtitle: 'Undergraduate Research Project',
     github: 'https://github.com/KrishSaraf/AI-for-gauze-detection-in-OT',
     live: '',
-    image: Disease, // Use the Disease image for this project
+    image: gauzeImg,
     liveSee: 'Deployed a real-time surgical gauze detection system with 98% accuracy for SGH, doubling throughput to 34 FPS with projected savings of SGD $1M.',
     description: [
       'Developed and deployed a real-time gauze detection system with SGH using YOLOv8 (PyTorch), achieving 98% detection accuracy.',
@@ -23,9 +29,9 @@ const projects = [
   {
     title: 'IEEE NTU & NUS Synapse Hackathon 2024',
     subtitle: '1st Prize',
-    github: 'https://github.com/KrishSaraf/Trendz_Website-Synapse-Hackathon', // Add GitHub link if available
+    github: 'https://github.com/KrishSaraf/Trendz_Website-Synapse-Hackathon',
     live: '',
-    image: trendz, // Add your image path here, e.g. '/assets/trendz.png'
+    image: trendz,
     liveSee: 'One-Stop AI platform for content creation, from ideation to editing, through seamless integration of GPT, CLIP, Stable Diffusion, and Runway ML- powered by our own Algorithms in the backend.',
     description: [
       'Created "Trendz", an AI-powered platform to streamline real-time text and visual content creation workflows by integrating GPT, CLIP, Stable Diffusion, and Runway ML, minimizing creation time by more than 90%.',
@@ -39,7 +45,7 @@ const projects = [
     subtitle: '1st Prize - Two years in a row',
     github: '',
     live: '',
-    image: '', // Add your image path here, e.g. '/assets/clean-tech.png'
+    image: cleantech1,
     liveSee: 'Back-to-back champion project once creating a ETA prediction model for ships and the next time a sustainability platform for Singapore SMEs to get Green Credits.',
     description: [
       '2024: Designed a deep learning model for robust shipment predictions, enhancing our efficiency with a feedback loop & Adjusted Scheduler algorithm for dynamic shipment processing- achieving 91% accuracy & reduced human effort by 30%.',
@@ -50,9 +56,9 @@ const projects = [
   {
     title: 'NTU IEEE Intuition Hackathon',
     subtitle: '1st Runner-Up',
-    github: 'https://github.com/KrishSaraf/iNTUition.exe-main', // Add GitHub link if available
+    github: 'https://github.com/KrishSaraf/iNTUition.exe-main',
     live: '',
-    image: EXE, // Add your image path here, e.g. '/assets/intuition.png'
+    image: EXE,
     liveSee: 'Revolutionary AI system that transforms prompts into fully-functional websites with 3.5× ROI, cutting development from months to minutes.',
     description: [
       'Led development of an AI-agent system that turns prompt-based inputs into full-stack sites—auto-generating and scoring multiple combinations of front/back-end architectures.',
@@ -66,7 +72,7 @@ const projects = [
     subtitle: '3rd Place',
     github: 'https://github.com/KrishSaraf/Get-My-Leadz-Final',
     live: 'https://grand-phoenix-4ffc98.netlify.app/',
-    image: '', // Add image path if available
+    image: getmyleadz,
     liveSee: 'Built an AI-driven lead generation platform that automates prospect discovery, qualification, and scoring, reducing acquisition time from months to weeks with 70% faster lead qualification.',
     description: [
       'Developed "Get My Leadz", an AI-driven solution automating the process of identifying, qualifying, and scoring sales leads, helping companies focus on closing deals rather than manual prospect searches.',
@@ -79,9 +85,9 @@ const projects = [
   {
     title: 'NTU PEAK Leadership Program',
     subtitle: '1st Runners Up, Best Ideation Award',
-    github: '', // Add GitHub link if available
+    github: '',
     live: '',
-    image: '', // Keep the current image as requested
+    image: ntupeak,
     liveSee: 'Designed a future-proof MRT system blueprint for 2030 in collaboration with the Land Transport Authority, focusing on user experience and scalability.',
     description: [
       'Conceptualized the blueprint, technical framework, and implementation roadmap for a future-proof MRT system for 2030.',
@@ -94,7 +100,7 @@ const projects = [
     subtitle: 'Final Year Project',
     github: '',
     live: '',
-    image: '', // Keep the current image as requested
+    image: finagent,
     liveSee: 'Built a multimodal financial AI agent that analyzes stock data, K-line patterns, news sentiment, and financials, achieving 35% ARR over a year of testing.',
     description: [
       'Built a multimodal financial AI agent under the guidance of Prof. Bo An (Head of AI, NTU), integrating structured stock data, K-line visual patterns, FinBERT-based sentiment from 10,000+ news articles, and company-specific financials.',
@@ -108,7 +114,7 @@ const projects = [
     subtitle: 'Course Project',
     github: '',
     live: '',
-    image: '', // Keep the current image as requested
+    image: montecarlo,
     liveSee: 'Developed Monte Carlo simulations for complex derivatives pricing using GBM/Heston/CIR models, reducing error by 73.3% and running 1.8M+ simulations.',
     description: [
       'Simulated pricing of complex derivatives using GBM, Heston, and CIR models, calibrated with real options data.',
