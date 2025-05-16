@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLocation, Link, useSearchParams } from 'react-router-dom';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
-import AcademicTimeline from '../components/AcademicTimeline';
 
 // Map section IDs to project indexes for back navigation
 const sectionToProjectMapping = {
@@ -299,6 +298,154 @@ const AwardsAndPics = () => {
     },
   ];
 
+  // Featured gallery items with better metadata
+  const featuredGallery = [
+    // Highlight images first
+    {
+      id: 'basf',
+      src: "/gallery/timeline/j.jpeg",
+      alt: "BASF Team",
+      description: "Team visit to BASF chemical company",
+      aspectRatio: 1/1,
+      highlight: false,
+      objectPosition: "center center",
+      maxHeight: 600
+    },
+    // Group landscape orientation images
+    {
+      id: 'presentation2',
+      src: "/gallery/timeline/g.jpeg",
+      alt: "Hanoi Winter Prelude 2024",
+      description: "Award ceremony at international event in Vietnam",
+      aspectRatio: 16/9,
+      highlight: false,
+      objectPosition: "center 30%",
+      maxHeight: 550
+    },
+    {
+      id: 'workshop2',
+      src: "/gallery/timeline/k.jpeg",
+      alt: "Classroom Group",
+      description: "Collaborative session at MIT design innovation workshop",
+      aspectRatio: 16/9,
+      highlight: false,
+      objectPosition: "center 30%",
+      maxHeight: 550
+    },
+    {
+      id: 'mountain',
+      src: "/gallery/timeline/l.jpeg",
+      alt: "Mountain Hiking", 
+      description: "Trek to panoramic viewpoint in Southeast Asia",
+      aspectRatio: 4/3,
+      highlight: false,
+      objectPosition: "center 30%",
+      maxHeight: 550
+    },
+    {
+      id: 'outdoor',
+      src: "/gallery/timeline/o.jpeg",
+      alt: "Nature Portrait",
+      description: "Standing among trees at a park or nature reserve",
+      aspectRatio: 4/3,
+      highlight: false,
+      objectPosition: "center 30%",
+      maxHeight: 550
+    },
+    {
+      id: 'discussion',
+      src: "/gallery/timeline/c.jpeg", 
+      alt: "Technical Presentation",
+      description: "Presenting project details at a technical seminar",
+      aspectRatio: 4/3,
+      highlight: false,
+      objectPosition: "center 15%",
+      maxHeight: 550
+    },
+    {
+      id: 'project',
+      src: "/gallery/timeline/h.jpeg",
+      alt: "Whiteboard Session",
+      description: "Explaining system design concepts at a whiteboard",
+      aspectRatio: 4/3,
+      highlight: false,
+      objectPosition: "center 30%",
+      maxHeight: 550
+    },
+    
+    // Group portrait and irregular orientation images
+    // {
+    //   id: 'development',
+    //   src: "/gallery/timeline/b.jpeg",
+    //   alt: "Portrait Photo",
+    //   description: "Professional headshot in casual setting",
+    //   aspectRatio: 3/4,
+    //   highlight: false,
+    //   objectPosition: "center 20%",
+    //   maxHeight: 550
+    // },
+    {
+      id: 'workshop',
+      src: "/gallery/timeline/e.jpeg",
+      alt: "Classroom Audience",
+      description: "Student audience during a technical lecture",
+      aspectRatio: 4/3,
+      highlight: false,
+      objectPosition: "center 35%",
+      maxHeight: 550
+    },
+    {
+      id: 'innovation',
+      src: "/gallery/timeline/f.jpeg",
+      alt: "Award Ceremony",
+      description: "Receiving an award plaque at recognition ceremony",
+      aspectRatio: 7/5,
+      highlight: false,
+      objectPosition: "center 40%",
+      maxHeight: 550
+    },
+    {
+      id: 'technology',
+      src: "/gallery/timeline/i.jpeg",
+      alt: "Marathon Runner",
+      description: "Participating in OneGlint running event",
+      aspectRatio: 1/2,
+      highlight: false,
+      objectPosition: "center 10%",
+      maxHeight: 150
+    },
+    {
+      id: 'stakeholders',
+      src: "/gallery/timeline/m.jpeg",
+      alt: "Cohase Awards 2023",
+      description: "Receiving Dean's List award at Cohase ceremony",
+      aspectRatio: 2/3,
+      highlight: false,
+      maxHeight: 550,
+    },
+    // Adding new timeline images
+    {
+      id: 'dance',
+      src: "/gallery/timeline/dance.jpeg",
+      alt: "Dance Performance",
+      description: "Performing at a cultural event",
+      aspectRatio: 4/3,
+      highlight: false,
+      objectPosition: "center 30%",
+      maxHeight: 550
+    },
+    {
+      id: 'deans-list',
+      src: "/gallery/timeline/deans-2023.jpeg",
+      alt: "Dean's List Award",
+      description: "Recognition for academic excellence",
+      aspectRatio: 3/4,
+      highlight: true,
+      objectPosition: "center center",
+      maxHeight: 650
+    }
+  ];
+
   // Increment loaded images counter
   const handleImageLoaded = () => {
     setImagesLoaded(prev => prev + 1);
@@ -500,9 +647,7 @@ const AwardsAndPics = () => {
   };
 
   return (
-    <>
-      <MediaModal media={selectedMedia} onClose={() => setSelectedMedia(null)} />
-      
+    <section className="pb-20 relative overflow-hidden bg-gradient-to-b from-white via-pink-50 to-pink-100">
       <div className="pt-20 container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0 }}
@@ -511,98 +656,56 @@ const AwardsAndPics = () => {
         >
           <div className="text-center mb-12">
             <h2 className="text-4xl sm:text-5xl font-extrabold text-darkPink mb-4 leading-tight">
-              Awards & Pics
+              Journey
             </h2>
             <p className="text-darkPink/70 text-lg max-w-3xl mx-auto mb-6">
               A visual showcase of my achievements, collaborations, and memorable moments from various events, competitions, and projects.
             </p>
           </div>
 
-          {/* Section Navigation Buttons */}
-          <div className="flex flex-wrap justify-center gap-3 mb-12">
-            <button 
-              onClick={() => scrollToElement('academic-timeline')}
-              className="px-4 py-2 bg-white/70 hover:bg-white text-darkPink border border-darkPink/20 rounded-full text-sm font-medium transition-all duration-300 shadow-sm hover:shadow"
-            >
-              School Education
-            </button>
-            <button 
-              onClick={() => scrollToElement('india-book-records-section')}
-              className="px-4 py-2 bg-white/70 hover:bg-white text-darkPink border border-darkPink/20 rounded-full text-sm font-medium transition-all duration-300 shadow-sm hover:shadow"
-            >
-              Book of Records
-            </button>
-            <button 
-              onClick={() => scrollToElement('college-timeline')}
-              className="px-4 py-2 bg-white/70 hover:bg-white text-darkPink border border-darkPink/20 rounded-full text-sm font-medium transition-all duration-300 shadow-sm hover:shadow"
-            >
-              College Education
-            </button>
-            <button 
-              onClick={() => scrollToElement('photo-collage')}
-              className="px-4 py-2 bg-white/70 hover:bg-white text-darkPink border border-darkPink/20 rounded-full text-sm font-medium transition-all duration-300 shadow-sm hover:shadow"
-            >
-              Photo Collage
-            </button>
-            {/* Add more buttons as needed */}
-          </div>
-
+          {/* Navigation to sections */}
+            
           <div className="space-y-24">
-            {/* SCHOOL TIMELINE */}
-            <div id="academic-timeline" className="border-2 border-darkPink/20 p-6 md:p-8 rounded-2xl bg-white/50 backdrop-blur-sm mb-16">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.2 }}
-              >
-                <h3 className="text-2xl font-bold text-darkPink mb-6 text-center">
-                  My Academic Journey
-                </h3>
-                <AcademicTimeline className="mt-4" />
-              </motion.div>
-            </div>
-
-            {/* DID SOMETHING CRAZY SECTION */}
-            <div id="india-book-records-section" className="border-2 border-darkPink/20 p-6 md:p-8 rounded-2xl bg-white/50 backdrop-blur-sm mb-24">
+            {/* India Book of Records Section */}
+            <div id="india-book-records-section" className="border-2 border-darkPink/20 p-6 md:p-10 rounded-2xl bg-white/60 backdrop-blur-sm mb-24">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7 }}
               >
-                <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
+                <h3 className="text-4xl font-extrabold text-darkPink text-center mb-2">
                   Did Something Crazy
                 </h3>
-                <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
-                  Official recognition from the India Book of Records for an extraordinary achievement
-                </p>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                  <div className="rounded-xl overflow-hidden shadow-md cursor-pointer">
+                <div className="flex flex-col items-center mb-8">
+                  <span className="text-2xl sm:text-3xl font-bold text-pink-700 bg-pink-100 px-6 py-2 rounded-xl shadow mb-2 mt-2 text-center">
+                    Got my name in the India Book of Records
+                  </span>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                  <div className="rounded-xl overflow-hidden shadow-lg border border-pink-200 bg-white">
                     <img 
                       src="/gallery/india-book-of-records.png" 
                       alt="India Book of Records Achievement" 
-                      className="w-full h-auto object-cover"
+                      className="w-full h-auto object-cover transition-transform duration-500 hover:scale-105 cursor-pointer"
                       onClick={() => setSelectedMedia({src: "/gallery/india-book-of-records.png", type: 'image'})}
                     />
                   </div>
-                  
-                  <div className="flex flex-col space-y-6">
-                    <div className="prose prose-lg">
-                      <h4 className="text-2xl font-bold text-darkPink">National Recognition</h4>
-                      <p className="text-gray-700">
-                        Honored to be recognized by the India Book of Records for exceptional achievement. This official acknowledgment represents dedication, commitment, and pushing boundaries.
+                  <div className="flex flex-col items-center text-center space-y-6">
+                    <div>
+                      <h4 className="text-2xl font-bold text-darkPink mb-2">National Recognition</h4>
+                      <p className="text-gray-700 mb-2">
+                        {/* Honored to be recognized by the India Book of Records for exceptional achievement. This official acknowledgment represents dedication, commitment, and pushing boundaries. */}
                       </p>
                       <p className="text-gray-700 font-medium">
-                        The certification showcases excellence and stands as a testament to what can be achieved with determination and focus.
+                        Didn't miss a single day of school for <span className="text-pink-700 font-bold">12 consecutive years</span>.
                       </p>
                     </div>
-                    
                     <a 
                       href="https://indiabookofrecords.in/krish-saraf-appreciation/" 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 self-start px-6 py-3 bg-darkPink text-white rounded-xl hover:bg-pink-700 transition-colors font-medium group"
+                      className="inline-flex items-center gap-2 justify-center px-6 py-3 bg-darkPink text-white rounded-xl hover:bg-pink-700 transition-colors font-medium group mt-2"
                     >
                       <span>View Official Record Page</span>
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transform group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
@@ -613,24 +716,8 @@ const AwardsAndPics = () => {
                 </div>
               </motion.div>
             </div>
-
-            {/* COLLEGE TIMELINE */}
-            <div id="college-timeline" className="border-2 border-darkPink/20 p-6 md:p-8 rounded-2xl bg-white/50 backdrop-blur-sm mb-16">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7 }}
-              >
-                <h3 className="text-2xl font-bold text-darkPink mb-6 text-center">
-                  College Education
-                </h3>
-                {/* We're reusing the AcademicTimeline component here, but it will show only the college timeline based on our redesign */}
-                <AcademicTimeline className="mt-4" />
-              </motion.div>
-            </div>
             
-            {/* PHOTO COLLAGE SECTION */}
+            {/* Combined Photo Collage Section */}
             <div id="photo-collage" className="border-2 border-darkPink/20 p-6 md:p-8 rounded-2xl bg-white/50 backdrop-blur-sm">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -649,7 +736,8 @@ const AwardsAndPics = () => {
                   columnsCountBreakPoints={{ 350: 1, 500: 2, 900: 3, 1200: 4 }}
                 >
                   <Masonry gutter="16px">
-                    {collageGallery.map((item, index) => (
+                    {/* Combining both collageGallery and featuredGallery */}
+                    {[...collageGallery, ...featuredGallery].map((item, index) => (
                       <motion.div
                         key={`collage-${item.id}`}
                         initial={{ opacity: 0, y: 20 }}
@@ -661,24 +749,22 @@ const AwardsAndPics = () => {
                         style={item.highlight ? { gridColumn: 'span 2' } : {}}
                       >
                         <div className="overflow-hidden" style={{ 
+                          aspectRatio: `${item.aspectRatio}`,
                           maxHeight: item.highlight ? '600px' : '450px'
                         }}>
                           <img 
                             src={item.src} 
-                            alt={item.alt} 
-                            className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
-                            style={{ 
-                              aspectRatio: typeof item.aspectRatio === 'number' ? item.aspectRatio : 'auto',
-                              objectPosition: item.objectPosition || 'center center'
-                            }}
+                            alt={item.alt}
+                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            style={{ objectPosition: item.objectPosition || 'center' }}
                             onLoad={handleImageLoaded}
                           />
-                          
-                          {item.description && (
-                            <div className="absolute inset-0 flex items-end justify-center p-4 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                              <p className="text-white text-center text-sm font-medium">{item.description}</p>
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div className="absolute bottom-4 left-4 right-4 text-white">
+                              <h4 className="font-medium">{item.alt}</h4>
+                              <p className="text-sm text-white/80">{item.description}</p>
                             </div>
-                          )}
+                          </div>
                         </div>
                       </motion.div>
                     ))}
@@ -687,12 +773,299 @@ const AwardsAndPics = () => {
               </motion.div>
             </div>
 
-            {/* OTHER PROJECT SECTIONS REMAIN THE SAME */}
-            {/* Synapse section, CleanTech section, etc. */}
+            {/* Keep other original project sections with BackToProjectButton */}
+            {/* Synapse Hackathon Section */}
+            <div id="synapse-section" className="border-2 border-darkPink/20 p-6 md:p-8 rounded-2xl bg-white/50 backdrop-blur-sm relative">
+              <BackToProjectButton sectionId="synapse-section" />
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+              >
+                <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
+                  IEEE NTU & NUS Synapse Hackathon 2024
+                </h3>
+                <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
+                  Images from our 1st Prize winning project at the Synapse Hackathon, where we built an AI-powered platform for content creation.
+                </p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {synapseImages.map((item, index) => (
+                    <motion.div
+                      key={`synapse-${index}`}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer"
+                      onClick={() => setSelectedMedia({src: item.image, type: 'image'})}
+                    >
+                      <div className="overflow-hidden aspect-video">
+                        <img 
+                          src={item.image} 
+                          alt={item.caption} 
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Clean Tech Challenge Section */}
+            <div id="cleantech-section" className="border-2 border-darkPink/20 p-6 md:p-8 rounded-2xl bg-white/50 backdrop-blur-sm relative">
+              <BackToProjectButton sectionId="cleantech-section" />
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+              >
+                <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
+                  Clean Tech Challenge (2023-2024)
+                </h3>
+                <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
+                  Images from our 1st Prize winning projects two years in a row, featuring sustainability solutions and shipment prediction models.
+                </p>
+            
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {cleanTechImages.map((item, index) => (
+                    <motion.div
+                      key={`cleantech-${index}`}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer"
+                      onClick={() => setSelectedMedia({src: item.image, type: 'image'})}
+                    >
+                      <div className="overflow-hidden aspect-video">
+                        <img 
+                          src={item.image} 
+                          alt={item.caption} 
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+
+            {/* NTU IEEE Intuition Hackathon Section */}
+            <div id="intuition-section" className="border-2 border-darkPink/20 p-6 md:p-8 rounded-2xl bg-white/50 backdrop-blur-sm relative">
+              <BackToProjectButton sectionId="intuition-section" />
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+              >
+                <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
+                  NTU IEEE Intuition Hackathon
+                </h3>
+                <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
+                  1st Runner-Up at the NTU IEEE Intuition Hackathon, where we developed an AI system that transforms prompts into fully-functional websites.
+                </p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {intuitionImages.map((item, index) => (
+                    <motion.div
+                      key={`intuition-${index}`}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer"
+                      onClick={() => setSelectedMedia({src: item.image, type: 'image'})}
+                    >
+                      <div className="overflow-hidden aspect-video">
+                        <img 
+                          src={item.image} 
+                          alt={item.caption} 
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Code with AI Hackathon Section */}
+            <div id="codewithai-section" className="border-2 border-darkPink/20 p-6 md:p-8 rounded-2xl bg-white/50 backdrop-blur-sm relative">
+              <BackToProjectButton sectionId="codewithai-section" />
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+              >
+                <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
+                  "Code with AI" Hackathon - Get My Leadz
+                </h3>
+                <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
+                  3rd Place winning project where we built an AI-driven lead generation platform that automates prospect discovery, qualification, and scoring.
+                </p>
+            
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {codeWithAIImages.map((item, index) => (
+                    <motion.div
+                      key={`codewithai-${index}`}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer"
+                      onClick={() => setSelectedMedia({src: item.image, type: 'image'})}
+                    >
+                      <div className="overflow-hidden aspect-video">
+                        <img 
+                          src={item.image} 
+                          alt={item.caption} 
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+
+            {/* NTU PEAK Leadership Program Section */}
+            <div id="peak-section" className="border-2 border-darkPink/20 p-6 md:p-8 rounded-2xl bg-white/50 backdrop-blur-sm relative">
+              <BackToProjectButton sectionId="peak-section" />
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+              >
+                <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
+                  NTU PEAK Leadership Program
+                </h3>
+                <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
+                  1st Runners Up and Best Ideation Award for designing a future-proof MRT system blueprint for 2030 in collaboration with the Land Transport Authority.
+                </p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {peakImages.map((item, index) => (
+                    <motion.div
+                      key={`peak-${index}`}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer"
+                      onClick={() => setSelectedMedia({src: item.image, type: 'image'})}
+                    >
+                      <div className="overflow-hidden aspect-video">
+                        <img 
+                          src={item.image} 
+                          alt={item.caption} 
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Surgical Gauze Detection Section */}
+            <div id="gauze-section" className="border-2 border-darkPink/20 p-6 md:p-8 rounded-2xl bg-white/50 backdrop-blur-sm relative">
+              <BackToProjectButton sectionId="gauze-section" />
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+              >
+                <h3 className="text-3xl font-bold text-darkPink mb-4 text-center">
+                  Surgical Gauze Detection using Computer Vision
+                </h3>
+                <p className="text-darkPink/70 text-center max-w-3xl mx-auto mb-10">
+                  Developed and deployed a real-time gauze detection system with SGH using YOLOv8, achieving 98% detection accuracy and doubling throughput to 34 FPS.
+                </p>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {gauzeMedia.map((item, index) => (
+                    <motion.div
+                      key={`gauze-${index}`}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer"
+                      onClick={() => setSelectedMedia({src: item.src, type: item.type === 'video' ? 'video' : 'image', loop: item.loop})}
+                    >
+                      <div className="overflow-hidden">
+                        {item.type === 'image' ? (
+                          <img 
+                            src={item.src} 
+                            alt={item.caption} 
+                            className={`w-full transition-transform duration-700 group-hover:scale-105 ${
+                              item.src.includes('krish-hospital') 
+                                ? "h-auto object-contain" 
+                                : "h-auto object-contain"
+                            }`}
+                            style={{
+                              ...(item.src.includes('krish-hospital') ? { maxHeight: '400px' } : {}),
+                              ...(item.src.includes('gauze.jpeg') ? { maxHeight: '550px' } : {}),
+                              ...(item.src.includes('o.jpeg') ? { maxHeight: '550px' } : {})
+                            }}
+                          />
+                        ) : (
+                          <div className="relative">
+                            <video 
+                              src={item.src}
+                              className="w-full h-full object-contain"
+                              autoPlay
+                              muted
+                              loop
+                              playsInline
+                            />
+                          </div>
+                        )}
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
           </div>
+          
+          {/* Call to action */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center mt-16"
+          >
+            <p className="text-lg text-darkPink/70 mb-8">More photos coming soon!</p>
+            <Link to="/contact" className="inline-block">
+              <div className="inline-flex items-center gap-2 text-white bg-darkPink px-6 py-3 rounded-full font-medium shadow-lg hover:shadow-xl hover:bg-darkPink/90 transition-all duration-300 hover:-translate-y-1">
+                <span>Follow me for updates</span>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </div>
+            </Link>
+          </motion.div>
         </motion.div>
       </div>
-    </>
+
+      {/* Full-screen image modal */}
+      {selectedMedia && (
+        <MediaModal 
+          media={selectedMedia} 
+          onClose={() => setSelectedMedia(null)} 
+        />
+      )}
+    </section>
   );
 };
 
