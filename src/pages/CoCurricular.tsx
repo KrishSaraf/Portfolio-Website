@@ -603,23 +603,46 @@ const CoCurricular = () => {
                 </p>
 
                 <ResponsiveMasonry
-                  columnsCountBreakPoints={{ 350: 1, 500: 2, 900: 3, 1200: 4 }}
+                  columnsCountBreakPoints={{ 350: 1, 500: 2, 750: 3, 1100: 4 }}
                 >
-                  <Masonry gutter="16px">
-                    {collageGallery.map((item, index) => (
+                  <Masonry gutter="12px">
+                    {[
+                      // Reorder the images to better fill the space
+                      // First put some key wide images at the top
+                      ...collageGallery.filter(item => item.id === 'wide-1' || item.id === 'landscape-1'),
+                      // Follow with portrait images to fill vertical space
+                      ...collageGallery.filter(item => 
+                        item.id.startsWith('portrait') && 
+                        item.id !== 'portrait-5' && 
+                        item.id !== 'portrait-8'
+                      ),
+                      // Then some square images
+                      ...collageGallery.filter(item => item.id.startsWith('square')),
+                      // Remaining landscape images
+                      ...collageGallery.filter(item => 
+                        item.id.startsWith('landscape') && 
+                        item.id !== 'landscape-1'
+                      ),
+                      // Key featured images
+                      ...collageGallery.filter(item => item.id.startsWith('featured')),
+                      // Move portrait-5 and portrait-8 to the end to fill the bottom left
+                      ...collageGallery.filter(item => item.id === 'portrait-5' || item.id === 'portrait-8'),
+                      // WhatsApp images at the end
+                      ...collageGallery.filter(item => item.id.startsWith('whatsapp'))
+                    ].map((item, index) => (
                       <motion.div
                         key={`collage-${item.id}`}
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: index * 0.05 }}
+                        transition={{ duration: 0.5, delay: Math.min(0.5, index * 0.03) }}
                         className={`relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl cursor-pointer ${item.highlight ? 'col-span-2' : ''}`}
                         onClick={() => setSelectedMedia({src: item.src, type: 'image'})}
                         style={item.highlight ? { gridColumn: 'span 2' } : {}}
                       >
                         <div className="overflow-hidden" style={{ 
                           aspectRatio: `${item.aspectRatio}`,
-                          maxHeight: item.highlight ? '600px' : '450px'
+                          maxHeight: item.highlight ? '500px' : '400px'
                         }}>
                           <img 
                             src={item.src} 
@@ -627,6 +650,7 @@ const CoCurricular = () => {
                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                             style={{ objectPosition: item.objectPosition || 'center' }}
                             onLoad={handleImageLoaded}
+                            loading="lazy"
                           />
                         </div>
                       </motion.div>
