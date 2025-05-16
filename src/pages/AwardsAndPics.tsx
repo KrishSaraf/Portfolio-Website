@@ -342,6 +342,15 @@ const AwardsAndPics = () => {
       highlight: false,
       objectPosition: "center center",
     },
+    {
+      id: 'new-image-29',
+      src: "/images/image copy 29.png", 
+      alt: "Achievement award",
+      description: "Academic recognition",
+      aspectRatio: 4/3,
+      highlight: false,
+      objectPosition: "center center",
+    },
   ];
 
   // Featured gallery items with better metadata
