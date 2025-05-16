@@ -666,6 +666,144 @@ const AwardsAndPics = () => {
           {/* Navigation to sections */}
             
           <div className="space-y-24">
+            {/* Academic Journey Timeline */}
+            <div className="border-2 border-darkPink/20 p-6 md:p-10 rounded-2xl bg-white/60 backdrop-blur-sm mb-24">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+              >
+                <h3 className="text-4xl font-extrabold text-darkPink text-center mb-8">
+                  Academic Journey
+                </h3>
+                
+                {/* Desktop Timeline (hidden on mobile) */}
+                <div className="hidden md:block mb-8">
+                  <div className="relative">
+                    {/* Timeline Line */}
+                    <div className="absolute h-1 bg-gradient-to-r from-pink-300 via-darkPink to-purple-500 top-24 left-0 right-0 rounded-full"></div>
+                    
+                    {/* Timeline Items */}
+                    <div className="grid grid-cols-12 gap-0">
+                      {[
+                        { class: "Class 1", achievement: "3rd" },
+                        { class: "Class 2", achievement: "1st" },
+                        { class: "Class 3", achievement: "2nd" },
+                        { class: "Class 4", achievement: "2nd" },
+                        { class: "Class 5", achievement: "1st" },
+                        { class: "Class 6", achievement: "2nd" },
+                        { class: "Class 7", achievement: "2nd" },
+                        { class: "Class 8", achievement: "3rd" },
+                        { class: "Class 9", achievement: "+1 promoted" },
+                        { class: "Class 10", achievement: "98.2% — All India Rank 7" },
+                        { class: "Class 11", achievement: "1st in Class" },
+                        { class: "Class 12", achievement: "1st in School, 1st in State" }
+                      ].map((item, index) => (
+                        <motion.div 
+                          key={`desktop-${index}`}
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.5, delay: index * 0.05 }}
+                          className="flex flex-col items-center"
+                        >
+                          <div className={`${
+                            index % 2 === 0 ? 'pb-24 flex flex-col items-center' : 'pt-24 flex flex-col items-center'
+                          }`}>
+                            <div className={`
+                              p-3 rounded-xl shadow-md bg-white border-2 border-darkPink/20 
+                              ${item.achievement.includes("1st") ? "bg-gradient-to-br from-yellow-50 to-yellow-100 border-yellow-300" : ""}
+                              ${item.achievement.includes("All India") ? "bg-gradient-to-br from-yellow-100 to-yellow-200 border-yellow-400" : ""}
+                              w-full text-center
+                            `}>
+                              <h4 className="text-darkPink font-bold">{item.class}</h4>
+                              <p className={`
+                                text-sm font-medium 
+                                ${item.achievement.includes("1st") ? "text-amber-700" : "text-gray-700"}
+                                ${item.achievement.includes("All India") ? "text-amber-800 font-bold" : ""}
+                              `}>
+                                {item.achievement}
+                              </p>
+                            </div>
+                          </div>
+                          
+                          {/* Timeline Point */}
+                          <div className={`
+                            w-4 h-4 rounded-full bg-darkPink border-2 border-white shadow-md
+                            ${index % 2 === 0 ? '-mt-2' : '-mb-2'}
+                            ${item.achievement.includes("1st") ? "bg-yellow-400" : ""}
+                            ${item.achievement.includes("All India") ? "bg-yellow-500 w-6 h-6" : ""}
+                          `}></div>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Mobile Timeline (visible only on mobile) */}
+                <div className="md:hidden">
+                  <div className="relative pl-10">
+                    {/* Vertical Timeline Line */}
+                    <div className="absolute w-1 bg-gradient-to-b from-pink-300 via-darkPink to-purple-500 top-0 bottom-0 left-4 rounded-full"></div>
+                    
+                    {/* Timeline Items */}
+                    <div className="space-y-6">
+                      {[
+                        { class: "Class 1", achievement: "3rd" },
+                        { class: "Class 2", achievement: "1st" },
+                        { class: "Class 3", achievement: "2nd" },
+                        { class: "Class 4", achievement: "2nd" },
+                        { class: "Class 5", achievement: "1st" },
+                        { class: "Class 6", achievement: "2nd" },
+                        { class: "Class 7", achievement: "2nd" },
+                        { class: "Class 8", achievement: "3rd" },
+                        { class: "Class 9", achievement: "+1 promoted" },
+                        { class: "Class 10", achievement: "98.2% — All India Rank 7" },
+                        { class: "Class 11", achievement: "1st in Class" },
+                        { class: "Class 12", achievement: "1st in School, 1st in State" }
+                      ].map((item, index) => (
+                        <motion.div 
+                          key={`mobile-${index}`}
+                          initial={{ opacity: 0, x: -20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.5, delay: index * 0.05 }}
+                          className="relative"
+                        >
+                          {/* Timeline Point */}
+                          <div className={`
+                            absolute left-[-32px] top-3 w-4 h-4 rounded-full border-2 border-white shadow-md z-10
+                            ${item.achievement.includes("1st") ? "bg-yellow-400" : "bg-darkPink"}
+                            ${item.achievement.includes("All India") ? "bg-yellow-500 w-6 h-6 left-[-36px]" : ""}
+                          `}></div>
+                          
+                          <div className={`
+                            p-3 rounded-lg shadow-md bg-white border-2 border-darkPink/20
+                            ${item.achievement.includes("1st") ? "bg-gradient-to-r from-yellow-50 to-yellow-100 border-yellow-300" : ""}
+                            ${item.achievement.includes("All India") ? "bg-gradient-to-r from-yellow-100 to-yellow-200 border-yellow-400" : ""}
+                          `}>
+                            <h4 className="text-darkPink font-bold">{item.class}</h4>
+                            <p className={`
+                              text-sm font-medium 
+                              ${item.achievement.includes("1st") ? "text-amber-700" : "text-gray-700"}
+                              ${item.achievement.includes("All India") ? "text-amber-800 font-bold" : ""}
+                            `}>
+                              {item.achievement}
+                            </p>
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="text-center mt-8">
+                  <p className="text-darkPink/70 italic">Ranked consistently among the top students throughout school years</p>
+                </div>
+              </motion.div>
+            </div>
+            
             {/* India Book of Records Section */}
             <div id="india-book-records-section" className="border-2 border-darkPink/20 p-6 md:p-10 rounded-2xl bg-white/60 backdrop-blur-sm mb-24">
               <motion.div
