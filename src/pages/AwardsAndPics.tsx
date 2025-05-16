@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLocation, Link, useSearchParams } from 'react-router-dom';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
@@ -36,6 +36,135 @@ const BackToProjectButton = ({ sectionId }: { sectionId: string }) => {
   }
   
   return null;
+};
+
+// Academic timeline data
+const academicJourney = [
+  { class: "Class 1", achievement: "3rd" },
+  { class: "Class 2", achievement: "1st" },
+  { class: "Class 3", achievement: "2nd" },
+  { class: "Class 4", achievement: "2nd" },
+  { class: "Class 5", achievement: "1st" },
+  { class: "Class 6", achievement: "2nd" },
+  { class: "Class 7", achievement: "2nd" },
+  { class: "Class 8", achievement: "3rd" },
+  { class: "Class 9", achievement: "+1 promoted" },
+  { class: "Class 10", achievement: "98.2% — All India Rank 7" },
+  { class: "Class 11", achievement: "1st in Class" },
+  { class: "Class 12", achievement: "1st in School, 1st in State" }
+];
+
+// Academic Timeline Component
+const AcademicTimeline = () => {
+  const [activePoint, setActivePoint] = useState<number | null>(null);
+  const timelineRef = useRef<HTMLDivElement>(null);
+  
+  return (
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
+      className="w-full overflow-x-hidden mb-16"
+      ref={timelineRef}
+    >
+      <div className="relative w-full overflow-x-auto py-20 px-4">
+        <div className="min-w-[1000px] md:min-w-[1200px] relative mx-auto">
+          {/* SVG Timeline */}
+          <svg 
+            width="100%" 
+            height="160" 
+            viewBox="0 0 1200 160" 
+            fill="none" 
+            xmlns="http://www.w3.org/2000/svg"
+            className="relative z-10"
+          >
+            {/* Wavy Path */}
+            <path 
+              d="M0,80 C50,40 100,120 200,80 C300,40 400,120 500,80 C600,40 700,120 800,80 C900,40 1000,120 1100,80 C1150,60 1200,100 1200,80" 
+              stroke="#e60023" 
+              strokeWidth="4" 
+              fill="none" 
+              className="path-animation"
+            />
+            
+            {/* Timeline Points */}
+            {academicJourney.map((item, index) => {
+              // Calculate position along the path
+              const xPos = 50 + (index * (1100 / 11));
+              // Calculate y position with a sine wave function to follow the path
+              const yPos = 80 + (Math.sin((index / 11) * Math.PI * 2) * 40);
+              
+              return (
+                <g key={index}>
+                  {/* Circle Marker */}
+                  <motion.circle
+                    cx={xPos}
+                    cy={yPos}
+                    r={activePoint === index ? 12 : 10}
+                    fill={activePoint === index ? "#e60023" : "white"}
+                    stroke="#e60023"
+                    strokeWidth="3"
+                    whileHover={{ scale: 1.2 }}
+                    onMouseEnter={() => setActivePoint(index)}
+                    onMouseLeave={() => setActivePoint(null)}
+                    className="cursor-pointer transition-all duration-300"
+                  />
+                  
+                  {/* Class Label */}
+                  <motion.text
+                    x={xPos}
+                    y={yPos - 25}
+                    fontSize="14"
+                    fontWeight={activePoint === index ? "bold" : "normal"}
+                    fill="#333"
+                    textAnchor="middle"
+                    initial={{ opacity: 0.7 }}
+                    animate={{ opacity: activePoint === index ? 1 : 0.7, y: activePoint === index ? yPos - 30 : yPos - 25 }}
+                    className="pointer-events-none"
+                  >
+                    {item.class}
+                  </motion.text>
+                  
+                  {/* Achievement Tooltip */}
+                  <motion.g
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ 
+                      opacity: activePoint === index ? 1 : 0,
+                      scale: activePoint === index ? 1 : 0.8,
+                    }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {/* Background Pill */}
+                    <rect
+                      x={xPos - 60}
+                      y={yPos + 15}
+                      width={120}
+                      height={30}
+                      rx={15}
+                      fill="#e60023"
+                      className="shadow-lg"
+                    />
+                    {/* Achievement Text */}
+                    <text
+                      x={xPos}
+                      y={yPos + 35}
+                      fontSize="12"
+                      fontWeight="medium"
+                      fill="white"
+                      textAnchor="middle"
+                      className="pointer-events-none"
+                    >
+                      {item.achievement}
+                    </text>
+                  </motion.g>
+                </g>
+              );
+            })}
+          </svg>
+        </div>
+      </div>
+    </motion.div>
+  );
 };
 
 const AwardsAndPics = () => {
@@ -662,8 +791,12 @@ const AwardsAndPics = () => {
               A visual showcase of my achievements, collaborations, and memorable moments from various events, competitions, and projects.
             </p>
           </div>
-
-          {/* Navigation to sections */}
+          
+          {/* Academic Journey Timeline */}
+          <div className="mb-16">
+            <h3 className="text-2xl font-bold text-darkPink mb-6 text-center">Academic Journey</h3>
+            <AcademicTimeline />
+          </div>
             
           <div className="space-y-24">
             {/* India Book of Records Section */}
