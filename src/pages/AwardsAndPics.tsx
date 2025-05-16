@@ -675,17 +675,17 @@ const AwardsAndPics = () => {
                 transition={{ duration: 0.7 }}
               >
                 <h3 className="text-4xl font-extrabold text-darkPink text-center mb-8">
-                  Academic Journey
+                  School Ranks
                 </h3>
                 
                 {/* Desktop Timeline (hidden on mobile) */}
-                <div className="hidden md:block mb-8">
-                  <div className="relative">
+                <div className="hidden md:block mb-10">
+                  <div className="relative px-4">
                     {/* Timeline Line */}
-                    <div className="absolute h-1 bg-gradient-to-r from-pink-300 via-darkPink to-purple-500 top-24 left-0 right-0 rounded-full"></div>
+                    <div className="absolute h-1.5 bg-gradient-to-r from-pink-200 via-darkPink to-pink-200 top-1/2 left-0 right-0 rounded-full transform -translate-y-1/2 z-0"></div>
                     
                     {/* Timeline Items */}
-                    <div className="grid grid-cols-12 gap-0">
+                    <div className="grid grid-cols-12 gap-1">
                       {[
                         { class: "Class 1", achievement: "3rd" },
                         { class: "Class 2", achievement: "1st" },
@@ -702,39 +702,42 @@ const AwardsAndPics = () => {
                       ].map((item, index) => (
                         <motion.div 
                           key={`desktop-${index}`}
-                          initial={{ opacity: 0, y: 20 }}
+                          initial={{ opacity: 0, y: index % 2 === 0 ? -20 : 20 }}
                           whileInView={{ opacity: 1, y: 0 }}
                           viewport={{ once: true }}
                           transition={{ duration: 0.5, delay: index * 0.05 }}
-                          className="flex flex-col items-center"
+                          className="flex flex-col items-center z-10"
                         >
-                          <div className={`${
-                            index % 2 === 0 ? 'pb-24 flex flex-col items-center' : 'pt-24 flex flex-col items-center'
-                          }`}>
+                          <div className={`
+                            ${index % 2 === 0 ? 'order-first -mb-12' : 'order-last -mt-12'}
+                          `}>
                             <div className={`
-                              p-3 rounded-xl shadow-md bg-white border-2 border-darkPink/20 
-                              ${item.achievement.includes("1st") ? "bg-gradient-to-br from-yellow-50 to-yellow-100 border-yellow-300" : ""}
-                              ${item.achievement.includes("All India") ? "bg-gradient-to-br from-yellow-100 to-yellow-200 border-yellow-400" : ""}
-                              w-full text-center
+                              py-3 px-2 m-2 rounded-lg shadow-md bg-white border 
+                              ${index === 9 || index === 11 ? 
+                                "bg-gradient-to-tl from-yellow-50 to-yellow-100 border-yellow-300" : 
+                                "border-pink-200"
+                              }
+                              ${index === 9 ? "transform scale-110 -rotate-2" : ""}
+                              ${index === 11 ? "transform scale-110 rotate-2" : ""}
+                              w-full text-center transition-transform duration-300 hover:shadow-lg hover:-translate-y-1
                             `}>
-                              <h4 className="text-darkPink font-bold">{item.class}</h4>
+                              <h4 className={`
+                                text-sm font-bold
+                                ${index === 9 || index === 11 ? "text-amber-800" : "text-darkPink"}
+                              `}>
+                                {item.class}
+                              </h4>
                               <p className={`
-                                text-sm font-medium 
-                                ${item.achievement.includes("1st") ? "text-amber-700" : "text-gray-700"}
-                                ${item.achievement.includes("All India") ? "text-amber-800 font-bold" : ""}
+                                text-xs font-medium mt-1
+                                ${index === 9 || index === 11 ? "text-amber-700" : "text-gray-600"}
                               `}>
                                 {item.achievement}
                               </p>
                             </div>
                           </div>
                           
-                          {/* Timeline Point */}
-                          <div className={`
-                            w-4 h-4 rounded-full bg-darkPink border-2 border-white shadow-md
-                            ${index % 2 === 0 ? '-mt-2' : '-mb-2'}
-                            ${item.achievement.includes("1st") ? "bg-yellow-400" : ""}
-                            ${item.achievement.includes("All India") ? "bg-yellow-500 w-6 h-6" : ""}
-                          `}></div>
+                          {/* Empty div to replace dots */}
+                          <div className="h-12"></div>
                         </motion.div>
                       ))}
                     </div>
@@ -742,10 +745,10 @@ const AwardsAndPics = () => {
                 </div>
                 
                 {/* Mobile Timeline (visible only on mobile) */}
-                <div className="md:hidden">
-                  <div className="relative pl-10">
+                <div className="md:hidden mb-8">
+                  <div className="relative pl-10 pr-2">
                     {/* Vertical Timeline Line */}
-                    <div className="absolute w-1 bg-gradient-to-b from-pink-300 via-darkPink to-purple-500 top-0 bottom-0 left-4 rounded-full"></div>
+                    <div className="absolute w-1 bg-gradient-to-b from-pink-300 via-darkPink to-pink-300 top-0 bottom-0 left-4 rounded-full"></div>
                     
                     {/* Timeline Items */}
                     <div className="space-y-6">
@@ -765,29 +768,30 @@ const AwardsAndPics = () => {
                       ].map((item, index) => (
                         <motion.div 
                           key={`mobile-${index}`}
-                          initial={{ opacity: 0, x: -20 }}
+                          initial={{ opacity: 0, x: -10 }}
                           whileInView={{ opacity: 1, x: 0 }}
                           viewport={{ once: true }}
-                          transition={{ duration: 0.5, delay: index * 0.05 }}
+                          transition={{ duration: 0.4, delay: index * 0.03 }}
                           className="relative"
                         >
-                          {/* Timeline Point */}
                           <div className={`
-                            absolute left-[-32px] top-3 w-4 h-4 rounded-full border-2 border-white shadow-md z-10
-                            ${item.achievement.includes("1st") ? "bg-yellow-400" : "bg-darkPink"}
-                            ${item.achievement.includes("All India") ? "bg-yellow-500 w-6 h-6 left-[-36px]" : ""}
-                          `}></div>
-                          
-                          <div className={`
-                            p-3 rounded-lg shadow-md bg-white border-2 border-darkPink/20
-                            ${item.achievement.includes("1st") ? "bg-gradient-to-r from-yellow-50 to-yellow-100 border-yellow-300" : ""}
-                            ${item.achievement.includes("All India") ? "bg-gradient-to-r from-yellow-100 to-yellow-200 border-yellow-400" : ""}
+                            p-3 rounded-lg shadow-md border transition-all duration-300 hover:shadow-lg
+                            ${index === 9 || index === 11 ? 
+                              "bg-gradient-to-r from-yellow-50 to-yellow-100 border-yellow-300 ml-1" : 
+                              "bg-white border-pink-200"
+                            }
+                            ${index === 9 ? "transform -rotate-1" : ""}
+                            ${index === 11 ? "transform rotate-1" : ""}
                           `}>
-                            <h4 className="text-darkPink font-bold">{item.class}</h4>
+                            <h4 className={`
+                              font-bold
+                              ${index === 9 || index === 11 ? "text-amber-800" : "text-darkPink"}
+                            `}>
+                              {item.class}
+                            </h4>
                             <p className={`
                               text-sm font-medium 
-                              ${item.achievement.includes("1st") ? "text-amber-700" : "text-gray-700"}
-                              ${item.achievement.includes("All India") ? "text-amber-800 font-bold" : ""}
+                              ${index === 9 || index === 11 ? "text-amber-700" : "text-gray-600"}
                             `}>
                               {item.achievement}
                             </p>
@@ -798,8 +802,8 @@ const AwardsAndPics = () => {
                   </div>
                 </div>
                 
-                <div className="text-center mt-8">
-                  <p className="text-darkPink/70 italic">Ranked consistently among the top students throughout school years</p>
+                <div className="text-center mt-4">
+                  <p className="text-darkPink/70 italic font-medium">Ranked consistently among the top students throughout school years</p>
                 </div>
               </motion.div>
             </div>
