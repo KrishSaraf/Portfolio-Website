@@ -8,40 +8,50 @@ const AwardsAndPics = () => {
   const [imagesLoaded, setImagesLoaded] = useState(0);
   const location = useLocation();
   
-  // Use native browser hash scrolling with offset correction
-  useEffect(() => {
-    // Small delay to ensure DOM is ready
-    const timer = setTimeout(() => {
-      // Check if there's a hash in the URL
-      if (location.hash) {
-        // Get the element to scroll to
-        const id = location.hash.replace('#', '');
-        const element = document.getElementById(id);
-        
-        if (element) {
-          // Detect if we're on mobile
-          const isMobile = window.innerWidth < 768;
-          
-          // Get the current scroll position
-          const currentScrollPos = window.pageYOffset;
-          
-          // Get the element's position
-          const rect = element.getBoundingClientRect();
-          
-          // Calculate the position to scroll to
-          // On mobile, subtract the header height (approximately 80px)
-          const scrollTo = rect.top + currentScrollPos - (isMobile ? 80 : 0);
-          
-          // Scroll to the element
-          window.scrollTo({
-            top: scrollTo,
-            behavior: 'smooth'
-          });
-        }
-      }
-    }, 300);
+  // Scroll to the element with the given ID
+  const scrollToElement = (id: string) => {
+    const element = document.getElementById(id);
+    if (!element) return;
     
-    return () => clearTimeout(timer);
+    // For mobile devices, use a larger offset
+    const isMobile = window.innerWidth < 768;
+    const offset = isMobile ? 120 : 40; // Larger offset for mobile
+    
+    // Get element position
+    const elementPosition = element.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - offset;
+    
+    // Scroll to the element
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth'
+    });
+  };
+  
+  // Handle hash changes and initial hash
+  useEffect(() => {
+    // Function to handle hash change
+    const handleHash = () => {
+      // Longer delay for mobile to ensure everything is loaded
+      const delay = window.innerWidth < 768 ? 1000 : 500;
+      
+      // If there's a hash in the URL
+      if (location.hash) {
+        // Get the element ID from hash
+        const id = location.hash.replace('#', '');
+        
+        // Use setTimeout to ensure the page is fully loaded
+        setTimeout(() => {
+          scrollToElement(id);
+        }, delay);
+      }
+    };
+    
+    // Run on mount and when hash changes
+    handleHash();
+    
+    // Clean up
+    return () => {};
   }, [location]);
 
   // Featured gallery items with better metadata

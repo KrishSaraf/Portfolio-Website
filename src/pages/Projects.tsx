@@ -458,7 +458,18 @@ const Projects = () => {
                     {projects[selected].title === "IEEE NTU & NUS Synapse Hackathon 2024" && (
                       <Link
                         to="/awards#synapse-section"
-                        onClick={() => setSelected(null)}
+                        onClick={() => {
+                          setSelected(null);
+                          setTimeout(() => {
+                            const element = document.getElementById('synapse-section');
+                            if (element) {
+                              const isMobile = window.innerWidth < 768;
+                              const offset = isMobile ? 120 : 40;
+                              const scrollTo = element.getBoundingClientRect().top + window.pageYOffset - offset;
+                              window.scrollTo({ top: scrollTo, behavior: 'smooth' });
+                            }
+                          }, 1000);
+                        }}
                         className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-darkPink rounded-lg hover:bg-pink-600 transition-colors duration-200"
                       >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
