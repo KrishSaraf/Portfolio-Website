@@ -40,6 +40,7 @@ const BackToProjectButton = ({ sectionId }: { sectionId: string }) => {
 
 const AwardsAndPics = () => {
   const [selectedMedia, setSelectedMedia] = useState<{src: string, type: 'image' | 'video', loop?: boolean} | null>(null);
+  // Track when images are loaded for better UX feedback
   const [imagesLoaded, setImagesLoaded] = useState(0);
   const location = useLocation();
   

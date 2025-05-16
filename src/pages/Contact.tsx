@@ -163,7 +163,7 @@ const Contact = () => {
                   href="https://github.com/KrishSaraf/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-4 p-4 rounded-xl border border-gray-200 bg-white shadow-md hover:shadow-lg group transition-all duration-300 overflow-hidden relative min-h-[90px]"
+                  className="flex items-center gap-4 p-4 rounded-xl border border-gray-200 bg-white shadow-md hover:shadow-lg group transition-all duration-300 overflow-hidden relative"
                 >
                   <div className="absolute left-0 top-0 bottom-0 w-1 bg-gray-800 group-hover:w-full opacity-10 group-hover:opacity-5 transition-all duration-500"></div>
                   <div className="bg-gray-900 text-white p-3 rounded-xl z-10">
@@ -186,7 +186,7 @@ const Contact = () => {
                   href="https://www.linkedin.com/in/krishsaraf/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-4 p-4 rounded-xl border border-gray-200 bg-white shadow-md hover:shadow-lg group transition-all duration-300 overflow-hidden relative min-h-[90px]"
+                  className="flex items-center gap-4 p-4 rounded-xl border border-gray-200 bg-white shadow-md hover:shadow-lg group transition-all duration-300 overflow-hidden relative"
                 >
                   <div className="absolute left-0 top-0 bottom-0 w-1 bg-blue-600 group-hover:w-full opacity-10 group-hover:opacity-5 transition-all duration-500"></div>
                   <div className="bg-blue-600 text-white p-3 rounded-xl z-10">
@@ -209,7 +209,7 @@ const Contact = () => {
                   href="https://wa.me/6598117311"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-4 p-4 rounded-xl border border-gray-200 bg-white shadow-md hover:shadow-lg group transition-all duration-300 overflow-hidden relative min-h-[90px]"
+                  className="flex items-center gap-4 p-4 rounded-xl border border-gray-200 bg-white shadow-md hover:shadow-lg group transition-all duration-300 overflow-hidden relative"
                 >
                   <div className="absolute left-0 top-0 bottom-0 w-1 bg-green-500 group-hover:w-full opacity-10 group-hover:opacity-5 transition-all duration-500"></div>
                   <div className="bg-green-500 text-white p-3 rounded-xl z-10">
@@ -230,7 +230,7 @@ const Contact = () => {
                   whileHover={{ scale: 1.02, y: -2 }}
                   whileTap={{ scale: 0.98 }}
                   href="mailto:krishsaraf05@gmail.com"
-                  className="flex items-center gap-4 p-4 rounded-xl border border-gray-200 bg-white shadow-md hover:shadow-lg group transition-all duration-300 overflow-hidden relative min-h-[90px]"
+                  className="flex items-center gap-4 p-4 rounded-xl border border-gray-200 bg-white shadow-md hover:shadow-lg group transition-all duration-300 overflow-hidden relative"
                 >
                   <div className="absolute left-0 top-0 bottom-0 w-1 bg-darkPink group-hover:w-full opacity-10 group-hover:opacity-5 transition-all duration-500"></div>
                   <div className="bg-darkPink text-white p-3 rounded-xl z-10">
@@ -275,7 +275,7 @@ const Contact = () => {
                       onChange={handleChange}
                       onFocus={() => handleFocus('name')}
                       onBlur={handleBlur}
-                      className="w-full px-3 py-2 bg-gray-50 border rounded-lg text-gray-800 text-sm transition-all duration-300 focus:outline-none focus:ring-1 focus:ring-darkPink/40 focus:border-darkPink/60"
+                      className={`w-full px-3 py-2 bg-gray-50 border rounded-lg text-gray-800 text-sm transition-all duration-300 focus:outline-none focus:ring-1 focus:ring-darkPink/40 focus:border-darkPink/60 ${focusedField === 'name' ? 'border-darkPink/60 ring-1 ring-darkPink/40' : ''}`}
                       required
                     />
                   </div>
@@ -292,7 +292,7 @@ const Contact = () => {
                       onChange={handleChange}
                       onFocus={() => handleFocus('email')}
                       onBlur={handleBlur}
-                      className="w-full px-3 py-2 bg-gray-50 border rounded-lg text-gray-800 text-sm transition-all duration-300 focus:outline-none focus:ring-1 focus:ring-darkPink/40 focus:border-darkPink/60"
+                      className={`w-full px-3 py-2 bg-gray-50 border rounded-lg text-gray-800 text-sm transition-all duration-300 focus:outline-none focus:ring-1 focus:ring-darkPink/40 focus:border-darkPink/60 ${focusedField === 'email' ? 'border-darkPink/60 ring-1 ring-darkPink/40' : ''}`}
                       required
                     />
                   </div>
@@ -309,7 +309,7 @@ const Contact = () => {
                       onFocus={() => handleFocus('message')}
                       onBlur={handleBlur}
                       rows={3}
-                      className="w-full px-3 py-2 bg-gray-50 border rounded-lg text-gray-800 text-sm transition-all duration-300 focus:outline-none focus:ring-1 focus:ring-darkPink/40 focus:border-darkPink/60 resize-none"
+                      className={`w-full px-3 py-2 bg-gray-50 border rounded-lg text-gray-800 text-sm transition-all duration-300 focus:outline-none focus:ring-1 focus:ring-darkPink/40 focus:border-darkPink/60 resize-none ${focusedField === 'message' ? 'border-darkPink/60 ring-1 ring-darkPink/40' : ''}`}
                       required
                     />
                   </div>

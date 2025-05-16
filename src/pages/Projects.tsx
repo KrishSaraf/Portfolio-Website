@@ -68,21 +68,6 @@ type Project = {
 
 const projects: Project[] = [
   {
-    title: 'EvoTradeX',
-    subtitle: 'Presented by DeepMeld',
-    github: '',
-    live: '',
-    image: evotradex,
-    liveSee: 'Hybrid deep learning platform that simplifies retail investing by integrating hundreds of information sources with AI to predict stock prices and automatically optimize portfolios.',
-    description: [
-      'Developed an innovative AI-driven investing platform that integrates TFT and GRU hybrid deep learning models to capture both long-term trends and short-term price patterns across multiple time horizons (T+1 to T+14).',
-      'Implemented reinforcement learning for dynamic portfolio management that continuously optimizes for Sharpe ratio, volatility, drawdown, and other key financial metrics while adapting to market conditions.',
-      'Created an explainable fuzzy decision-making system with self-evolving trading rules, providing transparent insights through a specialized SeroFAM architecture instead of rigid, fixed strategies.',
-      'Enhanced market adaptability through intelligent feature engineering using ensemble clustering to extract important sentiments and technical indicators from hundreds of information sources.'
-    ],
-    technologies: ['Deep Learning', 'Reinforcement Learning', 'Fuzzy Logic', 'Portfolio Optimization', 'Transformer Models', 'GRU', 'Feature Engineering', 'Explainable AI', 'Financial Analysis', 'Clustering'],
-  },
-  {
     title: 'Surgical Gauze Detection using Computer Vision',
     subtitle: 'Undergraduate Research Project',
     github: 'https://github.com/KrishSaraf/AI-for-gauze-detection-in-OT',
@@ -207,6 +192,21 @@ const projects: Project[] = [
       'Projected annual increase of 6000 users with $14.4 Million in AUM, resulting in $86,400 additional revenue per year with program rollout across 48 tertiary institutions.'
     ],
     technologies: ['Financial Strategy', 'Gamification', 'Community Building', 'Investor Education', 'Behavioral Economics', 'Customer Retention', 'Business Development'],
+  },
+  {
+    title: 'EvoTradeX',
+    subtitle: 'Top 10',
+    github: '',
+    live: '',
+    image: evotradex,
+    liveSee: 'Hybrid deep learning platform that simplifies retail investing by integrating hundreds of information sources with AI to predict stock prices and automatically optimize portfolios.',
+    description: [
+      'Developed an innovative AI-driven investing platform that integrates TFT and GRU hybrid deep learning models to capture both long-term trends and short-term price patterns across multiple time horizons (T+1 to T+14).',
+      'Implemented reinforcement learning for dynamic portfolio management that continuously optimizes for Sharpe ratio, volatility, drawdown, and other key financial metrics while adapting to market conditions.',
+      'Created an explainable fuzzy decision-making system with self-evolving trading rules, providing transparent insights through a specialized SeroFAM architecture instead of rigid, fixed strategies.',
+      'Enhanced market adaptability through intelligent feature engineering using ensemble clustering to extract important sentiments and technical indicators from hundreds of information sources.'
+    ],
+    technologies: ['Deep Learning', 'Reinforcement Learning', 'Fuzzy Logic', 'Portfolio Optimization', 'Transformer Models', 'GRU', 'Feature Engineering', 'Explainable AI', 'Financial Analysis', 'Clustering'],
   }
 ];
 

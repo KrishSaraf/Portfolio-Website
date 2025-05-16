@@ -6,7 +6,6 @@ import Skills from './pages/Skills';
 import Projects from './pages/Projects';
 import Contact from './pages/Contact';
 import AwardsAndPics from './pages/AwardsAndPics';
-import PhotoCollage from './pages/PhotoCollage';
 import ScrollToTop from './components/ScrollToTop';
 import { useEffect } from 'react';
 
@@ -65,7 +64,6 @@ function App() {
               <Route path="/skills" element={<Skills />} />
               <Route path="/projects" element={<Projects />} />
               <Route path="/awards" element={<AwardsAndPics />} />
-              <Route path="/photos" element={<PhotoCollage />} />
               <Route path="/contact" element={<Contact />} />
             </Routes>
           </main>

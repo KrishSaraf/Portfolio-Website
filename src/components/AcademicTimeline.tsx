@@ -206,7 +206,7 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
       .append('g')
       .attr('class', 'school-marker')
       .style('opacity', 0) // Start invisible
-      .attr('transform', (_, i) => {
+      .attr('transform', function(d: any, i: number) {
         const pos = schoolMarkerPositions[i];
         return `translate(${pos.x}, ${pos.y})`;
       });
@@ -224,7 +224,7 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
       .attr('text-anchor', 'middle')
       .attr('font-size', '12px')
       .attr('fill', '#333')
-      .text(d => d.class);
+      .text(function(d: any) { return d.class; });
     
     // Add achievement text to school markers
     schoolMarkers.append('text')
@@ -233,7 +233,7 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
       .attr('font-size', '11px')
       .attr('font-weight', 'bold')
       .attr('fill', '#e91e63')
-      .text(d => d.achievement);
+      .text(function(d: any) { return d.achievement; });
     
     // Create markers for college timeline
     const collegeMarkers = g.selectAll('.college-marker')
@@ -242,7 +242,7 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
       .append('g')
       .attr('class', 'college-marker')
       .style('opacity', 0) // Start invisible
-      .attr('transform', (_, i) => {
+      .attr('transform', function(d: any, i: number) {
         const pos = collegeMarkerPositions[i];
         return `translate(${pos.x}, ${pos.y})`;
       });
@@ -260,7 +260,7 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
       .attr('text-anchor', 'middle')
       .attr('font-size', '12px')
       .attr('fill', '#333')
-      .text(d => d.class);
+      .text(function(d: any) { return d.class; });
     
     // Add achievement text to college markers
     collegeMarkers.append('text')
@@ -269,23 +269,23 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
       .attr('font-size', '11px')
       .attr('font-weight', 'bold')
       .attr('fill', '#e91e63')
-      .text(d => d.achievement);
+      .text(function(d: any) { return d.achievement; });
     
     // Animate markers appearing after path animations
     schoolMarkers.transition()
-      .delay((_, i) => 1500 + i * 100) // 1500ms for school path + sequential delay
+      .delay(function(d: any, i: number) { return 1500 + i * 100; }) // 1500ms for school path + sequential delay
       .duration(300)
       .style('opacity', 1);
     
     collegeMarkers.transition()
-      .delay((_, i) => 3000 + i * 100) // 1500ms for each path + sequential delay
+      .delay(function(d: any, i: number) { return 3000 + i * 100; }) // 1500ms for each path + sequential delay
       .duration(300)
       .style('opacity', 1);
     
     // Add hover interactions
     const allMarkers = g.selectAll('.school-marker, .college-marker');
     
-    allMarkers.on('mouseover', function(event, d) {
+    allMarkers.on('mouseover', function(event: any, d: any) {
       // Highlight marker
       d3.select(this).select('circle')
         .transition()
@@ -295,7 +295,7 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
       
       // Show tooltip
       tooltip
-        .html(`<strong>${(d as AchievementData).class}</strong><br>${(d as AchievementData).details}`)
+        .html(`<strong>${d.class}</strong><br>${d.details}`)
         .style('visibility', 'visible')
         .style('left', `${event.pageX + 10}px`)
         .style('top', `${event.pageY - 10}px`)
@@ -303,7 +303,7 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
         .duration(200)
         .style('opacity', 1);
     })
-    .on('mousemove', function(event) {
+    .on('mousemove', function(event: any) {
       tooltip
         .style('left', `${event.pageX + 10}px`)
         .style('top', `${event.pageY - 10}px`);
@@ -360,13 +360,13 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
       
       // Update marker positions
       g.selectAll('.school-marker')
-        .attr('transform', (_, i) => {
+        .attr('transform', function(d: any, i: number) {
           const pos = newSchoolPositions[i];
           return `translate(${pos.x}, ${pos.y})`;
         });
       
       g.selectAll('.college-marker')
-        .attr('transform', (_, i) => {
+        .attr('transform', function(d: any, i: number) {
           const pos = newCollegePositions[i];
           return `translate(${pos.x}, ${pos.y})`;
         });
