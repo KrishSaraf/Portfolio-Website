@@ -10,7 +10,7 @@ import getmyleadz from '../assets/Projects/getmyleadz.png';
 import montecarlo from '../assets/Projects/montecarlo.png';
 import ntupeak from '../assets/Projects/ntupeak.png';
 import tiger from '../assets/Projects/tiger.png';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 // Image Carousel Component for rotating between images
 type ImageCarouselProps = {
@@ -66,21 +66,6 @@ type Project = {
 };
 
 const projects: Project[] = [
-  {
-    title: 'NUS-Tiger Brokers Case Competition 2025',
-    subtitle: 'Team SHER',
-    github: '',
-    live: '',
-    image: tiger,
-    liveSee: 'Developed a comprehensive strategy to create an economic moat for Tiger Brokers Singapore, focusing on engaging tertiary-level students and young entrepreneurs through gamification and community building.',
-    description: [
-      'Created "Tiger Den" - institution-specific investment clubs across universities, polytechnics, and JCs to build brand loyalty and drive user acquisition with a projected 75% conversion rate.',
-      'Designed "Tiger Arena" - a digital extension of Tiger Den featuring portfolio sharing, community features, and school-based competitions to boost user retention and engagement.',
-      'Developed "Tiger Quest" - a gamified investment learning journey with personalized "Tiger DNA" investor archetypes and AI-driven educational pathways to improve financial literacy.',
-      'Projected annual increase of 6000 users with $14.4 Million in AUM, resulting in $86,400 additional revenue per year with program rollout across 48 tertiary institutions.'
-    ],
-    technologies: ['Financial Strategy', 'Gamification', 'Community Building', 'Investor Education', 'Behavioral Economics', 'Customer Retention', 'Business Development'],
-  },
   {
     title: 'Surgical Gauze Detection using Computer Vision',
     subtitle: 'Undergraduate Research Project',
@@ -192,12 +177,63 @@ const projects: Project[] = [
     ],
     technologies: ['Monte Carlo', 'GBM / Heston / CIR', 'Quant Finance', 'Options Pricing', 'Risk Management', 'Stochastic Calculus', 'Python'],
   },
+  {
+    title: 'NUS-Tiger Brokers Case Competition 2025',
+    subtitle: 'Top 10',
+    github: '',
+    live: '',
+    image: tiger,
+    liveSee: 'Developed a comprehensive strategy to create an economic moat for Tiger Brokers Singapore, focusing on engaging young adults through gamification and community building.',
+    description: [
+      'Created "Tiger Den" - institution-specific investment clubs across universities, polytechnics, and JCs to build brand loyalty and drive user acquisition with a projected 75% conversion rate.',
+      'Designed "Tiger Arena" - a digital extension of Tiger Den featuring portfolio sharing, community features, and school-based competitions to boost user retention and engagement.',
+      'Developed "Tiger Quest" - a gamified investment learning journey with personalized "Tiger DNA" investor archetypes and AI-driven educational pathways to improve financial literacy.',
+      'Projected annual increase of 6000 users with $14.4 Million in AUM, resulting in $86,400 additional revenue per year with program rollout across 48 tertiary institutions.'
+    ],
+    technologies: ['Financial Strategy', 'Gamification', 'Community Building', 'Investor Education', 'Behavioral Economics', 'Customer Retention', 'Business Development'],
+  }
 ];
 
 const gridPattern = `url('data:image/svg+xml;utf8,<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0.5" y="0.5" width="39" height="39" rx="7.5" fill="none" stroke="%23e11d4822"/></svg>')`;
 
 const Projects = () => {
   const [selected, setSelected] = useState<number | null>(null);
+  const location = useLocation();
+
+  // Function to scroll to a specific project
+  const scrollToProject = (projectIndex: number) => {
+    const projectElement = document.getElementById(`project-${projectIndex}`);
+    if (projectElement) {
+      // Use different offset for mobile vs desktop
+      const isMobile = window.innerWidth < 768;
+      const offset = isMobile ? 80 : 30;
+      
+      const elementPosition = projectElement.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  // Handle hash navigation when component mounts or URL changes
+  useEffect(() => {
+    if (location.hash) {
+      const hash = location.hash.replace('#', '');
+      const projectMatch = hash.match(/project-(\d+)/);
+      
+      if (projectMatch && projectMatch[1]) {
+        const projectIndex = parseInt(projectMatch[1], 10);
+        
+        // Delay scrolling slightly to ensure page is rendered
+        setTimeout(() => {
+          scrollToProject(projectIndex);
+        }, 300);
+      }
+    }
+  }, [location]);
 
   return (
     <section className="min-h-screen w-full py-20 px-4 sm:px-8 bg-gradient-to-br from-white via-pink-50 to-darkPink/10 relative overflow-hidden">
@@ -229,6 +265,7 @@ const Projects = () => {
         >
           {projects.map((project, index) => (
             <motion.div
+              id={`project-${index}`}
               key={project.title}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
