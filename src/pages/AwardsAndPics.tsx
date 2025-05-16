@@ -721,7 +721,7 @@ const AwardsAndPics = () => {
           <div className="text-center mb-12">
             <h2 className="text-4xl sm:text-5xl font-extrabold text-darkPink mb-4 leading-tight">
               Journey
-            </h2>
+          </h2>
             <p className="text-darkPink/70 text-lg max-w-3xl mx-auto mb-6">
               A visual showcase of my achievements, collaborations, and memorable moments from various events, competitions, and projects.
             </p>
@@ -1267,9 +1267,9 @@ const AwardsAndPics = () => {
                             style={{ objectPosition: item.objectPosition || 'center' }}
                             onLoad={handleImageLoaded}
                           />
-                        </div>
-                      </motion.div>
-                    ))}
+                      </div>
+                    </motion.div>
+                  ))}
                   </Masonry>
                 </ResponsiveMasonry>
               </motion.div>
