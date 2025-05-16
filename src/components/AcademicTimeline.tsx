@@ -273,12 +273,12 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
     
     // Animate markers appearing after path animations
     schoolMarkers.transition()
-      .delay(function(d: any, i: number) { return 1500 + i * 100; }) // 1500ms for school path + sequential delay
+      .delay(function(_: any, i: number) { return 1500 + i * 100; }) // 1500ms for school path + sequential delay
       .duration(300)
       .style('opacity', 1);
     
     collegeMarkers.transition()
-      .delay(function(d: any, i: number) { return 3000 + i * 100; }) // 1500ms for each path + sequential delay
+      .delay(function(_: any, i: number) { return 3000 + i * 100; }) // 1500ms for each path + sequential delay
       .duration(300)
       .style('opacity', 1);
     
@@ -360,13 +360,13 @@ const AcademicTimeline: React.FC<AcademicTimelineProps> = ({ className = '' }) =
       
       // Update marker positions
       g.selectAll('.school-marker')
-        .attr('transform', function(d: any, i: number) {
+        .attr('transform', function(_: any, i: number) {
           const pos = newSchoolPositions[i];
           return `translate(${pos.x}, ${pos.y})`;
         });
       
       g.selectAll('.college-marker')
-        .attr('transform', function(d: any, i: number) {
+        .attr('transform', function(_: any, i: number) {
           const pos = newCollegePositions[i];
           return `translate(${pos.x}, ${pos.y})`;
         });

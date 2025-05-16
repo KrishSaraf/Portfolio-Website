@@ -502,6 +502,14 @@ const AwardsAndPics = () => {
     }
   ];
 
+  // Combine both collageGallery and featuredGallery to get total count
+  const totalImagesToLoad = collageGallery.length + featuredGallery.length;
+  
+  // Percentage of images loaded for progress indicator
+  const loadingProgress = totalImagesToLoad > 0 
+    ? Math.min(100, Math.round((imagesLoaded / totalImagesToLoad) * 100)) 
+    : 100;
+
   // Increment loaded images counter
   const handleImageLoaded = () => {
     setImagesLoaded(prev => prev + 1);
@@ -713,10 +721,21 @@ const AwardsAndPics = () => {
           <div className="text-center mb-12">
             <h2 className="text-4xl sm:text-5xl font-extrabold text-darkPink mb-4 leading-tight">
               Journey
-          </h2>
+            </h2>
             <p className="text-darkPink/70 text-lg max-w-3xl mx-auto mb-6">
               A visual showcase of my achievements, collaborations, and memorable moments from various events, competitions, and projects.
             </p>
+            
+            {/* Loading progress indicator - visible only during initial loading */}
+            {loadingProgress < 100 && (
+              <div className="w-full max-w-md mx-auto bg-pink-100 rounded-full h-2.5 mb-6 overflow-hidden">
+                <div 
+                  className="bg-darkPink h-2.5 rounded-full transition-all duration-300 ease-out"
+                  style={{ width: `${loadingProgress}%` }}
+                ></div>
+                <p className="text-xs text-darkPink/60 mt-1">Loading gallery: {loadingProgress}%</p>
+              </div>
+            )}
           </div>
 
           {/* Navigation to sections */}
