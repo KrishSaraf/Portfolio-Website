@@ -8,7 +8,7 @@ const navigation = [
   { name: 'Projects', href: '/projects' },
   { name: 'Awards & Pics', href: '/awards' },
   { name: 'Experience', href: '/experience' },
-  { name: 'Skills', href: '/skills' },
+  // { name: 'Skills', href: '/skills' }, // Temporarily hidden but code preserved
   { name: 'Contact', href: '/contact' },
 ];
 
