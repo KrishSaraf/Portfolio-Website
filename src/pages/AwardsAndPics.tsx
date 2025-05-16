@@ -680,12 +680,9 @@ const AwardsAndPics = () => {
                 
                 {/* Desktop Timeline (hidden on mobile) */}
                 <div className="hidden md:block mb-10">
-                  <div className="relative px-4">
-                    {/* Timeline Line */}
-                    <div className="absolute h-1.5 bg-gradient-to-r from-pink-200 via-darkPink to-pink-200 top-1/2 left-0 right-0 rounded-full transform -translate-y-1/2 z-0"></div>
-                    
-                    {/* Timeline Items */}
-                    <div className="grid grid-cols-12 gap-1">
+                  <div className="relative mx-auto max-w-6xl px-8">
+                    {/* Journey Path Container */}
+                    <div className="flex flex-wrap justify-center gap-4">
                       {[
                         { class: "Class 1", achievement: "3rd" },
                         { class: "Class 2", achievement: "1st" },
@@ -695,49 +692,64 @@ const AwardsAndPics = () => {
                         { class: "Class 6", achievement: "2nd" },
                         { class: "Class 7", achievement: "2nd" },
                         { class: "Class 8", achievement: "3rd" },
-                        { class: "Class 9", achievement: "+1 promoted" },
+                        { class: "Class 9", achievement: "3rd" },
                         { class: "Class 10", achievement: "98.2% — All India Rank 7" },
                         { class: "Class 11", achievement: "1st in Class" },
-                        { class: "Class 12", achievement: "1st in School, 1st in State" }
+                        { class: "Class 12", achievement: "99% — All India Rank 4" }
                       ].map((item, index) => (
                         <motion.div 
-                          key={`desktop-${index}`}
-                          initial={{ opacity: 0, y: index % 2 === 0 ? -20 : 20 }}
+                          key={`desktop-journey-${index}`}
+                          initial={{ opacity: 0, y: 20 }}
                           whileInView={{ opacity: 1, y: 0 }}
                           viewport={{ once: true }}
-                          transition={{ duration: 0.5, delay: index * 0.05 }}
-                          className="flex flex-col items-center z-10"
+                          transition={{ 
+                            duration: 0.5, 
+                            delay: index * 0.08,
+                            type: "spring",
+                            stiffness: 100
+                          }}
+                          className={`
+                            relative rounded-xl overflow-hidden
+                            ${index === 9 || index === 11 ? "transform origin-center hover:-rotate-1" : "hover:scale-105"}
+                            transition-all duration-300 hover:shadow-lg z-10
+                          `}
                         >
-                          <div className={`
-                            ${index % 2 === 0 ? 'order-first -mb-12' : 'order-last -mt-12'}
-                          `}>
-                            <div className={`
-                              py-3 px-2 m-2 rounded-lg shadow-md bg-white border 
-                              ${index === 9 || index === 11 ? 
-                                "bg-gradient-to-tl from-yellow-50 to-yellow-100 border-yellow-300" : 
-                                "border-pink-200"
-                              }
-                              ${index === 9 ? "transform scale-110 -rotate-2" : ""}
-                              ${index === 11 ? "transform scale-110 rotate-2" : ""}
-                              w-full text-center transition-transform duration-300 hover:shadow-lg hover:-translate-y-1
-                            `}>
-                              <h4 className={`
-                                text-sm font-bold
-                                ${index === 9 || index === 11 ? "text-amber-800" : "text-darkPink"}
-                              `}>
-                                {item.class}
-                              </h4>
-                              <p className={`
-                                text-xs font-medium mt-1
-                                ${index === 9 || index === 11 ? "text-amber-700" : "text-gray-600"}
-                              `}>
-                                {item.achievement}
-                              </p>
-                            </div>
-                          </div>
+                          {/* Connection line to next card */}
+                          {index < 11 && (
+                            <div className="absolute top-1/2 right-0 w-8 h-0.5 bg-pink-200 transform translate-x-4 z-0"></div>
+                          )}
                           
-                          {/* Empty div to replace dots */}
-                          <div className="h-12"></div>
+                          <div className={`
+                            p-4 min-w-[100px] relative
+                            ${index === 9 || index === 11 ? 
+                              "bg-gradient-to-br from-yellow-50 to-yellow-100 border-2 border-yellow-300 shadow-md" : 
+                              "bg-white border border-pink-200"
+                            }
+                            ${index < 5 ? "border-l-4 border-l-pink-300" : ""}
+                            ${index >= 5 && index < 9 ? "border-l-4 border-l-pink-400" : ""}
+                            ${index === 9 ? "border-l-4 border-l-amber-400" : ""}
+                            ${index === 10 ? "border-l-4 border-l-pink-500" : ""}
+                            ${index === 11 ? "border-l-4 border-l-amber-500" : ""}
+                          `}>
+                            <h4 className={`
+                              text-center font-bold mb-1
+                              ${index === 9 || index === 11 ? "text-amber-800" : "text-darkPink"}
+                            `}>
+                              {item.class}
+                            </h4>
+                            <p className={`
+                              text-sm text-center whitespace-nowrap
+                              ${index === 9 || index === 11 ? "text-amber-700 font-medium" : "text-gray-600"}
+                            `}>
+                              {item.achievement}
+                            </p>
+                            
+                            {/* Visual progress indicator */}
+                            <div className={`
+                              absolute bottom-0 left-0 right-0 h-1
+                              ${index === 9 || index === 11 ? "bg-gradient-to-r from-amber-300 to-amber-400" : "bg-gradient-to-r from-pink-200 to-pink-300"}
+                            `}></div>
+                          </div>
                         </motion.div>
                       ))}
                     </div>
@@ -746,12 +758,12 @@ const AwardsAndPics = () => {
                 
                 {/* Mobile Timeline (visible only on mobile) */}
                 <div className="md:hidden mb-8">
-                  <div className="relative pl-10 pr-2">
-                    {/* Vertical Timeline Line */}
-                    <div className="absolute w-1 bg-gradient-to-b from-pink-300 via-darkPink to-pink-300 top-0 bottom-0 left-4 rounded-full"></div>
+                  <div className="relative max-w-xs mx-auto">
+                    {/* Vertical journey path */}
+                    <div className="absolute w-1 bg-gradient-to-b from-pink-200 via-pink-400 to-pink-500 top-2 bottom-2 left-4 rounded-full"></div>
                     
-                    {/* Timeline Items */}
-                    <div className="space-y-6">
+                    {/* Journey Items */}
+                    <div className="space-y-3">
                       {[
                         { class: "Class 1", achievement: "3rd" },
                         { class: "Class 2", achievement: "1st" },
@@ -761,40 +773,65 @@ const AwardsAndPics = () => {
                         { class: "Class 6", achievement: "2nd" },
                         { class: "Class 7", achievement: "2nd" },
                         { class: "Class 8", achievement: "3rd" },
-                        { class: "Class 9", achievement: "+1 promoted" },
+                        { class: "Class 9", achievement: "3rd" },
                         { class: "Class 10", achievement: "98.2% — All India Rank 7" },
                         { class: "Class 11", achievement: "1st in Class" },
-                        { class: "Class 12", achievement: "1st in School, 1st in State" }
+                        { class: "Class 12", achievement: "99% — All India Rank 4" }
                       ].map((item, index) => (
                         <motion.div 
-                          key={`mobile-${index}`}
+                          key={`mobile-journey-${index}`}
                           initial={{ opacity: 0, x: -10 }}
                           whileInView={{ opacity: 1, x: 0 }}
                           viewport={{ once: true }}
-                          transition={{ duration: 0.4, delay: index * 0.03 }}
-                          className="relative"
+                          transition={{ 
+                            duration: 0.4, 
+                            delay: index * 0.06,
+                            type: "spring",
+                            stiffness: 100
+                          }}
+                          className="relative pl-8 pr-2"
                         >
+                          {/* Connection to timeline */}
+                          <div className="absolute left-4 top-1/2 w-4 h-0.5 bg-pink-200 transform -translate-y-1/2"></div>
+                          
+                          {/* Timeline marker */}
                           <div className={`
-                            p-3 rounded-lg shadow-md border transition-all duration-300 hover:shadow-lg
+                            absolute left-[9px] top-1/2 w-3 h-3 rounded-full border bg-white transform -translate-y-1/2 z-10
+                            ${index === 9 || index === 11 ? "border-amber-400" : "border-pink-300"}
+                          `}></div>
+                          
+                          <div className={`
+                            p-3 rounded-lg shadow-sm border transition-all duration-300 hover:shadow-md relative
                             ${index === 9 || index === 11 ? 
-                              "bg-gradient-to-r from-yellow-50 to-yellow-100 border-yellow-300 ml-1" : 
+                              "bg-gradient-to-r from-yellow-50 to-yellow-100 border-yellow-300" : 
                               "bg-white border-pink-200"
                             }
-                            ${index === 9 ? "transform -rotate-1" : ""}
-                            ${index === 11 ? "transform rotate-1" : ""}
+                            ${index < 5 ? "border-l-4 border-l-pink-300" : ""}
+                            ${index >= 5 && index < 9 ? "border-l-4 border-l-pink-400" : ""}
+                            ${index === 9 ? "border-l-4 border-l-amber-400" : ""}
+                            ${index === 10 ? "border-l-4 border-l-pink-500" : ""}
+                            ${index === 11 ? "border-l-4 border-l-amber-500" : ""}
                           `}>
-                            <h4 className={`
-                              font-bold
-                              ${index === 9 || index === 11 ? "text-amber-800" : "text-darkPink"}
-                            `}>
-                              {item.class}
-                            </h4>
-                            <p className={`
-                              text-sm font-medium 
-                              ${index === 9 || index === 11 ? "text-amber-700" : "text-gray-600"}
-                            `}>
-                              {item.achievement}
-                            </p>
+                            <div className="flex justify-between items-center">
+                              <h4 className={`
+                                font-bold text-sm
+                                ${index === 9 || index === 11 ? "text-amber-800" : "text-darkPink"}
+                              `}>
+                                {item.class}
+                              </h4>
+                              <p className={`
+                                text-sm font-medium 
+                                ${index === 9 || index === 11 ? "text-amber-700" : "text-gray-600"}
+                              `}>
+                                {item.achievement}
+                              </p>
+                            </div>
+                            
+                            {/* Visual progress indicator */}
+                            <div className={`
+                              absolute bottom-0 left-0 right-0 h-1
+                              ${index === 9 || index === 11 ? "bg-gradient-to-r from-amber-300 to-amber-400" : "bg-gradient-to-r from-pink-200 to-pink-300"}
+                            `}></div>
                           </div>
                         </motion.div>
                       ))}
@@ -802,7 +839,7 @@ const AwardsAndPics = () => {
                   </div>
                 </div>
                 
-                <div className="text-center mt-4">
+                <div className="text-center mt-6">
                   <p className="text-darkPink/70 italic font-medium">Ranked consistently among the top students throughout school years</p>
                 </div>
               </motion.div>
